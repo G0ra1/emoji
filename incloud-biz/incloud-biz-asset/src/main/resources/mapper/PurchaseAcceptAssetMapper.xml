@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.asset.mapper.PurchaseAcceptAssetMapper">
+
+<resultMap id="purchaseAcceptAssetMap" type="com.netwisd.biz.asset.vo.PurchaseAcceptAssetVo">
+  <id property="id" column="id"/>
+  <result property="acceptanceId" column="acceptance_id"/>
+  <result property="route" column="route"/>
+  <result property="routeName" column="route_name"/>
+  <result property="itemCode" column="item_code"/>
+  <result property="itemName" column="item_name"/>
+  <result property="classifyId" column="classify_id"/>
+  <result property="classifyCode" column="classify_code"/>
+  <result property="classifyName" column="classify_name"/>
+  <result property="itemType" column="item_type"/>
+  <result property="desclong" column="desclong"/>
+  <result property="descshort" column="descshort"/>
+  <result property="unitCode" column="unit_code"/>
+  <result property="unitName" column="unit_name"/>
+  <result property="materialQuality" column="material_quality"/>
+  <result property="standard" column="standard"/>
+  <result property="specs" column="specs"/>
+  <result property="supplierName" column="supplier_name"/>
+  <result property="contractCode" column="contract_code"/>
+  <result property="acceptanceNumber" column="acceptance_number"/>
+  <result property="purchaseType" column="purchase_type"/>
+  <result property="skuCode" column="sku_code"/>
+  <result property="skuFullId" column="sku_full_id"/>
+  <result property="skuFullName" column="sku_full_name"/>
+  <result property="registerNumber" column="register_number"/>
+  <result property="acceptanceTaxRate" column="acceptance_tax_rate"/>
+  <result property="acceptanceAmount" column="acceptance_amount"/>
+  <result property="acceptanceUntaxedAmount" column="acceptance_untaxed_amount"/>
+  <result property="acceptanceTaxAmount" column="acceptance_tax_amount"/>
+  <result property="acceptanceSumAmount" column="acceptance_sum_amount"/>
+  <result property="acceptanceSumUntaxedAmount" column="acceptance_sum_untaxed_amount"/>
+  <result property="acceptanceSumTaxAmount" column="acceptance_sum_tax_amount"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+  <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+  <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+  <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+  <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+  <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+  <result property="acceptanceCode" column="acceptance_code"/>
+  <result property="registerResultId" column="register_result_id"/>
+  <result property="itemId" column="item_id"/>
+  <result property="supplierId" column="supplier_id"/>
+  <result property="contractId" column="contract_id"/>
+  <result property="fileIds" column="file_ids"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.asset.dto.PurchaseAcceptAssetDto" resultMap="purchaseAcceptAssetMap">
+  select * from incloud_biz_asset_purchase_accept_asset purchaseAcceptAsset where 1=1
+    <if test="purchaseAcceptAssetDto.id != null and purchaseAcceptAssetDto.id != ''">
+      AND purchaseAcceptAsset.id = #{purchaseAcceptAssetDto.id}
+    </if>
+    <if test="purchaseAcceptAssetDto.acceptanceId != null and purchaseAcceptAssetDto.acceptanceId != ''">
+      AND purchaseAcceptAsset.acceptance_id = #{purchaseAcceptAssetDto.acceptanceId}
+    </if>
+    <if test="purchaseAcceptAssetDto.route != null and purchaseAcceptAssetDto.route != ''">
+      AND purchaseAcceptAsset.route like CONCAT('%',#{purchaseAcceptAssetDto.route},'%')
+    </if>
+    <if test="purchaseAcceptAssetDto.routeName != null and purchaseAcceptAssetDto.routeName != ''">
+      AND purchaseAcceptAsset.route_name like CONCAT('%',#{purchaseAcceptAssetDto.routeName},'%')
+    </if>
+    <if test="purchaseAcceptAssetDto.itemCode != null and purchaseAcceptAssetDto.itemCode != ''">
+      AND purchaseAcceptAsset.item_code like CONCAT('%',#{purchaseAcceptAssetDto.itemCode},'%')
+    </if>
+    <if test="purchaseAcceptAssetDto.itemName != null and purchaseAcceptAssetDto.itemName != ''">
+      AND purchaseAcceptAsset.item_name like CONCAT('%',#{purchaseAcceptAssetDto.itemName},'%')
+    </if>
+    <if test="purchaseAcceptAssetDto.classifyId != null and purchaseAcceptAssetDto.classifyId != ''">
+      AND purchaseAcceptAsset.classify_id = #{purchaseAcceptAssetDto.classifyId}
+    </if>
+    <if test="purchaseAcceptAssetDto.classifyCode != null and purchaseAcceptAssetDto.classifyCode != ''">
+      AND purchaseAcceptAsset.classify_code like CONCAT('%',#{purchaseAcceptAssetDto.classifyCode},'%')
+    </if>
+    <if test="purchaseAcceptAssetDto.classifyName != null and purchaseAcceptAssetDto.classifyName != ''">
+      AND purchaseAcceptAsset.classify_name like CONCAT('%',#{purchaseAcceptAssetDto.classifyName},'%')
+    </if>
+    <if test="purchaseAcceptAssetDto.itemType != null and purchaseAcceptAssetDto.itemType != ''">
+      AND purchaseAcceptAsset.item_type like CONCAT('%',#{purchaseAcceptAssetDto.itemType},'%')
+    </if>
+    <if test="purchaseAcceptAssetDto.desclong != null and purchaseAcceptAssetDto.desclong != ''">
+      AND purchaseAcceptAsset.desclong like CONCAT('%',#{purchaseAcceptAssetDto.desclong},'%')
+    </if>
+    <if test="purchaseAcceptAssetDto.descshort != null and purchaseAcceptAssetDto.descshort != ''">
+      AND purchaseAcceptAsset.descshort like CONCAT('%',#{purchaseAcceptAssetDto.descshort},'%')
+    </if>
+    <if test="purchaseAcceptAssetDto.unitCode != null and purchaseAcceptAssetDto.unitCode != ''">
+      AND purchaseAcceptAsset.unit_code like CONCAT('%',#{purchaseAcceptAssetDto.unitCode},'%')
+    </if>
+    <if test="purchaseAcceptAssetDto.unitName != null and purchaseAcceptAssetDto.unitName != ''">
+      AND purchaseAcceptAsset.unit_name like CONCAT('%',#{purchaseAcceptAssetDto.unitName},'%')
+    </if>
+    <if test="purchaseAcceptAssetDto.materialQuality != null and purchaseAcceptAssetDto.materialQuality != ''">
+      AND purchaseAcceptAsset.material_quality like CONCAT('%',#{purchaseAcceptAssetDto.materialQuality},'%')
+    </if>
+    <if test="purchaseAcceptAssetDto.standard != null and purchaseAcceptAssetDto.standard != ''">
+      AND purchaseAcceptAsset.standard like CONCAT('%',#{purchaseAcceptAssetDto.standard},'%')
+    </if>
+    <if test="purchaseAcceptAssetDto.specs != null and purchaseAcceptAssetDto.specs != ''">
+      AND purchaseAcceptAsset.specs like CONCAT('%',#{purchaseAcceptAssetDto.specs},'%')
+    </if>
+    <if test="purchaseAcceptAssetDto.supplierName != null and purchaseAcceptAssetDto.supplierName != ''">
+      AND purchaseAcceptAsset.supplier_name like CONCAT('%',#{purchaseAcceptAssetDto.supplierName},'%')
+    </if>
+    <if test="purchaseAcceptAssetDto.contractCode != null and purchaseAcceptAssetDto.contractCode != ''">
+      AND purchaseAcceptAsset.contract_code like CONCAT('%',#{purchaseAcceptAssetDto.contractCode},'%')
+    </if>
+    <if test="purchaseAcceptAssetDto.acceptanceNumber != null and purchaseAcceptAssetDto.acceptanceNumber != ''">
+      AND purchaseAcceptAsset.acceptance_number = #{purchaseAcceptAssetDto.acceptanceNumber}
+    </if>
+    <if test="purchaseAcceptAssetDto.purchaseType != null and purchaseAcceptAssetDto.purchaseType != ''">
+      AND purchaseAcceptAsset.purchase_type = #{purchaseAcceptAssetDto.purchaseType}
+    </if>
+    <if test="purchaseAcceptAssetDto.skuCode != null and purchaseAcceptAssetDto.skuCode != ''">
+      AND purchaseAcceptAsset.sku_code like CONCAT('%',#{purchaseAcceptAssetDto.skuCode},'%')
+    </if>
+    <if test="purchaseAcceptAssetDto.skuFullId != null and purchaseAcceptAssetDto.skuFullId != ''">
+      AND purchaseAcceptAsset.sku_full_id like CONCAT('%',#{purchaseAcceptAssetDto.skuFullId},'%')
+    </if>
+    <if test="purchaseAcceptAssetDto.skuFullName != null and purchaseAcceptAssetDto.skuFullName != ''">
+      AND purchaseAcceptAsset.sku_full_name like CONCAT('%',#{purchaseAcceptAssetDto.skuFullName},'%')
+    </if>
+    <if test="purchaseAcceptAssetDto.registerNumber != null and purchaseAcceptAssetDto.registerNumber != ''">
+      AND purchaseAcceptAsset.register_number = #{purchaseAcceptAssetDto.registerNumber}
+    </if>
+    <if test="purchaseAcceptAssetDto.acceptanceTaxRate != null and purchaseAcceptAssetDto.acceptanceTaxRate != ''">
+      AND purchaseAcceptAsset.acceptance_tax_rate = #{purchaseAcceptAssetDto.acceptanceTaxRate}
+    </if>
+    <if test="purchaseAcceptAssetDto.acceptanceAmount != null and purchaseAcceptAssetDto.acceptanceAmount != ''">
+      AND purchaseAcceptAsset.acceptance_amount = #{purchaseAcceptAssetDto.acceptanceAmount}
+    </if>
+    <if test="purchaseAcceptAssetDto.acceptanceUntaxedAmount != null and purchaseAcceptAssetDto.acceptanceUntaxedAmount != ''">
+      AND purchaseAcceptAsset.acceptance_untaxed_amount = #{purchaseAcceptAssetDto.acceptanceUntaxedAmount}
+    </if>
+    <if test="purchaseAcceptAssetDto.acceptanceTaxAmount != null and purchaseAcceptAssetDto.acceptanceTaxAmount != ''">
+      AND purchaseAcceptAsset.acceptance_tax_amount = #{purchaseAcceptAssetDto.acceptanceTaxAmount}
+    </if>
+    <if test="purchaseAcceptAssetDto.acceptanceSumAmount != null and purchaseAcceptAssetDto.acceptanceSumAmount != ''">
+      AND purchaseAcceptAsset.acceptance_sum_amount = #{purchaseAcceptAssetDto.acceptanceSumAmount}
+    </if>
+    <if test="purchaseAcceptAssetDto.acceptanceSumUntaxedAmount != null and purchaseAcceptAssetDto.acceptanceSumUntaxedAmount != ''">
+      AND purchaseAcceptAsset.acceptance_sum_untaxed_amount = #{purchaseAcceptAssetDto.acceptanceSumUntaxedAmount}
+    </if>
+    <if test="purchaseAcceptAssetDto.acceptanceSumTaxAmount != null and purchaseAcceptAssetDto.acceptanceSumTaxAmount != ''">
+      AND purchaseAcceptAsset.acceptance_sum_tax_amount = #{purchaseAcceptAssetDto.acceptanceSumTaxAmount}
+    </if>
+    <if test="purchaseAcceptAssetDto.createUserId != null and purchaseAcceptAssetDto.createUserId != ''">
+      AND purchaseAcceptAsset.create_user_id = #{purchaseAcceptAssetDto.createUserId}
+    </if>
+    <if test="purchaseAcceptAssetDto.createUserName != null and purchaseAcceptAssetDto.createUserName != ''">
+      AND purchaseAcceptAsset.create_user_name like CONCAT('%',#{purchaseAcceptAssetDto.createUserName},'%')
+    </if>
+    <if test="purchaseAcceptAssetDto.createUserParentOrgId != null and purchaseAcceptAssetDto.createUserParentOrgId != ''">
+      AND purchaseAcceptAsset.create_user_parent_org_id = #{purchaseAcceptAssetDto.createUserParentOrgId}
+    </if>
+    <if test="purchaseAcceptAssetDto.createUserParentOrgName != null and purchaseAcceptAssetDto.createUserParentOrgName != ''">
+      AND purchaseAcceptAsset.create_user_parent_org_name like CONCAT('%',#{purchaseAcceptAssetDto.createUserParentOrgName},'%')
+    </if>
+    <if test="purchaseAcceptAssetDto.createUserParentDeptId != null and purchaseAcceptAssetDto.createUserParentDeptId != ''">
+      AND purchaseAcceptAsset.create_user_parent_dept_id = #{purchaseAcceptAssetDto.createUserParentDeptId}
+    </if>
+    <if test="purchaseAcceptAssetDto.createUserParentDeptName != null and purchaseAcceptAssetDto.createUserParentDeptName != ''">
+      AND purchaseAcceptAsset.create_user_parent_dept_name like CONCAT('%',#{purchaseAcceptAssetDto.createUserParentDeptName},'%')
+    </if>
+    <if test="purchaseAcceptAssetDto.createUserOrgFullId != null and purchaseAcceptAssetDto.createUserOrgFullId != ''">
+      AND purchaseAcceptAsset.create_user_org_full_id like CONCAT('%',#{purchaseAcceptAssetDto.createUserOrgFullId},'%')
+    </if>
+    <if test="purchaseAcceptAssetDto.acceptanceCode != null and purchaseAcceptAssetDto.acceptanceCode != ''">
+      AND purchaseAcceptAsset.acceptance_code like CONCAT('%',#{purchaseAcceptAssetDto.acceptanceCode},'%')
+    </if>
+    <if test="purchaseAcceptAssetDto.registerResultId != null and purchaseAcceptAssetDto.registerResultId != ''">
+      AND purchaseAcceptAsset.register_result_id = #{purchaseAcceptAssetDto.registerResultId}
+    </if>
+    <if test="purchaseAcceptAssetDto.itemId != null and purchaseAcceptAssetDto.itemId != ''">
+      AND purchaseAcceptAsset.item_id = #{purchaseAcceptAssetDto.itemId}
+    </if>
+    <if test="purchaseAcceptAssetDto.supplierId != null and purchaseAcceptAssetDto.supplierId != ''">
+      AND purchaseAcceptAsset.supplier_id = #{purchaseAcceptAssetDto.supplierId}
+    </if>
+    <if test="purchaseAcceptAssetDto.contractId != null and purchaseAcceptAssetDto.contractId != ''">
+      AND purchaseAcceptAsset.contract_id = #{purchaseAcceptAssetDto.contractId}
+    </if>
+    <if test="purchaseAcceptAssetDto.fileIds != null and purchaseAcceptAssetDto.fileIds != ''">
+      AND purchaseAcceptAsset.file_ids = #{purchaseAcceptAssetDto.fileIds}
+    </if>
+    order by purchaseAcceptAsset.id desc
+</select>
+</mapper>

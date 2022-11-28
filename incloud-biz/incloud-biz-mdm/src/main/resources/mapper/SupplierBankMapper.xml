@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.mdm.mapper.SupplierBankMapper">
+
+<resultMap id="supplierBankMap" type="com.netwisd.biz.mdm.vo.SupplierBankVo">
+  <id property="id" column="id"/>
+  <result property="supplierId" column="supplier_id"/>
+  <result property="supplierCode" column="supplier_code"/>
+  <result property="bankName" column="bank_name"/>
+  <result property="bankAccount" column="bank_account"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.mdm.dto.SupplierBankDto" resultMap="supplierBankMap">
+  select * from incloud_biz_mdm_supplier_bank supplierBank where 1=1
+    <if test="supplierBankDto.id != null and supplierBankDto.id != ''">
+      AND supplierBank.id = #{supplierBankDto.id}
+    </if>
+    <if test="supplierBankDto.supplierId != null and supplierBankDto.supplierId != ''">
+      AND supplierBank.supplier_id = #{supplierBankDto.supplierId}
+    </if>
+    <if test="supplierBankDto.supplierCode != null and supplierBankDto.supplierCode != ''">
+      AND supplierBank.supplier_code like CONCAT('%',#{supplierBankDto.supplierCode},'%')
+    </if>
+    <if test="supplierBankDto.bankName != null and supplierBankDto.bankName != ''">
+      AND supplierBank.bank_name like CONCAT('%',#{supplierBankDto.bankName},'%')
+    </if>
+    <if test="supplierBankDto.bankAccount != null and supplierBankDto.bankAccount != ''">
+      AND supplierBank.bank_account like CONCAT('%',#{supplierBankDto.bankAccount},'%')
+    </if>
+    order by supplierBank.id desc
+</select>
+</mapper>

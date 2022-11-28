@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.asset.mapper.PurchaseStorageMapper">
+
+<resultMap id="purchaseStorageMap" type="com.netwisd.biz.asset.vo.PurchaseStorageVo">
+  <id property="id" column="id"/>
+  <result property="code" column="code"/>
+  <result property="applyUserId" column="apply_user_id"/>
+  <result property="applyUserName" column="apply_user_name"/>
+  <result property="applyUserOrgId" column="apply_user_org_id"/>
+  <result property="applyUserOrgName" column="apply_user_org_name"/>
+  <result property="applyUserDeptId" column="apply_user_dept_id"/>
+  <result property="applyUserDeptName" column="apply_user_dept_name"/>
+  <result property="sumTotalAmount" column="sum_total_amount"/>
+  <result property="sumTotalUntaxedAmount" column="sum_total_untaxed_amount"/>
+  <result property="sumTotalTaxAmount" column="sum_total_tax_amount"/>
+  <result property="sumTotalNumber" column="sum_total_number"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+  <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+  <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+  <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+  <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+  <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+  <result property="reason" column="reason"/>
+  <result property="explanation" column="explanation"/>
+  <result property="purchaseType" column="purchase_type"/>
+  <result property="assetSource" column="asset_source"/>
+  <result property="assetSourceName" column="asset_source_name"/>
+  <result property="storageNumber" column="storage_number"/>
+  <result property="applyTime" column="apply_time"/>
+  <result property="fileIds" column="file_ids"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.asset.dto.PurchaseStorageDto" resultMap="purchaseStorageMap">
+  select * from incloud_biz_asset_purchase_storage purchaseStorage where 1=1
+    <if test="purchaseStorageDto.id != null and purchaseStorageDto.id != ''">
+      AND purchaseStorage.id = #{purchaseStorageDto.id}
+    </if>
+    <if test="purchaseStorageDto.code != null and purchaseStorageDto.code != ''">
+      AND purchaseStorage.code like CONCAT('%',#{purchaseStorageDto.code},'%')
+    </if>
+    <if test="purchaseStorageDto.applyUserId != null and purchaseStorageDto.applyUserId != ''">
+      AND purchaseStorage.apply_user_id = #{purchaseStorageDto.applyUserId}
+    </if>
+    <if test="purchaseStorageDto.applyUserName != null and purchaseStorageDto.applyUserName != ''">
+      AND purchaseStorage.apply_user_name like CONCAT('%',#{purchaseStorageDto.applyUserName},'%')
+    </if>
+    <if test="purchaseStorageDto.applyUserOrgId != null and purchaseStorageDto.applyUserOrgId != ''">
+      AND purchaseStorage.apply_user_org_id = #{purchaseStorageDto.applyUserOrgId}
+    </if>
+    <if test="purchaseStorageDto.applyUserOrgName != null and purchaseStorageDto.applyUserOrgName != ''">
+      AND purchaseStorage.apply_user_org_name like CONCAT('%',#{purchaseStorageDto.applyUserOrgName},'%')
+    </if>
+    <if test="purchaseStorageDto.applyUserDeptId != null and purchaseStorageDto.applyUserDeptId != ''">
+      AND purchaseStorage.apply_user_dept_id = #{purchaseStorageDto.applyUserDeptId}
+    </if>
+    <if test="purchaseStorageDto.applyUserDeptName != null and purchaseStorageDto.applyUserDeptName != ''">
+      AND purchaseStorage.apply_user_dept_name like CONCAT('%',#{purchaseStorageDto.applyUserDeptName},'%')
+    </if>
+    <if test="purchaseStorageDto.sumTotalAmount != null and purchaseStorageDto.sumTotalAmount != ''">
+      AND purchaseStorage.sum_total_amount = #{purchaseStorageDto.sumTotalAmount}
+    </if>
+    <if test="purchaseStorageDto.sumTotalUntaxedAmount != null and purchaseStorageDto.sumTotalUntaxedAmount != ''">
+      AND purchaseStorage.sum_total_untaxed_amount = #{purchaseStorageDto.sumTotalUntaxedAmount}
+    </if>
+    <if test="purchaseStorageDto.sumTotalTaxAmount != null and purchaseStorageDto.sumTotalTaxAmount != ''">
+      AND purchaseStorage.sum_total_tax_amount = #{purchaseStorageDto.sumTotalTaxAmount}
+    </if>
+    <if test="purchaseStorageDto.sumTotalNumber != null and purchaseStorageDto.sumTotalNumber != ''">
+      AND purchaseStorage.sum_total_number = #{purchaseStorageDto.sumTotalNumber}
+    </if>
+    <if test="purchaseStorageDto.createUserId != null and purchaseStorageDto.createUserId != ''">
+      AND purchaseStorage.create_user_id = #{purchaseStorageDto.createUserId}
+    </if>
+    <if test="purchaseStorageDto.createUserName != null and purchaseStorageDto.createUserName != ''">
+      AND purchaseStorage.create_user_name like CONCAT('%',#{purchaseStorageDto.createUserName},'%')
+    </if>
+    <if test="purchaseStorageDto.createUserParentOrgId != null and purchaseStorageDto.createUserParentOrgId != ''">
+      AND purchaseStorage.create_user_parent_org_id = #{purchaseStorageDto.createUserParentOrgId}
+    </if>
+    <if test="purchaseStorageDto.createUserParentOrgName != null and purchaseStorageDto.createUserParentOrgName != ''">
+      AND purchaseStorage.create_user_parent_org_name like CONCAT('%',#{purchaseStorageDto.createUserParentOrgName},'%')
+    </if>
+    <if test="purchaseStorageDto.createUserParentDeptId != null and purchaseStorageDto.createUserParentDeptId != ''">
+      AND purchaseStorage.create_user_parent_dept_id = #{purchaseStorageDto.createUserParentDeptId}
+    </if>
+    <if test="purchaseStorageDto.createUserParentDeptName != null and purchaseStorageDto.createUserParentDeptName != ''">
+      AND purchaseStorage.create_user_parent_dept_name like CONCAT('%',#{purchaseStorageDto.createUserParentDeptName},'%')
+    </if>
+    <if test="purchaseStorageDto.createUserOrgFullId != null and purchaseStorageDto.createUserOrgFullId != ''">
+      AND purchaseStorage.create_user_org_full_id like CONCAT('%',#{purchaseStorageDto.createUserOrgFullId},'%')
+    </if>
+    <if test="purchaseStorageDto.reason != null and purchaseStorageDto.reason != ''">
+      AND purchaseStorage.reason like CONCAT('%',#{purchaseStorageDto.reason},'%')
+    </if>
+    <if test="purchaseStorageDto.explanation != null and purchaseStorageDto.explanation != ''">
+      AND purchaseStorage.explanation like CONCAT('%',#{purchaseStorageDto.explanation},'%')
+    </if>
+    <if test="purchaseStorageDto.purchaseType != null and purchaseStorageDto.purchaseType != ''">
+      AND purchaseStorage.purchase_type = #{purchaseStorageDto.purchaseType}
+    </if>
+    <if test="purchaseStorageDto.assetSource != null and purchaseStorageDto.assetSource != ''">
+      AND purchaseStorage.asset_source = #{purchaseStorageDto.assetSource}
+    </if>
+    <if test="purchaseStorageDto.assetSourceName != null and purchaseStorageDto.assetSourceName != ''">
+      AND purchaseStorage.asset_source_name = #{purchaseStorageDto.assetSourceName}
+    </if>
+    <if test="purchaseStorageDto.storageNumber != null and purchaseStorageDto.storageNumber != ''">
+      AND purchaseStorage.storage_number = #{purchaseStorageDto.storageNumber}
+    </if>
+    <if test="purchaseStorageDto.applyTime != null and purchaseStorageDto.applyTime != ''">
+      AND purchaseStorage.apply_time = #{purchaseStorageDto.applyTime}
+    </if>
+    <if test="purchaseStorageDto.fileIds != null and purchaseStorageDto.fileIds != ''">
+      AND purchaseStorage.file_ids = #{purchaseStorageDto.fileIds}
+    </if>
+    order by purchaseStorage.id desc
+</select>
+</mapper>

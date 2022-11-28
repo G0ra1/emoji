@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.asset.mapper.MaintainRegDetailMapper">
+
+<resultMap id="maintainRegDetailMap" type="com.netwisd.biz.asset.vo.MaintainRegDetailVo">
+  <id property="id" column="id"/>
+  <result property="maintainRegId" column="maintain_reg_id"/>
+  <result property="assetsId" column="assets_id"/>
+  <result property="assetsDetailId" column="assets_detail_id"/>
+  <result property="classifyId" column="classify_id"/>
+  <result property="classifyCode" column="classify_code"/>
+  <result property="classifyName" column="classify_name"/>
+  <result property="route" column="route"/>
+  <result property="routeName" column="route_name"/>
+  <result property="categoryId" column="category_id"/>
+  <result property="categoryCode" column="category_code"/>
+  <result property="categoryName" column="category_name"/>
+  <result property="itemCode" column="item_code"/>
+  <result property="itemName" column="item_name"/>
+  <result property="desclong" column="desclong"/>
+  <result property="descshort" column="descshort"/>
+  <result property="unitCode" column="unit_code"/>
+  <result property="unitName" column="unit_name"/>
+  <result property="materialQuality" column="material_quality"/>
+  <result property="standard" column="standard"/>
+  <result property="specs" column="specs"/>
+  <result property="assetsClassification" column="assets_classification"/>
+  <result property="assetsCode" column="assets_code"/>
+  <result property="taxRate" column="tax_rate"/>
+  <result property="stockNumber" column="stock_number"/>
+  <result property="fittingNumber" column="fitting_number"/>
+  <result property="purchaseAmount" column="purchase_amount"/>
+  <result property="purchaseUntaxedAmount" column="purchase_untaxed_amount"/>
+  <result property="purchaseTaxAmount" column="purchase_tax_amount"/>
+  <result property="purchaseSumAmount" column="purchase_sum_amount"/>
+  <result property="purchaseSumUntaxedAmount" column="purchase_sum_untaxed_amount"/>
+  <result property="purchaseSumTaxAmount" column="purchase_sum_tax_amount"/>
+  <result property="applyUnitId" column="apply_unit_id"/>
+  <result property="applyUnitName" column="apply_unit_name"/>
+  <result property="applyDeptId" column="apply_dept_id"/>
+  <result property="applyDeptName" column="apply_dept_name"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.asset.dto.MaintainRegDetailDto" resultMap="maintainRegDetailMap">
+  select * from incloud_biz_asset_maintain_reg_detail maintainRegDetail where 1=1
+    <if test="maintainRegDetailDto.id != null and maintainRegDetailDto.id != ''">
+      AND maintainRegDetail.id = #{maintainRegDetailDto.id}
+    </if>
+    <if test="maintainRegDetailDto.maintainRegId != null and maintainRegDetailDto.maintainRegId != ''">
+      AND maintainRegDetail.maintain_reg_id = #{maintainRegDetailDto.maintainRegId}
+    </if>
+    <if test="maintainRegDetailDto.assetsId != null and maintainRegDetailDto.assetsId != ''">
+      AND maintainRegDetail.assets_id = #{maintainRegDetailDto.assetsId}
+    </if>
+    <if test="maintainRegDetailDto.assetsDetailId != null and maintainRegDetailDto.assetsDetailId != ''">
+      AND maintainRegDetail.assets_detail_id = #{maintainRegDetailDto.assetsDetailId}
+    </if>
+    <if test="maintainRegDetailDto.classifyId != null and maintainRegDetailDto.classifyId != ''">
+      AND maintainRegDetail.classify_id = #{maintainRegDetailDto.classifyId}
+    </if>
+    <if test="maintainRegDetailDto.classifyCode != null and maintainRegDetailDto.classifyCode != ''">
+      AND maintainRegDetail.classify_code like CONCAT('%',#{maintainRegDetailDto.classifyCode},'%')
+    </if>
+    <if test="maintainRegDetailDto.classifyName != null and maintainRegDetailDto.classifyName != ''">
+      AND maintainRegDetail.classify_name like CONCAT('%',#{maintainRegDetailDto.classifyName},'%')
+    </if>
+    <if test="maintainRegDetailDto.route != null and maintainRegDetailDto.route != ''">
+      AND maintainRegDetail.route like CONCAT('%',#{maintainRegDetailDto.route},'%')
+    </if>
+    <if test="maintainRegDetailDto.routeName != null and maintainRegDetailDto.routeName != ''">
+      AND maintainRegDetail.route_name like CONCAT('%',#{maintainRegDetailDto.routeName},'%')
+    </if>
+    <if test="maintainRegDetailDto.categoryId != null and maintainRegDetailDto.categoryId != ''">
+      AND maintainRegDetail.category_id = #{maintainRegDetailDto.categoryId}
+    </if>
+    <if test="maintainRegDetailDto.categoryCode != null and maintainRegDetailDto.categoryCode != ''">
+      AND maintainRegDetail.category_code like CONCAT('%',#{maintainRegDetailDto.categoryCode},'%')
+    </if>
+    <if test="maintainRegDetailDto.categoryName != null and maintainRegDetailDto.categoryName != ''">
+      AND maintainRegDetail.category_name like CONCAT('%',#{maintainRegDetailDto.categoryName},'%')
+    </if>
+    <if test="maintainRegDetailDto.itemCode != null and maintainRegDetailDto.itemCode != ''">
+      AND maintainRegDetail.item_code like CONCAT('%',#{maintainRegDetailDto.itemCode},'%')
+    </if>
+    <if test="maintainRegDetailDto.itemName != null and maintainRegDetailDto.itemName != ''">
+      AND maintainRegDetail.item_name like CONCAT('%',#{maintainRegDetailDto.itemName},'%')
+    </if>
+    <if test="maintainRegDetailDto.desclong != null and maintainRegDetailDto.desclong != ''">
+      AND maintainRegDetail.desclong like CONCAT('%',#{maintainRegDetailDto.desclong},'%')
+    </if>
+    <if test="maintainRegDetailDto.descshort != null and maintainRegDetailDto.descshort != ''">
+      AND maintainRegDetail.descshort like CONCAT('%',#{maintainRegDetailDto.descshort},'%')
+    </if>
+    <if test="maintainRegDetailDto.unitCode != null and maintainRegDetailDto.unitCode != ''">
+      AND maintainRegDetail.unit_code like CONCAT('%',#{maintainRegDetailDto.unitCode},'%')
+    </if>
+    <if test="maintainRegDetailDto.unitName != null and maintainRegDetailDto.unitName != ''">
+      AND maintainRegDetail.unit_name like CONCAT('%',#{maintainRegDetailDto.unitName},'%')
+    </if>
+    <if test="maintainRegDetailDto.materialQuality != null and maintainRegDetailDto.materialQuality != ''">
+      AND maintainRegDetail.material_quality like CONCAT('%',#{maintainRegDetailDto.materialQuality},'%')
+    </if>
+    <if test="maintainRegDetailDto.standard != null and maintainRegDetailDto.standard != ''">
+      AND maintainRegDetail.standard like CONCAT('%',#{maintainRegDetailDto.standard},'%')
+    </if>
+    <if test="maintainRegDetailDto.specs != null and maintainRegDetailDto.specs != ''">
+      AND maintainRegDetail.specs like CONCAT('%',#{maintainRegDetailDto.specs},'%')
+    </if>
+    <if test="maintainRegDetailDto.assetsClassification != null and maintainRegDetailDto.assetsClassification != ''">
+      AND maintainRegDetail.assets_classification like CONCAT('%',#{maintainRegDetailDto.assetsClassification},'%')
+    </if>
+    <if test="maintainRegDetailDto.assetsCode != null and maintainRegDetailDto.assetsCode != ''">
+      AND maintainRegDetail.assets_code like CONCAT('%',#{maintainRegDetailDto.assetsCode},'%')
+    </if>
+    <if test="maintainRegDetailDto.taxRate != null and maintainRegDetailDto.taxRate != ''">
+      AND maintainRegDetail.tax_rate = #{maintainRegDetailDto.taxRate}
+    </if>
+    <if test="maintainRegDetailDto.stockNumber != null and maintainRegDetailDto.stockNumber != ''">
+      AND maintainRegDetail.stock_number = #{maintainRegDetailDto.stockNumber}
+    </if>
+    <if test="maintainRegDetailDto.fittingNumber != null and maintainRegDetailDto.fittingNumber != ''">
+      AND maintainRegDetail.fitting_number = #{maintainRegDetailDto.fittingNumber}
+    </if>
+    <if test="maintainRegDetailDto.purchaseAmount != null and maintainRegDetailDto.purchaseAmount != ''">
+      AND maintainRegDetail.purchase_amount = #{maintainRegDetailDto.purchaseAmount}
+    </if>
+    <if test="maintainRegDetailDto.purchaseUntaxedAmount != null and maintainRegDetailDto.purchaseUntaxedAmount != ''">
+      AND maintainRegDetail.purchase_untaxed_amount = #{maintainRegDetailDto.purchaseUntaxedAmount}
+    </if>
+    <if test="maintainRegDetailDto.purchaseTaxAmount != null and maintainRegDetailDto.purchaseTaxAmount != ''">
+      AND maintainRegDetail.purchase_tax_amount = #{maintainRegDetailDto.purchaseTaxAmount}
+    </if>
+    <if test="maintainRegDetailDto.purchaseSumAmount != null and maintainRegDetailDto.purchaseSumAmount != ''">
+      AND maintainRegDetail.purchase_sum_amount = #{maintainRegDetailDto.purchaseSumAmount}
+    </if>
+    <if test="maintainRegDetailDto.purchaseSumUntaxedAmount != null and maintainRegDetailDto.purchaseSumUntaxedAmount != ''">
+      AND maintainRegDetail.purchase_sum_untaxed_amount = #{maintainRegDetailDto.purchaseSumUntaxedAmount}
+    </if>
+    <if test="maintainRegDetailDto.purchaseSumTaxAmount != null and maintainRegDetailDto.purchaseSumTaxAmount != ''">
+      AND maintainRegDetail.purchase_sum_tax_amount = #{maintainRegDetailDto.purchaseSumTaxAmount}
+    </if>
+    <if test="maintainRegDetailDto.applyUnitId != null and maintainRegDetailDto.applyUnitId != ''">
+      AND maintainRegDetail.apply_unit_id like CONCAT('%',#{maintainRegDetailDto.applyUnitId},'%')
+    </if>
+    <if test="maintainRegDetailDto.applyUnitName != null and maintainRegDetailDto.applyUnitName != ''">
+      AND maintainRegDetail.apply_unit_name like CONCAT('%',#{maintainRegDetailDto.applyUnitName},'%')
+    </if>
+    <if test="maintainRegDetailDto.applyDeptId != null and maintainRegDetailDto.applyDeptId != ''">
+      AND maintainRegDetail.apply_dept_id like CONCAT('%',#{maintainRegDetailDto.applyDeptId},'%')
+    </if>
+    <if test="maintainRegDetailDto.applyDeptName != null and maintainRegDetailDto.applyDeptName != ''">
+      AND maintainRegDetail.apply_dept_name like CONCAT('%',#{maintainRegDetailDto.applyDeptName},'%')
+    </if>
+    order by maintainRegDetail.id desc
+</select>
+</mapper>

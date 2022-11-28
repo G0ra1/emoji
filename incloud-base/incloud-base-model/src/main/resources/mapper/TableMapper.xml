@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.model.mapper.TableMapper">
+
+  <select id="queryTablePage" resultType="com.netwisd.base.model.vo.ModelEntityVo">
+    select
+        table_name tableName,
+        table_comment tableNameCh,
+        engine engine,
+        table_collation tableCollation,
+        create_time createTime
+    from
+        information_schema.tables
+    where
+        table_schema = (select database())
+      <if test="tableName != null and tableName.trim() != ''">
+        and table_name like concat('%', #{tableName}, '%')
+      </if>
+      <if test="tableNameCh != null and tableNameCh.trim() != ''">
+        and table_comment like concat('%', #{tableNameCh}, '%')
+      </if>
+        order by create_time desc
+  </select>
+
+  <select id="queryColumnInfoList" resultType="com.netwisd.base.model.vo.ModelFieldVo">
+      SELECT
+          table_name,
+          column_name name,
+          column_comment nameCh,
+          data_type dbType,
+          is_nullable,
+          column_key,
+          column_type columnType,
+          if(is_nullable='YES',0,1) isNotNull,
+          if(column_key='PRI',1,0)  isKey,
+          COALESCE(character_maximum_length, numeric_precision, datetime_precision) length,
+          column_default  defaultValue,
+          numeric_scale `precision`
+      FROM
+        information_schema.COLUMNS
+      WHERE
+        table_name = #{tableName}
+        and table_schema = (select database())
+      order by ordinal_position
+    </select>
+
+    <select id="getColumnInfo" resultType="com.netwisd.base.model.vo.ModelFieldVo">
+        SELECT
+            table_name,
+            column_name name,
+            column_comment nameCh,
+            data_type dbType,
+            is_nullable,
+            column_key,
+            column_type columnType,
+            if(is_nullable='YES',0,1) isNotNull,
+            if(column_key='PRI',1,0)  isKey,
+            character_maximum_length length,
+            column_default  defaultValue
+        FROM
+            information_schema.COLUMNS
+        WHERE
+            table_name = #{tableName}
+          and table_schema = (select database())
+          and column_name = #{columnName}
+        order by ordinal_position
+    </select>
+
+    <select id="getTableInfo" resultType="com.netwisd.base.model.vo.ModelEntityVo">
+        select
+            table_name tableName,
+            table_comment tableNameCh,
+            engine engine,
+            table_collation tableCollation,
+            create_time createTime
+        from
+        information_schema.tables
+        where
+            table_schema = (select database())
+            and table_name = #{tableName}
+    </select>
+
+    <update id="deleteByTableName" >
+       DROP TABLE `${tableName}`
+    </update>
+
+    <update id="execDDLSql">
+        ${sql}
+    </update>
+
+    <select id="execSql" resultType="java.util.Map">
+        ${sql}
+    </select>
+</mapper>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.wf.mapper.WfProcdefMapper">
+
+<resultMap id="wfProcdefMap" type="com.netwisd.base.wf.vo.WfProcDefVo">
+  <id property="id" column="id"/>
+  <result property="camundaProcdefId" column="camunda_procdef_id"/>
+  <result property="procdefName" column="procdef_name"/>
+  <result property="camundaProcdefKey" column="camunda_procdef_key"/>
+  <result property="procdefVersion" column="procdef_version"/>
+  <result property="deploymentId" column="deployment_id"/>
+  <result property="resourceName" column="resource_name"/>
+  <result property="suspentionState" column="suspention_state"/>
+  <result property="tenantId" column="tenant_id"/>
+  <result property="versionTag" column="version_tag"/>
+  <result property="startable" column="startable"/>
+  <result property="deployTime" column="deploy_time"/>
+  <result property="dataSource" column="data_source"/>
+  <result property="currentVersion" column="current_version"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+  <result property="procdef_type_id" column="procdef_type_id"/>
+  <result property="procdefTypeName" column="procdef_type_name"/>
+  <result property="remindSign" column="remind_sign"/>
+  <result property="remark" column="remark"/>
+  <result property="icon" column="icon"/>
+  <result property="procdefNameAbbr" column="procdef_name_abbr"/>
+  <result property="isBizCenter" column="is_biz_center"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.wf.dto.WfProcDefDto" resultMap="wfProcdefMap">
+  select * from incloud_base_wf_procdef wfProcdef where 1=1
+    <if test="wfProcdefDto.id != null and wfProcdefDto.id != ''">
+      AND wfProcdef.id = #{wfProcdefDto.id}
+    </if>
+    <if test="wfProcdefDto.camundaProcdefId != null and wfProcdefDto.camundaProcdefId != ''">
+      AND wfProcdef.camunda_procdef_id like CONCAT('%',#{wfProcdefDto.camundaProcdefId},'%')
+    </if>
+    <if test="wfProcdefDto.procdefName != null and wfProcdefDto.procdefName != ''">
+      AND wfProcdef.procdef_name like CONCAT('%',#{wfProcdefDto.procdefName},'%')
+    </if>
+    <if test="wfProcdefDto.procdefVersion != null and wfProcdefDto.procdefVersion != ''">
+      AND wfProcdef.procdef_version = #{wfProcdefDto.procdefVersion}
+    </if>
+    <if test="wfProcdefDto.deploymentId != null and wfProcdefDto.deploymentId != ''">
+      AND wfProcdef.deployment_id like CONCAT('%',#{wfProcdefDto.deploymentId},'%')
+    </if>
+    <if test="wfProcdefDto.resourceName != null and wfProcdefDto.resourceName != ''">
+      AND wfProcdef.resource_name like CONCAT('%',#{wfProcdefDto.resourceName},'%')
+    </if>
+    <if test="wfProcdefDto.suspentionState != null and wfProcdefDto.suspentionState != ''">
+      AND wfProcdef.suspention_state = #{wfProcdefDto.suspentionState}
+    </if>
+    <if test="wfProcdefDto.tenantId != null and wfProcdefDto.tenantId != ''">
+      AND wfProcdef.tenant_id like CONCAT('%',#{wfProcdefDto.tenantId},'%')
+    </if>
+    <if test="wfProcdefDto.versionTag != null and wfProcdefDto.versionTag != ''">
+      AND wfProcdef.version_tag like CONCAT('%',#{wfProcdefDto.versionTag},'%')
+    </if>
+    <if test="wfProcdefDto.startable != null and wfProcdefDto.startable != ''">
+      AND wfProcdef.startable = #{wfProcdefDto.startable}
+    </if>
+    <if test="wfProcdefDto.deployTime != null and wfProcdefDto.deployTime != ''">
+      AND wfProcdef.deploy_time = #{wfProcdefDto.deployTime}
+    </if>
+    <if test="wfProcdefDto.dataSource != null and wfProcdefDto.dataSource != ''">
+      AND wfProcdef.data_source like CONCAT('%',#{wfProcdefDto.dataSource},'%')
+    </if>
+    <if test="wfProcdefDto.currentVersion != null and wfProcdefDto.currentVersion != ''">
+      AND wfProcdef.current_version = #{wfProcdefDto.currentVersion}
+    </if>
+    <if test="wfProcdefDto.procdefTypeName != null and wfProcdefDto.procdefTypeName != ''">
+      AND wfProcdef.procdef_type_name like CONCAT('%',#{wfProcdefDto.procdefTypeName},'%')
+    </if>
+    order by wfProcdef.id desc
+</select>
+
+  <update id="updateXmlByDeploymentId">
+    update
+        incloud_base_wf_act_ge_bytearray b
+    set
+        b.bytes_=#{xml}
+    WHERE
+        b.deployment_id_=#{deploymentId}
+  </update>
+</mapper>

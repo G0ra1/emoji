@@ -1,0 +1,341 @@
+package ${package}.${moduleName}.service.impl;
+
+import cn.hutool.core.util.ObjectUtil;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.netwisd.common.core.data.FieldVm;
+import com.netwisd.common.db.data.BatchServiceImpl;
+import ${package}.${moduleName}.entity.${className};
+import ${package}.${moduleName}.mapper.${className}Mapper;
+import ${package}.${moduleName}.service.${className}Service;
+import org.springframework.stereotype.Service;
+import com.github.dozermapper.core.Mapper;
+import com.netwisd.common.core.util.DozerUtils;
+import ${package}.${moduleName}.dto.${className}Dto;
+import ${package}.${moduleName}.vo.${className}Vo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
+import lombok.extern.slf4j.Slf4j;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import com.netwisd.common.db.util.EntityListConvert;
+import cn.hutool.core.util.ObjectUtil;
+#foreach($item in $!packageNameMap.entrySet())
+import $!{item.value}.service.$!{item.key}Service;
+import $!{item.value}.vo.$!{item.key}Vo;
+import $!{item.value}.dto.$!{item.key}Dto;
+import $!{item.value}.entity.$!{item.key};
+#end
+import com.netwisd.base.common.wf.eunm.WfProcessEnum;
+import java.util.Optional;
+import cn.hutool.core.util.ObjectUtil;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.netwisd.common.core.exception.IncloudException;
+import java.util.List;
+
+/**
+ * @Description ${comments} 功能描述...
+ * @author 云数网讯 ${author}@netwisd.com
+ * @date ${datetime}
+ */
+@Service
+@Slf4j
+public class ${className}ServiceImpl extends BatchServiceImpl<${className}Mapper, ${className}> implements ${className}Service {
+    @Autowired
+    private Mapper dozerMapper;
+
+    //@Autowired
+    //private ${className}Mapper ${classname}Mapper;
+
+#foreach($item in $!subClassNameMap.entrySet())
+    @Autowired
+    private $!{item.key}Service $!{item.value}Service;
+
+#end
+    /**
+     * 单表简单查询操作
+     * @param ${classname}Dto
+     * @return
+     */
+    @Override
+    public Page<${className}Vo> page(${className}Dto ${classname}Dto) {
+        LambdaQueryWrapper<${className}> queryWrapper = new LambdaQueryWrapper<>();
+        //根据实际业务构建具体的参数做查询
+        Page<${className}Vo> pageVo = DozerUtils.mapPage(dozerMapper, super.page(${classname}Dto.getPage(),queryWrapper), ${className}Vo.class);
+        log.debug("查询条数:"+pageVo.getTotal());
+        return pageVo;
+    }
+
+    /**
+     * 自定义查询操作
+     * @param ${classname}Dto
+     * @return
+     */
+    @Override
+    public List<${className}Vo> list(${className}Dto ${classname}Dto) {
+        LambdaQueryWrapper<${className}> queryWrapper = new LambdaQueryWrapper<>();
+        //根据实际业务构建具体的参数做查询
+        List<${className}Vo> ${classname}Vos = DozerUtils.mapList(dozerMapper, super.list(queryWrapper), ${className}Vo.class);
+        log.debug("查询条数:"+${classname}Vos.size());
+        return ${classname}Vos;
+    }
+
+    /**
+    * 通过ID查询实体
+    * @param id
+    * @return
+    */
+    @Override
+    public ${className}Vo get(${id.attrType} id) {
+        ${className} ${classname} = Optional.ofNullable(super.getById(id)).orElse(null);
+            ${className}Vo ${classname}Vo = ObjectUtil.isNotEmpty(${classname}) ? dozerMapper.map(${classname},${className}Vo.class) : null;
+        #foreach($item in $!subClassNameMap.entrySet())
+            //根据id获取$!{item.value}VoList
+            List<$!{item.key}Vo> $!{item.value}VoList = $!{item.value}Service.getByFkIdVo(id);
+            //设置${classname}Vo，以便构建其对应的子表数据
+                ${classname}Vo.set$!{item.key}List($!{item.value}VoList);
+        #end
+        return ${classname}Vo;
+    }
+
+    /**
+     * 保存实体
+     * @param ${classname}Dto
+     * @return
+     */
+    @Transactional
+    @Override
+    public Boolean save(${className}Dto ${classname}Dto) {
+        super.save(dozerMapper.map(${classname}Dto,${className}.class));
+        saveSubList(${classname}Dto);
+        return true;
+    }
+
+    /**
+     * 保存集合
+     * @param ${classname}Dtos
+     * @return
+     */
+    @Transactional
+    @Override
+    public void saveList(List<${className}Dto> ${classname}Dtos){
+        List<${className}> ${className}s = DozerUtils.mapList(dozerMapper, ${classname}Dtos, ${className}.class);
+        super.saveBatch(${className}s);
+        for (${className}Dto ${classname}Dto : ${classname}Dtos){
+            saveSubList(${classname}Dto);
+        }
+    }
+
+    /**
+     * 保存子表集合
+     * @param ${classname}Dto
+     * @return
+     */
+    @Transactional
+    void saveSubList(${className}Dto ${classname}Dto){
+#foreach($item in $!subClassNameMap.entrySet())
+        //获取其子表集合
+        List<$!{item.key}Dto> $!{item.value}DtoList = ${classname}Dto.get$!{item.key}List();
+        if($!{item.value}DtoList != null && !$!{item.value}DtoList.isEmpty()){
+#foreach($itemInner in $!subFieldVmMap.entrySet())
+#if($!{itemInner.key} == $!{item.key})
+            //根据主实体DTO映射其子表的关联键为其赋值
+            EntityListConvert.convert(${classname}Dto,$!{item.value}DtoList);
+            //调用保存子表的集合方法
+            $!{item.value}Service.saveList($!{item.value}DtoList);
+#end
+#end
+        }
+#end
+    }
+
+    /**
+     * 修改实体
+     * @param ${classname}Dto
+     * @return
+     */
+    @Transactional
+    @Override
+    public Boolean update(${className}Dto ${classname}Dto) {
+            ${classname}Dto.setUpdateTime(LocalDateTime.now());
+        super.updateById(dozerMapper.map(${classname}Dto,${className}.class));
+        updateSub(${classname}Dto);
+        return true;
+    }
+
+    /**
+    * 修改子类实体
+    * @param ${classname}Dto
+    * @return
+    */
+    @Transactional
+    @Override
+    public void updateSub(${className}Dto ${classname}Dto) {
+#foreach($item in $!subClassNameMap.entrySet())
+        List<$!{item.key}Dto> $!{item.value}DtoList = ${classname}Dto.get$!{item.key}List();
+        if($!{item.value}DtoList != null && !$!{item.value}DtoList.isEmpty()){
+            LambdaQueryWrapper<$!{item.key}> $!{item.value}ListQueryWrapper = new LambdaQueryWrapper<>();
+#foreach($itemInner in $!subFieldVmMap.entrySet())
+#if($!{itemInner.key} == $!{item.key})
+#set($fieldList = $!{itemInner.value})
+#foreach($fieldItem in $fieldList)
+#if($!{fieldItem.className} == $!{item.key})
+#if("${fieldItem.fkFieldName}" == "id")
+            $!{item.value}ListQueryWrapper.eq(ObjectUtil.isNotEmpty(${classname}Dto.getId()),$!{item.key}::get${fieldItem.caseName},${classname}Dto.getId());
+#end
+#end
+#end
+            //根据主实体DTO映射其子表的关联键为其赋值
+            EntityListConvert.convert(${classname}Dto,$!{item.value}DtoList);
+            List<$!{item.key}> $!{item.value}s = DozerUtils.mapList(dozerMapper, $!{item.value}DtoList, $!{item.key}.class);
+            //调用更新方法
+            $!{item.value}Service.saveOrUpdateOrDeleteBatch($!{item.value}ListQueryWrapper,$!{item.value}s,$!{item.value}s.size());
+            //如果子可能还有子，那么遍历子，然后调用其子方法的updateSub
+            if($!{item.value}DtoList != null && !$!{item.value}DtoList.isEmpty()){
+                for($!{item.key}Dto $!{item.value}Dto : $!{item.value}DtoList){
+                    $!{item.value}Service.updateSub($!{item.value}Dto);
+                }
+            }
+#end
+#end
+        }
+#end
+    }
+
+    /**
+    * 通过ID删除
+    * @param id
+    * @return
+    */
+    @Transactional
+    @Override
+    public Boolean delete(Long id) {
+        super.removeById(id);
+#foreach($item in $!subClassNameMap.entrySet())
+        $!{item.value}Service.deleteByFkId(id);
+#end
+        return true;
+    }
+
+    /**
+     * 通过外建删除
+     * @param id
+     * @return
+     */
+    @Override
+    public void deleteByFkId(Long id){
+#foreach($itemInner in $!currentFieldVmMap.entrySet())
+#set($fieldList = $!{itemInner.value})
+#foreach($fieldItem in $fieldList)
+#if("${fieldItem.fkFieldName}" == "id")
+        LambdaQueryWrapper<${className}> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(ObjectUtil.isNotEmpty(id),${className}::get${fieldItem.caseName},id);
+        List<${className}> list = this.list(queryWrapper);
+        remove(queryWrapper);
+#foreach($item in $!subClassNameMap.entrySet())
+        if(list != null && !list.isEmpty()){
+            for (${className} ${classname} : list){
+                $!{item.value}Service.deleteByFkId(${classname}.getId());
+            }
+        }
+#end
+#end
+#end
+#end
+    }
+
+    /**
+     * 通过外建获取
+     * @param id
+     * @return
+     */
+    @Override
+    public List<${className}Vo> getByFkIdVo(Long id){
+#set($flag = false)
+#foreach($itemInner in $!currentFieldVmMap.entrySet())
+#set($fieldList = $!{itemInner.value})
+#foreach($fieldItem in $fieldList)
+#if("${fieldItem.fkFieldName}" == "id")
+        LambdaQueryWrapper<${className}> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(ObjectUtil.isNotEmpty(id),${className}::get${fieldItem.caseName},id);
+        List<${className}> list = this.list(queryWrapper);
+        List<${className}Vo> ${classname}Vos = DozerUtils.mapList(dozerMapper, list, ${className}Vo.class);
+#foreach($item in $!subClassNameMap.entrySet())
+        if(${classname}Vos != null && !${classname}Vos.isEmpty()){
+            for (${className}Vo ${classname}Vo : ${classname}Vos){
+                List<$!{item.key}Vo> $!{item.value}Vos = $!{item.value}Service.getByFkIdVo(${classname}Vo.getId());
+                ${classname}Vo.set$!{item.key}List($!{item.value}Vos);
+            }
+        }
+#end
+        return ${classname}Vos;
+#set($flag = true)
+#end
+#end
+#end
+#if($flag == false)
+        return null;
+#end
+    }
+
+    /**
+    * 流程保存或修改
+    * @param ${classname}Dto
+    * @return
+    */
+    @Override
+    @Transactional
+    public ${className}Vo saveOrUpdateByProc(${className}Dto ${classname}Dto) {
+        log.info("流程保存数据:{}", ${classname}Dto);
+        ${className} old${className} = Optional.ofNullable(super.getById( ${classname}Dto.getId())).orElse(new ${className}());
+        ${className} ${classname} = dozerMapper.map(${classname}Dto, ${className}.class);
+        if(ObjectUtil.isNull(old${className}.getId())){
+            super.save(${classname});
+            saveSubList(${classname}Dto);
+        }else{
+            super.updateById(${classname});
+            updateSub(${classname}Dto);
+        }
+        return get(${classname}.getId());
+    }
+
+    /**
+    * 流程查看数据
+    * @param procInstId
+    * @return
+    */
+    @Override
+    public ${className}Vo viewByProc(String procInstId) {
+        log.info("流程查看数据:{}", procInstId);
+        ${className} ${classname} = getByProcInstId(procInstId);
+        return this.get(${classname}.getId());
+    }
+
+    /**
+    * 流程删除数据
+    * @param procInstId
+    * @return
+    */
+    @Override
+    @Transactional
+    public Boolean deleteByProc(String procInstId) {
+        log.info("流程删除数据:{}", procInstId);
+        ${className} ${classname} = getByProcInstId(procInstId);
+        if (${classname}.getAuditStatus() != WfProcessEnum.DRAFT.getType()) {
+            throw new IncloudException("非草稿状态不可删除");
+        }
+        #foreach($item in $!subClassNameMap.entrySet())
+        $!{item.value}Service.deleteByFkId(${classname}.getId());
+        #end
+        return super.remove(Wrappers.<${className}>lambdaQuery().eq(${className}::getCamundaProcinsId, procInstId));
+    }
+
+    /**
+    * 根据流程实例获取
+     * @param procInstId
+    */
+    private ${className} getByProcInstId(String procInstId) {
+        return super.getOne(Wrappers.<${className}>lambdaQuery().eq(${className}::getCamundaProcinsId, procInstId));
+    }
+}

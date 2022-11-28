@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.wf.mapper.WfVarDefMapper">
+
+<resultMap id="wfVarDefMap" type="com.netwisd.base.wf.vo.WfVarDefVo">
+  <id property="id" column="id"/>
+  <result property="procdefId" column="procdef_id"/>
+  <result property="modelFieldId" column="model_field_id"/>
+  <result property="formId" column="form_id"/>
+  <result property="formName" column="form_name"/>
+  <result property="actionScope" column="action_scope"/>
+  <result property="nodeDefId" column="node_def_id"/>
+  <result property="sequDefId" column="sequ_def_id"/>
+  <result property="camundaNodeDefId" column="camunda_node_def_id"/>
+  <result property="camundaSequDefId" column="camunda_sequ_def_id"/>
+  <result property="camundaProcdefId" column="camunda_procdef_id"/>
+  <result property="camundaProcdefKey" column="camunda_procdef_key"/>
+  <result property="javaName" column="java_name"/>
+  <result property="expreJavaName" column="expre_java_name"/>
+  <result property="nameCh" column="name_ch"/>
+  <result property="isMoreRow" column="is_more_row"/>
+  <result property="isOrm" column="is_orm"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.wf.dto.WfVarDefDto" resultMap="wfVarDefMap">
+  select * from incloud_base_wf_var_def wfVarDef where 1=1
+    <if test="wfVarDefDto.id != null and wfVarDefDto.id != ''">
+      AND wfVarDef.id = #{wfVarDefDto.id}
+    </if>
+    <if test="wfVarDefDto.procdefId != null and wfVarDefDto.procdefId != ''">
+      AND wfVarDef.procdef_id = #{wfVarDefDto.procdefId}
+    </if>
+    <if test="wfVarDefDto.formVarId != null and wfVarDefDto.formVarId != ''">
+      AND wfVarDef.form_var_id = #{wfVarDefDto.formVarId}
+    </if>
+    <if test="wfVarDefDto.formId != null and wfVarDefDto.formId != ''">
+      AND wfVarDef.form_id = #{wfVarDefDto.formId}
+    </if>
+    <if test="wfVarDefDto.actionScope != null and wfVarDefDto.actionScope != ''">
+      AND wfVarDef.action_scope = #{wfVarDefDto.actionScope}
+    </if>
+    <if test="wfVarDefDto.nodeDefId != null and wfVarDefDto.nodeDefId != ''">
+      AND wfVarDef.node_def_id = #{wfVarDefDto.nodeDefId}
+    </if>
+    <if test="wfVarDefDto.sequDefId != null and wfVarDefDto.sequDefId != ''">
+      AND wfVarDef.sequ_def_id = #{wfVarDefDto.sequDefId}
+    </if>
+    order by wfVarDef.id desc
+</select>
+</mapper>

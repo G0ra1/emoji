@@ -1,0 +1,53 @@
+server:
+  port: 8030
+spring:
+  application:
+    name: @artifactId@
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${INCLOUD_NACOS_SERVICE_HOST:127.0.0.1}:${INCLOUD_NACOS_SERVICE_PORT:8848}
+        namespace: ${INCLOUD_NACOS_NAMESPACE:incloud3_dev}
+      config:
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+        file-extension: yml
+        shared-configs: application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+        namespace: ${spring.cloud.nacos.discovery.namespace}
+  profiles:
+    active: @profiles.active@
+  servlet:
+    multipart:
+      max-request-size: 100MB
+      max-file-size: 100MB
+  rocketmq:
+    namesrvAddr: ${INCLOUD_ROCKETMQ_SERVICE_HOST:192.168.1.195}:${INCLOUD_ROCKETMQ_SERVICE_PORT:9876}
+#  rocketmq:
+#    namesrvAddr: 192.168.1.195:9876
+#    topic: toHtmlFile
+#  producer:
+#    send-message-timeout: 10000
+#    group: toHtmlFile
+elasticsearch:
+  address: 192.168.1.195:9200
+#canal:
+#  canalServer: 192.168.1.195
+#  canalPort: 11111
+#  destination: incloud3
+#  userName: canal
+#  password: canal
+incloud:
+  table:
+    package: com.netwisd.base.portal.entity
+portal:
+  filePath: /root/docker_store/nginx/html/
+  fileIp: ${incloud3_instance_ip:192.168.1.195}:7779
+  gepsTaskUrl: http://10.42.2.126:8888
+  oaTaskUrl: https://oa.cnicec.com/seeyon
+  gpesTaskCountUrl: http://10.42.2.126:8888/WebService/GetUserTaskCount.asmx
+#seata:
+#  tx-service-group: incloud_biz_epm
+#  service:
+#    vgroup-mapping:
+#      incloud_biz_epm: default
+#    grouplist:
+#      default: 192.168.1.192:8091

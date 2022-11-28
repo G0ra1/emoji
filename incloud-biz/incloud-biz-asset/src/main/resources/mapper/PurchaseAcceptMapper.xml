@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.asset.mapper.PurchaseAcceptMapper">
+
+<resultMap id="purchaseAcceptMap" type="com.netwisd.biz.asset.vo.PurchaseAcceptVo">
+  <id property="id" column="id"/>
+  <result property="code" column="code"/>
+  <result property="acceptanceType" column="acceptance_type"/>
+  <result property="exteriorCheck" column="exterior_check"/>
+  <result property="qualityAcceptance" column="quality_acceptance"/>
+  <result property="document" column="document"/>
+  <result property="sumTotalAmount" column="sum_total_amount"/>
+  <result property="sumTotalUntaxedAmount" column="sum_total_untaxed_amount"/>
+  <result property="sumTotalTaxAmount" column="sum_total_tax_amount"/>
+  <result property="sumTotalNumber" column="sum_total_number"/>
+  <result property="registerCode" column="register_code"/>
+  <result property="registerId" column="register_id"/>
+  <result property="sumRegisterNumber" column="sum_register_number"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+  <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+  <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+  <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+  <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+  <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+  <result property="auditSuccessTiem" column="audit_success_tiem"/>
+  <result property="camundaProcdefKey" column="camunda_procdef_key"/>
+  <result property="camundaProcdefId" column="camunda_procdef_id"/>
+  <result property="camundaProcinsId" column="camunda_procins_id"/>
+  <result property="procdefTypeId" column="procdef_type_id"/>
+  <result property="procdefTypeName" column="procdef_type_name"/>
+  <result property="procdefVersion" column="procdef_version"/>
+  <result property="procdefName" column="procdef_name"/>
+  <result property="processName" column="process_name"/>
+  <result property="reason" column="reason"/>
+  <result property="bizKey" column="biz_key"/>
+  <result property="camundaTaskId" column="camunda_task_id"/>
+  <result property="bizPriority" column="biz_priority"/>
+  <result property="auditStatus" column="audit_status"/>
+  <result property="purchaseType" column="purchase_type"/>
+  <result property="assetSource" column="asset_source"/>
+  <result property="applyTime" column="apply_time"/>
+  <result property="applyUserId" column="apply_user_id"/>
+  <result property="applyUserName" column="apply_user_name"/>
+  <result property="applyUserOrgId" column="apply_user_org_id"/>
+  <result property="applyUserOrgName" column="apply_user_org_name"/>
+  <result property="applyUserDeptId" column="apply_user_dept_id"/>
+  <result property="applyUserDeptName" column="apply_user_dept_name"/>
+  <result property="fileIds" column="file_ids"/>
+  <result property="storageNumber" column="storage_number"/>
+  <result property="notStorageNumber" column="not_storage_number"/>
+  <result property="notStorageAmount" column="not_storage_amount"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.asset.dto.PurchaseAcceptDto" resultMap="purchaseAcceptMap">
+  select * from incloud_biz_asset_purchase_accept purchaseAccept where 1=1
+    <if test="purchaseAcceptDto.id != null and purchaseAcceptDto.id != ''">
+      AND purchaseAccept.id = #{purchaseAcceptDto.id}
+    </if>
+    <if test="purchaseAcceptDto.code != null and purchaseAcceptDto.code != ''">
+      AND purchaseAccept.code like CONCAT('%',#{purchaseAcceptDto.code},'%')
+    </if>
+    <if test="purchaseAcceptDto.acceptanceType != null and purchaseAcceptDto.acceptanceType != ''">
+      AND purchaseAccept.acceptance_type = #{purchaseAcceptDto.acceptanceType}
+    </if>
+    <if test="purchaseAcceptDto.exteriorCheck != null and purchaseAcceptDto.exteriorCheck != ''">
+      AND purchaseAccept.exterior_check like CONCAT('%',#{purchaseAcceptDto.exteriorCheck},'%')
+    </if>
+    <if test="purchaseAcceptDto.qualityAcceptance != null and purchaseAcceptDto.qualityAcceptance != ''">
+      AND purchaseAccept.quality_acceptance like CONCAT('%',#{purchaseAcceptDto.qualityAcceptance},'%')
+    </if>
+    <if test="purchaseAcceptDto.document != null and purchaseAcceptDto.document != ''">
+      AND purchaseAccept.document like CONCAT('%',#{purchaseAcceptDto.document},'%')
+    </if>
+    <if test="purchaseAcceptDto.sumTotalAmount != null and purchaseAcceptDto.sumTotalAmount != ''">
+      AND purchaseAccept.sum_total_amount = #{purchaseAcceptDto.sumTotalAmount}
+    </if>
+    <if test="purchaseAcceptDto.sumTotalUntaxedAmount != null and purchaseAcceptDto.sumTotalUntaxedAmount != ''">
+      AND purchaseAccept.sum_total_untaxed_amount = #{purchaseAcceptDto.sumTotalUntaxedAmount}
+    </if>
+    <if test="purchaseAcceptDto.sumTotalTaxAmount != null and purchaseAcceptDto.sumTotalTaxAmount != ''">
+      AND purchaseAccept.sum_total_tax_amount = #{purchaseAcceptDto.sumTotalTaxAmount}
+    </if>
+    <if test="purchaseAcceptDto.sumTotalNumber != null and purchaseAcceptDto.sumTotalNumber != ''">
+      AND purchaseAccept.sum_total_number = #{purchaseAcceptDto.sumTotalNumber}
+    </if>
+    <if test="purchaseAcceptDto.registerCode != null and purchaseAcceptDto.registerCode != ''">
+      AND purchaseAccept.register_code = #{purchaseAcceptDto.registerCode}
+    </if>
+    <if test="purchaseAcceptDto.registerId != null and purchaseAcceptDto.registerId != ''">
+      AND purchaseAccept.register_id = #{purchaseAcceptDto.registerId}
+    </if>
+    <if test="purchaseAcceptDto.sumRegisterNumber != null and purchaseAcceptDto.sumRegisterNumber != ''">
+      AND purchaseAccept.sum_register_number = #{purchaseAcceptDto.sumRegisterNumber}
+    </if>
+    <if test="purchaseAcceptDto.createUserId != null and purchaseAcceptDto.createUserId != ''">
+      AND purchaseAccept.create_user_id = #{purchaseAcceptDto.createUserId}
+    </if>
+    <if test="purchaseAcceptDto.createUserName != null and purchaseAcceptDto.createUserName != ''">
+      AND purchaseAccept.create_user_name like CONCAT('%',#{purchaseAcceptDto.createUserName},'%')
+    </if>
+    <if test="purchaseAcceptDto.createUserParentOrgId != null and purchaseAcceptDto.createUserParentOrgId != ''">
+      AND purchaseAccept.create_user_parent_org_id = #{purchaseAcceptDto.createUserParentOrgId}
+    </if>
+    <if test="purchaseAcceptDto.createUserParentOrgName != null and purchaseAcceptDto.createUserParentOrgName != ''">
+      AND purchaseAccept.create_user_parent_org_name like CONCAT('%',#{purchaseAcceptDto.createUserParentOrgName},'%')
+    </if>
+    <if test="purchaseAcceptDto.createUserParentDeptId != null and purchaseAcceptDto.createUserParentDeptId != ''">
+      AND purchaseAccept.create_user_parent_dept_id = #{purchaseAcceptDto.createUserParentDeptId}
+    </if>
+    <if test="purchaseAcceptDto.createUserParentDeptName != null and purchaseAcceptDto.createUserParentDeptName != ''">
+      AND purchaseAccept.create_user_parent_dept_name like CONCAT('%',#{purchaseAcceptDto.createUserParentDeptName},'%')
+    </if>
+    <if test="purchaseAcceptDto.createUserOrgFullId != null and purchaseAcceptDto.createUserOrgFullId != ''">
+      AND purchaseAccept.create_user_org_full_id like CONCAT('%',#{purchaseAcceptDto.createUserOrgFullId},'%')
+    </if>
+    <if test="purchaseAcceptDto.auditSuccessTiem != null and purchaseAcceptDto.auditSuccessTiem != ''">
+      AND purchaseAccept.audit_success_tiem = #{purchaseAcceptDto.auditSuccessTiem}
+    </if>
+    <if test="purchaseAcceptDto.camundaProcdefKey != null and purchaseAcceptDto.camundaProcdefKey != ''">
+      AND purchaseAccept.camunda_procdef_key like CONCAT('%',#{purchaseAcceptDto.camundaProcdefKey},'%')
+    </if>
+    <if test="purchaseAcceptDto.camundaProcdefId != null and purchaseAcceptDto.camundaProcdefId != ''">
+      AND purchaseAccept.camunda_procdef_id like CONCAT('%',#{purchaseAcceptDto.camundaProcdefId},'%')
+    </if>
+    <if test="purchaseAcceptDto.camundaProcinsId != null and purchaseAcceptDto.camundaProcinsId != ''">
+      AND purchaseAccept.camunda_procins_id like CONCAT('%',#{purchaseAcceptDto.camundaProcinsId},'%')
+    </if>
+    <if test="purchaseAcceptDto.procdefTypeId != null and purchaseAcceptDto.procdefTypeId != ''">
+      AND purchaseAccept.procdef_type_id = #{purchaseAcceptDto.procdefTypeId}
+    </if>
+    <if test="purchaseAcceptDto.procdefTypeName != null and purchaseAcceptDto.procdefTypeName != ''">
+      AND purchaseAccept.procdef_type_name like CONCAT('%',#{purchaseAcceptDto.procdefTypeName},'%')
+    </if>
+    <if test="purchaseAcceptDto.procdefVersion != null and purchaseAcceptDto.procdefVersion != ''">
+      AND purchaseAccept.procdef_version = #{purchaseAcceptDto.procdefVersion}
+    </if>
+    <if test="purchaseAcceptDto.procdefName != null and purchaseAcceptDto.procdefName != ''">
+      AND purchaseAccept.procdef_name like CONCAT('%',#{purchaseAcceptDto.procdefName},'%')
+    </if>
+    <if test="purchaseAcceptDto.processName != null and purchaseAcceptDto.processName != ''">
+      AND purchaseAccept.process_name like CONCAT('%',#{purchaseAcceptDto.processName},'%')
+    </if>
+    <if test="purchaseAcceptDto.reason != null and purchaseAcceptDto.reason != ''">
+      AND purchaseAccept.reason like CONCAT('%',#{purchaseAcceptDto.reason},'%')
+    </if>
+    <if test="purchaseAcceptDto.bizKey != null and purchaseAcceptDto.bizKey != ''">
+      AND purchaseAccept.biz_key like CONCAT('%',#{purchaseAcceptDto.bizKey},'%')
+    </if>
+    <if test="purchaseAcceptDto.camundaTaskId != null and purchaseAcceptDto.camundaTaskId != ''">
+      AND purchaseAccept.camunda_task_id like CONCAT('%',#{purchaseAcceptDto.camundaTaskId},'%')
+    </if>
+    <if test="purchaseAcceptDto.bizPriority != null and purchaseAcceptDto.bizPriority != ''">
+      AND purchaseAccept.biz_priority like CONCAT('%',#{purchaseAcceptDto.bizPriority},'%')
+    </if>
+    <if test="purchaseAcceptDto.auditStatus != null and purchaseAcceptDto.auditStatus != ''">
+      AND purchaseAccept.audit_status = #{purchaseAcceptDto.auditStatus}
+    </if>
+    <if test="purchaseAcceptDto.purchaseType != null and purchaseAcceptDto.purchaseType != ''">
+      AND purchaseAccept.purchase_type = #{purchaseAcceptDto.purchaseType}
+    </if>
+    <if test="purchaseAcceptDto.assetSource != null and purchaseAcceptDto.assetSource != ''">
+      AND purchaseAccept.asset_source = #{purchaseAcceptDto.assetSource}
+    </if>
+    <if test="purchaseAcceptDto.applyTime != null and purchaseAcceptDto.applyTime != ''">
+      AND purchaseAccept.apply_time = #{purchaseAcceptDto.applyTime}
+    </if>
+    <if test="purchaseAcceptDto.applyUserId != null and purchaseAcceptDto.applyUserId != ''">
+      AND purchaseAccept.apply_user_id = #{purchaseAcceptDto.applyUserId}
+    </if>
+    <if test="purchaseAcceptDto.applyUserName != null and purchaseAcceptDto.applyUserName != ''">
+      AND purchaseAccept.apply_user_name like CONCAT('%',#{purchaseAcceptDto.applyUserName},'%')
+    </if>
+    <if test="purchaseAcceptDto.applyUserOrgId != null and purchaseAcceptDto.applyUserOrgId != ''">
+      AND purchaseAccept.apply_user_org_id = #{purchaseAcceptDto.applyUserOrgId}
+    </if>
+    <if test="purchaseAcceptDto.applyUserOrgName != null and purchaseAcceptDto.applyUserOrgName != ''">
+      AND purchaseAccept.apply_user_org_name like CONCAT('%',#{purchaseAcceptDto.applyUserOrgName},'%')
+    </if>
+    <if test="purchaseAcceptDto.applyUserDeptId != null and purchaseAcceptDto.applyUserDeptId != ''">
+      AND purchaseAccept.apply_user_dept_id = #{purchaseAcceptDto.applyUserDeptId}
+    </if>
+    <if test="purchaseAcceptDto.applyUserDeptName != null and purchaseAcceptDto.applyUserDeptName != ''">
+      AND purchaseAccept.apply_user_dept_name like CONCAT('%',#{purchaseAcceptDto.applyUserDeptName},'%')
+    </if>
+    <if test="purchaseAcceptDto.fileIds != null and purchaseAcceptDto.fileIds != ''">
+      AND purchaseAccept.file_ids like CONCAT('%',#{purchaseAcceptDto.fileIds},'%')
+    </if>
+    <if test="purchaseAcceptDto.storageNumber != null and purchaseAcceptDto.storageNumber != ''">
+      AND purchaseAccept.storage_number like CONCAT('%',#{purchaseAcceptDto.storageNumber},'%')
+    </if>
+    <if test="purchaseAcceptDto.notStorageNumber != null and purchaseAcceptDto.notStorageNumber != ''">
+      AND purchaseAccept.not_storage_number like CONCAT('%',#{purchaseAcceptDto.notStorageNumber},'%')
+    </if>
+    <if test="purchaseAcceptDto.notStorageAmount != null and purchaseAcceptDto.notStorageAmount != ''">
+      AND purchaseAccept.not_storage_amount like CONCAT('%',#{purchaseAcceptDto.notStorageAmount},'%')
+    </if>
+    order by purchaseAccept.id desc
+</select>
+</mapper>

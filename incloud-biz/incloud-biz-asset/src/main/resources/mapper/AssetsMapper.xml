@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.asset.mapper.AssetsMapper">
+
+<resultMap id="assetsMap" type="com.netwisd.biz.asset.vo.AssetsVo">
+  <id property="id" column="id"/>
+  <result property="assetDeptId" column="asset_dept_id"/>
+  <result property="assetDeptName" column="asset_dept_name"/>
+  <result property="assetOrgId" column="asset_org_id"/>
+  <result property="assetOrgName" column="asset_org_name"/>
+  <result property="assetOrgFullId" column="asset_org_full_id"/>
+  <result property="reason" column="reason"/>
+  <result property="classifyId" column="classify_id"/>
+  <result property="classifyCode" column="classify_code"/>
+  <result property="classifyName" column="classify_name"/>
+  <result property="route" column="route"/>
+  <result property="routeName" column="route_name"/>
+  <result property="categoryId" column="category_id"/>
+  <result property="categoryCode" column="category_code"/>
+  <result property="categoryName" column="category_name"/>
+  <result property="itemId" column="item_id"/>
+  <result property="itemCode" column="item_code"/>
+  <result property="itemName" column="item_name"/>
+  <result property="desclong" column="desclong"/>
+  <result property="descshort" column="descshort"/>
+  <result property="unitCode" column="unit_code"/>
+  <result property="unitName" column="unit_name"/>
+  <result property="materialQuality" column="material_quality"/>
+  <result property="standard" column="standard"/>
+  <result property="specs" column="specs"/>
+  <result property="assetsNumber" column="assets_number"/>
+  <result property="deliveryNumber" column="delivery_number"/>
+  <result property="acceptNumber" column="accept_number"/>
+  <result property="stockNumber" column="stock_number"/>
+  <result property="repairNumber" column="repair_number"/>
+  <result property="scrappedNumber" column="scrapped_number"/>
+  <result property="transferNumber" column="transfer_number"/>
+  <result property="borrowNumber" column="borrow_number"/>
+  <result property="storageNumber" column="storage_number"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+  <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+  <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+  <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+  <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+  <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+  <result property="acceptanceNumber" column="acceptance_number"/>
+  <result property="usableNumber" column="usable_number"/>
+  <result property="entryNumber" column="entry_number"/>
+  <result property="lendNumber" column="lend_number"/>
+  <result property="itemType" column="item_type"/>
+  <result property="sourceId" column="source_id"/>
+  <result property="applyTime" column="apply_time"/>
+  <result property="applyUserId" column="apply_user_id"/>
+  <result property="applyUserName" column="apply_user_name"/>
+  <result property="applyUserOrgId" column="apply_user_org_id"/>
+  <result property="applyUserOrgName" column="apply_user_org_name"/>
+  <result property="applyUserDeptId" column="apply_user_dept_id"/>
+  <result property="applyUserDeptName" column="apply_user_dept_name"/>
+  <result property="assetSource" column="asset_source"/>
+  <result property="classifyTypeCode" column="classify_type_code"/>
+  <result property="classifyTypeName" column="classify_type_name"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.asset.dto.AssetsDto" resultMap="assetsMap">
+  select * from incloud_biz_asset_assets assets where 1=1
+    <if test="assetsDto.id != null and assetsDto.id != ''">
+      AND assets.id = #{assetsDto.id}
+    </if>
+    <if test="assetsDto.assetDeptId != null and assetsDto.assetDeptId != ''">
+      AND assets.asset_dept_id = #{assetsDto.assetDeptId}
+    </if>
+    <if test="assetsDto.assetDeptName != null and assetsDto.assetDeptName != ''">
+      AND assets.asset_dept_name like CONCAT('%',#{assetsDto.assetDeptName},'%')
+    </if>
+    <if test="assetsDto.classifyTypeCode != null and assetsDto.classifyTypeCode != ''">
+      AND assets.classify_type_code like CONCAT('%',#{assetsDto.classifyTypeCode},'%')
+    </if>
+    <if test="assetsDto.classifyTypeName != null and assetsDto.classifyTypeName != ''">
+      AND assets.classify_type_name like CONCAT('%',#{assetsDto.classifyTypeName},'%')
+    </if>
+    <if test="assetsDto.assetOrgId != null and assetsDto.assetOrgId != ''">
+      AND assets.asset_org_id = #{assetsDto.assetOrgId}
+    </if>
+    <if test="assetsDto.assetOrgName != null and assetsDto.assetOrgName != ''">
+      AND assets.asset_org_name like CONCAT('%',#{assetsDto.assetOrgName},'%')
+    </if>
+    <if test="assetsDto.assetOrgFullId != null and assetsDto.assetOrgFullId != ''">
+      AND assets.asset_org_full_id like CONCAT('%',#{assetsDto.assetOrgFullId},'%')
+    </if>
+    <if test="assetsDto.reason != null and assetsDto.reason != ''">
+      AND assets.reason like CONCAT('%',#{assetsDto.reason},'%')
+    </if>
+    <if test="assetsDto.classifyId != null and assetsDto.classifyId != ''">
+      AND assets.classify_id = #{assetsDto.classifyId}
+    </if>
+    <if test="assetsDto.classifyCode != null and assetsDto.classifyCode != ''">
+      AND assets.classify_code like CONCAT('%',#{assetsDto.classifyCode},'%')
+    </if>
+    <if test="assetsDto.classifyName != null and assetsDto.classifyName != ''">
+      AND assets.classify_name like CONCAT('%',#{assetsDto.classifyName},'%')
+    </if>
+    <if test="assetsDto.route != null and assetsDto.route != ''">
+      AND assets.route like CONCAT('%',#{assetsDto.route},'%')
+    </if>
+    <if test="assetsDto.routeName != null and assetsDto.routeName != ''">
+      AND assets.route_name like CONCAT('%',#{assetsDto.routeName},'%')
+    </if>
+    <if test="assetsDto.categoryId != null and assetsDto.categoryId != ''">
+      AND assets.category_id = #{assetsDto.categoryId}
+    </if>
+    <if test="assetsDto.categoryCode != null and assetsDto.categoryCode != ''">
+      AND assets.category_code like CONCAT('%',#{assetsDto.categoryCode},'%')
+    </if>
+    <if test="assetsDto.categoryName != null and assetsDto.categoryName != ''">
+      AND assets.category_name like CONCAT('%',#{assetsDto.categoryName},'%')
+    </if>
+    <if test="assetsDto.itemId != null and assetsDto.itemId != ''">
+      AND assets.item_id like CONCAT('%',#{assetsDto.itemId},'%')
+    </if>
+    <if test="assetsDto.itemCode != null and assetsDto.itemCode != ''">
+      AND assets.item_code like CONCAT('%',#{assetsDto.itemCode},'%')
+    </if>
+    <if test="assetsDto.itemName != null and assetsDto.itemName != ''">
+      AND assets.item_name like CONCAT('%',#{assetsDto.itemName},'%')
+    </if>
+    <if test="assetsDto.desclong != null and assetsDto.desclong != ''">
+      AND assets.desclong like CONCAT('%',#{assetsDto.desclong},'%')
+    </if>
+    <if test="assetsDto.descshort != null and assetsDto.descshort != ''">
+      AND assets.descshort like CONCAT('%',#{assetsDto.descshort},'%')
+    </if>
+    <if test="assetsDto.unitCode != null and assetsDto.unitCode != ''">
+      AND assets.unit_code like CONCAT('%',#{assetsDto.unitCode},'%')
+    </if>
+    <if test="assetsDto.unitName != null and assetsDto.unitName != ''">
+      AND assets.unit_name like CONCAT('%',#{assetsDto.unitName},'%')
+    </if>
+    <if test="assetsDto.materialQuality != null and assetsDto.materialQuality != ''">
+      AND assets.material_quality like CONCAT('%',#{assetsDto.materialQuality},'%')
+    </if>
+    <if test="assetsDto.standard != null and assetsDto.standard != ''">
+      AND assets.standard like CONCAT('%',#{assetsDto.standard},'%')
+    </if>
+    <if test="assetsDto.specs != null and assetsDto.specs != ''">
+      AND assets.specs like CONCAT('%',#{assetsDto.specs},'%')
+    </if>
+    <if test="assetsDto.assetsNumber != null and assetsDto.assetsNumber != ''">
+      AND assets.assets_number = #{assetsDto.assetsNumber}
+    </if>
+    <if test="assetsDto.deliveryNumber != null and assetsDto.deliveryNumber != ''">
+      AND assets.delivery_number = #{assetsDto.deliveryNumber}
+    </if>
+    <if test="assetsDto.acceptNumber != null and assetsDto.acceptNumber != ''">
+      AND assets.accept_number = #{assetsDto.acceptNumber}
+    </if>
+    <if test="assetsDto.stockNumber != null and assetsDto.stockNumber != ''">
+      AND assets.stock_number = #{assetsDto.stockNumber}
+    </if>
+    <if test="assetsDto.repairNumber != null and assetsDto.repairNumber != ''">
+      AND assets.repair_number = #{assetsDto.repairNumber}
+    </if>
+    <if test="assetsDto.scrappedNumber != null and assetsDto.scrappedNumber != ''">
+      AND assets.scrapped_number = #{assetsDto.scrappedNumber}
+    </if>
+    <if test="assetsDto.transferNumber != null and assetsDto.transferNumber != ''">
+      AND assets.transfer_number = #{assetsDto.transferNumber}
+    </if>
+    <if test="assetsDto.borrowNumber != null and assetsDto.borrowNumber != ''">
+      AND assets.borrow_number = #{assetsDto.borrowNumber}
+    </if>
+    <if test="assetsDto.storageNumber != null and assetsDto.storageNumber != ''">
+      AND assets.storage_number = #{assetsDto.storageNumber}
+    </if>
+    <if test="assetsDto.createUserId != null and assetsDto.createUserId != ''">
+      AND assets.create_user_id = #{assetsDto.createUserId}
+    </if>
+    <if test="assetsDto.createUserName != null and assetsDto.createUserName != ''">
+      AND assets.create_user_name like CONCAT('%',#{assetsDto.createUserName},'%')
+    </if>
+    <if test="assetsDto.createUserParentOrgId != null and assetsDto.createUserParentOrgId != ''">
+      AND assets.create_user_parent_org_id = #{assetsDto.createUserParentOrgId}
+    </if>
+    <if test="assetsDto.createUserParentOrgName != null and assetsDto.createUserParentOrgName != ''">
+      AND assets.create_user_parent_org_name like CONCAT('%',#{assetsDto.createUserParentOrgName},'%')
+    </if>
+    <if test="assetsDto.createUserParentDeptId != null and assetsDto.createUserParentDeptId != ''">
+      AND assets.create_user_parent_dept_id = #{assetsDto.createUserParentDeptId}
+    </if>
+    <if test="assetsDto.createUserParentDeptName != null and assetsDto.createUserParentDeptName != ''">
+      AND assets.create_user_parent_dept_name like CONCAT('%',#{assetsDto.createUserParentDeptName},'%')
+    </if>
+    <if test="assetsDto.createUserOrgFullId != null and assetsDto.createUserOrgFullId != ''">
+      AND assets.create_user_org_full_id like CONCAT('%',#{assetsDto.createUserOrgFullId},'%')
+    </if>
+    <if test="assetsDto.acceptanceNumber != null and assetsDto.acceptanceNumber != ''">
+      AND assets.acceptance_number = #{assetsDto.acceptanceNumber}
+    </if>
+    <if test="assetsDto.usableNumber != null and assetsDto.usableNumber != ''">
+      AND assets.usable_number = #{assetsDto.usableNumber}
+    </if>
+    <if test="assetsDto.entryNumber != null and assetsDto.entryNumber != ''">
+      AND assets.entry_number = #{assetsDto.entryNumber}
+    </if>
+    <if test="assetsDto.lendNumber != null and assetsDto.lendNumber != ''">
+      AND assets.lend_number = #{assetsDto.lendNumber}
+    </if>
+    <if test="assetsDto.itemType != null and assetsDto.itemType != ''">
+      AND assets.item_type like CONCAT('%',#{assetsDto.itemType},'%')
+    </if>
+    <if test="assetsDto.sourceId != null and assetsDto.sourceId != ''">
+      AND assets.source_id = #{assetsDto.sourceId}
+    </if>
+    <if test="assetsDto.applyTime != null and assetsDto.applyTime != ''">
+      AND assets.apply_time = #{assetsDto.applyTime}
+    </if>
+    <if test="assetsDto.applyUserId != null and assetsDto.applyUserId != ''">
+      AND assets.apply_user_id = #{assetsDto.applyUserId}
+    </if>
+    <if test="assetsDto.applyUserName != null and assetsDto.applyUserName != ''">
+      AND assets.apply_user_name like CONCAT('%',#{assetsDto.applyUserName},'%')
+    </if>
+    <if test="assetsDto.applyUserOrgId != null and assetsDto.applyUserOrgId != ''">
+      AND assets.apply_user_org_id = #{assetsDto.applyUserOrgId}
+    </if>
+    <if test="assetsDto.applyUserOrgName != null and assetsDto.applyUserOrgName != ''">
+      AND assets.apply_user_org_name like CONCAT('%',#{assetsDto.applyUserOrgName},'%')
+    </if>
+    <if test="assetsDto.applyUserDeptId != null and assetsDto.applyUserDeptId != ''">
+      AND assets.apply_user_dept_id = #{assetsDto.applyUserDeptId}
+    </if>
+    <if test="assetsDto.applyUserDeptName != null and assetsDto.applyUserDeptName != ''">
+      AND assets.apply_user_dept_name like CONCAT('%',#{assetsDto.applyUserDeptName},'%')
+    </if>
+    <if test="assetsDto.assetSource != null and assetsDto.assetSource != ''">
+      AND assets.asset_source like CONCAT('%',#{assetsDto.assetSource},'%')
+    </if>
+    order by assets.id desc
+</select>
+</mapper>

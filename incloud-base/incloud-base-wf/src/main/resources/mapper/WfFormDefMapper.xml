@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.wf.mapper.WfFormDefMapper">
+
+<resultMap id="wfFormDefMap" type="com.netwisd.base.wf.vo.WfFormDefVo">
+  <id property="id" column="id"/>
+  <result property="procdefId" column="procdef_id"/>
+  <result property="camundaProcdefId" column="camunda_procdef_id"/>
+  <result property="camundaProcdefKey" column="camunda_procdef_key"/>
+  <result property="formId" column="form_id"/>
+  <result property="formName" column="form_name"/>
+  <result property="formNameCh" column="form_name_ch"/>
+  <result property="camundaNodeDefId" column="camunda_node_def_id"/>
+  <result property="nodeDefId" column="node_def_id"/>
+  <result property="pageUrl" column="page_url"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.wf.dto.WfFormDefDto" resultMap="wfFormDefMap">
+  select * from incloud_base_wf_form_def wfFormDef where 1=1
+    <if test="wfFormDefDto.id != null and wfFormDefDto.id != ''">
+      AND wfFormDef.id = #{wfFormDefDto.id}
+    </if>
+    <if test="wfFormDefDto.procdefId != null and wfFormDefDto.procdefId != ''">
+      AND wfFormDef.procdef_id = #{wfFormDefDto.procdefId}
+    </if>
+    <if test="wfFormDefDto.camundaProcdefId != null and wfFormDefDto.camundaProcdefId != ''">
+      AND wfFormDef.camunda_procdef_id like CONCAT('%',#{wfFormDefDto.camundaProcdefId},'%')
+    </if>
+    <if test="wfFormDefDto.camundaProcdefKey != null and wfFormDefDto.camundaProcdefKey != ''">
+      AND wfFormDef.camunda_procdef_key like CONCAT('%',#{wfFormDefDto.camundaProcdefKey},'%')
+    </if>
+    <if test="wfFormDefDto.formId != null and wfFormDefDto.formId != ''">
+      AND wfFormDef.form_id like CONCAT('%',#{wfFormDefDto.formId},'%')
+    </if>
+    <if test="wfFormDefDto.formName != null and wfFormDefDto.formName != ''">
+      AND wfFormDef.form_name like CONCAT('%',#{wfFormDefDto.formName},'%')
+    </if>
+    order by wfFormDef.id desc
+</select>
+</mapper>

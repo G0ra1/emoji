@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ .Values.name }}
+  annotations:
+    "helm.sh/hook": pre-install
+    "helm.sh/hook-weight": "-96"
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.name }}
+  serviceName: {{ .Values.name }}
+  replicas: {{ .Values.replicaCount }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.name }}
+    spec:
+      containers:
+      - name: broker
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        command: ["sh","mqbroker", "-n","localhost:9876"]
+        #command: ["sh","mkdir -p ../conf/broker.conf","sh","echo 'brokerIP1=192.168.0.70' >> ../conf/broker.conf", "sh","mqbroker", "-n","localhost:9876", "-c","../conf/broker.conf"]
+        securityContext:
+          privileged: true
+        ports:
+        - containerPort: {{ .Values.image.port.broker.p1 }}
+          name: p1
+        - containerPort: {{ .Values.image.port.broker.p2 }}
+          name: p2
+        env:
+        - name: JAVA_OPT
+          value: "-server -XX:ParallelGCThreads=1"
+        - name: TZ
+          value: "Asia/Shanghai"
+        volumeMounts:
+        - mountPath: /home/rocketmq/logs
+          name: data
+          subPath: blog
+        - mountPath: /home/rocketmq/store
+          name: data
+          subPath: store
+      - name: namesrv
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        command: ["sh","mqnamesrv"]
+        securityContext:
+          privileged: true
+        ports:
+        - containerPort: {{ .Values.image.port.namesrv }}
+        env:
+        - name: TZ
+          value: "Asia/Shanghai"
+        volumeMounts:
+        - mountPath: /home/rocketmq/logs
+          name: data
+          subPath: nlog
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: rocketmq-pvc

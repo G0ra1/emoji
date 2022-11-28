@@ -1,0 +1,66 @@
+package ${package}.${moduleName}.dto;
+
+import com.netwisd.common.core.anntation.Valid;
+import com.netwisd.common.core.constants.Args;
+import com.netwisd.base.wf.starter.dto.WfDto;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.EqualsAndHashCode;
+#if(${hasBigDecimal})
+import java.math.BigDecimal;
+#end
+import java.time.LocalDateTime;
+import java.util.Date;
+import com.netwisd.common.core.util.IdTypeDeserializer;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import java.util.List;
+import com.netwisd.common.db.anntation.Fk;
+import com.netwisd.common.db.anntation.Map;
+#foreach($item in $!packageNameMap.entrySet())
+import $!{item.value}.dto.$!{item.key}Dto;
+#end
+/**
+ * @Description ${comments} 功能描述...
+ * @author 云数网讯 ${author}@netwisd.com
+ * @date ${datetime}
+ */
+@Data
+@Map("${tableName}")
+@ApiModel(value = "${comments} Dto")
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode
+public class ${className}Dto extends WfDto{
+
+    public ${className}Dto(Args args){
+        super(args);
+    }
+#foreach ($column in $columns)
+#if($column.columnName != $id.columnName)
+    /**
+     * $column.columnName
+     * $column.comments
+     */
+#if($column.attrType == 'Long')
+    @JsonDeserialize(using = IdTypeDeserializer.class)
+#end
+#if($column.nullable == 'false')
+    @Valid(length = $column.length)
+#end
+#if("$!{column.fkTableName}" != "")
+    @Fk(table = "$!{column.fkTableName}" ,#if("$!{column.fkFieldName}" != "")field = "$!{column.fkFieldName}"#end)
+#end
+    @ApiModelProperty(#if($column.comments != '')value="$column.comments"#end#if($column.comments == '')value="$column.columnName"#end#if($column.hidden),hidden=$column.hidden#end)
+    private $column.attrType $column.lowerAttrName;
+#end
+#end
+
+#foreach($item in $!subClassNameMap.entrySet())
+    @ApiModelProperty(value="$!{item.value}List")
+    private List<$!{item.key}Dto> $!{item.value}List;
+#end
+
+}

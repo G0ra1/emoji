@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.portal.mapper.PortalContentUnreadTasksMapper">
+
+<resultMap id="portalContentUnreadTasksMap" type="com.netwisd.base.portal.vo.PortalContentUnreadTasksVo">
+  <id property="id" column="id"/>
+  <result property="starterIdCard" column="starter_id_card"/>
+  <result property="starterName" column="starter_name"/>
+  <result property="starterDeptId" column="starter_dept_id"/>
+  <result property="starterDeptName" column="starter_dept_name"/>
+  <result property="starterOrgId" column="starter_org_id"/>
+  <result property="starterOrgName" column="starter_org_name"/>
+  <result property="applyTime" column="apply_time"/>
+  <result property="reason" column="reason"/>
+  <result property="procinsId" column="procins_id"/>
+  <result property="procinsName" column="procins_name"/>
+  <result property="currentNodeName" column="current_node_name"/>
+  <result property="bizKey" column="biz_key"/>
+  <result property="acceptTime" column="accept_time"/>
+  <result property="ownnerIdCard" column="ownner_id_card"/>
+  <result property="ownnerName" column="ownner_name"/>
+  <result property="assigneeIdCard" column="assignee_id_card"/>
+  <result property="assigneeName" column="assignee_name"/>
+  <result property="handleAssigneeIdCard" column="handle_assignee_id_card"/>
+  <result property="handleAssigneeName" column="handle_assignee_name"/>
+  <result property="sysPcBizUrl" column="sys_pc_biz_url"/>
+  <result property="sysAppBizUrl" column="sys_app_biz_url"/>
+  <result property="sysBizCode" column="sys_biz_code"/>
+  <result property="sysBizId" column="sys_biz_id"/>
+  <result property="sysBizClassify" column="sys_biz_classify"/>
+  <result property="msgId" column="msg_id"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.portal.dto.PortalContentUnreadTasksDto" resultMap="portalContentUnreadTasksMap">
+  select * from incloud_base_portal_content_unread_tasks portalContentUnreadTasks where 1=1
+    <if test="portalContentUnreadTasksDto.id != null and portalContentUnreadTasksDto.id != ''">
+      AND portalContentUnreadTasks.id = #{portalContentUnreadTasksDto.id}
+    </if>
+    <if test="portalContentUnreadTasksDto.starterId != null and portalContentUnreadTasksDto.starterId != ''">
+      AND portalContentUnreadTasks.starter_id = #{portalContentUnreadTasksDto.starterId}
+    </if>
+    <if test="portalContentUnreadTasksDto.starterName != null and portalContentUnreadTasksDto.starterName != ''">
+      AND portalContentUnreadTasks.starter_name like CONCAT('%',#{portalContentUnreadTasksDto.starterName},'%')
+    </if>
+    <if test="portalContentUnreadTasksDto.starterDeptId != null and portalContentUnreadTasksDto.starterDeptId != ''">
+      AND portalContentUnreadTasks.starter_dept_id = #{portalContentUnreadTasksDto.starterDeptId}
+    </if>
+    <if test="portalContentUnreadTasksDto.starterDeptName != null and portalContentUnreadTasksDto.starterDeptName != ''">
+      AND portalContentUnreadTasks.starter_dept_name like CONCAT('%',#{portalContentUnreadTasksDto.starterDeptName},'%')
+    </if>
+    <if test="portalContentUnreadTasksDto.starterOrgId != null and portalContentUnreadTasksDto.starterOrgId != ''">
+      AND portalContentUnreadTasks.starter_org_id = #{portalContentUnreadTasksDto.starterOrgId}
+    </if>
+    <if test="portalContentUnreadTasksDto.starterOrgName != null and portalContentUnreadTasksDto.starterOrgName != ''">
+      AND portalContentUnreadTasks.starter_org_name like CONCAT('%',#{portalContentUnreadTasksDto.starterOrgName},'%')
+    </if>
+    <if test="portalContentUnreadTasksDto.applyTime != null and portalContentUnreadTasksDto.applyTime != ''">
+      AND portalContentUnreadTasks.apply_time = #{portalContentUnreadTasksDto.applyTime}
+    </if>
+    <if test="portalContentUnreadTasksDto.reason != null and portalContentUnreadTasksDto.reason != ''">
+      AND portalContentUnreadTasks.reason like CONCAT('%',#{portalContentUnreadTasksDto.reason},'%')
+    </if>
+    <if test="portalContentUnreadTasksDto.procinsId != null and portalContentUnreadTasksDto.procinsId != ''">
+      AND portalContentUnreadTasks.procins_id like CONCAT('%',#{portalContentUnreadTasksDto.procinsId},'%')
+    </if>
+    <if test="portalContentUnreadTasksDto.procinsName != null and portalContentUnreadTasksDto.procinsName != ''">
+      AND portalContentUnreadTasks.procins_name like CONCAT('%',#{portalContentUnreadTasksDto.procinsName},'%')
+    </if>
+    <if test="portalContentUnreadTasksDto.currentNodeName != null and portalContentUnreadTasksDto.currentNodeName != ''">
+      AND portalContentUnreadTasks.current_node_name like CONCAT('%',#{portalContentUnreadTasksDto.currentNodeName},'%')
+    </if>
+    <if test="portalContentUnreadTasksDto.bizKey != null and portalContentUnreadTasksDto.bizKey != ''">
+      AND portalContentUnreadTasks.biz_key like CONCAT('%',#{portalContentUnreadTasksDto.bizKey},'%')
+    </if>
+    <if test="portalContentUnreadTasksDto.acceptTime != null and portalContentUnreadTasksDto.acceptTime != ''">
+      AND portalContentUnreadTasks.accept_time = #{portalContentUnreadTasksDto.acceptTime}
+    </if>
+    <if test="portalContentUnreadTasksDto.ownnerId != null and portalContentUnreadTasksDto.ownnerId != ''">
+      AND portalContentUnreadTasks.ownner_id = #{portalContentUnreadTasksDto.ownnerId}
+    </if>
+    <if test="portalContentUnreadTasksDto.ownnerName != null and portalContentUnreadTasksDto.ownnerName != ''">
+      AND portalContentUnreadTasks.ownner_name like CONCAT('%',#{portalContentUnreadTasksDto.ownnerName},'%')
+    </if>
+    <if test="portalContentUnreadTasksDto.assigneeId != null and portalContentUnreadTasksDto.assigneeId != ''">
+      AND portalContentUnreadTasks.assignee_id = #{portalContentUnreadTasksDto.assigneeId}
+    </if>
+    <if test="portalContentUnreadTasksDto.assigneeName != null and portalContentUnreadTasksDto.assigneeName != ''">
+      AND portalContentUnreadTasks.assignee_name like CONCAT('%',#{portalContentUnreadTasksDto.assigneeName},'%')
+    </if>
+    <if test="portalContentUnreadTasksDto.handleAssigneeId != null and portalContentUnreadTasksDto.handleAssigneeId != ''">
+      AND portalContentUnreadTasks.handle_assignee_id = #{portalContentUnreadTasksDto.handleAssigneeId}
+    </if>
+    <if test="portalContentUnreadTasksDto.handleAssigneeName != null and portalContentUnreadTasksDto.handleAssigneeName != ''">
+      AND portalContentUnreadTasks.handle_assignee_name like CONCAT('%',#{portalContentUnreadTasksDto.handleAssigneeName},'%')
+    </if>
+    <if test="portalContentUnreadTasksDto.sysBizUrl != null and portalContentUnreadTasksDto.sysBizUrl != ''">
+      AND portalContentUnreadTasks.sys_biz_url like CONCAT('%',#{portalContentUnreadTasksDto.sysBizUrl},'%')
+    </if>
+    <if test="portalContentUnreadTasksDto.sysBizCode != null and portalContentUnreadTasksDto.sysBizCode != ''">
+      AND portalContentUnreadTasks.sys_biz_code like CONCAT('%',#{portalContentUnreadTasksDto.sysBizCode},'%')
+    </if>
+    <if test="portalContentUnreadTasksDto.sysBizId != null and portalContentUnreadTasksDto.sysBizId != ''">
+      AND portalContentUnreadTasks.sys_biz_id like CONCAT('%',#{portalContentUnreadTasksDto.sysBizId},'%')
+    </if>
+    <if test="portalContentUnreadTasksDto.sysBizClassify != null and portalContentUnreadTasksDto.sysBizClassify != ''">
+      AND portalContentUnreadTasks.sys_biz_classify like CONCAT('%',#{portalContentUnreadTasksDto.sysBizClassify},'%')
+    </if>
+    order by portalContentUnreadTasks.id desc
+</select>
+</mapper>

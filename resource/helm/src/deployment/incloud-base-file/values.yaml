@@ -1,0 +1,8 @@
+name: incloud-base-file
+replicaCount: 1
+image:
+  repository: dockerhub.kubekey.local/zhongyuanjian/incloud-base-file
+  pullPolicy: Always
+  tag: "latest"
+  port: 8002
+imageEnvConfigMap: incloud-config

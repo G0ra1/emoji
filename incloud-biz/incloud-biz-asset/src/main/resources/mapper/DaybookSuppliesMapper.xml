@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.asset.mapper.DaybookSuppliesMapper">
+
+<resultMap id="daybookSuppliesMap" type="com.netwisd.biz.asset.vo.DaybookSuppliesVo">
+  <id property="id" column="id"/>
+  <result property="formId" column="form_id"/>
+  <result property="formUrl" column="form_url"/>
+  <result property="assetsId" column="assets_id"/>
+  <result property="assetsDetailId" column="assets_detail_id"/>
+  <result property="itemId" column="item_id"/>
+  <result property="itemCode" column="item_code"/>
+  <result property="itemName" column="item_name"/>
+  <result property="type" column="type"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+  <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+  <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+  <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+  <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+  <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+  <result property="applyTime" column="apply_time"/>
+  <result property="applyUserId" column="apply_user_id"/>
+  <result property="applyUserName" column="apply_user_name"/>
+  <result property="applyUserOrgId" column="apply_user_org_id"/>
+  <result property="applyUserOrgName" column="apply_user_org_name"/>
+  <result property="applyUserDeptId" column="apply_user_dept_id"/>
+  <result property="applyUserDeptName" column="apply_user_dept_name"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.asset.dto.DaybookSuppliesDto" resultMap="daybookSuppliesMap">
+  select * from incloud_biz_asset_daybook_supplies daybookSupplies where 1=1
+    <if test="daybookSuppliesDto.id != null and daybookSuppliesDto.id != ''">
+      AND daybookSupplies.id = #{daybookSuppliesDto.id}
+    </if>
+    <if test="daybookSuppliesDto.formId != null and daybookSuppliesDto.formId != ''">
+      AND daybookSupplies.form_id = #{daybookSuppliesDto.formId}
+    </if>
+    <if test="daybookSuppliesDto.formUrl != null and daybookSuppliesDto.formUrl != ''">
+      AND daybookSupplies.form_url like CONCAT('%',#{daybookSuppliesDto.formUrl},'%')
+    </if>
+    <if test="daybookSuppliesDto.assetsId != null and daybookSuppliesDto.assetsId != ''">
+      AND daybookSupplies.assets_id = #{daybookSuppliesDto.assetsId}
+    </if>
+    <if test="daybookSuppliesDto.assetsDetailId != null and daybookSuppliesDto.assetsDetailId != ''">
+      AND daybookSupplies.assets_detail_id like CONCAT('%',#{daybookSuppliesDto.assetsDetailId},'%')
+    </if>
+    <if test="daybookSuppliesDto.itemId != null and daybookSuppliesDto.itemId != ''">
+      AND daybookSupplies.item_id like CONCAT('%',#{daybookSuppliesDto.itemId},'%')
+    </if>
+    <if test="daybookSuppliesDto.itemCode != null and daybookSuppliesDto.itemCode != ''">
+      AND daybookSupplies.item_code like CONCAT('%',#{daybookSuppliesDto.itemCode},'%')
+    </if>
+    <if test="daybookSuppliesDto.itemName != null and daybookSuppliesDto.itemName != ''">
+      AND daybookSupplies.item_name like CONCAT('%',#{daybookSuppliesDto.itemName},'%')
+    </if>
+    <if test="daybookSuppliesDto.type != null and daybookSuppliesDto.type != ''">
+      AND daybookSupplies.type like CONCAT('%',#{daybookSuppliesDto.type},'%')
+    </if>
+    <if test="daybookSuppliesDto.createUserId != null and daybookSuppliesDto.createUserId != ''">
+      AND daybookSupplies.create_user_id = #{daybookSuppliesDto.createUserId}
+    </if>
+    <if test="daybookSuppliesDto.createUserName != null and daybookSuppliesDto.createUserName != ''">
+      AND daybookSupplies.create_user_name like CONCAT('%',#{daybookSuppliesDto.createUserName},'%')
+    </if>
+    <if test="daybookSuppliesDto.createUserParentOrgId != null and daybookSuppliesDto.createUserParentOrgId != ''">
+      AND daybookSupplies.create_user_parent_org_id = #{daybookSuppliesDto.createUserParentOrgId}
+    </if>
+    <if test="daybookSuppliesDto.createUserParentOrgName != null and daybookSuppliesDto.createUserParentOrgName != ''">
+      AND daybookSupplies.create_user_parent_org_name like CONCAT('%',#{daybookSuppliesDto.createUserParentOrgName},'%')
+    </if>
+    <if test="daybookSuppliesDto.createUserParentDeptId != null and daybookSuppliesDto.createUserParentDeptId != ''">
+      AND daybookSupplies.create_user_parent_dept_id = #{daybookSuppliesDto.createUserParentDeptId}
+    </if>
+    <if test="daybookSuppliesDto.createUserParentDeptName != null and daybookSuppliesDto.createUserParentDeptName != ''">
+      AND daybookSupplies.create_user_parent_dept_name like CONCAT('%',#{daybookSuppliesDto.createUserParentDeptName},'%')
+    </if>
+    <if test="daybookSuppliesDto.createUserOrgFullId != null and daybookSuppliesDto.createUserOrgFullId != ''">
+      AND daybookSupplies.create_user_org_full_id like CONCAT('%',#{daybookSuppliesDto.createUserOrgFullId},'%')
+    </if>
+    <if test="daybookSuppliesDto.applyTime != null and daybookSuppliesDto.applyTime != ''">
+      AND daybookSupplies.apply_time = #{daybookSuppliesDto.applyTime}
+    </if>
+    <if test="daybookSuppliesDto.applyUserId != null and daybookSuppliesDto.applyUserId != ''">
+      AND daybookSupplies.apply_user_id = #{daybookSuppliesDto.applyUserId}
+    </if>
+    <if test="daybookSuppliesDto.applyUserName != null and daybookSuppliesDto.applyUserName != ''">
+      AND daybookSupplies.apply_user_name like CONCAT('%',#{daybookSuppliesDto.applyUserName},'%')
+    </if>
+    <if test="daybookSuppliesDto.applyUserOrgId != null and daybookSuppliesDto.applyUserOrgId != ''">
+      AND daybookSupplies.apply_user_org_id = #{daybookSuppliesDto.applyUserOrgId}
+    </if>
+    <if test="daybookSuppliesDto.applyUserOrgName != null and daybookSuppliesDto.applyUserOrgName != ''">
+      AND daybookSupplies.apply_user_org_name like CONCAT('%',#{daybookSuppliesDto.applyUserOrgName},'%')
+    </if>
+    <if test="daybookSuppliesDto.applyUserDeptId != null and daybookSuppliesDto.applyUserDeptId != ''">
+      AND daybookSupplies.apply_user_dept_id = #{daybookSuppliesDto.applyUserDeptId}
+    </if>
+    <if test="daybookSuppliesDto.applyUserDeptName != null and daybookSuppliesDto.applyUserDeptName != ''">
+      AND daybookSupplies.apply_user_dept_name like CONCAT('%',#{daybookSuppliesDto.applyUserDeptName},'%')
+    </if>
+    order by daybookSupplies.id desc
+</select>
+</mapper>

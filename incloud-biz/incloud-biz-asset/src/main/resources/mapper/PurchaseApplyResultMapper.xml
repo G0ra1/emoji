@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.asset.mapper.PurchaseApplyResultMapper">
+
+<resultMap id="purchaseApplyResultMap" type="com.netwisd.biz.asset.vo.PurchaseApplyResultVo">
+  <id property="id" column="id"/>
+  <result property="applyId" column="apply_id"/>
+  <result property="applyCode" column="apply_code"/>
+  <result property="applyDetailId" column="apply_detail_id"/>
+  <result property="code" column="code"/>
+  <result property="route" column="route"/>
+  <result property="routeName" column="route_name"/>
+  <result property="classifyCode" column="classify_code"/>
+  <result property="classifyName" column="classify_name"/>
+  <result property="classifyType" column="classify_type"/>
+  <result property="itemCode" column="item_code"/>
+  <result property="itemName" column="item_name"/>
+  <result property="desclong" column="desclong"/>
+  <result property="descshort" column="descshort"/>
+  <result property="unitCode" column="unit_code"/>
+  <result property="unitName" column="unit_name"/>
+  <result property="specs" column="specs"/>
+  <result property="standard" column="standard"/>
+  <result property="taxRate" column="tax_rate"/>
+  <result property="taxAmount" column="tax_amount"/>
+  <result property="applyNumber" column="apply_number"/>
+  <result property="applyAmount" column="apply_amount"/>
+  <result property="applyUntaxedAmount" column="apply_untaxed_amount"/>
+  <result property="applySumAmount" column="apply_sum_amount"/>
+  <result property="applySumUntaxedAmount" column="apply_sum_untaxed_amount"/>
+  <result property="purpose" column="purpose"/>
+  <result property="explanation" column="explanation"/>
+  <result property="materialQuality" column="material_quality"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+  <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+  <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+  <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+  <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+  <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.asset.dto.PurchaseApplyResultDto" resultMap="purchaseApplyResultMap">
+  select * from incloud_biz_asset_purchase_apply_result purchaseApplyResult where 1=1
+    <if test="purchaseApplyResultDto.id != null and purchaseApplyResultDto.id != ''">
+      AND purchaseApplyResult.id = #{purchaseApplyResultDto.id}
+    </if>
+    <if test="purchaseApplyResultDto.applyId != null and purchaseApplyResultDto.applyId != ''">
+      AND purchaseApplyResult.apply_id = #{purchaseApplyResultDto.applyId}
+    </if>
+    <if test="purchaseApplyResultDto.applyCode != null and purchaseApplyResultDto.applyCode != ''">
+      AND purchaseApplyResult.apply_code like CONCAT('%',#{purchaseApplyResultDto.applyCode},'%')
+    </if>
+    <if test="purchaseApplyResultDto.applyDetailId != null and purchaseApplyResultDto.applyDetailId != ''">
+      AND purchaseApplyResult.apply_detail_id = #{purchaseApplyResultDto.applyDetailId}
+    </if>
+    <if test="purchaseApplyResultDto.code != null and purchaseApplyResultDto.code != ''">
+      AND purchaseApplyResult.code like CONCAT('%',#{purchaseApplyResultDto.code},'%')
+    </if>
+    <if test="purchaseApplyResultDto.route != null and purchaseApplyResultDto.route != ''">
+      AND purchaseApplyResult.route like CONCAT('%',#{purchaseApplyResultDto.route},'%')
+    </if>
+    <if test="purchaseApplyResultDto.routeName != null and purchaseApplyResultDto.routeName != ''">
+      AND purchaseApplyResult.route_name like CONCAT('%',#{purchaseApplyResultDto.routeName},'%')
+    </if>
+    <if test="purchaseApplyResultDto.classifyCode != null and purchaseApplyResultDto.classifyCode != ''">
+      AND purchaseApplyResult.classify_code like CONCAT('%',#{purchaseApplyResultDto.classifyCode},'%')
+    </if>
+    <if test="purchaseApplyResultDto.classifyName != null and purchaseApplyResultDto.classifyName != ''">
+      AND purchaseApplyResult.classify_name like CONCAT('%',#{purchaseApplyResultDto.classifyName},'%')
+    </if>
+    <if test="purchaseApplyResultDto.classifyType != null and purchaseApplyResultDto.classifyType != ''">
+      AND purchaseApplyResult.classify_type like CONCAT('%',#{purchaseApplyResultDto.classifyType},'%')
+    </if>
+    <if test="purchaseApplyResultDto.itemCode != null and purchaseApplyResultDto.itemCode != ''">
+      AND purchaseApplyResult.item_code like CONCAT('%',#{purchaseApplyResultDto.itemCode},'%')
+    </if>
+    <if test="purchaseApplyResultDto.itemName != null and purchaseApplyResultDto.itemName != ''">
+      AND purchaseApplyResult.item_name like CONCAT('%',#{purchaseApplyResultDto.itemName},'%')
+    </if>
+    <if test="purchaseApplyResultDto.desclong != null and purchaseApplyResultDto.desclong != ''">
+      AND purchaseApplyResult.desclong like CONCAT('%',#{purchaseApplyResultDto.desclong},'%')
+    </if>
+    <if test="purchaseApplyResultDto.descshort != null and purchaseApplyResultDto.descshort != ''">
+      AND purchaseApplyResult.descshort like CONCAT('%',#{purchaseApplyResultDto.descshort},'%')
+    </if>
+    <if test="purchaseApplyResultDto.unitCode != null and purchaseApplyResultDto.unitCode != ''">
+      AND purchaseApplyResult.unit_code like CONCAT('%',#{purchaseApplyResultDto.unitCode},'%')
+    </if>
+    <if test="purchaseApplyResultDto.unitName != null and purchaseApplyResultDto.unitName != ''">
+      AND purchaseApplyResult.unit_name like CONCAT('%',#{purchaseApplyResultDto.unitName},'%')
+    </if>
+    <if test="purchaseApplyResultDto.specs != null and purchaseApplyResultDto.specs != ''">
+      AND purchaseApplyResult.specs like CONCAT('%',#{purchaseApplyResultDto.specs},'%')
+    </if>
+    <if test="purchaseApplyResultDto.standard != null and purchaseApplyResultDto.standard != ''">
+      AND purchaseApplyResult.standard like CONCAT('%',#{purchaseApplyResultDto.standard},'%')
+    </if>
+    <if test="purchaseApplyResultDto.taxRate != null and purchaseApplyResultDto.taxRate != ''">
+      AND purchaseApplyResult.tax_rate like CONCAT('%',#{purchaseApplyResultDto.taxRate},'%')
+    </if>
+    <if test="purchaseApplyResultDto.taxAmount != null and purchaseApplyResultDto.taxAmount != ''">
+      AND purchaseApplyResult.tax_amount = #{purchaseApplyResultDto.taxAmount}
+    </if>
+    <if test="purchaseApplyResultDto.applyNumber != null and purchaseApplyResultDto.applyNumber != ''">
+      AND purchaseApplyResult.apply_number = #{purchaseApplyResultDto.applyNumber}
+    </if>
+    <if test="purchaseApplyResultDto.applyAmount != null and purchaseApplyResultDto.applyAmount != ''">
+      AND purchaseApplyResult.apply_amount = #{purchaseApplyResultDto.applyAmount}
+    </if>
+    <if test="purchaseApplyResultDto.applyUntaxedAmount != null and purchaseApplyResultDto.applyUntaxedAmount != ''">
+      AND purchaseApplyResult.apply_untaxed_amount = #{purchaseApplyResultDto.applyUntaxedAmount}
+    </if>
+    <if test="purchaseApplyResultDto.applySumAmount != null and purchaseApplyResultDto.applySumAmount != ''">
+      AND purchaseApplyResult.apply_sum_amount = #{purchaseApplyResultDto.applySumAmount}
+    </if>
+    <if test="purchaseApplyResultDto.applySumUntaxedAmount != null and purchaseApplyResultDto.applySumUntaxedAmount != ''">
+      AND purchaseApplyResult.apply_sum_untaxed_amount = #{purchaseApplyResultDto.applySumUntaxedAmount}
+    </if>
+    <if test="purchaseApplyResultDto.purpose != null and purchaseApplyResultDto.purpose != ''">
+      AND purchaseApplyResult.purpose like CONCAT('%',#{purchaseApplyResultDto.purpose},'%')
+    </if>
+    <if test="purchaseApplyResultDto.explanation != null and purchaseApplyResultDto.explanation != ''">
+      AND purchaseApplyResult.explanation like CONCAT('%',#{purchaseApplyResultDto.explanation},'%')
+    </if>
+    <if test="purchaseApplyResultDto.materialQuality != null and purchaseApplyResultDto.materialQuality != ''">
+      AND purchaseApplyResult.material_quality like CONCAT('%',#{purchaseApplyResultDto.materialQuality},'%')
+    </if>
+    <if test="purchaseApplyResultDto.createUserId != null and purchaseApplyResultDto.createUserId != ''">
+      AND purchaseApplyResult.create_user_id = #{purchaseApplyResultDto.createUserId}
+    </if>
+    <if test="purchaseApplyResultDto.createUserName != null and purchaseApplyResultDto.createUserName != ''">
+      AND purchaseApplyResult.create_user_name like CONCAT('%',#{purchaseApplyResultDto.createUserName},'%')
+    </if>
+    <if test="purchaseApplyResultDto.createUserParentOrgId != null and purchaseApplyResultDto.createUserParentOrgId != ''">
+      AND purchaseApplyResult.create_user_parent_org_id = #{purchaseApplyResultDto.createUserParentOrgId}
+    </if>
+    <if test="purchaseApplyResultDto.createUserParentOrgName != null and purchaseApplyResultDto.createUserParentOrgName != ''">
+      AND purchaseApplyResult.create_user_parent_org_name like CONCAT('%',#{purchaseApplyResultDto.createUserParentOrgName},'%')
+    </if>
+    <if test="purchaseApplyResultDto.createUserParentDeptId != null and purchaseApplyResultDto.createUserParentDeptId != ''">
+      AND purchaseApplyResult.create_user_parent_dept_id = #{purchaseApplyResultDto.createUserParentDeptId}
+    </if>
+    <if test="purchaseApplyResultDto.createUserParentDeptName != null and purchaseApplyResultDto.createUserParentDeptName != ''">
+      AND purchaseApplyResult.create_user_parent_dept_name like CONCAT('%',#{purchaseApplyResultDto.createUserParentDeptName},'%')
+    </if>
+    <if test="purchaseApplyResultDto.createUserOrgFullId != null and purchaseApplyResultDto.createUserOrgFullId != ''">
+      AND purchaseApplyResult.create_user_org_full_id like CONCAT('%',#{purchaseApplyResultDto.createUserOrgFullId},'%')
+    </if>
+    order by purchaseApplyResult.id desc
+</select>
+</mapper>

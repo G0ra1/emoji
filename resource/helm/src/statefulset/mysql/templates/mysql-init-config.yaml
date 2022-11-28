@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql-initdb-config
+  annotations:
+    "helm.sh/hook": pre-install
+    "helm.sh/hook-weight": "-98"
+data:
+  initdb.sql: |
+    CREATE DATABASE `incloud4` CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_general_ci';
+    use incloud3;
+    SET NAMES utf8mb4;
+    SET FOREIGN_KEY_CHECKS = 0;

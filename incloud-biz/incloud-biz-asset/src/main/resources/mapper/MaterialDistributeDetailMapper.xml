@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.asset.mapper.MaterialDistributeDetailMapper">
+
+<resultMap id="materialDistributeDetailMap" type="com.netwisd.biz.asset.vo.MaterialDistributeDetailVo">
+  <id property="id" column="id"/>
+  <result property="sourceId" column="source_id"/>
+  <result property="distributeId" column="distribute_id"/>
+  <result property="distributeCode" column="distribute_code"/>
+  <result property="assetsId" column="assets_id"/>
+  <result property="assetsDetailId" column="assets_detail_id"/>
+  <result property="classifyId" column="classify_id"/>
+  <result property="classifyCode" column="classify_code"/>
+  <result property="classifyName" column="classify_name"/>
+  <result property="itemType" column="item_type"/>
+  <result property="route" column="route"/>
+  <result property="routeName" column="route_name"/>
+  <result property="taxRate" column="tax_rate"/>
+  <result property="itemCode" column="item_code"/>
+  <result property="itemName" column="item_name"/>
+  <result property="desclong" column="desclong"/>
+  <result property="descshort" column="descshort"/>
+  <result property="unitCode" column="unit_code"/>
+  <result property="unitName" column="unit_name"/>
+  <result property="materialQuality" column="material_quality"/>
+  <result property="standard" column="standard"/>
+  <result property="specs" column="specs"/>
+  <result property="supplierName" column="supplier_name"/>
+  <result property="contractCode" column="contract_code"/>
+  <result property="assetsClassification" column="assets_classification"/>
+  <result property="assetsCode" column="assets_code"/>
+  <result property="qualityAssuranceLevel" column="quality_assurance_level"/>
+  <result property="manufacturer" column="manufacturer"/>
+  <result property="productionDate" column="production_date"/>
+  <result property="serviceLife" column="service_life"/>
+  <result property="validPeriod" column="valid_period"/>
+  <result property="batchNumber" column="batch_number"/>
+  <result property="acceptanceDate" column="acceptance_date"/>
+  <result property="factoryDate" column="factory_date"/>
+  <result property="factoryCode" column="factory_code"/>
+  <result property="approachDate" column="approach_date"/>
+  <result property="warehouseId" column="warehouse_id"/>
+  <result property="warehouseName" column="warehouse_name"/>
+  <result property="shelfId" column="shelf_id"/>
+  <result property="factorySn" column="factory_sn"/>
+  <result property="factoryData" column="factory_data"/>
+  <result property="purchaseType" column="purchase_type"/>
+  <result property="acceptPhoto" column="accept_photo"/>
+  <result property="shelfName" column="shelf_name"/>
+  <result property="receptionDate" column="reception_date"/>
+  <result property="applyDeptId" column="apply_dept_id"/>
+  <result property="applyDeptName" column="apply_dept_name"/>
+  <result property="applyOrgId" column="apply_org_id"/>
+  <result property="applyOrgName" column="apply_org_name"/>
+  <result property="seriesNumber" column="series_number"/>
+  <result property="distributeNumber" column="distribute_number"/>
+  <result property="remark" column="remark"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+  <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+  <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+  <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+  <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+  <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+  <result property="distributeAssetsId" column="distribute_assets_id"/>
+  <result property="sourceCode" column="source_code"/>
+  <result property="sourceAssetsId" column="source_assets_id"/>
+  <result property="sourceDetailId" column="source_detail_id"/>
+  <result property="itemId" column="item_id"/>
+  <result property="applyNumber" column="apply_number"/>
+  <result property="applyTime" column="apply_time"/>
+  <result property="applyUserId" column="apply_user_id"/>
+  <result property="applyUserName" column="apply_user_name"/>
+  <result property="applyUserOrgId" column="apply_user_org_id"/>
+  <result property="applyUserOrgName" column="apply_user_org_name"/>
+  <result property="applyUserDeptId" column="apply_user_dept_id"/>
+  <result property="applyUserDeptName" column="apply_user_dept_name"/>
+  <result property="assetsUserId" column="assets_user_id"/>
+  <result property="assetsUserName" column="assets_user_name"/>
+  <result property="assetsUserOrgId" column="assets__user_org_id"/>
+  <result property="assetsUserOrgName" column="assets__user_org_name"/>
+  <result property="assetsUserDeptId" column="assets__user_dept_id"/>
+  <result property="assetsUserDeptName" column="assets__user_dept_name"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.asset.dto.MaterialDistributeDetailDto" resultMap="materialDistributeDetailMap">
+  select * from incloud_biz_asset_material_distribute_detail materialDistributeDetail where 1=1
+    <if test="materialDistributeDetailDto.id != null and materialDistributeDetailDto.id != ''">
+      AND materialDistributeDetail.id = #{materialDistributeDetailDto.id}
+    </if>
+    <if test="materialDistributeDetailDto.sourceId != null and materialDistributeDetailDto.sourceId != ''">
+      AND materialDistributeDetail.source_id = #{materialDistributeDetailDto.sourceId}
+    </if>
+    <if test="materialDistributeDetailDto.distributeId != null and materialDistributeDetailDto.distributeId != ''">
+      AND materialDistributeDetail.distribute_id = #{materialDistributeDetailDto.distributeId}
+    </if>
+    <if test="materialDistributeDetailDto.distributeCode != null and materialDistributeDetailDto.distributeCode != ''">
+      AND materialDistributeDetail.distribute_code like CONCAT('%',#{materialDistributeDetailDto.distributeCode},'%')
+    </if>
+    <if test="materialDistributeDetailDto.assetsId != null and materialDistributeDetailDto.assetsId != ''">
+      AND materialDistributeDetail.assets_id = #{materialDistributeDetailDto.assetsId}
+    </if>
+    <if test="materialDistributeDetailDto.assetsDetailId != null and materialDistributeDetailDto.assetsDetailId != ''">
+      AND materialDistributeDetail.assets_detail_id = #{materialDistributeDetailDto.assetsDetailId}
+    </if>
+    <if test="materialDistributeDetailDto.classifyId != null and materialDistributeDetailDto.classifyId != ''">
+      AND materialDistributeDetail.classify_id like CONCAT('%',#{materialDistributeDetailDto.classifyId},'%')
+    </if>
+    <if test="materialDistributeDetailDto.classifyCode != null and materialDistributeDetailDto.classifyCode != ''">
+      AND materialDistributeDetail.classify_code like CONCAT('%',#{materialDistributeDetailDto.classifyCode},'%')
+    </if>
+    <if test="materialDistributeDetailDto.classifyName != null and materialDistributeDetailDto.classifyName != ''">
+      AND materialDistributeDetail.classify_name like CONCAT('%',#{materialDistributeDetailDto.classifyName},'%')
+    </if>
+    <if test="materialDistributeDetailDto.itemType != null and materialDistributeDetailDto.itemType != ''">
+      AND materialDistributeDetail.item_type like CONCAT('%',#{materialDistributeDetailDto.itemType},'%')
+    </if>
+    <if test="materialDistributeDetailDto.route != null and materialDistributeDetailDto.route != ''">
+      AND materialDistributeDetail.route like CONCAT('%',#{materialDistributeDetailDto.route},'%')
+    </if>
+    <if test="materialDistributeDetailDto.routeName != null and materialDistributeDetailDto.routeName != ''">
+      AND materialDistributeDetail.route_name like CONCAT('%',#{materialDistributeDetailDto.routeName},'%')
+    </if>
+    <if test="materialDistributeDetailDto.taxRate != null and materialDistributeDetailDto.taxRate != ''">
+      AND materialDistributeDetail.tax_rate = #{materialDistributeDetailDto.taxRate}
+    </if>
+    <if test="materialDistributeDetailDto.itemCode != null and materialDistributeDetailDto.itemCode != ''">
+      AND materialDistributeDetail.item_code like CONCAT('%',#{materialDistributeDetailDto.itemCode},'%')
+    </if>
+    <if test="materialDistributeDetailDto.itemName != null and materialDistributeDetailDto.itemName != ''">
+      AND materialDistributeDetail.item_name like CONCAT('%',#{materialDistributeDetailDto.itemName},'%')
+    </if>
+    <if test="materialDistributeDetailDto.desclong != null and materialDistributeDetailDto.desclong != ''">
+      AND materialDistributeDetail.desclong like CONCAT('%',#{materialDistributeDetailDto.desclong},'%')
+    </if>
+    <if test="materialDistributeDetailDto.descshort != null and materialDistributeDetailDto.descshort != ''">
+      AND materialDistributeDetail.descshort like CONCAT('%',#{materialDistributeDetailDto.descshort},'%')
+    </if>
+    <if test="materialDistributeDetailDto.unitCode != null and materialDistributeDetailDto.unitCode != ''">
+      AND materialDistributeDetail.unit_code like CONCAT('%',#{materialDistributeDetailDto.unitCode},'%')
+    </if>
+    <if test="materialDistributeDetailDto.unitName != null and materialDistributeDetailDto.unitName != ''">
+      AND materialDistributeDetail.unit_name like CONCAT('%',#{materialDistributeDetailDto.unitName},'%')
+    </if>
+    <if test="materialDistributeDetailDto.materialQuality != null and materialDistributeDetailDto.materialQuality != ''">
+      AND materialDistributeDetail.material_quality like CONCAT('%',#{materialDistributeDetailDto.materialQuality},'%')
+    </if>
+    <if test="materialDistributeDetailDto.standard != null and materialDistributeDetailDto.standard != ''">
+      AND materialDistributeDetail.standard like CONCAT('%',#{materialDistributeDetailDto.standard},'%')
+    </if>
+    <if test="materialDistributeDetailDto.specs != null and materialDistributeDetailDto.specs != ''">
+      AND materialDistributeDetail.specs like CONCAT('%',#{materialDistributeDetailDto.specs},'%')
+    </if>
+    <if test="materialDistributeDetailDto.supplierName != null and materialDistributeDetailDto.supplierName != ''">
+      AND materialDistributeDetail.supplier_name like CONCAT('%',#{materialDistributeDetailDto.supplierName},'%')
+    </if>
+    <if test="materialDistributeDetailDto.contractCode != null and materialDistributeDetailDto.contractCode != ''">
+      AND materialDistributeDetail.contract_code like CONCAT('%',#{materialDistributeDetailDto.contractCode},'%')
+    </if>
+    <if test="materialDistributeDetailDto.assetsClassification != null and materialDistributeDetailDto.assetsClassification != ''">
+      AND materialDistributeDetail.assets_classification like CONCAT('%',#{materialDistributeDetailDto.assetsClassification},'%')
+    </if>
+    <if test="materialDistributeDetailDto.assetsCode != null and materialDistributeDetailDto.assetsCode != ''">
+      AND materialDistributeDetail.assets_code like CONCAT('%',#{materialDistributeDetailDto.assetsCode},'%')
+    </if>
+    <if test="materialDistributeDetailDto.qualityAssuranceLevel != null and materialDistributeDetailDto.qualityAssuranceLevel != ''">
+      AND materialDistributeDetail.quality_assurance_level like CONCAT('%',#{materialDistributeDetailDto.qualityAssuranceLevel},'%')
+    </if>
+    <if test="materialDistributeDetailDto.manufacturer != null and materialDistributeDetailDto.manufacturer != ''">
+      AND materialDistributeDetail.manufacturer like CONCAT('%',#{materialDistributeDetailDto.manufacturer},'%')
+    </if>
+    <if test="materialDistributeDetailDto.productionDate != null and materialDistributeDetailDto.productionDate != ''">
+      AND materialDistributeDetail.production_date = #{materialDistributeDetailDto.productionDate}
+    </if>
+    <if test="materialDistributeDetailDto.serviceLife != null and materialDistributeDetailDto.serviceLife != ''">
+      AND materialDistributeDetail.service_life = #{materialDistributeDetailDto.serviceLife}
+    </if>
+    <if test="materialDistributeDetailDto.validPeriod != null and materialDistributeDetailDto.validPeriod != ''">
+      AND materialDistributeDetail.valid_period like CONCAT('%',#{materialDistributeDetailDto.validPeriod},'%')
+    </if>
+    <if test="materialDistributeDetailDto.batchNumber != null and materialDistributeDetailDto.batchNumber != ''">
+      AND materialDistributeDetail.batch_number like CONCAT('%',#{materialDistributeDetailDto.batchNumber},'%')
+    </if>
+    <if test="materialDistributeDetailDto.acceptanceDate != null and materialDistributeDetailDto.acceptanceDate != ''">
+      AND materialDistributeDetail.acceptance_date = #{materialDistributeDetailDto.acceptanceDate}
+    </if>
+    <if test="materialDistributeDetailDto.factoryDate != null and materialDistributeDetailDto.factoryDate != ''">
+      AND materialDistributeDetail.factory_date = #{materialDistributeDetailDto.factoryDate}
+    </if>
+    <if test="materialDistributeDetailDto.factoryCode != null and materialDistributeDetailDto.factoryCode != ''">
+      AND materialDistributeDetail.factory_code like CONCAT('%',#{materialDistributeDetailDto.factoryCode},'%')
+    </if>
+    <if test="materialDistributeDetailDto.approachDate != null and materialDistributeDetailDto.approachDate != ''">
+      AND materialDistributeDetail.approach_date = #{materialDistributeDetailDto.approachDate}
+    </if>
+    <if test="materialDistributeDetailDto.warehouseId != null and materialDistributeDetailDto.warehouseId != ''">
+      AND materialDistributeDetail.warehouse_id like CONCAT('%',#{materialDistributeDetailDto.warehouseId},'%')
+    </if>
+    <if test="materialDistributeDetailDto.warehouseName != null and materialDistributeDetailDto.warehouseName != ''">
+      AND materialDistributeDetail.warehouse_name like CONCAT('%',#{materialDistributeDetailDto.warehouseName},'%')
+    </if>
+    <if test="materialDistributeDetailDto.shelfId != null and materialDistributeDetailDto.shelfId != ''">
+      AND materialDistributeDetail.shelf_id like CONCAT('%',#{materialDistributeDetailDto.shelfId},'%')
+    </if>
+    <if test="materialDistributeDetailDto.factorySn != null and materialDistributeDetailDto.factorySn != ''">
+      AND materialDistributeDetail.factory_sn like CONCAT('%',#{materialDistributeDetailDto.factorySn},'%')
+    </if>
+    <if test="materialDistributeDetailDto.factoryData != null and materialDistributeDetailDto.factoryData != ''">
+      AND materialDistributeDetail.factory_data like CONCAT('%',#{materialDistributeDetailDto.factoryData},'%')
+    </if>
+    <if test="materialDistributeDetailDto.purchaseType != null and materialDistributeDetailDto.purchaseType != ''">
+      AND materialDistributeDetail.purchase_type = #{materialDistributeDetailDto.purchaseType}
+    </if>
+    <if test="materialDistributeDetailDto.acceptPhoto != null and materialDistributeDetailDto.acceptPhoto != ''">
+      AND materialDistributeDetail.accept_photo like CONCAT('%',#{materialDistributeDetailDto.acceptPhoto},'%')
+    </if>
+    <if test="materialDistributeDetailDto.shelfName != null and materialDistributeDetailDto.shelfName != ''">
+      AND materialDistributeDetail.shelf_name like CONCAT('%',#{materialDistributeDetailDto.shelfName},'%')
+    </if>
+    <if test="materialDistributeDetailDto.receptionDate != null and materialDistributeDetailDto.receptionDate != ''">
+      AND materialDistributeDetail.reception_date like CONCAT('%',#{materialDistributeDetailDto.receptionDate},'%')
+    </if>
+    <if test="materialDistributeDetailDto.applyDeptId != null and materialDistributeDetailDto.applyDeptId != ''">
+      AND materialDistributeDetail.apply_dept_id like CONCAT('%',#{materialDistributeDetailDto.applyDeptId},'%')
+    </if>
+    <if test="materialDistributeDetailDto.applyDeptName != null and materialDistributeDetailDto.applyDeptName != ''">
+      AND materialDistributeDetail.apply_dept_name like CONCAT('%',#{materialDistributeDetailDto.applyDeptName},'%')
+    </if>
+    <if test="materialDistributeDetailDto.applyOrgId != null and materialDistributeDetailDto.applyOrgId != ''">
+      AND materialDistributeDetail.apply_org_id like CONCAT('%',#{materialDistributeDetailDto.applyOrgId},'%')
+    </if>
+    <if test="materialDistributeDetailDto.applyOrgName != null and materialDistributeDetailDto.applyOrgName != ''">
+      AND materialDistributeDetail.apply_org_name like CONCAT('%',#{materialDistributeDetailDto.applyOrgName},'%')
+    </if>
+    <if test="materialDistributeDetailDto.seriesNumber != null and materialDistributeDetailDto.seriesNumber != ''">
+      AND materialDistributeDetail.series_number like CONCAT('%',#{materialDistributeDetailDto.seriesNumber},'%')
+    </if>
+    <if test="materialDistributeDetailDto.distributeNumber != null and materialDistributeDetailDto.distributeNumber != ''">
+      AND materialDistributeDetail.distribute_number = #{materialDistributeDetailDto.distributeNumber}
+    </if>
+    <if test="materialDistributeDetailDto.remark != null and materialDistributeDetailDto.remark != ''">
+      AND materialDistributeDetail.remark like CONCAT('%',#{materialDistributeDetailDto.remark},'%')
+    </if>
+    <if test="materialDistributeDetailDto.createUserId != null and materialDistributeDetailDto.createUserId != ''">
+      AND materialDistributeDetail.create_user_id = #{materialDistributeDetailDto.createUserId}
+    </if>
+    <if test="materialDistributeDetailDto.createUserName != null and materialDistributeDetailDto.createUserName != ''">
+      AND materialDistributeDetail.create_user_name like CONCAT('%',#{materialDistributeDetailDto.createUserName},'%')
+    </if>
+    <if test="materialDistributeDetailDto.createUserParentOrgId != null and materialDistributeDetailDto.createUserParentOrgId != ''">
+      AND materialDistributeDetail.create_user_parent_org_id = #{materialDistributeDetailDto.createUserParentOrgId}
+    </if>
+    <if test="materialDistributeDetailDto.createUserParentOrgName != null and materialDistributeDetailDto.createUserParentOrgName != ''">
+      AND materialDistributeDetail.create_user_parent_org_name like CONCAT('%',#{materialDistributeDetailDto.createUserParentOrgName},'%')
+    </if>
+    <if test="materialDistributeDetailDto.createUserParentDeptId != null and materialDistributeDetailDto.createUserParentDeptId != ''">
+      AND materialDistributeDetail.create_user_parent_dept_id = #{materialDistributeDetailDto.createUserParentDeptId}
+    </if>
+    <if test="materialDistributeDetailDto.createUserParentDeptName != null and materialDistributeDetailDto.createUserParentDeptName != ''">
+      AND materialDistributeDetail.create_user_parent_dept_name like CONCAT('%',#{materialDistributeDetailDto.createUserParentDeptName},'%')
+    </if>
+    <if test="materialDistributeDetailDto.createUserOrgFullId != null and materialDistributeDetailDto.createUserOrgFullId != ''">
+      AND materialDistributeDetail.create_user_org_full_id like CONCAT('%',#{materialDistributeDetailDto.createUserOrgFullId},'%')
+    </if>
+    <if test="materialDistributeDetailDto.distributeAssetsId != null and materialDistributeDetailDto.distributeAssetsId != ''">
+      AND materialDistributeDetail.distribute_assets_id = #{materialDistributeDetailDto.distributeAssetsId}
+    </if>
+    <if test="materialDistributeDetailDto.sourceCode != null and materialDistributeDetailDto.sourceCode != ''">
+      AND materialDistributeDetail.source_code = #{materialDistributeDetailDto.sourceCode}
+    </if>
+    <if test="materialDistributeDetailDto.sourceAssetsId != null and materialDistributeDetailDto.sourceAssetsId != ''">
+      AND materialDistributeDetail.source_assets_id = #{materialDistributeDetailDto.sourceAssetsId}
+    </if>
+    <if test="materialDistributeDetailDto.sourceDetailId != null and materialDistributeDetailDto.sourceDetailId != ''">
+      AND materialDistributeDetail.source_detail_id = #{materialDistributeDetailDto.sourceDetailId}
+    </if>
+    <if test="materialDistributeDetailDto.itemId != null and materialDistributeDetailDto.itemId != ''">
+      AND materialDistributeDetail.item_id = #{materialDistributeDetailDto.itemId}
+    </if>
+    <if test="materialDistributeDetailDto.applyNumber != null and materialDistributeDetailDto.applyNumber != ''">
+      AND materialDistributeDetail.apply_number = #{materialDistributeDetailDto.applyNumber}
+    </if>
+    <if test="materialDistributeDetailDto.applyTime != null and materialDistributeDetailDto.applyTime != ''">
+      AND materialDistributeDetail.apply_time = #{materialDistributeDetailDto.applyTime}
+    </if>
+    <if test="materialDistributeDetailDto.applyUserId != null and materialDistributeDetailDto.applyUserId != ''">
+      AND materialDistributeDetail.apply_user_id = #{materialDistributeDetailDto.applyUserId}
+    </if>
+    <if test="materialDistributeDetailDto.applyUserName != null and materialDistributeDetailDto.applyUserName != ''">
+      AND materialDistributeDetail.apply_user_name like CONCAT('%',#{materialDistributeDetailDto.applyUserName},'%')
+    </if>
+    <if test="materialDistributeDetailDto.applyUserOrgId != null and materialDistributeDetailDto.applyUserOrgId != ''">
+      AND materialDistributeDetail.apply_user_org_id = #{materialDistributeDetailDto.applyUserOrgId}
+    </if>
+    <if test="materialDistributeDetailDto.applyUserOrgName != null and materialDistributeDetailDto.applyUserOrgName != ''">
+      AND materialDistributeDetail.apply_user_org_name like CONCAT('%',#{materialDistributeDetailDto.applyUserOrgName},'%')
+    </if>
+    <if test="materialDistributeDetailDto.applyUserDeptId != null and materialDistributeDetailDto.applyUserDeptId != ''">
+      AND materialDistributeDetail.apply_user_dept_id = #{materialDistributeDetailDto.applyUserDeptId}
+    </if>
+    <if test="materialDistributeDetailDto.applyUserDeptName != null and materialDistributeDetailDto.applyUserDeptName != ''">
+      AND materialDistributeDetail.apply_user_dept_name like CONCAT('%',#{materialDistributeDetailDto.applyUserDeptName},'%')
+    </if>
+    <if test="materialDistributeDetailDto.assetsUserId != null and materialDistributeDetailDto.assetsUserId != ''">
+      AND materialDistributeDetail.assets_user_id = #{materialDistributeDetailDto.assetsUserId}
+    </if>
+    <if test="materialDistributeDetailDto.assetsUserName != null and materialDistributeDetailDto.assetsUserName != ''">
+      AND materialDistributeDetail.assets_user_name = #{materialDistributeDetailDto.assetsUserName}
+    </if>
+    <if test="materialDistributeDetailDto.assetsUserOrgId != null and materialDistributeDetailDto.assetsUserOrgId != ''">
+      AND materialDistributeDetail.assets__user_org_id = #{materialDistributeDetailDto.assetsUserOrgId}
+    </if>
+    <if test="materialDistributeDetailDto.assetsUserOrgName != null and materialDistributeDetailDto.assetsUserOrgName != ''">
+      AND materialDistributeDetail.assets__user_org_name = #{materialDistributeDetailDto.assetsUserOrgName}
+    </if>
+    <if test="materialDistributeDetailDto.assetsUserDeptId != null and materialDistributeDetailDto.assetsUserDeptId != ''">
+      AND materialDistributeDetail.assets__user_dept_id = #{materialDistributeDetailDto.assetsUserDeptId}
+    </if>
+    <if test="materialDistributeDetailDto.assetsUserDeptName != null and materialDistributeDetailDto.assetsUserDeptName != ''">
+      AND materialDistributeDetail.assets__user_dept_name = #{materialDistributeDetailDto.assetsUserDeptName}
+    </if>
+    order by materialDistributeDetail.id desc
+</select>
+</mapper>

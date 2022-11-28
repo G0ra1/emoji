@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.study.mapper.StudyUserStudyRecordsMapper">
+
+<resultMap id="studyUserStudyRecordsMap" type="com.netwisd.biz.study.vo.StudyUserStudyRecordsVo">
+  <id property="id" column="id"/>
+  <result property="userId" column="user_id"/>
+  <result property="userName" column="user_name"/>
+  <result property="userNameCh" column="user_name_ch"/>
+  <result property="userOrgFullName" column="user_org_full_name"/>
+  <result property="couId" column="cou_id"/>
+  <result property="couName" column="cou_name"/>
+  <result property="couType" column="cou_type"/>
+  <result property="studyBestLessTime" column="study_best_less_time"/>
+  <result property="cumulativeStudyTime" column="cumulative_study_time"/>
+  <result property="lastStudyTime" column="last_study_time"/>
+  <result property="lessonId" column="lesson_id"/>
+  <result property="lessonName" column="lesson_name"/>
+  <result property="specialId" column="special_id"/>
+  <result property="specialName" column="special_name"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+  <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+  <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+  <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+  <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+  <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.study.dto.StudyUserStudyRecordsDto" resultMap="studyUserStudyRecordsMap">
+  select * from incloud_biz_study_user_study_records studyUserStudyRecords where 1=1
+    <if test="studyUserStudyRecordsDto.id != null and studyUserStudyRecordsDto.id != ''">
+      AND studyUserStudyRecords.id = #{studyUserStudyRecordsDto.id}
+    </if>
+    <if test="studyUserStudyRecordsDto.userId != null and studyUserStudyRecordsDto.userId != ''">
+      AND studyUserStudyRecords.user_id = #{studyUserStudyRecordsDto.userId}
+    </if>
+    <if test="studyUserStudyRecordsDto.userName != null and studyUserStudyRecordsDto.userName != ''">
+      AND studyUserStudyRecords.user_name like CONCAT('%',#{studyUserStudyRecordsDto.userName},'%')
+    </if>
+    <if test="studyUserStudyRecordsDto.userNameCh != null and studyUserStudyRecordsDto.userNameCh != ''">
+      AND studyUserStudyRecords.user_name_ch like CONCAT('%',#{studyUserStudyRecordsDto.userNameCh},'%')
+    </if>
+    <if test="studyUserStudyRecordsDto.couId != null and studyUserStudyRecordsDto.couId != ''">
+      AND studyUserStudyRecords.cou_id = #{studyUserStudyRecordsDto.couId}
+    </if>
+    <if test="studyUserStudyRecordsDto.couName != null and studyUserStudyRecordsDto.couName != ''">
+      AND studyUserStudyRecords.cou_name like CONCAT('%',#{studyUserStudyRecordsDto.couName},'%')
+    </if>
+    <if test="studyUserStudyRecordsDto.couType != null and studyUserStudyRecordsDto.couType != ''">
+      AND studyUserStudyRecords.cou_type = #{studyUserStudyRecordsDto.couType}
+    </if>
+    <if test="studyUserStudyRecordsDto.studyTime != null and studyUserStudyRecordsDto.studyTime != ''">
+      AND studyUserStudyRecords.study_time = #{studyUserStudyRecordsDto.studyTime}
+    </if>
+    <if test="studyUserStudyRecordsDto.lessonId != null and studyUserStudyRecordsDto.lessonId != ''">
+      AND studyUserStudyRecords.lesson_id = #{studyUserStudyRecordsDto.lessonId}
+    </if>
+    <if test="studyUserStudyRecordsDto.lessonName != null and studyUserStudyRecordsDto.lessonName != ''">
+      AND studyUserStudyRecords.lesson_name like CONCAT('%',#{studyUserStudyRecordsDto.lessonName},'%')
+    </if>
+    <if test="studyUserStudyRecordsDto.specialId != null and studyUserStudyRecordsDto.specialId != ''">
+      AND studyUserStudyRecords.special_id = #{studyUserStudyRecordsDto.specialId}
+    </if>
+    <if test="studyUserStudyRecordsDto.specialName != null and studyUserStudyRecordsDto.specialName != ''">
+      AND studyUserStudyRecords.special_name like CONCAT('%',#{studyUserStudyRecordsDto.specialName},'%')
+    </if>
+    <if test="studyUserStudyRecordsDto.createUserId != null and studyUserStudyRecordsDto.createUserId != ''">
+      AND studyUserStudyRecords.create_user_id = #{studyUserStudyRecordsDto.createUserId}
+    </if>
+    <if test="studyUserStudyRecordsDto.createUserName != null and studyUserStudyRecordsDto.createUserName != ''">
+      AND studyUserStudyRecords.create_user_name like CONCAT('%',#{studyUserStudyRecordsDto.createUserName},'%')
+    </if>
+    <if test="studyUserStudyRecordsDto.createUserParentOrgId != null and studyUserStudyRecordsDto.createUserParentOrgId != ''">
+      AND studyUserStudyRecords.create_user_parent_org_id = #{studyUserStudyRecordsDto.createUserParentOrgId}
+    </if>
+    <if test="studyUserStudyRecordsDto.createUserParentOrgName != null and studyUserStudyRecordsDto.createUserParentOrgName != ''">
+      AND studyUserStudyRecords.create_user_parent_org_name like CONCAT('%',#{studyUserStudyRecordsDto.createUserParentOrgName},'%')
+    </if>
+    <if test="studyUserStudyRecordsDto.createUserParentDeptId != null and studyUserStudyRecordsDto.createUserParentDeptId != ''">
+      AND studyUserStudyRecords.create_user_parent_dept_id = #{studyUserStudyRecordsDto.createUserParentDeptId}
+    </if>
+    <if test="studyUserStudyRecordsDto.createUserParentDeptName != null and studyUserStudyRecordsDto.createUserParentDeptName != ''">
+      AND studyUserStudyRecords.create_user_parent_dept_name like CONCAT('%',#{studyUserStudyRecordsDto.createUserParentDeptName},'%')
+    </if>
+    <if test="studyUserStudyRecordsDto.createUserOrgFullId != null and studyUserStudyRecordsDto.createUserOrgFullId != ''">
+      AND studyUserStudyRecords.create_user_org_full_id like CONCAT('%',#{studyUserStudyRecordsDto.createUserOrgFullId},'%')
+    </if>
+    order by studyUserStudyRecords.id desc
+</select>
+<select id="findLessonRanking" resultMap="studyUserStudyRecordsMap">
+  SELECT
+    id,
+    user_id,
+    user_name_ch,
+    create_user_parent_org_name,
+    lesson_id
+  FROM
+    incloud_biz_study_user_study_records
+  GROUP BY
+    id,
+    user_id,
+    user_name_ch,
+    user_org_full_name,
+    lesson_id
+</select>
+<select id="findSpecialRanking" resultMap="studyUserStudyRecordsMap">
+  SELECT
+    id,
+    user_id,
+    user_name_ch,
+    create_user_parent_org_name,
+    special_id
+  FROM
+    incloud_biz_study_user_study_records
+  GROUP BY
+    id,
+    user_id,
+    user_name_ch,
+    user_org_full_name,
+    special_id
+</select>
+<resultMap id="getUserRecordsMap" type="com.netwisd.biz.study.vo.StudyUserRecordsVo">
+  <id property="id" column="id"/>
+  <result property="userId" column="user_id"/>
+  <result property="userNameCh" column="user_name_ch"/>
+  <result property="specialId" column="special_id"/>
+  <result property="specialName" column="special_name"/>
+  <result property="lessonId" column="lesson_id"/>
+  <result property="lessonName" column="lesson_name"/>
+  <result property="couId" column="cou_id"/>
+  <result property="couName" column="cou_name"/>
+  <result property="couType" column="cou_type"/>
+  <result property="lastVideoTime" column="last_video_time"/>
+  <result property="cumulativeStudyTime" column="cumulative_study_time"/>
+  <result property="studyBestLessTime" column="study_best_less_time"/>
+  <result property="lastStudyTime" column="last_study_time"/>
+  <result property="imgUrl" column="img_url"/>
+</resultMap>
+<select id="getUserRecords" resultMap="getUserRecordsMap">
+  SELECT
+    records.id,
+    records.user_id,
+    records.user_name_ch,
+    records.special_id,
+    records.special_name,
+    records.lesson_id,
+    records.lesson_name,
+    records.cou_id,
+    records.cou_name,
+    cou.cou_type,
+    records.last_video_time,
+    records.cumulative_study_time,
+    records.study_best_less_time,
+    records.last_study_time,
+  IF
+    (
+    records.special_id IS NULL,
+    ( SELECT description FROM incloud_biz_study_lesson lesson WHERE lesson.id = records.lesson_id ),
+    ( SELECT description FROM incloud_biz_study_special special WHERE special.id = records.special_id )) AS description ,
+  IF
+    (
+    records.special_id IS NULL ,
+    (SELECT lessonImg.img_url FROM incloud_biz_study_lesson lessonImg WHERE lessonImg.id = records.lesson_id),
+    (SELECT specialImg.file_url FROM incloud_biz_study_special specialImg WHERE specialImg.id = records.special_id)) AS img_url
+  FROM
+    incloud_biz_study_user_study_records records
+  LEFT JOIN incloud_biz_study_cou cou ON cou.id = records.cou_id
+  WHERE
+    records.user_id = #{studyUserStudyRecordsDto.userId}
+    <if test="studyUserStudyRecordsDto.lessonName != null and studyUserStudyRecordsDto.lessonName != ''">
+      AND records.lesson_name like CONCAT('%',#{studyUserStudyRecordsDto.lessonName},'%')
+    </if>
+    <if test="studyUserStudyRecordsDto.couName != null and studyUserStudyRecordsDto.couName != ''">
+      AND records.cou_name like CONCAT('%',#{studyUserStudyRecordsDto.couName},'%')
+    </if>
+    <if test="studyUserStudyRecordsDto.studyType != null and studyUserStudyRecordsDto.studyType == 1">
+      AND records.cumulative_study_time &lt; records.study_best_less_time
+    </if>
+    <if test="studyUserStudyRecordsDto.studyType != null and studyUserStudyRecordsDto.studyType == 2">
+      AND records.cumulative_study_time &gt;= records.study_best_less_time
+    </if>
+    <if test="studyUserStudyRecordsDto.targetType != null and studyUserStudyRecordsDto.targetType == 0">
+      AND records.special_id IS NULL
+    </if>
+    <if test="studyUserStudyRecordsDto.targetType != null and studyUserStudyRecordsDto.targetType == 1">
+      AND records.special_id IS NOT NULL
+    </if>
+  ORDER BY
+    records.last_study_time
+</select>
+</mapper>

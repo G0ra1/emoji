@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.mdm.mapper.MdmDutyUserMapper">
+
+<resultMap id="mdmDutyUserMap" type="com.netwisd.base.common.mdm.vo.MdmDutyUserVo">
+  <id property="id" column="id"/>
+  <result property="orgFullDutyId" column="org_full_duty_id"/>
+  <result property="orgFullDutyName" column="org_full_duty_name"/>
+  <result property="dutyId" column="duty_id"/>
+  <result property="dutyCode" column="duty_code"/>
+  <result property="dutyName" column="duty_name"/>
+  <result property="userId" column="user_id"/>
+  <result property="userName" column="user_name"/>
+  <result property="userNameCh" column="user_name_ch"/>
+  <result property="isMaster" column="is_master"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.common.mdm.dto.MdmDutyUserDto" resultMap="mdmDutyUserMap">
+  select * from incloud_base_mdm_duty_user mdmDutyUser where 1=1
+    <if test="mdmDutyUserDto.id != null and mdmDutyUserDto.id != ''">
+      AND mdmDutyUser.id = #{mdmDutyUserDto.id}
+    </if>
+    <if test="mdmDutyUserDto.orgFullDutyId != null and mdmDutyUserDto.orgFullDutyId != ''">
+      AND mdmDutyUser.org_full_duty_id like CONCAT('%',#{mdmDutyUserDto.orgFullDutyId},'%')
+    </if>
+    <if test="mdmDutyUserDto.orgFullDutyName != null and mdmDutyUserDto.orgFullDutyName != ''">
+      AND mdmDutyUser.org_full_duty_name like CONCAT('%',#{mdmDutyUserDto.orgFullDutyName},'%')
+    </if>
+    <if test="mdmDutyUserDto.dutyId != null and mdmDutyUserDto.dutyId != ''">
+      AND mdmDutyUser.duty_id = #{mdmDutyUserDto.dutyId}
+    </if>
+    <if test="mdmDutyUserDto.dutyCode != null and mdmDutyUserDto.dutyCode != ''">
+      AND mdmDutyUser.duty_code like CONCAT('%',#{mdmDutyUserDto.dutyCode},'%')
+    </if>
+    <if test="mdmDutyUserDto.dutyName != null and mdmDutyUserDto.dutyName != ''">
+      AND mdmDutyUser.duty_name like CONCAT('%',#{mdmDutyUserDto.dutyName},'%')
+    </if>
+    <if test="mdmDutyUserDto.userId != null and mdmDutyUserDto.userId != ''">
+      AND mdmDutyUser.user_id = #{mdmDutyUserDto.userId}
+    </if>
+    <if test="mdmDutyUserDto.userName != null and mdmDutyUserDto.userName != ''">
+      AND mdmDutyUser.user_name like CONCAT('%',#{mdmDutyUserDto.userName},'%')
+    </if>
+    <if test="mdmDutyUserDto.userNameCh != null and mdmDutyUserDto.userNameCh != ''">
+      AND mdmDutyUser.user_name_ch like CONCAT('%',#{mdmDutyUserDto.userNameCh},'%')
+    </if>
+    <if test="mdmDutyUserDto.isMaster != null and mdmDutyUserDto.isMaster != ''">
+      AND mdmDutyUser.is_master = #{mdmDutyUserDto.isMaster}
+    </if>
+    order by mdmDutyUser.id desc
+</select>
+</mapper>

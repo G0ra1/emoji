@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.mdm.mapper.CustomerBankMapper">
+
+<resultMap id="customerBankMap" type="com.netwisd.biz.mdm.vo.CustomerBankVo">
+  <id property="id" column="id"/>
+  <result property="customerId" column="customer_id"/>
+  <result property="customerCode" column="customer_code"/>
+  <result property="bankName" column="bank_name"/>
+  <result property="bankAccount" column="bank_account"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.mdm.dto.CustomerBankDto" resultMap="customerBankMap">
+  select * from incloud_biz_mdm_customer_bank customerBank where 1=1
+    <if test="customerBankDto.id != null and customerBankDto.id != ''">
+      AND customerBank.id = #{customerBankDto.id}
+    </if>
+    <if test="customerBankDto.customerId != null and customerBankDto.customerId != ''">
+      AND customerBank.customer_id = #{customerBankDto.customerId}
+    </if>
+    <if test="customerBankDto.customerCode != null and customerBankDto.customerCode != ''">
+      AND customerBank.customer_code like CONCAT('%',#{customerBankDto.customerCode},'%')
+    </if>
+    <if test="customerBankDto.bankName != null and customerBankDto.bankName != ''">
+      AND customerBank.bank_name like CONCAT('%',#{customerBankDto.bankName},'%')
+    </if>
+    <if test="customerBankDto.bankAccount != null and customerBankDto.bankAccount != ''">
+      AND customerBank.bank_account like CONCAT('%',#{customerBankDto.bankAccount},'%')
+    </if>
+    order by customerBank.id desc
+</select>
+</mapper>

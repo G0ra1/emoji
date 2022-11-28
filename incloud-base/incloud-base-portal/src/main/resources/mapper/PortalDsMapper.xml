@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.portal.mapper.PortalDsMapper">
+
+<resultMap id="portalDsMap" type="com.netwisd.base.portal.vo.PortalDsVo">
+  <id property="id" column="id"/>
+  <result property="dsName" column="ds_name"/>
+  <result property="dsType" column="ds_type"/>
+  <result property="dsCode" column="ds_code"/>
+  <result property="dsReq" column="ds_req"/>
+  <result property="dsHeaders" column="ds_headers"/>
+  <result property="dsParamsType" column="ds_params_type"/>
+  <result property="dsParamsVal" column="ds_params_val"/>
+  <result property="dsUrl" column="ds_url"/>
+  <result property="remark" column="remark"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.portal.dto.PortalDsDto" resultMap="portalDsMap">
+  select * from incloud_base_portal_ds portalDs where 1=1
+    <if test="portalDsDto.id != null and portalDsDto.id != ''">
+      AND portalDs.id = #{portalDsDto.id}
+    </if>
+    <if test="portalDsDto.dsName != null and portalDsDto.dsName != ''">
+      AND portalDs.ds_name like CONCAT('%',#{portalDsDto.dsName},'%')
+    </if>
+    <if test="portalDsDto.dsType != null and portalDsDto.dsType != ''">
+      AND portalDs.ds_type = #{portalDsDto.dsType}
+    </if>
+    <if test="portalDsDto.dsCode != null and portalDsDto.dsCode != ''">
+      AND portalDs.ds_code like CONCAT('%',#{portalDsDto.dsCode},'%')
+    </if>
+    <if test="portalDsDto.dsReq != null and portalDsDto.dsReq != ''">
+      AND portalDs.ds_req = #{portalDsDto.dsReq}
+    </if>
+    <if test="portalDsDto.dsHeaders != null and portalDsDto.dsHeaders != ''">
+      AND portalDs.ds_headers like CONCAT('%',#{portalDsDto.dsHeaders},'%')
+    </if>
+    <if test="portalDsDto.dsParamsType != null and portalDsDto.dsParamsType != ''">
+      AND portalDs.ds_params_type = #{portalDsDto.dsParamsType}
+    </if>
+    <if test="portalDsDto.dsParamsVal != null and portalDsDto.dsParamsVal != ''">
+      AND portalDs.ds_params_val like CONCAT('%',#{portalDsDto.dsParamsVal},'%')
+    </if>
+    <if test="portalDsDto.dsUrl != null and portalDsDto.dsUrl != ''">
+      AND portalDs.ds_url like CONCAT('%',#{portalDsDto.dsUrl},'%')
+    </if>
+    <if test="portalDsDto.remark != null and portalDsDto.remark != ''">
+      AND portalDs.remark like CONCAT('%',#{portalDsDto.remark},'%')
+    </if>
+    order by portalDs.id desc
+</select>
+</mapper>

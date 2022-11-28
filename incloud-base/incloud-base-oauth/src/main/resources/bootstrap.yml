@@ -1,0 +1,24 @@
+server:
+  port: 8001
+spring:
+  application:
+    name: @artifactId@
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${INCLOUD_NACOS_SERVICE_HOST:127.0.0.1}:${INCLOUD_NACOS_SERVICE_PORT:8848}
+        namespace: ${INCLOUD_NACOS_NAMESPACE:incloud3}
+        #ip: ${incloud3_instance_ip}
+      config:
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+        file-extension: yml
+        #2.2.0用这个标签
+        namespace: ${spring.cloud.nacos.discovery.namespace}
+        #shared-dataids: application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+        shared-configs:
+          - application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+  profiles:
+    active: @profiles.active@
+  rocketmq:
+    namesrvAddr: ${INCLOUD_ROCKETMQ_SERVICE_HOST:192.168.1.195}:${INCLOUD_ROCKETMQ_SERVICE_PORT:9876}
+    isSend: true

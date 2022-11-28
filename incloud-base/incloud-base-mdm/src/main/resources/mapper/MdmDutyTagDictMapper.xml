@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.mdm.mapper.MdmDutyTagDictMapper">
+
+<resultMap id="mdmDutyTagDictMap" type="com.netwisd.base.mdm.vo.MdmDutyTagDictVo">
+  <id property="id" column="id"/>
+  <result property="dutyTagName" column="duty_tag_name"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.mdm.dto.MdmDutyTagDictDto" resultMap="mdmDutyTagDictMap">
+  select * from incloud_base_mdm_duty_tag_dict mdmDutyTagDict where 1=1
+    <if test="mdmDutyTagDictDto.id != null and mdmDutyTagDictDto.id != ''">
+      AND mdmDutyTagDict.id = #{mdmDutyTagDictDto.id}
+    </if>
+    <if test="mdmDutyTagDictDto.dutyTagName != null and mdmDutyTagDictDto.dutyTagName != ''">
+      AND mdmDutyTagDict.duty_tag_name like CONCAT('%',#{mdmDutyTagDictDto.dutyTagName},'%')
+    </if>
+    order by mdmDutyTagDict.id desc
+</select>
+</mapper>

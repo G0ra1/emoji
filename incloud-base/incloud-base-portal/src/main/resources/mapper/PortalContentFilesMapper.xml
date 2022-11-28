@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.portal.mapper.PortalContentFilesMapper">
+
+<resultMap id="portalContentFilesMap" type="com.netwisd.base.portal.vo.PortalContentFilesVo">
+  <id property="id" column="id"/>
+  <result property="portalId" column="portal_id"/>
+  <result property="portalName" column="portal_name"/>
+  <result property="partId" column="part_id"/>
+  <result property="partName" column="part_name"/>
+  <result property="partTypeId" column="part_type_id"/>
+  <result property="partTypeName" column="part_type_name"/>
+  <result property="isOutLink" column="is_out_link"/>
+  <result property="fileName" column="file_name"/>
+  <result property="fileUrl" column="file_url"/>
+  <result property="auditStatus" column="audit_status"/>
+  <result property="hits" column="hits"/>
+  <result property="remark" column="remark"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.portal.dto.PortalContentFilesDto" resultMap="portalContentFilesMap">
+  select * from incloud_base_portal_content_files portalContentFiles where 1=1
+    <if test="portalContentFilesDto.id != null and portalContentFilesDto.id != ''">
+      AND portalContentFiles.id = #{portalContentFilesDto.id}
+    </if>
+    <if test="portalContentFilesDto.portalId != null and portalContentFilesDto.portalId != ''">
+      AND portalContentFiles.portal_id = #{portalContentFilesDto.portalId}
+    </if>
+    <if test="portalContentFilesDto.portalName != null and portalContentFilesDto.portalName != ''">
+      AND portalContentFiles.portal_name like CONCAT('%',#{portalContentFilesDto.portalName},'%')
+    </if>
+    <if test="portalContentFilesDto.partId != null and portalContentFilesDto.partId != ''">
+      AND portalContentFiles.part_id = #{portalContentFilesDto.partId}
+    </if>
+    <if test="portalContentFilesDto.partName != null and portalContentFilesDto.partName != ''">
+      AND portalContentFiles.part_name like CONCAT('%',#{portalContentFilesDto.partName},'%')
+    </if>
+    <if test="portalContentFilesDto.partTypeId != null and portalContentFilesDto.partTypeId != ''">
+      AND portalContentFiles.part_type_id = #{portalContentFilesDto.partTypeId}
+    </if>
+    <if test="portalContentFilesDto.partTypeName != null and portalContentFilesDto.partTypeName != ''">
+      AND portalContentFiles.part_type_name like CONCAT('%',#{portalContentFilesDto.partTypeName},'%')
+    </if>
+    <if test="portalContentFilesDto.isOutLink != null and portalContentFilesDto.isOutLink != ''">
+      AND portalContentFiles.is_out_link = #{portalContentFilesDto.isOutLink}
+    </if>
+    <if test="portalContentFilesDto.fileName != null and portalContentFilesDto.fileName != ''">
+      AND portalContentFiles.file_name like CONCAT('%',#{portalContentFilesDto.fileName},'%')
+    </if>
+    <if test="portalContentFilesDto.fileUrl != null and portalContentFilesDto.fileUrl != ''">
+      AND portalContentFiles.file_url like CONCAT('%',#{portalContentFilesDto.fileUrl},'%')
+    </if>
+    <if test="portalContentFilesDto.auditStatus != null and portalContentFilesDto.auditStatus != ''">
+      AND portalContentFiles.audit_status = #{portalContentFilesDto.auditStatus}
+    </if>
+    <if test="portalContentFilesDto.hits != null and portalContentFilesDto.hits != ''">
+      AND portalContentFiles.hits = #{portalContentFilesDto.hits}
+    </if>
+    <if test="portalContentFilesDto.remark != null and portalContentFilesDto.remark != ''">
+      AND portalContentFiles.remark like CONCAT('%',#{portalContentFilesDto.remark},'%')
+    </if>
+    order by portalContentFiles.id desc
+</select>
+</mapper>

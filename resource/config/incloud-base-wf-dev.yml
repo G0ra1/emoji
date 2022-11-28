@@ -1,0 +1,27 @@
+spring:
+  mvc:
+    throw-exception-if-no-handler-found: false
+  resources:
+    add-mappings: true
+  main:
+    allow-bean-definition-overriding: true
+incloud:
+  table:
+    package: com.netwisd.base.wf.entity
+camunda:
+  bpm:
+    database:
+      table-prefix: incloud_base_wf_
+      schema-update: false
+seata:
+  registry:
+    type: nacos
+    nacos:
+      application: seata-server
+      server-addr: ${incloud3_nacos_host:127.0.0.1}:${incloud3_nacos_port:8848}
+      group : "DEFAULT_GROUP"
+      namespace: ${incloud3_nacos_namespace}
+      username: "nacos"
+      password: "nacos"
+lic:
+  ip: 192.168.1.192

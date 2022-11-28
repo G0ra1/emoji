@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.study.mapper.StudyExamPaperMapper">
+
+<resultMap id="studyExamPaperMap" type="com.netwisd.biz.study.vo.StudyExamPaperVo">
+  <id property="id" column="id"/>
+  <result property="typeCode" column="type_code"/>
+  <result property="typeName" column="type_name"/>
+  <result property="paperName" column="paper_name"/>
+  <result property="paperCode" column="paper_code"/>
+  <result property="paperType" column="paper_type"/>
+  <result property="paperTotalScore" column="paper_total_score"/>
+  <result property="singleScore" column="single_score"/>
+  <result property="multipleScore" column="multiple_score"/>
+  <result property="completionScore" column="completion_score"/>
+  <result property="judgmentScore" column="judgment_score"/>
+  <result property="shortAnswerScore" column="short_answer_score"/>
+  <result property="singleNumber" column="single_number"/>
+  <result property="multipleNumber" column="multiple_number"/>
+  <result property="completionNumber" column="completion_number"/>
+  <result property="judgmentNumber" column="judgment_number"/>
+  <result property="shortAnswerNumber" column="short_answer_number"/>
+  <result property="isEnable" column="is_enable"/>
+  <result property="isHaveShortAnswer" column="is_have_short_answer"/>
+  <result property="specialExamTime" column="special_exam_time"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+  <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+  <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+  <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+  <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+  <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.study.dto.StudyExamPaperDto" resultMap="studyExamPaperMap">
+  select * from incloud_biz_study_exam_paper studyExamPaper where 1=1
+    <if test="studyExamPaperDto.typeCode != null and studyExamPaperDto.typeCode != ''">
+      AND studyExamPaper.type_code like CONCAT('%',#{studyExamPaperDto.typeCode},'%')
+    </if>
+    <if test="studyExamPaperDto.typeName != null and studyExamPaperDto.typeName != ''">
+      AND studyExamPaper.type_name like CONCAT('%',#{studyExamPaperDto.typeName},'%')
+    </if>
+    <if test="studyExamPaperDto.paperName != null and studyExamPaperDto.paperName != ''">
+      AND studyExamPaper.paper_name like CONCAT('%',#{studyExamPaperDto.paperName},'%')
+    </if>
+    <if test="studyExamPaperDto.paperCode != null and studyExamPaperDto.paperCode != ''">
+      AND studyExamPaper.paper_code = #{studyExamPaperDto.paperCode}
+    </if>
+    <if test="studyExamPaperDto.paperType != null and studyExamPaperDto.paperType != ''">
+      AND studyExamPaper.paper_type like CONCAT('%',#{studyExamPaperDto.paperType},'%')
+    </if>
+    <if test="studyExamPaperDto.paperTotalScore != null and studyExamPaperDto.paperTotalScore != ''">
+      AND studyExamPaper.paper_total_score = #{studyExamPaperDto.paperTotalScore}
+    </if>
+    <if test="studyExamPaperDto.singleScore != null and studyExamPaperDto.singleScore != ''">
+      AND studyExamPaper.single_score = #{studyExamPaperDto.singleScore}
+    </if>
+    <if test="studyExamPaperDto.multipleScore != null and studyExamPaperDto.multipleScore != ''">
+      AND studyExamPaper.multiple_score = #{studyExamPaperDto.multipleScore}
+    </if>
+    <if test="studyExamPaperDto.completionScore != null and studyExamPaperDto.completionScore != ''">
+      AND studyExamPaper.completion_score = #{studyExamPaperDto.completionScore}
+    </if>
+    <if test="studyExamPaperDto.judgmentScore != null and studyExamPaperDto.judgmentScore != ''">
+      AND studyExamPaper.judgment_score = #{studyExamPaperDto.judgmentScore}
+    </if>
+    <if test="studyExamPaperDto.shortAnswerScore != null and studyExamPaperDto.shortAnswerScore != ''">
+      AND studyExamPaper.short_answer_score = #{studyExamPaperDto.shortAnswerScore}
+    </if>
+    <if test="studyExamPaperDto.singleNumber != null and studyExamPaperDto.singleNumber != ''">
+      AND studyExamPaper.single_number = #{studyExamPaperDto.singleNumber}
+    </if>
+    <if test="studyExamPaperDto.multipleNumber != null and studyExamPaperDto.multipleNumber != ''">
+      AND studyExamPaper.multiple_number = #{studyExamPaperDto.multipleNumber}
+    </if>
+    <if test="studyExamPaperDto.completionNumber != null and studyExamPaperDto.completionNumber != ''">
+      AND studyExamPaper.completion_number = #{studyExamPaperDto.completionNumber}
+    </if>
+    <if test="studyExamPaperDto.judgmentNumber != null and studyExamPaperDto.judgmentNumber != ''">
+      AND studyExamPaper.judgment_number = #{studyExamPaperDto.judgmentNumber}
+    </if>
+    <if test="studyExamPaperDto.shortAnswerNumber != null and studyExamPaperDto.shortAnswerNumber != ''">
+      AND studyExamPaper.short_answer_number = #{studyExamPaperDto.shortAnswerNumber}
+    </if>
+    <if test="studyExamPaperDto.isEnable != null and studyExamPaperDto.isEnable != ''">
+      AND studyExamPaper.is_enable = #{studyExamPaperDto.isEnable}
+    </if>
+    <if test="studyExamPaperDto.isHaveShortAnswer != null and studyExamPaperDto.isHaveShortAnswer != ''">
+      AND studyExamPaper.is_have_short_answer = #{studyExamPaperDto.isHaveShortAnswer}
+    </if>
+    <if test="studyExamPaperDto.specialExamTime != null and studyExamPaperDto.specialExamTime != ''">
+      AND studyExamPaper.special_exam_time = #{studyExamPaperDto.specialExamTime}
+    </if>
+    <if test="studyExamPaperDto.createUserId != null and studyExamPaperDto.createUserId != ''">
+      AND studyExamPaper.create_user_id = #{studyExamPaperDto.createUserId}
+    </if>
+    <if test="studyExamPaperDto.createUserName != null and studyExamPaperDto.createUserName != ''">
+      AND studyExamPaper.create_user_name like CONCAT('%',#{studyExamPaperDto.createUserName},'%')
+    </if>
+    <if test="studyExamPaperDto.createUserParentOrgId != null and studyExamPaperDto.createUserParentOrgId != ''">
+      AND studyExamPaper.create_user_parent_org_id = #{studyExamPaperDto.createUserParentOrgId}
+    </if>
+    <if test="studyExamPaperDto.createUserParentOrgName != null and studyExamPaperDto.createUserParentOrgName != ''">
+      AND studyExamPaper.create_user_parent_org_name like CONCAT('%',#{studyExamPaperDto.createUserParentOrgName},'%')
+    </if>
+    <if test="studyExamPaperDto.createUserParentDeptId != null and studyExamPaperDto.createUserParentDeptId != ''">
+      AND studyExamPaper.create_user_parent_dept_id = #{studyExamPaperDto.createUserParentDeptId}
+    </if>
+    <if test="studyExamPaperDto.createUserParentDeptName != null and studyExamPaperDto.createUserParentDeptName != ''">
+      AND studyExamPaper.create_user_parent_dept_name like CONCAT('%',#{studyExamPaperDto.createUserParentDeptName},'%')
+    </if>
+    <if test="studyExamPaperDto.createUserOrgFullId != null and studyExamPaperDto.createUserOrgFullId != ''">
+      AND studyExamPaper.create_user_org_full_id like CONCAT('%',#{studyExamPaperDto.createUserOrgFullId},'%')
+    </if>
+    order by studyExamPaper.id desc
+</select>
+</mapper>

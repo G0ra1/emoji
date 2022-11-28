@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/html">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<head>
+    <meta charset="utf-8">
+    <title>云数网讯</title>
+</head>
+<body>
+关键字:<input id="keyWords"/> </br>
+ip:<input id="host"/> </br>
+子系统: <input id="appName"/> </br>
+日志级别: <input id="level"/> </br>
+开启试试推送:<label>开:</label><input name="isOpen" type="radio" value="true" checked/></label>
+<label>关:<input name="isOpen" type="radio" value="false"/></label>
+<div id="sse">
+    <a href="javascript:openSock()">建立sock</a><br>
+    <a href="javascript:sendWS()">发送条件</a><br>
+    <a href="javascript:closeSock()">关闭sock</a><br>
+</div>
+<div id="returnText"></div>
+<script type="text/javascript">
+    var ws;
+
+    function createWS() {
+        if ("WebSocket" in window) {
+            // 打开一个 web socket
+            ws = new WebSocket("ws://127.0.0.1:8010/ws/log?userId=123");
+            ws.onopen = function () {
+                // Web Socket 已连接上，使用 send() 方法发送数据
+                alert("连接已建立...");
+                sendWS()
+            };
+            ws.onmessage = function (evt) {
+                console.log(evt);
+                document.getElementById('returnText').innerHTML = evt.data + document.getElementById('returnText').innerHTML;
+            };
+            ws.onclose = function () {
+                // 关闭 websocket
+                alert("连接已关闭...");
+            };
+        } else {
+            // 浏览器不支持 WebSocket
+            alert("您的浏览器不支持 WebSocket!");
+        }
+    }
+
+    function sendWS() {
+        var json = {
+            "appName": document.getElementById("appName").value,
+            "host": document.getElementById("host").value,
+            "keyword": document.getElementById("keyWords").value,
+            "level": document.getElementById("level").value,
+            "isOpen": $('input:radio[name="isOpen"]:checked').val()
+        }
+        ws.send(JSON.stringify(json));
+    }
+
+    function openSock() {
+        createWS()
+    }
+
+    function closeSock() {
+        ws.close()
+    }
+
+    // 点击事件change
+    $('input[type=radio][name=isOpen]').change(function () {
+       // 获取input radio选中值，方法一
+       var myvalue = $('input:radio[name="isOpen"]:checked').val();
+       // 获取input radio选中值，方法二
+       var myvalue = $(this).val();
+       var json = {
+          "appName": document.getElementById("appName").value,
+          "host": document.getElementById("host").value,
+          "keyword": document.getElementById("keyWords").value,
+          "level": document.getElementById("level").value,
+          "isOpen": $('input:radio[name="isOpen"]:checked').val()
+       }
+        ws.send(JSON.stringify(json));
+    });
+</script>
+</body>
+</html>

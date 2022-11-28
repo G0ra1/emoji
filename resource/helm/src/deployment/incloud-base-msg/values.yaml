@@ -1,0 +1,8 @@
+name: incloud-base-msg
+replicaCount: 1
+image:
+  repository: dockerhub.kubekey.local/zhongyuanjian/incloud-base-msg
+  pullPolicy: Always
+  tag: "latest"
+  port: 8011
+imageEnvConfigMap: incloud-config

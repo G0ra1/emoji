@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.asset.mapper.DisposePlanMapper">
+
+<resultMap id="disposePlanMap" type="com.netwisd.biz.asset.vo.DisposePlanVo">
+  <id property="id" column="id"/>
+  <result property="code" column="code"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+  <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+  <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+  <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+  <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+  <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+  <result property="auditSuccessTiem" column="audit_success_tiem"/>
+  <result property="camundaProcdefKey" column="camunda_procdef_key"/>
+  <result property="camundaProcdefId" column="camunda_procdef_id"/>
+  <result property="camundaProcinsId" column="camunda_procins_id"/>
+  <result property="procdefTypeId" column="procdef_type_id"/>
+  <result property="procdefTypeName" column="procdef_type_name"/>
+  <result property="procdefVersion" column="procdef_version"/>
+  <result property="procdefName" column="procdef_name"/>
+  <result property="processName" column="process_name"/>
+  <result property="reason" column="reason"/>
+  <result property="bizKey" column="biz_key"/>
+  <result property="camundaTaskId" column="camunda_task_id"/>
+  <result property="bizPriority" column="biz_priority"/>
+  <result property="auditStatus" column="audit_status"/>
+  <result property="planYear" column="plan_year"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.asset.dto.DisposePlanDto" resultMap="disposePlanMap">
+  select * from incloud_biz_asset_dispose_plan disposePlan where 1=1
+    <if test="disposePlanDto.id != null and disposePlanDto.id != ''">
+      AND disposePlan.id = #{disposePlanDto.id}
+    </if>
+    <if test="disposePlanDto.code != null and disposePlanDto.code != ''">
+      AND disposePlan.code like CONCAT('%',#{disposePlanDto.code},'%')
+    </if>
+    <if test="disposePlanDto.createUserId != null and disposePlanDto.createUserId != ''">
+      AND disposePlan.create_user_id = #{disposePlanDto.createUserId}
+    </if>
+    <if test="disposePlanDto.createUserName != null and disposePlanDto.createUserName != ''">
+      AND disposePlan.create_user_name like CONCAT('%',#{disposePlanDto.createUserName},'%')
+    </if>
+    <if test="disposePlanDto.createUserParentOrgId != null and disposePlanDto.createUserParentOrgId != ''">
+      AND disposePlan.create_user_parent_org_id = #{disposePlanDto.createUserParentOrgId}
+    </if>
+    <if test="disposePlanDto.createUserParentOrgName != null and disposePlanDto.createUserParentOrgName != ''">
+      AND disposePlan.create_user_parent_org_name like CONCAT('%',#{disposePlanDto.createUserParentOrgName},'%')
+    </if>
+    <if test="disposePlanDto.createUserParentDeptId != null and disposePlanDto.createUserParentDeptId != ''">
+      AND disposePlan.create_user_parent_dept_id = #{disposePlanDto.createUserParentDeptId}
+    </if>
+    <if test="disposePlanDto.createUserParentDeptName != null and disposePlanDto.createUserParentDeptName != ''">
+      AND disposePlan.create_user_parent_dept_name like CONCAT('%',#{disposePlanDto.createUserParentDeptName},'%')
+    </if>
+    <if test="disposePlanDto.createUserOrgFullId != null and disposePlanDto.createUserOrgFullId != ''">
+      AND disposePlan.create_user_org_full_id like CONCAT('%',#{disposePlanDto.createUserOrgFullId},'%')
+    </if>
+    <if test="disposePlanDto.auditSuccessTiem != null and disposePlanDto.auditSuccessTiem != ''">
+      AND disposePlan.audit_success_tiem = #{disposePlanDto.auditSuccessTiem}
+    </if>
+    <if test="disposePlanDto.camundaProcdefKey != null and disposePlanDto.camundaProcdefKey != ''">
+      AND disposePlan.camunda_procdef_key like CONCAT('%',#{disposePlanDto.camundaProcdefKey},'%')
+    </if>
+    <if test="disposePlanDto.camundaProcdefId != null and disposePlanDto.camundaProcdefId != ''">
+      AND disposePlan.camunda_procdef_id like CONCAT('%',#{disposePlanDto.camundaProcdefId},'%')
+    </if>
+    <if test="disposePlanDto.camundaProcinsId != null and disposePlanDto.camundaProcinsId != ''">
+      AND disposePlan.camunda_procins_id like CONCAT('%',#{disposePlanDto.camundaProcinsId},'%')
+    </if>
+    <if test="disposePlanDto.procdefTypeId != null and disposePlanDto.procdefTypeId != ''">
+      AND disposePlan.procdef_type_id = #{disposePlanDto.procdefTypeId}
+    </if>
+    <if test="disposePlanDto.procdefTypeName != null and disposePlanDto.procdefTypeName != ''">
+      AND disposePlan.procdef_type_name like CONCAT('%',#{disposePlanDto.procdefTypeName},'%')
+    </if>
+    <if test="disposePlanDto.procdefVersion != null and disposePlanDto.procdefVersion != ''">
+      AND disposePlan.procdef_version = #{disposePlanDto.procdefVersion}
+    </if>
+    <if test="disposePlanDto.procdefName != null and disposePlanDto.procdefName != ''">
+      AND disposePlan.procdef_name like CONCAT('%',#{disposePlanDto.procdefName},'%')
+    </if>
+    <if test="disposePlanDto.processName != null and disposePlanDto.processName != ''">
+      AND disposePlan.process_name like CONCAT('%',#{disposePlanDto.processName},'%')
+    </if>
+    <if test="disposePlanDto.reason != null and disposePlanDto.reason != ''">
+      AND disposePlan.reason like CONCAT('%',#{disposePlanDto.reason},'%')
+    </if>
+    <if test="disposePlanDto.bizKey != null and disposePlanDto.bizKey != ''">
+      AND disposePlan.biz_key like CONCAT('%',#{disposePlanDto.bizKey},'%')
+    </if>
+    <if test="disposePlanDto.camundaTaskId != null and disposePlanDto.camundaTaskId != ''">
+      AND disposePlan.camunda_task_id like CONCAT('%',#{disposePlanDto.camundaTaskId},'%')
+    </if>
+    <if test="disposePlanDto.bizPriority != null and disposePlanDto.bizPriority != ''">
+      AND disposePlan.biz_priority like CONCAT('%',#{disposePlanDto.bizPriority},'%')
+    </if>
+    <if test="disposePlanDto.auditStatus != null and disposePlanDto.auditStatus != ''">
+      AND disposePlan.audit_status = #{disposePlanDto.auditStatus}
+    </if>
+    <if test="disposePlanDto.planYear != null and disposePlanDto.planYear != ''">
+      AND disposePlan.plan_year like CONCAT('%',#{disposePlanDto.planYear},'%')
+    </if>
+    order by disposePlan.id desc
+</select>
+</mapper>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.asset.mapper.MaterialDistributeTaskMapper">
+
+<resultMap id="materialDistributeTaskMap" type="com.netwisd.biz.asset.vo.MaterialDistributeTaskVo">
+  <id property="id" column="id"/>
+  <result property="type" column="type"/>
+  <result property="sourceId" column="source_id"/>
+  <result property="code" column="code"/>
+  <result property="applyTime" column="apply_time"/>
+  <result property="manageUserId" column="manage_user_id"/>
+  <result property="manageUserName" column="manage_user_name"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+  <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+  <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+  <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+  <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+  <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+  <result property="reason" column="reason"/>
+  <result property="formUrl" column="form_url"/>
+  <result property="status" column="status"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.asset.dto.MaterialDistributeTaskDto" resultMap="materialDistributeTaskMap">
+  select * from incloud_biz_asset_material_distribute_task materialDistributeTask where 1=1
+    <if test="materialDistributeTaskDto.id != null and materialDistributeTaskDto.id != ''">
+      AND materialDistributeTask.id = #{materialDistributeTaskDto.id}
+    </if>
+    <if test="materialDistributeTaskDto.type != null and materialDistributeTaskDto.type != ''">
+      AND materialDistributeTask.type = #{materialDistributeTaskDto.type}
+    </if>
+    <if test="materialDistributeTaskDto.sourceId != null and materialDistributeTaskDto.sourceId != ''">
+      AND materialDistributeTask.source_id = #{materialDistributeTaskDto.sourceId}
+    </if>
+    <if test="materialDistributeTaskDto.code != null and materialDistributeTaskDto.code != ''">
+      AND materialDistributeTask.code = #{materialDistributeTaskDto.code}
+    </if>
+    <if test="materialDistributeTaskDto.applyTime != null and materialDistributeTaskDto.applyTime != ''">
+      AND materialDistributeTask.apply_time = #{materialDistributeTaskDto.applyTime}
+    </if>
+    <if test="materialDistributeTaskDto.manageUserId != null and materialDistributeTaskDto.manageUserId != ''">
+      AND materialDistributeTask.manage_user_id = #{materialDistributeTaskDto.manageUserId}
+    </if>
+    <if test="materialDistributeTaskDto.manageUserName != null and materialDistributeTaskDto.manageUserName != ''">
+      AND materialDistributeTask.manage_user_name = #{materialDistributeTaskDto.manageUserName}
+    </if>
+    <if test="materialDistributeTaskDto.createUserId != null and materialDistributeTaskDto.createUserId != ''">
+      AND materialDistributeTask.create_user_id = #{materialDistributeTaskDto.createUserId}
+    </if>
+    <if test="materialDistributeTaskDto.createUserName != null and materialDistributeTaskDto.createUserName != ''">
+      AND materialDistributeTask.create_user_name like CONCAT('%',#{materialDistributeTaskDto.createUserName},'%')
+    </if>
+    <if test="materialDistributeTaskDto.createUserParentOrgId != null and materialDistributeTaskDto.createUserParentOrgId != ''">
+      AND materialDistributeTask.create_user_parent_org_id = #{materialDistributeTaskDto.createUserParentOrgId}
+    </if>
+    <if test="materialDistributeTaskDto.createUserParentOrgName != null and materialDistributeTaskDto.createUserParentOrgName != ''">
+      AND materialDistributeTask.create_user_parent_org_name like CONCAT('%',#{materialDistributeTaskDto.createUserParentOrgName},'%')
+    </if>
+    <if test="materialDistributeTaskDto.createUserParentDeptId != null and materialDistributeTaskDto.createUserParentDeptId != ''">
+      AND materialDistributeTask.create_user_parent_dept_id = #{materialDistributeTaskDto.createUserParentDeptId}
+    </if>
+    <if test="materialDistributeTaskDto.createUserParentDeptName != null and materialDistributeTaskDto.createUserParentDeptName != ''">
+      AND materialDistributeTask.create_user_parent_dept_name like CONCAT('%',#{materialDistributeTaskDto.createUserParentDeptName},'%')
+    </if>
+    <if test="materialDistributeTaskDto.createUserOrgFullId != null and materialDistributeTaskDto.createUserOrgFullId != ''">
+      AND materialDistributeTask.create_user_org_full_id like CONCAT('%',#{materialDistributeTaskDto.createUserOrgFullId},'%')
+    </if>
+    <if test="materialDistributeTaskDto.reason != null and materialDistributeTaskDto.reason != ''">
+      AND materialDistributeTask.reason like CONCAT('%',#{materialDistributeTaskDto.reason},'%')
+    </if>
+    <if test="materialDistributeTaskDto.formUrl != null and materialDistributeTaskDto.formUrl != ''">
+      AND materialDistributeTask.form_url like CONCAT('%',#{materialDistributeTaskDto.formUrl},'%')
+    </if>
+    <if test="materialDistributeTaskDto.status != null and materialDistributeTaskDto.status != ''">
+      AND materialDistributeTask.status = #{materialDistributeTaskDto.status}
+    </if>
+    order by materialDistributeTask.id desc
+</select>
+</mapper>

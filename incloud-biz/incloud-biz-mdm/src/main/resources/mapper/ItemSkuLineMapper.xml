@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.mdm.mapper.ItemSkuLineMapper">
+
+<resultMap id="itemSkuLineMap" type="com.netwisd.biz.mdm.vo.ItemSkuLineVo">
+  <id property="itemId" column="item_id"/>
+  <result property="skuCode" column="sku_code"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.mdm.dto.ItemSkuLineDto" resultMap="itemSkuLineMap">
+  select * from incloud_biz_mdm_item_sku_line itemSkuLine where 1=1
+    <if test="itemSkuLineDto.itemId != null and itemSkuLineDto.itemId != ''">
+      AND itemSkuLine.item_id = #{itemSkuLineDto.itemId}
+    </if>
+    <if test="itemSkuLineDto.skuCode != null and itemSkuLineDto.skuCode != ''">
+      AND itemSkuLine.sku_code like CONCAT('%',#{itemSkuLineDto.skuCode},'%')
+    </if>
+    order by itemSkuLine.item_id desc
+</select>
+</mapper>

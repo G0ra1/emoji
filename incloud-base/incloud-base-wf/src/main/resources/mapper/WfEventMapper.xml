@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.wf.mapper.WfEventMapper">
+
+<resultMap id="wfEventMap" type="com.netwisd.base.wf.vo.WfEventVo">
+  <id property="id" column="id"/>
+  <result property="eventType" column="event_type"/>
+<!--  <result property="listenerType" column="listener_type"/>-->
+  <result property="listenerId" column="listener_id"/>
+  <result property="listenerName" column="listener_name"/>
+  <result property="listenerImpl" column="listener_impl"/>
+  <result property="remark" column="remark"/>
+  <result property="selectSign" column="select_sign"/>
+  <result property="selectMust" column="select_must"/>
+  <result property="procdefTypeId" column="procdef_type_id"/>
+  <result property="procdefTypeName" column="procdef_type_name"/>
+  <result property="default_trig_val" column="defaultTrigVal"/>
+  <result property="node_event_type" column="nodeEventType"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.wf.dto.WfEventDto" resultMap="wfEventMap">
+  select * from incloud_base_wf_event wfEvent where 1=1
+    <if test="wfEventDto.id != null and wfEventDto.id != ''">
+      AND wfEvent.id = #{wfEventDto.id}
+    </if>
+    <if test="wfEventDto.eventType != null and wfEventDto.eventType != ''">
+      AND wfEvent.event_type = #{wfEventDto.eventType}
+    </if>
+<!--    <if test="wfEventDto.listenerType != null and wfEventDto.listenerType != ''">-->
+<!--      AND wfEvent.listener_type = #{wfEventDto.listenerType}-->
+<!--    </if>-->
+    <if test="wfEventDto.listenerId != null and wfEventDto.listenerId != ''">
+      AND wfEvent.listener_id like CONCAT('%',#{wfEventDto.listenerId},'%')
+    </if>
+    <if test="wfEventDto.listenerName != null and wfEventDto.listenerName != ''">
+      AND wfEvent.listener_name like CONCAT('%',#{wfEventDto.listenerName},'%')
+    </if>
+    <if test="wfEventDto.listenerImpl != null and wfEventDto.listenerImpl != ''">
+      AND wfEvent.listener_impl like CONCAT('%',#{wfEventDto.listenerImpl},'%')
+    </if>
+    <if test="wfEventDto.remark != null and wfEventDto.remark != ''">
+      AND wfEvent.remark like CONCAT('%',#{wfEventDto.remark},'%')
+    </if>
+    <if test="wfEventDto.selectSign != null and wfEventDto.selectSign != ''">
+      AND wfEvent.select_sign = #{wfEventDto.selectSign}
+    </if>
+    <if test="wfEventDto.selectMust != null and wfEventDto.selectMust != ''">
+      AND wfEvent.select_must = #{wfEventDto.selectMust}
+    </if>
+    <if test="wfEventDto.procdefTypeId != null and wfEventDto.procdefTypeId != ''">
+      AND wfEvent.procdef_type_id = #{wfEventDto.procdefTypeId}
+    </if>
+    <if test="wfEventDto.procdefTypeName != null and wfEventDto.procdefTypeName != ''">
+      AND wfEvent.procdef_type_name like CONCAT('%',#{wfEventDto.procdefTypeName},'%')
+    </if>
+    <if test="wfEventDto.selectCountersign != null and wfEventDto.selectCountersign != ''">
+      AND wfEvent.select_countersign = #{wfEventDto.selectCountersign}
+    </if>
+    order by wfEvent.id desc
+</select>
+</mapper>

@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/html">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<head>
+    <meta charset="utf-8">
+    <title>云数网讯</title>
+</head>
+<body>
+<div id="sse">
+    <a href="javascript:openSock()">建立sock</a><br>
+    <a href="javascript:closeSock()">关闭sock</a><br>
+</div>
+<div id="returnText"></div>
+<script type="text/javascript">
+    var ws;
+
+    function createWS() {
+        if ("WebSocket" in window) {
+            // 打开一个 web socket
+            ws = new WebSocket("ws://127.0.0.1:8010/ws/msg?token=1&userId=1");
+            ws.onopen = function () {
+                // Web Socket 已连接上，使用 send() 方法发送数据
+                alert("连接已建立...");
+               //ws.send();
+            };
+            ws.onmessage = function (evt) {
+                console.log(evt);
+                document.getElementById('returnText').innerHTML = evt.data + document.getElementById('returnText').innerHTML;
+            };
+            ws.onclose = function () {
+                // 关闭 websocket
+                alert("连接已关闭...");
+            };
+        } else {
+            // 浏览器不支持 WebSocket
+            alert("您的浏览器不支持 WebSocket!");
+        }
+    }
+
+    function openSock() {
+        createWS()
+    }
+
+    function closeSock() {
+        ws.close()
+    }
+
+</script>
+</body>
+</html>

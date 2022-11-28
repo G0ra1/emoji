@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.portal.mapper.PortalContentMydraftTasksMapper">
+
+<resultMap id="portalContentMydraftTasksMap" type="com.netwisd.base.portal.vo.PortalContentMydraftTasksVo">
+  <id property="id" column="id"/>
+  <result property="starterIdCard" column="starter_id_card"/>
+  <result property="starterName" column="starter_name"/>
+  <result property="starterDeptId" column="starter_dept_id"/>
+  <result property="starterDeptName" column="starter_dept_name"/>
+  <result property="starterOrgId" column="starter_org_id"/>
+  <result property="starterOrgName" column="starter_org_name"/>
+  <result property="applyTime" column="apply_time"/>
+  <result property="reason" column="reason"/>
+  <result property="procinsId" column="procins_id"/>
+  <result property="procinsName" column="procins_name"/>
+  <result property="bizKey" column="biz_key"/>
+  <result property="sysPcBizUrl" column="sys_pc_biz_url"/>
+  <result property="sysAppBizUrl" column="sys_app_biz_url"/>
+  <result property="sysBizId" column="sys_biz_id"/>
+  <result property="sysBizCode" column="sys_biz_code"/>
+  <result property="sysBizClassify" column="sys_biz_classify"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.portal.dto.PortalContentMydraftTasksDto" resultMap="portalContentMydraftTasksMap">
+  select * from incloud_base_portal_content_mydraft_tasks portalContentMydraftTasks where 1=1
+    <if test="portalContentMydraftTasksDto.id != null and portalContentMydraftTasksDto.id != ''">
+      AND portalContentMydraftTasks.id = #{portalContentMydraftTasksDto.id}
+    </if>
+    <if test="portalContentMydraftTasksDto.starterId != null and portalContentMydraftTasksDto.starterId != ''">
+      AND portalContentMydraftTasks.starter_id = #{portalContentMydraftTasksDto.starterId}
+    </if>
+    <if test="portalContentMydraftTasksDto.starterName != null and portalContentMydraftTasksDto.starterName != ''">
+      AND portalContentMydraftTasks.starter_name like CONCAT('%',#{portalContentMydraftTasksDto.starterName},'%')
+    </if>
+    <if test="portalContentMydraftTasksDto.starterDeptId != null and portalContentMydraftTasksDto.starterDeptId != ''">
+      AND portalContentMydraftTasks.starter_dept_id = #{portalContentMydraftTasksDto.starterDeptId}
+    </if>
+    <if test="portalContentMydraftTasksDto.starterDeptName != null and portalContentMydraftTasksDto.starterDeptName != ''">
+      AND portalContentMydraftTasks.starter_dept_name like CONCAT('%',#{portalContentMydraftTasksDto.starterDeptName},'%')
+    </if>
+    <if test="portalContentMydraftTasksDto.starterOrgId != null and portalContentMydraftTasksDto.starterOrgId != ''">
+      AND portalContentMydraftTasks.starter_org_id = #{portalContentMydraftTasksDto.starterOrgId}
+    </if>
+    <if test="portalContentMydraftTasksDto.starterOrgName != null and portalContentMydraftTasksDto.starterOrgName != ''">
+      AND portalContentMydraftTasks.starter_org_name like CONCAT('%',#{portalContentMydraftTasksDto.starterOrgName},'%')
+    </if>
+    <if test="portalContentMydraftTasksDto.applyTime != null and portalContentMydraftTasksDto.applyTime != ''">
+      AND portalContentMydraftTasks.apply_time = #{portalContentMydraftTasksDto.applyTime}
+    </if>
+    <if test="portalContentMydraftTasksDto.reason != null and portalContentMydraftTasksDto.reason != ''">
+      AND portalContentMydraftTasks.reason like CONCAT('%',#{portalContentMydraftTasksDto.reason},'%')
+    </if>
+    <if test="portalContentMydraftTasksDto.procinsId != null and portalContentMydraftTasksDto.procinsId != ''">
+      AND portalContentMydraftTasks.procins_id like CONCAT('%',#{portalContentMydraftTasksDto.procinsId},'%')
+    </if>
+    <if test="portalContentMydraftTasksDto.procinsName != null and portalContentMydraftTasksDto.procinsName != ''">
+      AND portalContentMydraftTasks.procins_name like CONCAT('%',#{portalContentMydraftTasksDto.procinsName},'%')
+    </if>
+    <if test="portalContentMydraftTasksDto.bizKey != null and portalContentMydraftTasksDto.bizKey != ''">
+      AND portalContentMydraftTasks.biz_key like CONCAT('%',#{portalContentMydraftTasksDto.bizKey},'%')
+    </if>
+    <if test="portalContentMydraftTasksDto.sysBizUrl != null and portalContentMydraftTasksDto.sysBizUrl != ''">
+      AND portalContentMydraftTasks.sys_biz_url like CONCAT('%',#{portalContentMydraftTasksDto.sysBizUrl},'%')
+    </if>
+    <if test="portalContentMydraftTasksDto.sysBizId != null and portalContentMydraftTasksDto.sysBizId != ''">
+      AND portalContentMydraftTasks.sys_biz_id like CONCAT('%',#{portalContentMydraftTasksDto.sysBizId},'%')
+    </if>
+    <if test="portalContentMydraftTasksDto.sysBizCode != null and portalContentMydraftTasksDto.sysBizCode != ''">
+      AND portalContentMydraftTasks.sys_biz_code like CONCAT('%',#{portalContentMydraftTasksDto.sysBizCode},'%')
+    </if>
+    <if test="portalContentMydraftTasksDto.sysBizClassify != null and portalContentMydraftTasksDto.sysBizClassify != ''">
+      AND portalContentMydraftTasks.sys_biz_classify like CONCAT('%',#{portalContentMydraftTasksDto.sysBizClassify},'%')
+    </if>
+    order by portalContentMydraftTasks.id desc
+</select>
+</mapper>

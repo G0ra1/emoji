@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.asset.mapper.PurchaseRegisterAssetsMapper">
+
+<resultMap id="purchaseRegisterAssetsMap" type="com.netwisd.biz.asset.vo.PurchaseRegisterAssetsVo">
+  <id property="id" column="id"/>
+  <result property="applyId" column="apply_id"/>
+  <result property="applyCode" column="apply_code"/>
+  <result property="applyDetailId" column="apply_detail_id"/>
+  <result property="registerId" column="register_id"/>
+  <result property="route" column="route"/>
+  <result property="routeName" column="route_name"/>
+  <result property="classifyId" column="classify_id"/>
+  <result property="classifyCode" column="classify_code"/>
+  <result property="classifyName" column="classify_name"/>
+  <result property="itemType" column="item_type"/>
+  <result property="itemCode" column="item_code"/>
+  <result property="itemName" column="item_name"/>
+  <result property="desclong" column="desclong"/>
+  <result property="descshort" column="descshort"/>
+  <result property="unitCode" column="unit_code"/>
+  <result property="unitName" column="unit_name"/>
+  <result property="specs" column="specs"/>
+  <result property="standard" column="standard"/>
+  <result property="materialQuality" column="material_quality"/>
+  <result property="purpose" column="purpose"/>
+  <result property="explanation" column="explanation"/>
+  <result property="applyNumber" column="apply_number"/>
+  <result property="registerTaxRate" column="register_tax_rate"/>
+  <result property="registerNumber" column="register_number"/>
+  <result property="requireTime" column="require_time"/>
+  <result property="supplierName" column="supplier_name"/>
+  <result property="contractCode" column="contract_code"/>
+  <result property="planTime" column="plan_time"/>
+  <result property="purchaseType" column="purchase_type"/>
+  <result property="skuCodes" column="sku_codes"/>
+  <result property="applyAmount" column="apply_amount"/>
+  <result property="applyUntaxedAmount" column="apply_untaxed_amount"/>
+  <result property="applyTaxAmount" column="apply_tax_amount"/>
+  <result property="applySumAmount" column="apply_sum_amount"/>
+  <result property="applySumUntaxedAmount" column="apply_sum_untaxed_amount"/>
+  <result property="applySumTaxAmount" column="apply_sum_tax_amount"/>
+  <result property="registerAmount" column="register_amount"/>
+  <result property="registerUntaxedAmount" column="register_untaxed_amount"/>
+  <result property="registerSumAmount" column="register_sum_amount"/>
+  <result property="registerTaxAmount" column="register_tax_amount"/>
+  <result property="registerSumUntaxedAmount" column="register_sum_untaxed_amount"/>
+  <result property="registerSumTaxAmount" column="register_sum_tax_amount"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+  <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+  <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+  <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+  <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+  <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+  <result property="itemId" column="item_id"/>
+  <result property="supplierId" column="supplier_id"/>
+  <result property="contractId" column="contract_id"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.asset.dto.PurchaseRegisterAssetsDto" resultMap="purchaseRegisterAssetsMap">
+  select * from incloud_biz_asset_purchase_register_assets purchaseRegisterAssets where 1=1
+    <if test="purchaseRegisterAssetsDto.id != null and purchaseRegisterAssetsDto.id != ''">
+      AND purchaseRegisterAssets.id = #{purchaseRegisterAssetsDto.id}
+    </if>
+    <if test="purchaseRegisterAssetsDto.applyId != null and purchaseRegisterAssetsDto.applyId != ''">
+      AND purchaseRegisterAssets.apply_id = #{purchaseRegisterAssetsDto.applyId}
+    </if>
+    <if test="purchaseRegisterAssetsDto.applyCode != null and purchaseRegisterAssetsDto.applyCode != ''">
+      AND purchaseRegisterAssets.apply_code like CONCAT('%',#{purchaseRegisterAssetsDto.applyCode},'%')
+    </if>
+    <if test="purchaseRegisterAssetsDto.applyDetailId != null and purchaseRegisterAssetsDto.applyDetailId != ''">
+      AND purchaseRegisterAssets.apply_detail_id = #{purchaseRegisterAssetsDto.applyDetailId}
+    </if>
+    <if test="purchaseRegisterAssetsDto.registerId != null and purchaseRegisterAssetsDto.registerId != ''">
+      AND purchaseRegisterAssets.register_id = #{purchaseRegisterAssetsDto.registerId}
+    </if>
+    <if test="purchaseRegisterAssetsDto.route != null and purchaseRegisterAssetsDto.route != ''">
+      AND purchaseRegisterAssets.route like CONCAT('%',#{purchaseRegisterAssetsDto.route},'%')
+    </if>
+    <if test="purchaseRegisterAssetsDto.routeName != null and purchaseRegisterAssetsDto.routeName != ''">
+      AND purchaseRegisterAssets.route_name like CONCAT('%',#{purchaseRegisterAssetsDto.routeName},'%')
+    </if>
+    <if test="purchaseRegisterAssetsDto.classifyId != null and purchaseRegisterAssetsDto.classifyId != ''">
+      AND purchaseRegisterAssets.classify_id = #{purchaseRegisterAssetsDto.classifyId}
+    </if>
+    <if test="purchaseRegisterAssetsDto.classifyCode != null and purchaseRegisterAssetsDto.classifyCode != ''">
+      AND purchaseRegisterAssets.classify_code like CONCAT('%',#{purchaseRegisterAssetsDto.classifyCode},'%')
+    </if>
+    <if test="purchaseRegisterAssetsDto.classifyName != null and purchaseRegisterAssetsDto.classifyName != ''">
+      AND purchaseRegisterAssets.classify_name like CONCAT('%',#{purchaseRegisterAssetsDto.classifyName},'%')
+    </if>
+    <if test="purchaseRegisterAssetsDto.itemType != null and purchaseRegisterAssetsDto.itemType != ''">
+      AND purchaseRegisterAssets.item_type like CONCAT('%',#{purchaseRegisterAssetsDto.itemType},'%')
+    </if>
+    <if test="purchaseRegisterAssetsDto.itemCode != null and purchaseRegisterAssetsDto.itemCode != ''">
+      AND purchaseRegisterAssets.item_code like CONCAT('%',#{purchaseRegisterAssetsDto.itemCode},'%')
+    </if>
+    <if test="purchaseRegisterAssetsDto.itemName != null and purchaseRegisterAssetsDto.itemName != ''">
+      AND purchaseRegisterAssets.item_name like CONCAT('%',#{purchaseRegisterAssetsDto.itemName},'%')
+    </if>
+    <if test="purchaseRegisterAssetsDto.desclong != null and purchaseRegisterAssetsDto.desclong != ''">
+      AND purchaseRegisterAssets.desclong like CONCAT('%',#{purchaseRegisterAssetsDto.desclong},'%')
+    </if>
+    <if test="purchaseRegisterAssetsDto.descshort != null and purchaseRegisterAssetsDto.descshort != ''">
+      AND purchaseRegisterAssets.descshort like CONCAT('%',#{purchaseRegisterAssetsDto.descshort},'%')
+    </if>
+    <if test="purchaseRegisterAssetsDto.unitCode != null and purchaseRegisterAssetsDto.unitCode != ''">
+      AND purchaseRegisterAssets.unit_code like CONCAT('%',#{purchaseRegisterAssetsDto.unitCode},'%')
+    </if>
+    <if test="purchaseRegisterAssetsDto.unitName != null and purchaseRegisterAssetsDto.unitName != ''">
+      AND purchaseRegisterAssets.unit_name like CONCAT('%',#{purchaseRegisterAssetsDto.unitName},'%')
+    </if>
+    <if test="purchaseRegisterAssetsDto.specs != null and purchaseRegisterAssetsDto.specs != ''">
+      AND purchaseRegisterAssets.specs like CONCAT('%',#{purchaseRegisterAssetsDto.specs},'%')
+    </if>
+    <if test="purchaseRegisterAssetsDto.standard != null and purchaseRegisterAssetsDto.standard != ''">
+      AND purchaseRegisterAssets.standard like CONCAT('%',#{purchaseRegisterAssetsDto.standard},'%')
+    </if>
+    <if test="purchaseRegisterAssetsDto.materialQuality != null and purchaseRegisterAssetsDto.materialQuality != ''">
+      AND purchaseRegisterAssets.material_quality like CONCAT('%',#{purchaseRegisterAssetsDto.materialQuality},'%')
+    </if>
+    <if test="purchaseRegisterAssetsDto.purpose != null and purchaseRegisterAssetsDto.purpose != ''">
+      AND purchaseRegisterAssets.purpose like CONCAT('%',#{purchaseRegisterAssetsDto.purpose},'%')
+    </if>
+    <if test="purchaseRegisterAssetsDto.explanation != null and purchaseRegisterAssetsDto.explanation != ''">
+      AND purchaseRegisterAssets.explanation like CONCAT('%',#{purchaseRegisterAssetsDto.explanation},'%')
+    </if>
+    <if test="purchaseRegisterAssetsDto.applyNumber != null and purchaseRegisterAssetsDto.applyNumber != ''">
+      AND purchaseRegisterAssets.apply_number = #{purchaseRegisterAssetsDto.applyNumber}
+    </if>
+    <if test="purchaseRegisterAssetsDto.registerTaxRate != null and purchaseRegisterAssetsDto.registerTaxRate != ''">
+      AND purchaseRegisterAssets.register_tax_rate = #{purchaseRegisterAssetsDto.registerTaxRate}
+    </if>
+    <if test="purchaseRegisterAssetsDto.registerNumber != null and purchaseRegisterAssetsDto.registerNumber != ''">
+      AND purchaseRegisterAssets.register_number = #{purchaseRegisterAssetsDto.registerNumber}
+    </if>
+    <if test="purchaseRegisterAssetsDto.requireTime != null and purchaseRegisterAssetsDto.requireTime != ''">
+      AND purchaseRegisterAssets.require_time = #{purchaseRegisterAssetsDto.requireTime}
+    </if>
+    <if test="purchaseRegisterAssetsDto.supplierName != null and purchaseRegisterAssetsDto.supplierName != ''">
+      AND purchaseRegisterAssets.supplier_name like CONCAT('%',#{purchaseRegisterAssetsDto.supplierName},'%')
+    </if>
+    <if test="purchaseRegisterAssetsDto.contractCode != null and purchaseRegisterAssetsDto.contractCode != ''">
+      AND purchaseRegisterAssets.contract_code like CONCAT('%',#{purchaseRegisterAssetsDto.contractCode},'%')
+    </if>
+    <if test="purchaseRegisterAssetsDto.planTime != null and purchaseRegisterAssetsDto.planTime != ''">
+      AND purchaseRegisterAssets.plan_time = #{purchaseRegisterAssetsDto.planTime}
+    </if>
+    <if test="purchaseRegisterAssetsDto.purchaseType != null and purchaseRegisterAssetsDto.purchaseType != ''">
+      AND purchaseRegisterAssets.purchase_type = #{purchaseRegisterAssetsDto.purchaseType}
+    </if>
+    <if test="purchaseRegisterAssetsDto.skuCodes != null and purchaseRegisterAssetsDto.skuCodes != ''">
+      AND purchaseRegisterAssets.sku_codes like CONCAT('%',#{purchaseRegisterAssetsDto.skuCodes},'%')
+    </if>
+    <if test="purchaseRegisterAssetsDto.applyAmount != null and purchaseRegisterAssetsDto.applyAmount != ''">
+      AND purchaseRegisterAssets.apply_amount = #{purchaseRegisterAssetsDto.applyAmount}
+    </if>
+    <if test="purchaseRegisterAssetsDto.applyUntaxedAmount != null and purchaseRegisterAssetsDto.applyUntaxedAmount != ''">
+      AND purchaseRegisterAssets.apply_untaxed_amount = #{purchaseRegisterAssetsDto.applyUntaxedAmount}
+    </if>
+    <if test="purchaseRegisterAssetsDto.applyTaxAmount != null and purchaseRegisterAssetsDto.applyTaxAmount != ''">
+      AND purchaseRegisterAssets.apply_tax_amount = #{purchaseRegisterAssetsDto.applyTaxAmount}
+    </if>
+    <if test="purchaseRegisterAssetsDto.applySumAmount != null and purchaseRegisterAssetsDto.applySumAmount != ''">
+      AND purchaseRegisterAssets.apply_sum_amount = #{purchaseRegisterAssetsDto.applySumAmount}
+    </if>
+    <if test="purchaseRegisterAssetsDto.applySumUntaxedAmount != null and purchaseRegisterAssetsDto.applySumUntaxedAmount != ''">
+      AND purchaseRegisterAssets.apply_sum_untaxed_amount = #{purchaseRegisterAssetsDto.applySumUntaxedAmount}
+    </if>
+    <if test="purchaseRegisterAssetsDto.applySumTaxAmount != null and purchaseRegisterAssetsDto.applySumTaxAmount != ''">
+      AND purchaseRegisterAssets.apply_sum_tax_amount = #{purchaseRegisterAssetsDto.applySumTaxAmount}
+    </if>
+    <if test="purchaseRegisterAssetsDto.registerAmount != null and purchaseRegisterAssetsDto.registerAmount != ''">
+      AND purchaseRegisterAssets.register_amount = #{purchaseRegisterAssetsDto.registerAmount}
+    </if>
+    <if test="purchaseRegisterAssetsDto.registerUntaxedAmount != null and purchaseRegisterAssetsDto.registerUntaxedAmount != ''">
+      AND purchaseRegisterAssets.register_untaxed_amount = #{purchaseRegisterAssetsDto.registerUntaxedAmount}
+    </if>
+    <if test="purchaseRegisterAssetsDto.registerSumAmount != null and purchaseRegisterAssetsDto.registerSumAmount != ''">
+      AND purchaseRegisterAssets.register_sum_amount = #{purchaseRegisterAssetsDto.registerSumAmount}
+    </if>
+    <if test="purchaseRegisterAssetsDto.registerTaxAmount != null and purchaseRegisterAssetsDto.registerTaxAmount != ''">
+      AND purchaseRegisterAssets.register_tax_amount = #{purchaseRegisterAssetsDto.registerTaxAmount}
+    </if>
+    <if test="purchaseRegisterAssetsDto.registerSumUntaxedAmount != null and purchaseRegisterAssetsDto.registerSumUntaxedAmount != ''">
+      AND purchaseRegisterAssets.register_sum_untaxed_amount = #{purchaseRegisterAssetsDto.registerSumUntaxedAmount}
+    </if>
+    <if test="purchaseRegisterAssetsDto.registerSumTaxAmount != null and purchaseRegisterAssetsDto.registerSumTaxAmount != ''">
+      AND purchaseRegisterAssets.register_sum_tax_amount = #{purchaseRegisterAssetsDto.registerSumTaxAmount}
+    </if>
+    <if test="purchaseRegisterAssetsDto.createUserId != null and purchaseRegisterAssetsDto.createUserId != ''">
+      AND purchaseRegisterAssets.create_user_id = #{purchaseRegisterAssetsDto.createUserId}
+    </if>
+    <if test="purchaseRegisterAssetsDto.createUserName != null and purchaseRegisterAssetsDto.createUserName != ''">
+      AND purchaseRegisterAssets.create_user_name like CONCAT('%',#{purchaseRegisterAssetsDto.createUserName},'%')
+    </if>
+    <if test="purchaseRegisterAssetsDto.createUserParentOrgId != null and purchaseRegisterAssetsDto.createUserParentOrgId != ''">
+      AND purchaseRegisterAssets.create_user_parent_org_id = #{purchaseRegisterAssetsDto.createUserParentOrgId}
+    </if>
+    <if test="purchaseRegisterAssetsDto.createUserParentOrgName != null and purchaseRegisterAssetsDto.createUserParentOrgName != ''">
+      AND purchaseRegisterAssets.create_user_parent_org_name like CONCAT('%',#{purchaseRegisterAssetsDto.createUserParentOrgName},'%')
+    </if>
+    <if test="purchaseRegisterAssetsDto.createUserParentDeptId != null and purchaseRegisterAssetsDto.createUserParentDeptId != ''">
+      AND purchaseRegisterAssets.create_user_parent_dept_id = #{purchaseRegisterAssetsDto.createUserParentDeptId}
+    </if>
+    <if test="purchaseRegisterAssetsDto.createUserParentDeptName != null and purchaseRegisterAssetsDto.createUserParentDeptName != ''">
+      AND purchaseRegisterAssets.create_user_parent_dept_name like CONCAT('%',#{purchaseRegisterAssetsDto.createUserParentDeptName},'%')
+    </if>
+    <if test="purchaseRegisterAssetsDto.createUserOrgFullId != null and purchaseRegisterAssetsDto.createUserOrgFullId != ''">
+      AND purchaseRegisterAssets.create_user_org_full_id like CONCAT('%',#{purchaseRegisterAssetsDto.createUserOrgFullId},'%')
+    </if>
+    <if test="purchaseRegisterAssetsDto.itemId != null and purchaseRegisterAssetsDto.itemId != ''">
+      AND purchaseRegisterAssets.item_id = #{purchaseRegisterAssetsDto.itemId}
+    </if>
+    <if test="purchaseRegisterAssetsDto.supplierId != null and purchaseRegisterAssetsDto.supplierId != ''">
+      AND purchaseRegisterAssets.supplier_id = #{purchaseRegisterAssetsDto.supplierId}
+    </if>
+    <if test="purchaseRegisterAssetsDto.contractId != null and purchaseRegisterAssetsDto.contractId != ''">
+      AND purchaseRegisterAssets.contract_id = #{purchaseRegisterAssetsDto.contractId}
+    </if>
+    order by purchaseRegisterAssets.id desc
+</select>
+</mapper>

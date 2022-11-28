@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.asset.mapper.MaterialStorageMapper">
+
+<resultMap id="materialStorageMap" type="com.netwisd.biz.asset.vo.MaterialStorageVo">
+  <id property="id" column="id"/>
+  <result property="code" column="code"/>
+  <result property="sumTotalAmount" column="sum_total_amount"/>
+  <result property="sumTotalUntaxedAmount" column="sum_total_untaxed_amount"/>
+  <result property="sumTotalTaxAmount" column="sum_total_tax_amount"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+  <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+  <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+  <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+  <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+  <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+  <result property="auditSuccessTiem" column="audit_success_tiem"/>
+  <result property="camundaProcdefKey" column="camunda_procdef_key"/>
+  <result property="camundaProcdefId" column="camunda_procdef_id"/>
+  <result property="camundaProcinsId" column="camunda_procins_id"/>
+  <result property="procdefTypeId" column="procdef_type_id"/>
+  <result property="procdefTypeName" column="procdef_type_name"/>
+  <result property="procdefVersion" column="procdef_version"/>
+  <result property="procdefName" column="procdef_name"/>
+  <result property="processName" column="process_name"/>
+  <result property="reason" column="reason"/>
+  <result property="bizKey" column="biz_key"/>
+  <result property="camundaTaskId" column="camunda_task_id"/>
+  <result property="bizPriority" column="biz_priority"/>
+  <result property="auditStatus" column="audit_status"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.asset.dto.MaterialStorageDto" resultMap="materialStorageMap">
+  select * from incloud_biz_asset_material_storage materialStorage where 1=1
+    <if test="materialStorageDto.id != null and materialStorageDto.id != ''">
+      AND materialStorage.id = #{materialStorageDto.id}
+    </if>
+    <if test="materialStorageDto.code != null and materialStorageDto.code != ''">
+      AND materialStorage.code like CONCAT('%',#{materialStorageDto.code},'%')
+    </if>
+    <if test="materialStorageDto.sumTotalAmount != null and materialStorageDto.sumTotalAmount != ''">
+      AND materialStorage.sum_total_amount = #{materialStorageDto.sumTotalAmount}
+    </if>
+    <if test="materialStorageDto.sumTotalUntaxedAmount != null and materialStorageDto.sumTotalUntaxedAmount != ''">
+      AND materialStorage.sum_total_untaxed_amount = #{materialStorageDto.sumTotalUntaxedAmount}
+    </if>
+    <if test="materialStorageDto.sumTotalTaxAmount != null and materialStorageDto.sumTotalTaxAmount != ''">
+      AND materialStorage.sum_total_tax_amount = #{materialStorageDto.sumTotalTaxAmount}
+    </if>
+    <if test="materialStorageDto.createUserId != null and materialStorageDto.createUserId != ''">
+      AND materialStorage.create_user_id = #{materialStorageDto.createUserId}
+    </if>
+    <if test="materialStorageDto.createUserName != null and materialStorageDto.createUserName != ''">
+      AND materialStorage.create_user_name like CONCAT('%',#{materialStorageDto.createUserName},'%')
+    </if>
+    <if test="materialStorageDto.createUserParentOrgId != null and materialStorageDto.createUserParentOrgId != ''">
+      AND materialStorage.create_user_parent_org_id = #{materialStorageDto.createUserParentOrgId}
+    </if>
+    <if test="materialStorageDto.createUserParentOrgName != null and materialStorageDto.createUserParentOrgName != ''">
+      AND materialStorage.create_user_parent_org_name like CONCAT('%',#{materialStorageDto.createUserParentOrgName},'%')
+    </if>
+    <if test="materialStorageDto.createUserParentDeptId != null and materialStorageDto.createUserParentDeptId != ''">
+      AND materialStorage.create_user_parent_dept_id = #{materialStorageDto.createUserParentDeptId}
+    </if>
+    <if test="materialStorageDto.createUserParentDeptName != null and materialStorageDto.createUserParentDeptName != ''">
+      AND materialStorage.create_user_parent_dept_name like CONCAT('%',#{materialStorageDto.createUserParentDeptName},'%')
+    </if>
+    <if test="materialStorageDto.createUserOrgFullId != null and materialStorageDto.createUserOrgFullId != ''">
+      AND materialStorage.create_user_org_full_id like CONCAT('%',#{materialStorageDto.createUserOrgFullId},'%')
+    </if>
+    <if test="materialStorageDto.auditSuccessTiem != null and materialStorageDto.auditSuccessTiem != ''">
+      AND materialStorage.audit_success_tiem = #{materialStorageDto.auditSuccessTiem}
+    </if>
+    <if test="materialStorageDto.camundaProcdefKey != null and materialStorageDto.camundaProcdefKey != ''">
+      AND materialStorage.camunda_procdef_key like CONCAT('%',#{materialStorageDto.camundaProcdefKey},'%')
+    </if>
+    <if test="materialStorageDto.camundaProcdefId != null and materialStorageDto.camundaProcdefId != ''">
+      AND materialStorage.camunda_procdef_id like CONCAT('%',#{materialStorageDto.camundaProcdefId},'%')
+    </if>
+    <if test="materialStorageDto.camundaProcinsId != null and materialStorageDto.camundaProcinsId != ''">
+      AND materialStorage.camunda_procins_id like CONCAT('%',#{materialStorageDto.camundaProcinsId},'%')
+    </if>
+    <if test="materialStorageDto.procdefTypeId != null and materialStorageDto.procdefTypeId != ''">
+      AND materialStorage.procdef_type_id = #{materialStorageDto.procdefTypeId}
+    </if>
+    <if test="materialStorageDto.procdefTypeName != null and materialStorageDto.procdefTypeName != ''">
+      AND materialStorage.procdef_type_name like CONCAT('%',#{materialStorageDto.procdefTypeName},'%')
+    </if>
+    <if test="materialStorageDto.procdefVersion != null and materialStorageDto.procdefVersion != ''">
+      AND materialStorage.procdef_version = #{materialStorageDto.procdefVersion}
+    </if>
+    <if test="materialStorageDto.procdefName != null and materialStorageDto.procdefName != ''">
+      AND materialStorage.procdef_name like CONCAT('%',#{materialStorageDto.procdefName},'%')
+    </if>
+    <if test="materialStorageDto.processName != null and materialStorageDto.processName != ''">
+      AND materialStorage.process_name like CONCAT('%',#{materialStorageDto.processName},'%')
+    </if>
+    <if test="materialStorageDto.reason != null and materialStorageDto.reason != ''">
+      AND materialStorage.reason like CONCAT('%',#{materialStorageDto.reason},'%')
+    </if>
+    <if test="materialStorageDto.bizKey != null and materialStorageDto.bizKey != ''">
+      AND materialStorage.biz_key like CONCAT('%',#{materialStorageDto.bizKey},'%')
+    </if>
+    <if test="materialStorageDto.camundaTaskId != null and materialStorageDto.camundaTaskId != ''">
+      AND materialStorage.camunda_task_id like CONCAT('%',#{materialStorageDto.camundaTaskId},'%')
+    </if>
+    <if test="materialStorageDto.bizPriority != null and materialStorageDto.bizPriority != ''">
+      AND materialStorage.biz_priority like CONCAT('%',#{materialStorageDto.bizPriority},'%')
+    </if>
+    <if test="materialStorageDto.auditStatus != null and materialStorageDto.auditStatus != ''">
+      AND materialStorage.audit_status = #{materialStorageDto.auditStatus}
+    </if>
+    order by materialStorage.id desc
+</select>
+<select id="getMaxCode" resultType="java.lang.String">
+  SELECT MAX(SUBSTRING_INDEX(code,'-',-1)) AS maxCode FROM `incloud_biz_asset_material_storage` WHERE DATE_FORMAT(apply_time,'%Y-%m-%d') =  CURDATE()
+</select>
+</mapper>

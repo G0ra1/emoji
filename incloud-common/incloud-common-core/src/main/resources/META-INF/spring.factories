@@ -1,0 +1,5 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.netwisd.common.core.config.CoreConfig ,\
+com.netwisd.common.core.util.SpringContextUtils ,\
+com.netwisd.common.core.anntation.ValidationHandler ,\
+com.netwisd.common.core.util.SpringUtils

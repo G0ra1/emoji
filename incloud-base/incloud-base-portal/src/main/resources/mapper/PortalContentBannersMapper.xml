@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.portal.mapper.PortalContentBannersMapper">
+
+    <resultMap id="portalContentBannersMap" type="com.netwisd.base.portal.vo.PortalContentBannersVo">
+        <id property="id" column="id"/>
+        <result property="portalId" column="portal_id"/>
+        <result property="portalName" column="portal_name"/>
+        <result property="partId" column="part_id"/>
+        <result property="partName" column="part_name"/>
+        <result property="partTypeId" column="part_type_id"/>
+        <result property="partTypeName" column="part_type_name"/>
+        <result property="title" column="title"/>
+        <result property="description" column="description"/>
+        <result property="contentUrl" column="content_url"/>
+        <result property="imgUrl" column="img_url"/>
+        <result property="auditStatus" column="audit_status"/>
+        <result property="hits" column="hits"/>
+        <result property="remark" column="remark"/>
+        <result property="editorContent" column="editor_content"/>
+        <result property="passTime" column="pass_time"/>
+        <result property="upPassTime" column="up_pass_time"/>
+        <result property="fileId" column="file_id"/>
+    </resultMap>
+    <select id="getPageList" parameterType="com.netwisd.base.portal.dto.PortalContentBannersDto"
+            resultMap="portalContentBannersMap">
+        select * from incloud_base_portal_content_banners portalContentBanners where 1=1
+        <if test="portalContentBannersDto.id != null and portalContentBannersDto.id != ''">
+            AND portalContentBanners.id = #{portalContentBannersDto.id}
+        </if>
+        <if test="portalContentBannersDto.portalId != null and portalContentBannersDto.portalId != ''">
+            AND portalContentBanners.portal_id = #{portalContentBannersDto.portalId}
+        </if>
+        <if test="portalContentBannersDto.portalName != null and portalContentBannersDto.portalName != ''">
+            AND portalContentBanners.portal_name like CONCAT('%',#{portalContentBannersDto.portalName},'%')
+        </if>
+        <if test="portalContentBannersDto.partId != null and portalContentBannersDto.partId != ''">
+            AND portalContentBanners.part_id = #{portalContentBannersDto.partId}
+        </if>
+        <if test="portalContentBannersDto.partName != null and portalContentBannersDto.partName != ''">
+            AND portalContentBanners.part_name like CONCAT('%',#{portalContentBannersDto.partName},'%')
+        </if>
+        <if test="portalContentBannersDto.partTypeId != null and portalContentBannersDto.partTypeId != ''">
+            AND portalContentBanners.part_type_id = #{portalContentBannersDto.partTypeId}
+        </if>
+        <if test="portalContentBannersDto.partTypeName != null and portalContentBannersDto.partTypeName != ''">
+            AND portalContentBanners.part_type_name like CONCAT('%',#{portalContentBannersDto.partTypeName},'%')
+        </if>
+        <if test="portalContentBannersDto.title != null and portalContentBannersDto.title != ''">
+            AND portalContentBanners.title like CONCAT('%',#{portalContentBannersDto.title},'%')
+        </if>
+        <if test="portalContentBannersDto.description != null and portalContentBannersDto.description != ''">
+            AND portalContentBanners.description like CONCAT('%',#{portalContentBannersDto.description},'%')
+        </if>
+        <if test="portalContentBannersDto.contentUrl != null and portalContentBannersDto.contentUrl != ''">
+            AND portalContentBanners.content_url like CONCAT('%',#{portalContentBannersDto.contentUrl},'%')
+        </if>
+        <if test="portalContentBannersDto.imgUrl != null and portalContentBannersDto.imgUrl != ''">
+            AND portalContentBanners.img_url like CONCAT('%',#{portalContentBannersDto.imgUrl},'%')
+        </if>
+        <if test="portalContentBannersDto.auditStatus != null and portalContentBannersDto.auditStatus != ''">
+            AND portalContentBanners.audit_status = #{portalContentBannersDto.auditStatus}
+        </if>
+        <if test="portalContentBannersDto.hits != null and portalContentBannersDto.hits != ''">
+            AND portalContentBanners.hits = #{portalContentBannersDto.hits}
+        </if>
+        <if test="portalContentBannersDto.remark != null and portalContentBannersDto.remark != ''">
+            AND portalContentBanners.remark like CONCAT('%',#{portalContentBannersDto.remark},'%')
+        </if>
+        <if test="portalContentBannersDto.editorContent != null and portalContentBannersDto.editorContent != ''">
+            AND portalContentBanners.editor_content like CONCAT('%',#{portalContentBannersDto.editorContent},'%')
+        </if>
+        <if test="portalContentBannersDto.passTime != null and portalContentBannersDto.passTime != ''">
+            AND portalContentBanners.pass_time = #{portalContentBannersDto.passTime}
+        </if>
+        <if test="portalContentBannersDto.upPassTime != null and portalContentBannersDto.upPassTime != ''">
+            AND portalContentBanners.up_pass_time = #{portalContentBannersDto.upPassTime}
+        </if>
+        <if test="portalContentAdjBannersDto.fileId != null and portalContentAdjBannersDto.fileId != ''">
+            AND portalContentAdjBanners.file_id like CONCAT('%',#{portalContentAdjBannersDto.fileId},'%')
+        </if>
+        order by portalContentBanners.id desc
+    </select>
+</mapper>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.asset.mapper.MaterialAcceptMapper">
+
+<resultMap id="materialAcceptMap" type="com.netwisd.biz.asset.vo.MaterialAcceptVo">
+  <id property="id" column="id"/>
+  <result property="code" column="code"/>
+  <result property="sumTotalAmount" column="sum_total_amount"/>
+  <result property="sumTotalUntaxedAmount" column="sum_total_untaxed_amount"/>
+  <result property="sumTotalTaxAmount" column="sum_total_tax_amount"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+  <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+  <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+  <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+  <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+  <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+  <result property="auditSuccessTiem" column="audit_success_tiem"/>
+  <result property="camundaProcdefKey" column="camunda_procdef_key"/>
+  <result property="camundaProcdefId" column="camunda_procdef_id"/>
+  <result property="camundaProcinsId" column="camunda_procins_id"/>
+  <result property="procdefTypeId" column="procdef_type_id"/>
+  <result property="procdefTypeName" column="procdef_type_name"/>
+  <result property="procdefVersion" column="procdef_version"/>
+  <result property="procdefName" column="procdef_name"/>
+  <result property="processName" column="process_name"/>
+  <result property="reason" column="reason"/>
+  <result property="bizKey" column="biz_key"/>
+  <result property="camundaTaskId" column="camunda_task_id"/>
+  <result property="bizPriority" column="biz_priority"/>
+  <result property="auditStatus" column="audit_status"/>
+  <result property="explanation" column="explanation"/>
+  <result property="signNumber" column="sign_number"/>
+  <result property="notSignNumber" column="not_sign_number"/>
+  <result property="sumTotalNumber" column="sum_total_number"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.asset.dto.MaterialAcceptDto" resultMap="materialAcceptMap">
+  select * from incloud_biz_asset_material_accept materialAccept where 1=1
+    <if test="materialAcceptDto.id != null and materialAcceptDto.id != ''">
+      AND materialAccept.id = #{materialAcceptDto.id}
+    </if>
+    <if test="materialAcceptDto.code != null and materialAcceptDto.code != ''">
+      AND materialAccept.code like CONCAT('%',#{materialAcceptDto.code},'%')
+    </if>
+    <if test="materialAcceptDto.sumTotalAmount != null and materialAcceptDto.sumTotalAmount != ''">
+      AND materialAccept.sum_total_amount = #{materialAcceptDto.sumTotalAmount}
+    </if>
+    <if test="materialAcceptDto.sumTotalUntaxedAmount != null and materialAcceptDto.sumTotalUntaxedAmount != ''">
+      AND materialAccept.sum_total_untaxed_amount = #{materialAcceptDto.sumTotalUntaxedAmount}
+    </if>
+    <if test="materialAcceptDto.sumTotalTaxAmount != null and materialAcceptDto.sumTotalTaxAmount != ''">
+      AND materialAccept.sum_total_tax_amount = #{materialAcceptDto.sumTotalTaxAmount}
+    </if>
+    <if test="materialAcceptDto.createUserId != null and materialAcceptDto.createUserId != ''">
+      AND materialAccept.create_user_id = #{materialAcceptDto.createUserId}
+    </if>
+    <if test="materialAcceptDto.createUserName != null and materialAcceptDto.createUserName != ''">
+      AND materialAccept.create_user_name like CONCAT('%',#{materialAcceptDto.createUserName},'%')
+    </if>
+    <if test="materialAcceptDto.createUserParentOrgId != null and materialAcceptDto.createUserParentOrgId != ''">
+      AND materialAccept.create_user_parent_org_id = #{materialAcceptDto.createUserParentOrgId}
+    </if>
+    <if test="materialAcceptDto.createUserParentOrgName != null and materialAcceptDto.createUserParentOrgName != ''">
+      AND materialAccept.create_user_parent_org_name like CONCAT('%',#{materialAcceptDto.createUserParentOrgName},'%')
+    </if>
+    <if test="materialAcceptDto.createUserParentDeptId != null and materialAcceptDto.createUserParentDeptId != ''">
+      AND materialAccept.create_user_parent_dept_id = #{materialAcceptDto.createUserParentDeptId}
+    </if>
+    <if test="materialAcceptDto.createUserParentDeptName != null and materialAcceptDto.createUserParentDeptName != ''">
+      AND materialAccept.create_user_parent_dept_name like CONCAT('%',#{materialAcceptDto.createUserParentDeptName},'%')
+    </if>
+    <if test="materialAcceptDto.createUserOrgFullId != null and materialAcceptDto.createUserOrgFullId != ''">
+      AND materialAccept.create_user_org_full_id like CONCAT('%',#{materialAcceptDto.createUserOrgFullId},'%')
+    </if>
+    <if test="materialAcceptDto.auditSuccessTiem != null and materialAcceptDto.auditSuccessTiem != ''">
+      AND materialAccept.audit_success_tiem = #{materialAcceptDto.auditSuccessTiem}
+    </if>
+    <if test="materialAcceptDto.camundaProcdefKey != null and materialAcceptDto.camundaProcdefKey != ''">
+      AND materialAccept.camunda_procdef_key like CONCAT('%',#{materialAcceptDto.camundaProcdefKey},'%')
+    </if>
+    <if test="materialAcceptDto.camundaProcdefId != null and materialAcceptDto.camundaProcdefId != ''">
+      AND materialAccept.camunda_procdef_id like CONCAT('%',#{materialAcceptDto.camundaProcdefId},'%')
+    </if>
+    <if test="materialAcceptDto.camundaProcinsId != null and materialAcceptDto.camundaProcinsId != ''">
+      AND materialAccept.camunda_procins_id like CONCAT('%',#{materialAcceptDto.camundaProcinsId},'%')
+    </if>
+    <if test="materialAcceptDto.procdefTypeId != null and materialAcceptDto.procdefTypeId != ''">
+      AND materialAccept.procdef_type_id = #{materialAcceptDto.procdefTypeId}
+    </if>
+    <if test="materialAcceptDto.procdefTypeName != null and materialAcceptDto.procdefTypeName != ''">
+      AND materialAccept.procdef_type_name like CONCAT('%',#{materialAcceptDto.procdefTypeName},'%')
+    </if>
+    <if test="materialAcceptDto.procdefVersion != null and materialAcceptDto.procdefVersion != ''">
+      AND materialAccept.procdef_version = #{materialAcceptDto.procdefVersion}
+    </if>
+    <if test="materialAcceptDto.procdefName != null and materialAcceptDto.procdefName != ''">
+      AND materialAccept.procdef_name like CONCAT('%',#{materialAcceptDto.procdefName},'%')
+    </if>
+    <if test="materialAcceptDto.processName != null and materialAcceptDto.processName != ''">
+      AND materialAccept.process_name like CONCAT('%',#{materialAcceptDto.processName},'%')
+    </if>
+    <if test="materialAcceptDto.reason != null and materialAcceptDto.reason != ''">
+      AND materialAccept.reason like CONCAT('%',#{materialAcceptDto.reason},'%')
+    </if>
+    <if test="materialAcceptDto.bizKey != null and materialAcceptDto.bizKey != ''">
+      AND materialAccept.biz_key like CONCAT('%',#{materialAcceptDto.bizKey},'%')
+    </if>
+    <if test="materialAcceptDto.camundaTaskId != null and materialAcceptDto.camundaTaskId != ''">
+      AND materialAccept.camunda_task_id like CONCAT('%',#{materialAcceptDto.camundaTaskId},'%')
+    </if>
+    <if test="materialAcceptDto.bizPriority != null and materialAcceptDto.bizPriority != ''">
+      AND materialAccept.biz_priority like CONCAT('%',#{materialAcceptDto.bizPriority},'%')
+    </if>
+    <if test="materialAcceptDto.auditStatus != null and materialAcceptDto.auditStatus != ''">
+      AND materialAccept.audit_status = #{materialAcceptDto.auditStatus}
+    </if>
+    <if test="materialAcceptDto.explanation != null and materialAcceptDto.explanation != ''">
+      AND materialAccept.explanation = #{materialAcceptDto.explanation}
+    </if>
+    <if test="materialAcceptDto.signNumber != null and materialAcceptDto.signNumber != ''">
+      AND materialAccept.sign_number = #{materialAcceptDto.signNumber}
+    </if>
+    <if test="materialAcceptDto.notSignNumber != null and materialAcceptDto.notSignNumber != ''">
+      AND materialAccept.not_sign_number = #{materialAcceptDto.notSignNumber}
+    </if>
+    <if test="materialAcceptDto.sumTotalNumber != null and materialAcceptDto.sumTotalNumber != ''">
+      AND materialAccept.sum_total_number = #{materialAcceptDto.sumTotalNumber}
+    </if>
+    order by materialAccept.id desc
+</select>
+<select id="getMaxCode" resultType="java.lang.String">
+  SELECT MAX(SUBSTRING_INDEX(code,'-',-1)) AS maxCode FROM `incloud_biz_asset_material_accept` WHERE DATE_FORMAT(apply_time,'%Y-%m-%d') =  CURDATE()
+</select>
+</mapper>

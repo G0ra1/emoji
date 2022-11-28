@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.wf.mapper.WfButtonDefMapper">
+
+<resultMap id="wfButtonDefMap" type="com.netwisd.base.wf.vo.WfButtonDefVo">
+  <id property="id" column="id"/>
+  <result property="buttonCode" column="button_code"/>
+  <result property="buttonName" column="button_name"/>
+  <result property="nodeDefId" column="node_def_id"/>
+  <result property="procdefId" column="procdef_id"/>
+  <result property="camundaProcdefId" column="camunda_procdef_id"/>
+  <result property="camundaProcdefKey" column="camunda_procdef_key"/>
+  <result property="camundaNodeDefId" column="camunda_node_def_id"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.wf.dto.WfButtonDefDto" resultMap="wfButtonDefMap">
+  select * from incloud_base_wf_button_def wfButtonDef where 1=1
+    <if test="wfButtonDefDto.id != null and wfButtonDefDto.id != ''">
+      AND wfButtonDef.id = #{wfButtonDefDto.id}
+    </if>
+    <if test="wfButtonDefDto.buttonId != null and wfButtonDefDto.buttonId != ''">
+      AND wfButtonDef.button_id like CONCAT('%',#{wfButtonDefDto.buttonId},'%')
+    </if>
+    <if test="wfButtonDefDto.buttonName != null and wfButtonDefDto.buttonName != ''">
+      AND wfButtonDef.button_name like CONCAT('%',#{wfButtonDefDto.buttonName},'%')
+    </if>
+    <if test="wfButtonDefDto.nodeDefId != null and wfButtonDefDto.nodeDefId != ''">
+      AND wfButtonDef.node_def_id = #{wfButtonDefDto.nodeDefId}
+    </if>
+    <if test="wfButtonDefDto.procdefId != null and wfButtonDefDto.procdefId != ''">
+      AND wfButtonDef.procdef_id = #{wfButtonDefDto.procdefId}
+    </if>
+    <if test="wfButtonDefDto.isEnable != null and wfButtonDefDto.isEnable != ''">
+      AND wfButtonDef.is_enable = #{wfButtonDefDto.isEnable}
+    </if>
+    order by wfButtonDef.id desc
+</select>
+</mapper>

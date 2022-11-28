@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.study.mapper.StudyExamPaperDatabaseMapper">
+
+<resultMap id="studyExamPaperDatabaseMap" type="com.netwisd.biz.study.vo.StudyExamPaperDatabaseVo">
+  <id property="id" column="id"/>
+  <result property="paperId" column="paper_id"/>
+  <result property="databaseId" column="database_id"/>
+  <result property="databaseName" column="database_name"/>
+  <result property="typeCode" column="type_code"/>
+  <result property="typeName" column="type_name"/>
+  <result property="databaseDescription" column="database_description"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+  <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+  <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+  <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+  <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+  <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.study.dto.StudyExamPaperDatabaseDto" resultMap="studyExamPaperDatabaseMap">
+  select * from incloud_biz_study_exam_paper_database studyExamPaperDatabase where 1=1
+    <if test="studyExamPaperDatabaseDto.id != null and studyExamPaperDatabaseDto.id != ''">
+      AND studyExamPaperDatabase.id = #{studyExamPaperDatabaseDto.id}
+    </if>
+    <if test="studyExamPaperDatabaseDto.paperId != null and studyExamPaperDatabaseDto.paperId != ''">
+      AND studyExamPaperDatabase.paper_id = #{studyExamPaperDatabaseDto.paperId}
+    </if>
+    <if test="studyExamPaperDatabaseDto.databaseId != null and studyExamPaperDatabaseDto.databaseId != ''">
+      AND studyExamPaperDatabase.database_id = #{studyExamPaperDatabaseDto.databaseId}
+    </if>
+    <if test="studyExamPaperDatabaseDto.databaseName != null and studyExamPaperDatabaseDto.databaseName != ''">
+      AND studyExamPaperDatabase.database_name like CONCAT('%',#{studyExamPaperDatabaseDto.databaseName},'%')
+    </if>
+    <if test="studyExamPaperDatabaseDto.typeCode != null and studyExamPaperDatabaseDto.typeCode != ''">
+      AND studyExamPaperDatabase.type_code like CONCAT('%',#{studyExamPaperDatabaseDto.typeCode},'%')
+    </if>
+    <if test="studyExamPaperDatabaseDto.typeName != null and studyExamPaperDatabaseDto.typeName != ''">
+      AND studyExamPaperDatabase.type_name like CONCAT('%',#{studyExamPaperDatabaseDto.typeName},'%')
+    </if>
+    <if test="studyExamPaperDatabaseDto.databaseDescription != null and studyExamPaperDatabaseDto.databaseDescription != ''">
+      AND studyExamPaperDatabase.database_description like CONCAT('%',#{studyExamPaperDatabaseDto.databaseDescription},'%')
+    </if>
+    <if test="studyExamPaperDatabaseDto.createUserId != null and studyExamPaperDatabaseDto.createUserId != ''">
+      AND studyExamPaperDatabase.create_user_id = #{studyExamPaperDatabaseDto.createUserId}
+    </if>
+    <if test="studyExamPaperDatabaseDto.createUserName != null and studyExamPaperDatabaseDto.createUserName != ''">
+      AND studyExamPaperDatabase.create_user_name like CONCAT('%',#{studyExamPaperDatabaseDto.createUserName},'%')
+    </if>
+    <if test="studyExamPaperDatabaseDto.createUserParentOrgId != null and studyExamPaperDatabaseDto.createUserParentOrgId != ''">
+      AND studyExamPaperDatabase.create_user_parent_org_id = #{studyExamPaperDatabaseDto.createUserParentOrgId}
+    </if>
+    <if test="studyExamPaperDatabaseDto.createUserParentOrgName != null and studyExamPaperDatabaseDto.createUserParentOrgName != ''">
+      AND studyExamPaperDatabase.create_user_parent_org_name like CONCAT('%',#{studyExamPaperDatabaseDto.createUserParentOrgName},'%')
+    </if>
+    <if test="studyExamPaperDatabaseDto.createUserParentDeptId != null and studyExamPaperDatabaseDto.createUserParentDeptId != ''">
+      AND studyExamPaperDatabase.create_user_parent_dept_id = #{studyExamPaperDatabaseDto.createUserParentDeptId}
+    </if>
+    <if test="studyExamPaperDatabaseDto.createUserParentDeptName != null and studyExamPaperDatabaseDto.createUserParentDeptName != ''">
+      AND studyExamPaperDatabase.create_user_parent_dept_name like CONCAT('%',#{studyExamPaperDatabaseDto.createUserParentDeptName},'%')
+    </if>
+    <if test="studyExamPaperDatabaseDto.createUserOrgFullId != null and studyExamPaperDatabaseDto.createUserOrgFullId != ''">
+      AND studyExamPaperDatabase.create_user_org_full_id like CONCAT('%',#{studyExamPaperDatabaseDto.createUserOrgFullId},'%')
+    </if>
+    order by studyExamPaperDatabase.id desc
+</select>
+</mapper>

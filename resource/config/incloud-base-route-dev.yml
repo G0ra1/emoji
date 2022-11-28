@@ -1,0 +1,17 @@
+zuul:
+  ignored-services: Authorization,Access-Control-Allow-Credentials, Access-Control-Allow-Origin
+  sensitive-headers: Cookie,Set-Cookie
+  routes:
+    demop: #demo-provider
+      path: /demopp/**
+      serviceId: incloud-demo-provider
+  host:
+    connect-timeout-millis: 30000
+    socket-timeout-millis: 30000
+  add-proxy-headers: true
+  ribbon:
+    eager-load:
+      enabled: true
+incloud:
+  table:
+    package: com.netwisd.base.route.entity

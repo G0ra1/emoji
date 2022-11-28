@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.mdm.mapper.MdmUserDetailMapper">
+
+<resultMap id="mdmUserDetailMap" type="com.netwisd.base.common.mdm.vo.MdmUserDetailVo">
+  <id property="id" column="id"/>
+  <result property="userId" column="user_id"/>
+  <result property="contactName" column="contact_name"/>
+  <result property="contactWithOneself" column="contact_with_oneself"/>
+  <result property="contactNum" column="contact_num"/>
+  <result property="contactAddr" column="contact_addr"/>
+  <result property="contactEmail" column="contact_email"/>
+  <result property="contactZipcode" column="contact_zipcode"/>
+  <result property="jobLevel" column="job_level"/>
+  <result property="jobLevelStartTime" column="job_level_start_time"/>
+  <result property="jobLevelEndTime" column="job_level_end_time"/>
+  <result property="jobLevelYear" column="job_level_year"/>
+  <result property="dutyLevelStartTime" column="duty_level_start_time"/>
+  <result property="dutyLevelEndTime" column="duty_level_end_time"/>
+  <result property="dutyId" column="duty_id"/>
+  <result property="dutyName" column="duty_name"/>
+  <result property="dutyInCharge" column="duty_in_charge"/>
+  <result property="dutyIsMain" column="duty_is_main"/>
+  <result property="remark" column="remark"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.common.mdm.dto.MdmUserDetailDto" resultMap="mdmUserDetailMap">
+  select * from incloud_base_mdm_user_detail mdmUserDetail where 1=1
+    <if test="mdmUserDetailDto.id != null and mdmUserDetailDto.id != ''">
+      AND mdmUserDetail.id = #{mdmUserDetailDto.id}
+    </if>
+    <if test="mdmUserDetailDto.userId != null and mdmUserDetailDto.userId != ''">
+      AND mdmUserDetail.user_id = #{mdmUserDetailDto.userId}
+    </if>
+    <if test="mdmUserDetailDto.contactName != null and mdmUserDetailDto.contactName != ''">
+      AND mdmUserDetail.contact_name like CONCAT('%',#{mdmUserDetailDto.contactName},'%')
+    </if>
+    <if test="mdmUserDetailDto.contactWithOneself != null and mdmUserDetailDto.contactWithOneself != ''">
+      AND mdmUserDetail.contact_with_oneself like CONCAT('%',#{mdmUserDetailDto.contactWithOneself},'%')
+    </if>
+    <if test="mdmUserDetailDto.contactNum != null and mdmUserDetailDto.contactNum != ''">
+      AND mdmUserDetail.contact_num like CONCAT('%',#{mdmUserDetailDto.contactNum},'%')
+    </if>
+    <if test="mdmUserDetailDto.contactAddr != null and mdmUserDetailDto.contactAddr != ''">
+      AND mdmUserDetail.contact_addr like CONCAT('%',#{mdmUserDetailDto.contactAddr},'%')
+    </if>
+    <if test="mdmUserDetailDto.contactEmail != null and mdmUserDetailDto.contactEmail != ''">
+      AND mdmUserDetail.contact_email like CONCAT('%',#{mdmUserDetailDto.contactEmail},'%')
+    </if>
+    <if test="mdmUserDetailDto.contactZipcode != null and mdmUserDetailDto.contactZipcode != ''">
+      AND mdmUserDetail.contact_zipcode like CONCAT('%',#{mdmUserDetailDto.contactZipcode},'%')
+    </if>
+    <if test="mdmUserDetailDto.jobLevel != null and mdmUserDetailDto.jobLevel != ''">
+      AND mdmUserDetail.job_level = #{mdmUserDetailDto.jobLevel}
+    </if>
+    <if test="mdmUserDetailDto.jobLevelStartTime != null and mdmUserDetailDto.jobLevelStartTime != ''">
+      AND mdmUserDetail.job_level_start_time = #{mdmUserDetailDto.jobLevelStartTime}
+    </if>
+    <if test="mdmUserDetailDto.jobLevelEndTime != null and mdmUserDetailDto.jobLevelEndTime != ''">
+      AND mdmUserDetail.job_level_end_time = #{mdmUserDetailDto.jobLevelEndTime}
+    </if>
+    <if test="mdmUserDetailDto.jobLevelYear != null and mdmUserDetailDto.jobLevelYear != ''">
+      AND mdmUserDetail.job_level_year = #{mdmUserDetailDto.jobLevelYear}
+    </if>
+    <if test="mdmUserDetailDto.dutyLevelStartTime != null and mdmUserDetailDto.dutyLevelStartTime != ''">
+      AND mdmUserDetail.duty_level_start_time = #{mdmUserDetailDto.dutyLevelStartTime}
+    </if>
+    <if test="mdmUserDetailDto.dutyLevelEndTime != null and mdmUserDetailDto.dutyLevelEndTime != ''">
+      AND mdmUserDetail.duty_level_end_time = #{mdmUserDetailDto.dutyLevelEndTime}
+    </if>
+    <if test="mdmUserDetailDto.dutyId != null and mdmUserDetailDto.dutyId != ''">
+      AND mdmUserDetail.duty_id like CONCAT('%',#{mdmUserDetailDto.dutyId},'%')
+    </if>
+    <if test="mdmUserDetailDto.dutyName != null and mdmUserDetailDto.dutyName != ''">
+      AND mdmUserDetail.duty_name like CONCAT('%',#{mdmUserDetailDto.dutyName},'%')
+    </if>
+    <if test="mdmUserDetailDto.dutyInCharge != null and mdmUserDetailDto.dutyInCharge != ''">
+      AND mdmUserDetail.duty_in_charge like CONCAT('%',#{mdmUserDetailDto.dutyInCharge},'%')
+    </if>
+    <if test="mdmUserDetailDto.dutyIsMain != null and mdmUserDetailDto.dutyIsMain != ''">
+      AND mdmUserDetail.duty_is_main like CONCAT('%',#{mdmUserDetailDto.dutyIsMain},'%')
+    </if>
+    <if test="mdmUserDetailDto.remark != null and mdmUserDetailDto.remark != ''">
+      AND mdmUserDetail.remark like CONCAT('%',#{mdmUserDetailDto.remark},'%')
+    </if>
+    order by mdmUserDetail.id desc
+</select>
+</mapper>

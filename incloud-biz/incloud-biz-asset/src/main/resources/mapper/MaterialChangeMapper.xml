@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.asset.mapper.MaterialChangeMapper">
+
+<resultMap id="materialChangeMap" type="com.netwisd.biz.asset.vo.MaterialChangeVo">
+  <id property="id" column="id"/>
+  <result property="code" column="code"/>
+  <result property="sumTotalAmount" column="sum_total_amount"/>
+  <result property="sumTotalUntaxedAmount" column="sum_total_untaxed_amount"/>
+  <result property="sumTotalTaxAmount" column="sum_total_tax_amount"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+  <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+  <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+  <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+  <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+  <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+  <result property="auditSuccessTiem" column="audit_success_tiem"/>
+  <result property="camundaProcdefKey" column="camunda_procdef_key"/>
+  <result property="camundaProcdefId" column="camunda_procdef_id"/>
+  <result property="camundaProcinsId" column="camunda_procins_id"/>
+  <result property="procdefTypeId" column="procdef_type_id"/>
+  <result property="procdefTypeName" column="procdef_type_name"/>
+  <result property="procdefVersion" column="procdef_version"/>
+  <result property="procdefName" column="procdef_name"/>
+  <result property="processName" column="process_name"/>
+  <result property="reason" column="reason"/>
+  <result property="bizKey" column="biz_key"/>
+  <result property="camundaTaskId" column="camunda_task_id"/>
+  <result property="bizPriority" column="biz_priority"/>
+  <result property="auditStatus" column="audit_status"/>
+  <result property="sumTotalNumber" column="sum_total_number"/>
+  <result property="applyUserId" column="apply_user_id"/>
+  <result property="applyUserName" column="apply_user_name"/>
+  <result property="applyUserOrgId" column="apply_user_org_id"/>
+  <result property="applyUserOrgName" column="apply_user_org_name"/>
+  <result property="applyUserDeptId" column="apply_user_dept_id"/>
+  <result property="applyUserDeptName" column="apply_user_dept_name"/>
+  <result property="applyTime" column="apply_time"/>
+  <result property="fileIds" column="file_ids"/>
+  <result property="explanation" column="explanation"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.asset.dto.MaterialChangeDto" resultMap="materialChangeMap">
+  select * from incloud_biz_asset_material_change materialChange where 1=1
+    <if test="materialChangeDto.id != null and materialChangeDto.id != ''">
+      AND materialChange.id = #{materialChangeDto.id}
+    </if>
+    <if test="materialChangeDto.code != null and materialChangeDto.code != ''">
+      AND materialChange.code like CONCAT('%',#{materialChangeDto.code},'%')
+    </if>
+    <if test="materialChangeDto.sumTotalAmount != null and materialChangeDto.sumTotalAmount != ''">
+      AND materialChange.sum_total_amount = #{materialChangeDto.sumTotalAmount}
+    </if>
+    <if test="materialChangeDto.sumTotalUntaxedAmount != null and materialChangeDto.sumTotalUntaxedAmount != ''">
+      AND materialChange.sum_total_untaxed_amount = #{materialChangeDto.sumTotalUntaxedAmount}
+    </if>
+    <if test="materialChangeDto.sumTotalTaxAmount != null and materialChangeDto.sumTotalTaxAmount != ''">
+      AND materialChange.sum_total_tax_amount = #{materialChangeDto.sumTotalTaxAmount}
+    </if>
+    <if test="materialChangeDto.createUserId != null and materialChangeDto.createUserId != ''">
+      AND materialChange.create_user_id = #{materialChangeDto.createUserId}
+    </if>
+    <if test="materialChangeDto.createUserName != null and materialChangeDto.createUserName != ''">
+      AND materialChange.create_user_name like CONCAT('%',#{materialChangeDto.createUserName},'%')
+    </if>
+    <if test="materialChangeDto.createUserParentOrgId != null and materialChangeDto.createUserParentOrgId != ''">
+      AND materialChange.create_user_parent_org_id = #{materialChangeDto.createUserParentOrgId}
+    </if>
+    <if test="materialChangeDto.createUserParentOrgName != null and materialChangeDto.createUserParentOrgName != ''">
+      AND materialChange.create_user_parent_org_name like CONCAT('%',#{materialChangeDto.createUserParentOrgName},'%')
+    </if>
+    <if test="materialChangeDto.createUserParentDeptId != null and materialChangeDto.createUserParentDeptId != ''">
+      AND materialChange.create_user_parent_dept_id = #{materialChangeDto.createUserParentDeptId}
+    </if>
+    <if test="materialChangeDto.createUserParentDeptName != null and materialChangeDto.createUserParentDeptName != ''">
+      AND materialChange.create_user_parent_dept_name like CONCAT('%',#{materialChangeDto.createUserParentDeptName},'%')
+    </if>
+    <if test="materialChangeDto.createUserOrgFullId != null and materialChangeDto.createUserOrgFullId != ''">
+      AND materialChange.create_user_org_full_id like CONCAT('%',#{materialChangeDto.createUserOrgFullId},'%')
+    </if>
+    <if test="materialChangeDto.auditSuccessTiem != null and materialChangeDto.auditSuccessTiem != ''">
+      AND materialChange.audit_success_tiem = #{materialChangeDto.auditSuccessTiem}
+    </if>
+    <if test="materialChangeDto.camundaProcdefKey != null and materialChangeDto.camundaProcdefKey != ''">
+      AND materialChange.camunda_procdef_key like CONCAT('%',#{materialChangeDto.camundaProcdefKey},'%')
+    </if>
+    <if test="materialChangeDto.camundaProcdefId != null and materialChangeDto.camundaProcdefId != ''">
+      AND materialChange.camunda_procdef_id like CONCAT('%',#{materialChangeDto.camundaProcdefId},'%')
+    </if>
+    <if test="materialChangeDto.camundaProcinsId != null and materialChangeDto.camundaProcinsId != ''">
+      AND materialChange.camunda_procins_id like CONCAT('%',#{materialChangeDto.camundaProcinsId},'%')
+    </if>
+    <if test="materialChangeDto.procdefTypeId != null and materialChangeDto.procdefTypeId != ''">
+      AND materialChange.procdef_type_id = #{materialChangeDto.procdefTypeId}
+    </if>
+    <if test="materialChangeDto.procdefTypeName != null and materialChangeDto.procdefTypeName != ''">
+      AND materialChange.procdef_type_name like CONCAT('%',#{materialChangeDto.procdefTypeName},'%')
+    </if>
+    <if test="materialChangeDto.procdefVersion != null and materialChangeDto.procdefVersion != ''">
+      AND materialChange.procdef_version = #{materialChangeDto.procdefVersion}
+    </if>
+    <if test="materialChangeDto.procdefName != null and materialChangeDto.procdefName != ''">
+      AND materialChange.procdef_name like CONCAT('%',#{materialChangeDto.procdefName},'%')
+    </if>
+    <if test="materialChangeDto.processName != null and materialChangeDto.processName != ''">
+      AND materialChange.process_name like CONCAT('%',#{materialChangeDto.processName},'%')
+    </if>
+    <if test="materialChangeDto.reason != null and materialChangeDto.reason != ''">
+      AND materialChange.reason like CONCAT('%',#{materialChangeDto.reason},'%')
+    </if>
+    <if test="materialChangeDto.bizKey != null and materialChangeDto.bizKey != ''">
+      AND materialChange.biz_key like CONCAT('%',#{materialChangeDto.bizKey},'%')
+    </if>
+    <if test="materialChangeDto.camundaTaskId != null and materialChangeDto.camundaTaskId != ''">
+      AND materialChange.camunda_task_id like CONCAT('%',#{materialChangeDto.camundaTaskId},'%')
+    </if>
+    <if test="materialChangeDto.bizPriority != null and materialChangeDto.bizPriority != ''">
+      AND materialChange.biz_priority like CONCAT('%',#{materialChangeDto.bizPriority},'%')
+    </if>
+    <if test="materialChangeDto.auditStatus != null and materialChangeDto.auditStatus != ''">
+      AND materialChange.audit_status = #{materialChangeDto.auditStatus}
+    </if>
+    <if test="materialChangeDto.sumTotalNumber != null and materialChangeDto.sumTotalNumber != ''">
+      AND materialChange.sum_total_number = #{materialChangeDto.sumTotalNumber}
+    </if>
+    <if test="materialChangeDto.applyUserId != null and materialChangeDto.applyUserId != ''">
+      AND materialChange.apply_user_id = #{materialChangeDto.applyUserId}
+    </if>
+    <if test="materialChangeDto.applyUserName != null and materialChangeDto.applyUserName != ''">
+      AND materialChange.apply_user_name like CONCAT('%',#{materialChangeDto.applyUserName},'%')
+    </if>
+    <if test="materialChangeDto.applyUserOrgId != null and materialChangeDto.applyUserOrgId != ''">
+      AND materialChange.apply_user_org_id = #{materialChangeDto.applyUserOrgId}
+    </if>
+    <if test="materialChangeDto.applyUserOrgName != null and materialChangeDto.applyUserOrgName != ''">
+      AND materialChange.apply_user_org_name like CONCAT('%',#{materialChangeDto.applyUserOrgName},'%')
+    </if>
+    <if test="materialChangeDto.applyUserDeptId != null and materialChangeDto.applyUserDeptId != ''">
+      AND materialChange.apply_user_dept_id = #{materialChangeDto.applyUserDeptId}
+    </if>
+    <if test="materialChangeDto.applyUserDeptName != null and materialChangeDto.applyUserDeptName != ''">
+      AND materialChange.apply_user_dept_name like CONCAT('%',#{materialChangeDto.applyUserDeptName},'%')
+    </if>
+    <if test="materialChangeDto.applyTime != null and materialChangeDto.applyTime != ''">
+      AND materialChange.apply_time = #{materialChangeDto.applyTime}
+    </if>
+    <if test="materialChangeDto.fileIds != null and materialChangeDto.fileIds != ''">
+      AND materialChange.file_ids like CONCAT('%',#{materialChangeDto.fileIds},'%')
+    </if>
+    <if test="materialChangeDto.explanation != null and materialChangeDto.explanation != ''">
+      AND materialChange.explanation like CONCAT('%',#{materialChangeDto.explanation},'%')
+    </if>
+    order by materialChange.id desc
+</select>
+</mapper>

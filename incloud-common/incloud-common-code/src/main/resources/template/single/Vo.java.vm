@@ -1,0 +1,36 @@
+package ${package}.${moduleName}.vo;
+
+import com.netwisd.common.core.data.IVo;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+#if(${hasBigDecimal})
+import java.math.BigDecimal;
+#end
+import java.time.LocalDateTime;
+import java.util.Date;
+import com.netwisd.common.core.util.IdTypeSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+/**
+ * @Description ${comments} 功能描述...
+ * @author 云数网讯 ${author}@netwisd.com
+ * @date ${datetime}
+ */
+@Data
+@ApiModel(value = "${comments} Vo")
+public class ${className}Vo extends IVo{
+
+#foreach ($column in $columns)
+#if($column.columnName != $id.columnName)
+    /**
+     * $column.columnName
+     * $column.comments
+     */
+    #if($column.attrType == 'Long')@JsonSerialize(using = IdTypeSerializer.class) #end
+
+    @ApiModelProperty(#if($column.comments != '')value="$column.comments"#end#if($column.comments == '')value="$column.columnName"#end#if($column.hidden),hidden=$column.hidden#end)
+    private $column.attrType $column.lowerAttrName;
+#end
+#end
+}

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.study.mapper.StudyLessonMarterialsMapper">
+
+<resultMap id="studyLessonMarterialsMap" type="com.netwisd.biz.study.vo.StudyLessonMarterialsVo">
+  <id property="id" column="id"/>
+  <result property="lessonId" column="lesson_id"/>
+  <result property="lessonName" column="lesson_name"/>
+  <result property="marterialsId" column="marterials_id"/>
+  <result property="marterialsName" column="marterials_name"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+  <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+  <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+  <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+  <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+  <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.study.dto.StudyLessonMarterialsDto" resultMap="studyLessonMarterialsMap">
+  select * from incloud_biz_study_lesson_marterials studyLessonMarterials where 1=1
+    <if test="studyLessonMarterialsDto.id != null and studyLessonMarterialsDto.id != ''">
+      AND studyLessonMarterials.id = #{studyLessonMarterialsDto.id}
+    </if>
+    <if test="studyLessonMarterialsDto.lessonId != null and studyLessonMarterialsDto.lessonId != ''">
+      AND studyLessonMarterials.lesson_id = #{studyLessonMarterialsDto.lessonId}
+    </if>
+    <if test="studyLessonMarterialsDto.lessonName != null and studyLessonMarterialsDto.lessonName != ''">
+      AND studyLessonMarterials.lesson_name like CONCAT('%',#{studyLessonMarterialsDto.lessonName},'%')
+    </if>
+    <if test="studyLessonMarterialsDto.marterialsId != null and studyLessonMarterialsDto.marterialsId != ''">
+      AND studyLessonMarterials.marterials_id = #{studyLessonMarterialsDto.marterialsId}
+    </if>
+    <if test="studyLessonMarterialsDto.marterialsName != null and studyLessonMarterialsDto.marterialsName != ''">
+      AND studyLessonMarterials.marterials_name like CONCAT('%',#{studyLessonMarterialsDto.marterialsName},'%')
+    </if>
+    <if test="studyLessonMarterialsDto.createUserId != null and studyLessonMarterialsDto.createUserId != ''">
+      AND studyLessonMarterials.create_user_id = #{studyLessonMarterialsDto.createUserId}
+    </if>
+    <if test="studyLessonMarterialsDto.createUserName != null and studyLessonMarterialsDto.createUserName != ''">
+      AND studyLessonMarterials.create_user_name like CONCAT('%',#{studyLessonMarterialsDto.createUserName},'%')
+    </if>
+    <if test="studyLessonMarterialsDto.createUserParentOrgId != null and studyLessonMarterialsDto.createUserParentOrgId != ''">
+      AND studyLessonMarterials.create_user_parent_org_id = #{studyLessonMarterialsDto.createUserParentOrgId}
+    </if>
+    <if test="studyLessonMarterialsDto.createUserParentOrgName != null and studyLessonMarterialsDto.createUserParentOrgName != ''">
+      AND studyLessonMarterials.create_user_parent_org_name like CONCAT('%',#{studyLessonMarterialsDto.createUserParentOrgName},'%')
+    </if>
+    <if test="studyLessonMarterialsDto.createUserParentDeptId != null and studyLessonMarterialsDto.createUserParentDeptId != ''">
+      AND studyLessonMarterials.create_user_parent_dept_id = #{studyLessonMarterialsDto.createUserParentDeptId}
+    </if>
+    <if test="studyLessonMarterialsDto.createUserParentDeptName != null and studyLessonMarterialsDto.createUserParentDeptName != ''">
+      AND studyLessonMarterials.create_user_parent_dept_name like CONCAT('%',#{studyLessonMarterialsDto.createUserParentDeptName},'%')
+    </if>
+    <if test="studyLessonMarterialsDto.createUserOrgFullId != null and studyLessonMarterialsDto.createUserOrgFullId != ''">
+      AND studyLessonMarterials.create_user_org_full_id like CONCAT('%',#{studyLessonMarterialsDto.createUserOrgFullId},'%')
+    </if>
+    order by studyLessonMarterials.id desc
+</select>
+</mapper>

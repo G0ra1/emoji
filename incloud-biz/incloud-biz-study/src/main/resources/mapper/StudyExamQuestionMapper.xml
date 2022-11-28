@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.study.mapper.StudyExamQuestionMapper">
+
+<resultMap id="studyExamQuestionMap" type="com.netwisd.biz.study.vo.StudyExamQuestionVo">
+  <id property="id" column="id"/>
+  <result property="databaseId" column="database_id"/>
+  <result property="question" column="question"/>
+  <result property="parse" column="parse"/>
+  <result property="grade" column="grade"/>
+  <result property="questionCode" column="question_code"/>
+  <result property="databaseName" column="database_name"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+  <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+  <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+  <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+  <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+  <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.study.dto.StudyExamQuestionDto" resultMap="studyExamQuestionMap">
+  select * from incloud_biz_study_exam_question studyExamQuestion where 1=1
+    <if test="studyExamQuestionDto.databaseId != null and studyExamQuestionDto.databaseId != ''">
+      AND studyExamQuestion.database_id = #{studyExamQuestionDto.databaseId}
+    </if>
+    <if test="studyExamQuestionDto.question != null and studyExamQuestionDto.question != ''">
+      AND studyExamQuestion.question like CONCAT('%',#{studyExamQuestionDto.question},'%')
+    </if>
+    <if test="studyExamQuestionDto.parse != null and studyExamQuestionDto.parse != ''">
+      AND studyExamQuestion.parse like CONCAT('%',#{studyExamQuestionDto.parse},'%')
+    </if>
+    <if test="studyExamQuestionDto.grade != null and studyExamQuestionDto.grade != ''">
+      AND studyExamQuestion.grade = #{studyExamQuestionDto.grade}
+    </if>
+    <if test="studyExamQuestionDto.questionCode != null and studyExamQuestionDto.questionCode != ''">
+      AND studyExamQuestion.question_code = #{studyExamQuestionDto.questionCode}
+    </if>
+    <if test="studyExamQuestionDto.databaseName != null and studyExamQuestionDto.databaseName != ''">
+      AND studyExamQuestion.database_name like CONCAT('%',#{studyExamQuestionDto.databaseName},'%')
+    </if>
+    <if test="studyExamQuestionDto.createUserName != null and studyExamQuestionDto.createUserName != ''">
+      AND studyExamQuestion.create_user_name like CONCAT('%',#{studyExamQuestionDto.createUserName},'%')
+    </if>
+    order by studyExamQuestion.id desc
+</select>
+</mapper>

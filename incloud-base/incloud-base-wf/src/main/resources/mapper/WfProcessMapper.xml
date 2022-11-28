@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.wf.mapper.WfProcessMapper">
+
+<resultMap id="wfProcessMap" type="com.netwisd.base.common.vo.wf.WfProcessVo">
+  <id property="id" column="id"/>
+  <result property="camundaProcdefId" column="camunda_procdef_id"/>
+  <result property="camundaProcdefKey" column="camunda_procdef_key"/>
+  <result property="camundaProcdefVersion" column="camunda_procdef_version"/>
+  <result property="camundaProcinsId" column="camunda_procins_id"/>
+  <result property="camundaParentId" column="camunda_parent_id"/>
+  <result property="camundaActId" column="camunda_act_id"/>
+  <result property="camundaActInsId" column="camunda_act_ins_id"/>
+  <result property="bizKey" column="biz_key"/>
+  <result property="startTime" column="start_time"/>
+  <result property="endTime" column="end_time"/>
+  <result property="parentId" column="parent_id"/>
+  <result property="procdefId" column="procdef_id"/>
+  <result property="starterId" column="starter_id"/>
+  <result property="starterName" column="starter_name"/>
+  <result property="starterDeptId" column="starter_dept_id"/>
+  <result property="starterDeptName" column="starter_dept_name"/>
+  <result property="starterOrgId" column="starter_org_id"/>
+  <result property="starterOrgName" column="starter_org_name"/>
+  <result property="state" column="state"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.wf.dto.WfProcessDto" resultMap="wfProcessMap">
+  select * from incloud_base_wf_process wfProcess where 1=1
+    <if test="wfProcessDto.id != null and wfProcessDto.id != ''">
+      AND wfProcess.id = #{wfProcessDto.id}
+    </if>
+    <if test="wfProcessDto.camundaProcdefId != null and wfProcessDto.camundaProcdefId != ''">
+      AND wfProcess.camunda_procdef_id like CONCAT('%',#{wfProcessDto.camundaProcdefId},'%')
+    </if>
+    <if test="wfProcessDto.camundaProcdefKey != null and wfProcessDto.camundaProcdefKey != ''">
+      AND wfProcess.camunda_procdef_key like CONCAT('%',#{wfProcessDto.camundaProcdefKey},'%')
+    </if>
+    <if test="wfProcessDto.camundaProcdefVersion != null and wfProcessDto.camundaProcdefVersion != ''">
+      AND wfProcess.camunda_procdef_version = #{wfProcessDto.camundaProcdefVersion}
+    </if>
+    <if test="wfProcessDto.camundaProcinsId != null and wfProcessDto.camundaProcinsId != ''">
+      AND wfProcess.camunda_procins_id like CONCAT('%',#{wfProcessDto.camundaProcinsId},'%')
+    </if>
+    <if test="wfProcessDto.camundaParentId != null and wfProcessDto.camundaParentId != ''">
+      AND wfProcess.camunda_parent_id like CONCAT('%',#{wfProcessDto.camundaParentId},'%')
+    </if>
+    <if test="wfProcessDto.camundaActId != null and wfProcessDto.camundaActId != ''">
+      AND wfProcess.camunda_act_id like CONCAT('%',#{wfProcessDto.camundaActId},'%')
+    </if>
+    <if test="wfProcessDto.camundaActInsId != null and wfProcessDto.camundaActInsId != ''">
+      AND wfProcess.camunda_act_ins_id like CONCAT('%',#{wfProcessDto.camundaActInsId},'%')
+    </if>
+    <if test="wfProcessDto.bizKey != null and wfProcessDto.bizKey != ''">
+      AND wfProcess.biz_key like CONCAT('%',#{wfProcessDto.bizKey},'%')
+    </if>
+    <if test="wfProcessDto.startTime != null and wfProcessDto.startTime != ''">
+      AND wfProcess.start_time = #{wfProcessDto.startTime}
+    </if>
+    <if test="wfProcessDto.endTime != null and wfProcessDto.endTime != ''">
+      AND wfProcess.end_time = #{wfProcessDto.endTime}
+    </if>
+    <if test="wfProcessDto.parentId != null and wfProcessDto.parentId != ''">
+      AND wfProcess.parent_id = #{wfProcessDto.parentId}
+    </if>
+    <if test="wfProcessDto.procdefId != null and wfProcessDto.procdefId != ''">
+      AND wfProcess.procdef_id = #{wfProcessDto.procdefId}
+    </if>
+    <if test="wfProcessDto.starterId != null and wfProcessDto.starterId != ''">
+      AND wfProcess.starter_id like CONCAT('%',#{wfProcessDto.starterId},'%')
+    </if>
+    <if test="wfProcessDto.starterName != null and wfProcessDto.starterName != ''">
+      AND wfProcess.starter_name like CONCAT('%',#{wfProcessDto.starterName},'%')
+    </if>
+    <if test="wfProcessDto.starterDeptId != null and wfProcessDto.starterDeptId != ''">
+      AND wfProcess.starter_dept_id like CONCAT('%',#{wfProcessDto.starterDeptId},'%')
+    </if>
+    <if test="wfProcessDto.starterDeptName != null and wfProcessDto.starterDeptName != ''">
+      AND wfProcess.starter_dept_name like CONCAT('%',#{wfProcessDto.starterDeptName},'%')
+    </if>
+    <if test="wfProcessDto.starterOrgId != null and wfProcessDto.starterOrgId != ''">
+      AND wfProcess.starter_org_id like CONCAT('%',#{wfProcessDto.starterOrgId},'%')
+    </if>
+    <if test="wfProcessDto.starterOrgName != null and wfProcessDto.starterOrgName != ''">
+      AND wfProcess.starter_org_name like CONCAT('%',#{wfProcessDto.starterOrgName},'%')
+    </if>
+    <if test="wfProcessDto.state != null and wfProcessDto.state != ''">
+      AND wfProcess.state = #{wfProcessDto.state}
+    </if>
+    order by wfProcess.id desc
+</select>
+</mapper>

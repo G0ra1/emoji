@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.mdm.mapper.MdmSysMapper">
+
+<resultMap id="mdmSysMap" type="com.netwisd.base.common.mdm.vo.MdmSysVo">
+  <id property="id" column="id"/>
+  <result property="sysCode" column="sys_code"/>
+  <result property="sysName" column="sys_name"/>
+  <result property="sysIcon" column="sys_icon"/>
+  <result property="sort" column="sort"/>
+  <result property="status" column="status"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.common.mdm.dto.MdmSysDto" resultMap="mdmSysMap">
+  select * from incloud_base_mdm_sys mdmSys where 1=1
+    <if test="mdmSysDto.id != null and mdmSysDto.id != ''">
+      AND mdmSys.id = #{mdmSysDto.id}
+    </if>
+    <if test="mdmSysDto.sysCode != null and mdmSysDto.sysCode != ''">
+      AND mdmSys.sys_code like CONCAT('%',#{mdmSysDto.sysCode},'%')
+    </if>
+    <if test="mdmSysDto.sysName != null and mdmSysDto.sysName != ''">
+      AND mdmSys.sys_name like CONCAT('%',#{mdmSysDto.sysName},'%')
+    </if>
+    <if test="mdmSysDto.sysIcon != null and mdmSysDto.sysIcon != ''">
+      AND mdmSys.sys_icon like CONCAT('%',#{mdmSysDto.sysIcon},'%')
+    </if>
+    <if test="mdmSysDto.sort != null and mdmSysDto.sort != ''">
+      AND mdmSys.sort = #{mdmSysDto.sort}
+    </if>
+    <if test="mdmSysDto.status != null and mdmSysDto.status != ''">
+      AND mdmSys.status = #{mdmSysDto.status}
+    </if>
+    order by mdmSys.id desc
+</select>
+</mapper>

@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.asset.mapper.PurchaseStorageDetailMapper">
+
+<resultMap id="purchaseStorageDetailMap" type="com.netwisd.biz.asset.vo.PurchaseStorageDetailVo">
+  <id property="id" column="id"/>
+  <result property="storageId" column="storage_id"/>
+  <result property="assetsId" column="assets_id"/>
+  <result property="assetsDetailId" column="assets_detail_id"/>
+  <result property="classifyId" column="classify_id"/>
+  <result property="classifyCode" column="classify_code"/>
+  <result property="classifyName" column="classify_name"/>
+  <result property="itemType" column="item_type"/>
+  <result property="route" column="route"/>
+  <result property="routeName" column="route_name"/>
+  <result property="taxRate" column="tax_rate"/>
+  <result property="itemCode" column="item_code"/>
+  <result property="itemName" column="item_name"/>
+  <result property="desclong" column="desclong"/>
+  <result property="descshort" column="descshort"/>
+  <result property="unitCode" column="unit_code"/>
+  <result property="unitName" column="unit_name"/>
+  <result property="materialQuality" column="material_quality"/>
+  <result property="standard" column="standard"/>
+  <result property="specs" column="specs"/>
+  <result property="supplierName" column="supplier_name"/>
+  <result property="contractCode" column="contract_code"/>
+  <result property="assetsClassification" column="assets_classification"/>
+  <result property="billCodes" column="bill_codes"/>
+  <result property="billCodeFilesIds" column="bill_code_files_ids"/>
+  <result property="qualityAssuranceLevel" column="quality_assurance_level"/>
+  <result property="manufacturer" column="manufacturer"/>
+  <result property="productionDate" column="production_date"/>
+  <result property="serviceLife" column="service_life"/>
+  <result property="validPeriod" column="valid_period"/>
+  <result property="batchNumber" column="batch_number"/>
+  <result property="storageTime" column="storage_time"/>
+  <result property="factoryDate" column="factory_date"/>
+  <result property="factoryCode" column="factory_code"/>
+  <result property="approachDate" column="approach_date"/>
+  <result property="warehouseId" column="warehouse_id"/>
+  <result property="warehouseName" column="warehouse_name"/>
+  <result property="shelfId" column="shelf_id"/>
+  <result property="shelfName" column="shelf_name"/>
+  <result property="assetsCode" column="assets_code"/>
+  <result property="assetsLabel" column="assets_label"/>
+  <result property="rzDate" column="rz_date"/>
+  <result property="realTime" column="real_time"/>
+  <result property="accpetanceTime" column="accpetance_time"/>
+  <result property="accpetanceCode" column="accpetance_code"/>
+  <result property="assetsNumber" column="assets_number"/>
+  <result property="purchaseType" column="purchase_type"/>
+  <result property="factorySn" column="factory_sn"/>
+  <result property="factoryData" column="factory_data"/>
+  <result property="acceptPhoto" column="accept_photo"/>
+  <result property="sourceId" column="source_id"/>
+  <result property="sourceDetailId" column="source_detail_id"/>
+  <result property="sourceAssetsId" column="source_assets_id"/>
+  <result property="storageSourch" column="storage_sourch"/>
+  <result property="skuCode" column="sku_code"/>
+  <result property="skuFullId" column="sku_full_id"/>
+  <result property="skuFullName" column="sku_full_name"/>
+  <result property="supplierId" column="supplier_id"/>
+  <result property="contractId" column="contract_id"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+  <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+  <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+  <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+  <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+  <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+  <result property="itemId" column="item_id"/>
+  <result property="storageNumber" column="storage_number"/>
+  <result property="storageAmount" column="storage_amount"/>
+  <result property="storageUntaxedAmount" column="storage_untaxed_amount"/>
+  <result property="storageTaxAmount" column="storage_tax_amount"/>
+  <result property="storageSumAmount" column="storage_sum_amount"/>
+  <result property="storageSumUntaxedAmount" column="storage_sum_untaxed_amount"/>
+  <result property="storageSumTaxAmount" column="storage_sum_tax_amount"/>
+  <result property="assetSource" column="asset_source"/>
+  <result property="classifyTypeCode" column="classify_type_code"/>
+  <result property="classifyTypeName" column="classify_type_name"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.asset.dto.PurchaseStorageDetailDto" resultMap="purchaseStorageDetailMap">
+  select * from incloud_biz_asset_purchase_storage_detail purchaseStorageDetail where 1=1
+    <if test="purchaseStorageDetailDto.id != null and purchaseStorageDetailDto.id != ''">
+      AND purchaseStorageDetail.id = #{purchaseStorageDetailDto.id}
+    </if>
+    <if test="purchaseStorageDetailDto.storageId != null and purchaseStorageDetailDto.storageId != ''">
+      AND purchaseStorageDetail.storage_id = #{purchaseStorageDetailDto.storageId}
+    </if>
+    <if test="purchaseStorageDetailDto.assetsId != null and purchaseStorageDetailDto.assetsId != ''">
+      AND purchaseStorageDetail.assets_id = #{purchaseStorageDetailDto.assetsId}
+    </if>
+    <if test="purchaseStorageDetailDto.classifyTypeCode != null and purchaseStorageDetailDto.classifyTypeCode != ''">
+      AND purchaseStorageDetail.classify_type_code = #{purchaseStorageDetailDto.classifyTypeCode}
+    </if>
+    <if test="purchaseStorageDetailDto.classifyTypeName != null and purchaseStorageDetailDto.classifyTypeName != ''">
+      AND purchaseStorageDetail.classify_type_name = #{purchaseStorageDetailDto.classifyTypeName}
+    </if>
+    <if test="purchaseStorageDetailDto.assetsDetailId != null and purchaseStorageDetailDto.assetsDetailId != ''">
+      AND purchaseStorageDetail.assets_detail_id = #{purchaseStorageDetailDto.assetsDetailId}
+    </if>
+    <if test="purchaseStorageDetailDto.classifyId != null and purchaseStorageDetailDto.classifyId != ''">
+      AND purchaseStorageDetail.classify_id = #{purchaseStorageDetailDto.classifyId}
+    </if>
+    <if test="purchaseStorageDetailDto.classifyCode != null and purchaseStorageDetailDto.classifyCode != ''">
+      AND purchaseStorageDetail.classify_code like CONCAT('%',#{purchaseStorageDetailDto.classifyCode},'%')
+    </if>
+    <if test="purchaseStorageDetailDto.classifyName != null and purchaseStorageDetailDto.classifyName != ''">
+      AND purchaseStorageDetail.classify_name like CONCAT('%',#{purchaseStorageDetailDto.classifyName},'%')
+    </if>
+    <if test="purchaseStorageDetailDto.itemType != null and purchaseStorageDetailDto.itemType != ''">
+      AND purchaseStorageDetail.item_type like CONCAT('%',#{purchaseStorageDetailDto.itemType},'%')
+    </if>
+    <if test="purchaseStorageDetailDto.route != null and purchaseStorageDetailDto.route != ''">
+      AND purchaseStorageDetail.route like CONCAT('%',#{purchaseStorageDetailDto.route},'%')
+    </if>
+    <if test="purchaseStorageDetailDto.routeName != null and purchaseStorageDetailDto.routeName != ''">
+      AND purchaseStorageDetail.route_name like CONCAT('%',#{purchaseStorageDetailDto.routeName},'%')
+    </if>
+    <if test="purchaseStorageDetailDto.taxRate != null and purchaseStorageDetailDto.taxRate != ''">
+      AND purchaseStorageDetail.tax_rate = #{purchaseStorageDetailDto.taxRate}
+    </if>
+    <if test="purchaseStorageDetailDto.itemCode != null and purchaseStorageDetailDto.itemCode != ''">
+      AND purchaseStorageDetail.item_code like CONCAT('%',#{purchaseStorageDetailDto.itemCode},'%')
+    </if>
+    <if test="purchaseStorageDetailDto.itemName != null and purchaseStorageDetailDto.itemName != ''">
+      AND purchaseStorageDetail.item_name like CONCAT('%',#{purchaseStorageDetailDto.itemName},'%')
+    </if>
+    <if test="purchaseStorageDetailDto.desclong != null and purchaseStorageDetailDto.desclong != ''">
+      AND purchaseStorageDetail.desclong like CONCAT('%',#{purchaseStorageDetailDto.desclong},'%')
+    </if>
+    <if test="purchaseStorageDetailDto.descshort != null and purchaseStorageDetailDto.descshort != ''">
+      AND purchaseStorageDetail.descshort like CONCAT('%',#{purchaseStorageDetailDto.descshort},'%')
+    </if>
+    <if test="purchaseStorageDetailDto.unitCode != null and purchaseStorageDetailDto.unitCode != ''">
+      AND purchaseStorageDetail.unit_code like CONCAT('%',#{purchaseStorageDetailDto.unitCode},'%')
+    </if>
+    <if test="purchaseStorageDetailDto.unitName != null and purchaseStorageDetailDto.unitName != ''">
+      AND purchaseStorageDetail.unit_name like CONCAT('%',#{purchaseStorageDetailDto.unitName},'%')
+    </if>
+    <if test="purchaseStorageDetailDto.materialQuality != null and purchaseStorageDetailDto.materialQuality != ''">
+      AND purchaseStorageDetail.material_quality like CONCAT('%',#{purchaseStorageDetailDto.materialQuality},'%')
+    </if>
+    <if test="purchaseStorageDetailDto.standard != null and purchaseStorageDetailDto.standard != ''">
+      AND purchaseStorageDetail.standard like CONCAT('%',#{purchaseStorageDetailDto.standard},'%')
+    </if>
+    <if test="purchaseStorageDetailDto.specs != null and purchaseStorageDetailDto.specs != ''">
+      AND purchaseStorageDetail.specs like CONCAT('%',#{purchaseStorageDetailDto.specs},'%')
+    </if>
+    <if test="purchaseStorageDetailDto.supplierName != null and purchaseStorageDetailDto.supplierName != ''">
+      AND purchaseStorageDetail.supplier_name like CONCAT('%',#{purchaseStorageDetailDto.supplierName},'%')
+    </if>
+    <if test="purchaseStorageDetailDto.contractCode != null and purchaseStorageDetailDto.contractCode != ''">
+      AND purchaseStorageDetail.contract_code like CONCAT('%',#{purchaseStorageDetailDto.contractCode},'%')
+    </if>
+    <if test="purchaseStorageDetailDto.assetsClassification != null and purchaseStorageDetailDto.assetsClassification != ''">
+      AND purchaseStorageDetail.assets_classification like CONCAT('%',#{purchaseStorageDetailDto.assetsClassification},'%')
+    </if>
+    <if test="purchaseStorageDetailDto.billCodes != null and purchaseStorageDetailDto.billCodes != ''">
+      AND purchaseStorageDetail.bill_codes like CONCAT('%',#{purchaseStorageDetailDto.billCodes},'%')
+    </if>
+    <if test="purchaseStorageDetailDto.billCodeFilesIds != null and purchaseStorageDetailDto.billCodeFilesIds != ''">
+      AND purchaseStorageDetail.bill_code_files_ids like CONCAT('%',#{purchaseStorageDetailDto.billCodeFilesIds},'%')
+    </if>
+    <if test="purchaseStorageDetailDto.qualityAssuranceLevel != null and purchaseStorageDetailDto.qualityAssuranceLevel != ''">
+      AND purchaseStorageDetail.quality_assurance_level like CONCAT('%',#{purchaseStorageDetailDto.qualityAssuranceLevel},'%')
+    </if>
+    <if test="purchaseStorageDetailDto.manufacturer != null and purchaseStorageDetailDto.manufacturer != ''">
+      AND purchaseStorageDetail.manufacturer like CONCAT('%',#{purchaseStorageDetailDto.manufacturer},'%')
+    </if>
+    <if test="purchaseStorageDetailDto.productionDate != null and purchaseStorageDetailDto.productionDate != ''">
+      AND purchaseStorageDetail.production_date = #{purchaseStorageDetailDto.productionDate}
+    </if>
+    <if test="purchaseStorageDetailDto.serviceLife != null and purchaseStorageDetailDto.serviceLife != ''">
+      AND purchaseStorageDetail.service_life = #{purchaseStorageDetailDto.serviceLife}
+    </if>
+    <if test="purchaseStorageDetailDto.validPeriod != null and purchaseStorageDetailDto.validPeriod != ''">
+      AND purchaseStorageDetail.valid_period like CONCAT('%',#{purchaseStorageDetailDto.validPeriod},'%')
+    </if>
+    <if test="purchaseStorageDetailDto.batchNumber != null and purchaseStorageDetailDto.batchNumber != ''">
+      AND purchaseStorageDetail.batch_number like CONCAT('%',#{purchaseStorageDetailDto.batchNumber},'%')
+    </if>
+    <if test="purchaseStorageDetailDto.storageTime != null and purchaseStorageDetailDto.storageTime != ''">
+      AND purchaseStorageDetail.storage_time = #{purchaseStorageDetailDto.storageTime}
+    </if>
+    <if test="purchaseStorageDetailDto.factoryDate != null and purchaseStorageDetailDto.factoryDate != ''">
+      AND purchaseStorageDetail.factory_date = #{purchaseStorageDetailDto.factoryDate}
+    </if>
+    <if test="purchaseStorageDetailDto.factoryCode != null and purchaseStorageDetailDto.factoryCode != ''">
+      AND purchaseStorageDetail.factory_code like CONCAT('%',#{purchaseStorageDetailDto.factoryCode},'%')
+    </if>
+    <if test="purchaseStorageDetailDto.approachDate != null and purchaseStorageDetailDto.approachDate != ''">
+      AND purchaseStorageDetail.approach_date = #{purchaseStorageDetailDto.approachDate}
+    </if>
+    <if test="purchaseStorageDetailDto.warehouseId != null and purchaseStorageDetailDto.warehouseId != ''">
+      AND purchaseStorageDetail.warehouse_id = #{purchaseStorageDetailDto.warehouseId}
+    </if>
+    <if test="purchaseStorageDetailDto.warehouseName != null and purchaseStorageDetailDto.warehouseName != ''">
+      AND purchaseStorageDetail.warehouse_name like CONCAT('%',#{purchaseStorageDetailDto.warehouseName},'%')
+    </if>
+    <if test="purchaseStorageDetailDto.shelfId != null and purchaseStorageDetailDto.shelfId != ''">
+      AND purchaseStorageDetail.shelf_id = #{purchaseStorageDetailDto.shelfId}
+    </if>
+    <if test="purchaseStorageDetailDto.shelfName != null and purchaseStorageDetailDto.shelfName != ''">
+      AND purchaseStorageDetail.shelf_name like CONCAT('%',#{purchaseStorageDetailDto.shelfName},'%')
+    </if>
+    <if test="purchaseStorageDetailDto.assetsCode != null and purchaseStorageDetailDto.assetsCode != ''">
+      AND purchaseStorageDetail.assets_code like CONCAT('%',#{purchaseStorageDetailDto.assetsCode},'%')
+    </if>
+    <if test="purchaseStorageDetailDto.assetsLabel != null and purchaseStorageDetailDto.assetsLabel != ''">
+      AND purchaseStorageDetail.assets_label like CONCAT('%',#{purchaseStorageDetailDto.assetsLabel},'%')
+    </if>
+    <if test="purchaseStorageDetailDto.rzDate != null and purchaseStorageDetailDto.rzDate != ''">
+      AND purchaseStorageDetail.rz_date = #{purchaseStorageDetailDto.rzDate}
+    </if>
+    <if test="purchaseStorageDetailDto.realTime != null and purchaseStorageDetailDto.realTime != ''">
+      AND purchaseStorageDetail.real_time = #{purchaseStorageDetailDto.realTime}
+    </if>
+    <if test="purchaseStorageDetailDto.accpetanceTime != null and purchaseStorageDetailDto.accpetanceTime != ''">
+      AND purchaseStorageDetail.accpetance_time = #{purchaseStorageDetailDto.accpetanceTime}
+    </if>
+    <if test="purchaseStorageDetailDto.accpetanceCode != null and purchaseStorageDetailDto.accpetanceCode != ''">
+      AND purchaseStorageDetail.accpetance_code like CONCAT('%',#{purchaseStorageDetailDto.accpetanceCode},'%')
+    </if>
+    <if test="purchaseStorageDetailDto.assetsNumber != null and purchaseStorageDetailDto.assetsNumber != ''">
+      AND purchaseStorageDetail.assets_number = #{purchaseStorageDetailDto.assetsNumber}
+    </if>
+    <if test="purchaseStorageDetailDto.purchaseType != null and purchaseStorageDetailDto.purchaseType != ''">
+      AND purchaseStorageDetail.purchase_type = #{purchaseStorageDetailDto.purchaseType}
+    </if>
+    <if test="purchaseStorageDetailDto.factorySn != null and purchaseStorageDetailDto.factorySn != ''">
+      AND purchaseStorageDetail.factory_sn like CONCAT('%',#{purchaseStorageDetailDto.factorySn},'%')
+    </if>
+    <if test="purchaseStorageDetailDto.factoryData != null and purchaseStorageDetailDto.factoryData != ''">
+      AND purchaseStorageDetail.factory_data like CONCAT('%',#{purchaseStorageDetailDto.factoryData},'%')
+    </if>
+    <if test="purchaseStorageDetailDto.acceptPhoto != null and purchaseStorageDetailDto.acceptPhoto != ''">
+      AND purchaseStorageDetail.accept_photo like CONCAT('%',#{purchaseStorageDetailDto.acceptPhoto},'%')
+    </if>
+    <if test="purchaseStorageDetailDto.sourceId != null and purchaseStorageDetailDto.sourceId != ''">
+      AND purchaseStorageDetail.source_id = #{purchaseStorageDetailDto.sourceId}
+    </if>
+    <if test="purchaseStorageDetailDto.sourceDetailId != null and purchaseStorageDetailDto.sourceDetailId != ''">
+      AND purchaseStorageDetail.source_detail_id = #{purchaseStorageDetailDto.sourceDetailId}
+    </if>
+    <if test="purchaseStorageDetailDto.sourceAssetsId != null and purchaseStorageDetailDto.sourceAssetsId != ''">
+      AND purchaseStorageDetail.source_assets_id = #{purchaseStorageDetailDto.sourceAssetsId}
+    </if>
+    <if test="purchaseStorageDetailDto.storageSourch != null and purchaseStorageDetailDto.storageSourch != ''">
+      AND purchaseStorageDetail.storage_sourch like CONCAT('%',#{purchaseStorageDetailDto.storageSourch},'%')
+    </if>
+    <if test="purchaseStorageDetailDto.skuCode != null and purchaseStorageDetailDto.skuCode != ''">
+      AND purchaseStorageDetail.sku_code like CONCAT('%',#{purchaseStorageDetailDto.skuCode},'%')
+    </if>
+    <if test="purchaseStorageDetailDto.skuFullId != null and purchaseStorageDetailDto.skuFullId != ''">
+      AND purchaseStorageDetail.sku_full_id like CONCAT('%',#{purchaseStorageDetailDto.skuFullId},'%')
+    </if>
+    <if test="purchaseStorageDetailDto.skuFullName != null and purchaseStorageDetailDto.skuFullName != ''">
+      AND purchaseStorageDetail.sku_full_name like CONCAT('%',#{purchaseStorageDetailDto.skuFullName},'%')
+    </if>
+    <if test="purchaseStorageDetailDto.supplierId != null and purchaseStorageDetailDto.supplierId != ''">
+      AND purchaseStorageDetail.supplier_id = #{purchaseStorageDetailDto.supplierId}
+    </if>
+    <if test="purchaseStorageDetailDto.contractId != null and purchaseStorageDetailDto.contractId != ''">
+      AND purchaseStorageDetail.contract_id = #{purchaseStorageDetailDto.contractId}
+    </if>
+    <if test="purchaseStorageDetailDto.createUserId != null and purchaseStorageDetailDto.createUserId != ''">
+      AND purchaseStorageDetail.create_user_id = #{purchaseStorageDetailDto.createUserId}
+    </if>
+    <if test="purchaseStorageDetailDto.createUserName != null and purchaseStorageDetailDto.createUserName != ''">
+      AND purchaseStorageDetail.create_user_name like CONCAT('%',#{purchaseStorageDetailDto.createUserName},'%')
+    </if>
+    <if test="purchaseStorageDetailDto.createUserParentOrgId != null and purchaseStorageDetailDto.createUserParentOrgId != ''">
+      AND purchaseStorageDetail.create_user_parent_org_id = #{purchaseStorageDetailDto.createUserParentOrgId}
+    </if>
+    <if test="purchaseStorageDetailDto.createUserParentOrgName != null and purchaseStorageDetailDto.createUserParentOrgName != ''">
+      AND purchaseStorageDetail.create_user_parent_org_name like CONCAT('%',#{purchaseStorageDetailDto.createUserParentOrgName},'%')
+    </if>
+    <if test="purchaseStorageDetailDto.createUserParentDeptId != null and purchaseStorageDetailDto.createUserParentDeptId != ''">
+      AND purchaseStorageDetail.create_user_parent_dept_id = #{purchaseStorageDetailDto.createUserParentDeptId}
+    </if>
+    <if test="purchaseStorageDetailDto.createUserParentDeptName != null and purchaseStorageDetailDto.createUserParentDeptName != ''">
+      AND purchaseStorageDetail.create_user_parent_dept_name like CONCAT('%',#{purchaseStorageDetailDto.createUserParentDeptName},'%')
+    </if>
+    <if test="purchaseStorageDetailDto.createUserOrgFullId != null and purchaseStorageDetailDto.createUserOrgFullId != ''">
+      AND purchaseStorageDetail.create_user_org_full_id like CONCAT('%',#{purchaseStorageDetailDto.createUserOrgFullId},'%')
+    </if>
+    <if test="purchaseStorageDetailDto.itemId != null and purchaseStorageDetailDto.itemId != ''">
+      AND purchaseStorageDetail.item_id = #{purchaseStorageDetailDto.itemId}
+    </if>
+    <if test="purchaseStorageDetailDto.storageNumber != null and purchaseStorageDetailDto.storageNumber != ''">
+      AND purchaseStorageDetail.storage_number = #{purchaseStorageDetailDto.storageNumber}
+    </if>
+    <if test="purchaseStorageDetailDto.storageAmount != null and purchaseStorageDetailDto.storageAmount != ''">
+      AND purchaseStorageDetail.storage_amount = #{purchaseStorageDetailDto.storageAmount}
+    </if>
+    <if test="purchaseStorageDetailDto.storageUntaxedAmount != null and purchaseStorageDetailDto.storageUntaxedAmount != ''">
+      AND purchaseStorageDetail.storage_untaxed_amount = #{purchaseStorageDetailDto.storageUntaxedAmount}
+    </if>
+    <if test="purchaseStorageDetailDto.storageTaxAmount != null and purchaseStorageDetailDto.storageTaxAmount != ''">
+      AND purchaseStorageDetail.storage_tax_amount = #{purchaseStorageDetailDto.storageTaxAmount}
+    </if>
+    <if test="purchaseStorageDetailDto.storageSumAmount != null and purchaseStorageDetailDto.storageSumAmount != ''">
+      AND purchaseStorageDetail.storage_sum_amount = #{purchaseStorageDetailDto.storageSumAmount}
+    </if>
+    <if test="purchaseStorageDetailDto.storageSumUntaxedAmount != null and purchaseStorageDetailDto.storageSumUntaxedAmount != ''">
+      AND purchaseStorageDetail.storage_sum_untaxed_amount = #{purchaseStorageDetailDto.storageSumUntaxedAmount}
+    </if>
+    <if test="purchaseStorageDetailDto.storageSumTaxAmount != null and purchaseStorageDetailDto.storageSumTaxAmount != ''">
+      AND purchaseStorageDetail.storage_sum_tax_amount = #{purchaseStorageDetailDto.storageSumTaxAmount}
+    </if>
+    <if test="purchaseStorageDetailDto.assetSource != null and purchaseStorageDetailDto.assetSource != ''">
+      AND purchaseStorageDetail.asset_source = #{purchaseStorageDetailDto.assetSource}
+    </if>
+    order by purchaseStorageDetail.id desc
+</select>
+</mapper>

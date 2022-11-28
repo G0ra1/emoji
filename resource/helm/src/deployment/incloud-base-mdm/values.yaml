@@ -1,0 +1,8 @@
+name: incloud-base-mdm
+replicaCount: 1
+image:
+  repository: dockerhub.kubekey.local/zhongyuanjian/incloud-base-mdm
+  pullPolicy: Always
+  tag: "latest"
+  port: 8031
+imageEnvConfigMap: incloud-config

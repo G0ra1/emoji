@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.study.mapper.StudyExamDatabaseMapper">
+
+<resultMap id="studyExamDatabaseMap" type="com.netwisd.biz.study.vo.StudyExamDatabaseVo">
+  <id property="id" column="id"/>
+  <result property="databaseName" column="database_name"/>
+  <result property="icon" column="icon"/>
+  <result property="description" column="description"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+  <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+  <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+  <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+  <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+  <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.study.dto.StudyExamDatabaseDto" resultMap="studyExamDatabaseMap">
+  select * from incloud_biz_study_exam_database studyExamDatabase where 1=1
+    <if test="studyExamDatabaseDto.databaseName != null and studyExamDatabaseDto.databaseName != ''">
+      AND studyExamDatabase.database_name like CONCAT('%',#{studyExamDatabaseDto.databaseName},'%')
+    </if>
+    <if test="studyExamDatabaseDto.icon != null and studyExamDatabaseDto.icon != ''">
+      AND studyExamDatabase.icon like CONCAT('%',#{studyExamDatabaseDto.icon},'%')
+    </if>
+    <if test="studyExamDatabaseDto.description != null and studyExamDatabaseDto.description != ''">
+      AND studyExamDatabase.description like CONCAT('%',#{studyExamDatabaseDto.description},'%')
+    </if>
+    <if test="studyExamDatabaseDto.createUserId != null and studyExamDatabaseDto.createUserId != ''">
+      AND studyExamDatabase.create_user_id = #{studyExamDatabaseDto.createUserId}
+    </if>
+    <if test="studyExamDatabaseDto.createUserName != null and studyExamDatabaseDto.createUserName != ''">
+      AND studyExamDatabase.create_user_name like CONCAT('%',#{studyExamDatabaseDto.createUserName},'%')
+    </if>
+    <if test="studyExamDatabaseDto.createUserParentOrgId != null and studyExamDatabaseDto.createUserParentOrgId != ''">
+      AND studyExamDatabase.create_user_parent_org_id = #{studyExamDatabaseDto.createUserParentOrgId}
+    </if>
+    <if test="studyExamDatabaseDto.createUserParentOrgName != null and studyExamDatabaseDto.createUserParentOrgName != ''">
+      AND studyExamDatabase.create_user_parent_org_name like CONCAT('%',#{studyExamDatabaseDto.createUserParentOrgName},'%')
+    </if>
+    <if test="studyExamDatabaseDto.createUserParentDeptId != null and studyExamDatabaseDto.createUserParentDeptId != ''">
+      AND studyExamDatabase.create_user_parent_dept_id = #{studyExamDatabaseDto.createUserParentDeptId}
+    </if>
+    <if test="studyExamDatabaseDto.createUserParentDeptName != null and studyExamDatabaseDto.createUserParentDeptName != ''">
+      AND studyExamDatabase.create_user_parent_dept_name like CONCAT('%',#{studyExamDatabaseDto.createUserParentDeptName},'%')
+    </if>
+    <if test="studyExamDatabaseDto.createUserOrgFullId != null and studyExamDatabaseDto.createUserOrgFullId != ''">
+      AND studyExamDatabase.create_user_org_full_id like CONCAT('%',#{studyExamDatabaseDto.createUserOrgFullId},'%')
+    </if>
+    order by studyExamDatabase.id desc
+</select>
+</mapper>

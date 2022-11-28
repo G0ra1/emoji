@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.study.mapper.StudyHomeBannerMapper">
+
+<resultMap id="studyHomeBannerMap" type="com.netwisd.biz.study.vo.StudyHomeBannerVo">
+  <id property="id" column="id"/>
+  <result property="homeBannerName" column="home_banner_name"/>
+  <result property="homeBannerUrl" column="home_banner_url"/>
+  <result property="homeBannerDetail" column="home_banner_detail"/>
+  <result property="homeBannerRemarks" column="home_banner_remarks"/>
+  <result property="homeBannerStartUsing" column="home_banner_start_using"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.study.dto.StudyHomeBannerDto" resultMap="studyHomeBannerMap">
+  select * from incloud_biz_study_home_banner studyHomeBanner where 1=1
+    <if test="studyHomeBannerDto.id != null and studyHomeBannerDto.id != ''">
+      AND studyHomeBanner.id = #{studyHomeBannerDto.id}
+    </if>
+    <if test="studyHomeBannerDto.homeBannerName != null and studyHomeBannerDto.homeBannerName != ''">
+      AND studyHomeBanner.home_banner_name like CONCAT('%',#{studyHomeBannerDto.homeBannerName},'%')
+    </if>
+    <if test="studyHomeBannerDto.homeBannerUrl != null and studyHomeBannerDto.homeBannerUrl != ''">
+      AND studyHomeBanner.home_banner_url like CONCAT('%',#{studyHomeBannerDto.homeBannerUrl},'%')
+    </if>
+    <if test="studyHomeBannerDto.homeBannerDetail != null and studyHomeBannerDto.homeBannerDetail != ''">
+      AND studyHomeBanner.home_banner_detail like CONCAT('%',#{studyHomeBannerDto.homeBannerDetail},'%')
+    </if>
+    <if test="studyHomeBannerDto.homeBannerRemarks != null and studyHomeBannerDto.homeBannerRemarks != ''">
+      AND studyHomeBanner.home_banner_remarks like CONCAT('%',#{studyHomeBannerDto.homeBannerRemarks},'%')
+    </if>
+    <if test="studyHomeBannerDto.homeBannerStartUsing != null and studyHomeBannerDto.homeBannerStartUsing != ''">
+      AND studyHomeBanner.home_banner_start_using like CONCAT('%',#{studyHomeBannerDto.homeBannerStartUsing},'%')
+    </if>
+    order by studyHomeBanner.id desc
+</select>
+</mapper>

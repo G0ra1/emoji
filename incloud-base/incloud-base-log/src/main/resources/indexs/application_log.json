@@ -1,0 +1,44 @@
+{
+  "settings": {
+    "number_of_shards": 3,
+    "number_of_replicas": 2,
+    "analysis": {
+      "analyzer": {
+        "comma": {
+          "type": "pattern",
+          "pattern": ","
+        }
+      }
+    }
+  },
+  "mappings": {
+    "properties": {
+      "id": {
+        "type": "long"
+      },
+      "appName": {
+        "type": "keyword"
+      },
+      "body": {
+        "type": "text",
+        "analyzer": "keyword"
+      },
+      "className": {
+        "type": "keyword"
+      },
+      "host": {
+        "type": "keyword"
+      },
+      "level": {
+        "type": "keyword"
+      },
+      "threadName": {
+        "type": "keyword"
+      },
+      "createTime": {
+        "type": "date",
+        "format": "yyyy-MM-dd HH:mm:ss SSS"
+      }
+    }
+  }
+}

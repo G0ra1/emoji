@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.asset.mapper.DaybookMapper">
+
+<resultMap id="daybookMap" type="com.netwisd.biz.asset.vo.DaybookVo">
+  <id property="id" column="id"/>
+  <result property="formId" column="form_id"/>
+  <result property="formUrl" column="form_url"/>
+  <result property="assetsId" column="assets_id"/>
+  <result property="assetsDetailId" column="assets_detail_id"/>
+  <result property="itemId" column="item_id"/>
+  <result property="itemCode" column="item_code"/>
+  <result property="itemName" column="item_name"/>
+  <result property="type" column="type"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+  <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+  <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+  <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+  <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+  <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.asset.dto.DaybookDto" resultMap="daybookMap">
+  select * from incloud_biz_asset_daybook daybook where 1=1
+    <if test="daybookDto.id != null and daybookDto.id != ''">
+      AND daybook.id = #{daybookDto.id}
+    </if>
+    <if test="daybookDto.formId != null and daybookDto.formId != ''">
+      AND daybook.form_id = #{daybookDto.formId}
+    </if>
+    <if test="daybookDto.formUrl != null and daybookDto.formUrl != ''">
+      AND daybook.form_url like CONCAT('%',#{daybookDto.formUrl},'%')
+    </if>
+    <if test="daybookDto.assetsId != null and daybookDto.assetsId != ''">
+      AND daybook.assets_id = #{daybookDto.assetsId}
+    </if>
+    <if test="daybookDto.assetsDetailId != null and daybookDto.assetsDetailId != ''">
+      AND daybook.assets_detail_id like CONCAT('%',#{daybookDto.assetsDetailId},'%')
+    </if>
+    <if test="daybookDto.itemId != null and daybookDto.itemId != ''">
+      AND daybook.item_id like CONCAT('%',#{daybookDto.itemId},'%')
+    </if>
+    <if test="daybookDto.itemCode != null and daybookDto.itemCode != ''">
+      AND daybook.item_code like CONCAT('%',#{daybookDto.itemCode},'%')
+    </if>
+    <if test="daybookDto.itemName != null and daybookDto.itemName != ''">
+      AND daybook.item_name like CONCAT('%',#{daybookDto.itemName},'%')
+    </if>
+    <if test="daybookDto.type != null and daybookDto.type != ''">
+      AND daybook.type like CONCAT('%',#{daybookDto.type},'%')
+    </if>
+    <if test="daybookDto.createUserId != null and daybookDto.createUserId != ''">
+      AND daybook.create_user_id = #{daybookDto.createUserId}
+    </if>
+    <if test="daybookDto.createUserName != null and daybookDto.createUserName != ''">
+      AND daybook.create_user_name like CONCAT('%',#{daybookDto.createUserName},'%')
+    </if>
+    <if test="daybookDto.createUserParentOrgId != null and daybookDto.createUserParentOrgId != ''">
+      AND daybook.create_user_parent_org_id = #{daybookDto.createUserParentOrgId}
+    </if>
+    <if test="daybookDto.createUserParentOrgName != null and daybookDto.createUserParentOrgName != ''">
+      AND daybook.create_user_parent_org_name like CONCAT('%',#{daybookDto.createUserParentOrgName},'%')
+    </if>
+    <if test="daybookDto.createUserParentDeptId != null and daybookDto.createUserParentDeptId != ''">
+      AND daybook.create_user_parent_dept_id = #{daybookDto.createUserParentDeptId}
+    </if>
+    <if test="daybookDto.createUserParentDeptName != null and daybookDto.createUserParentDeptName != ''">
+      AND daybook.create_user_parent_dept_name like CONCAT('%',#{daybookDto.createUserParentDeptName},'%')
+    </if>
+    <if test="daybookDto.createUserOrgFullId != null and daybookDto.createUserOrgFullId != ''">
+      AND daybook.create_user_org_full_id like CONCAT('%',#{daybookDto.createUserOrgFullId},'%')
+    </if>
+    order by daybook.id desc
+</select>
+</mapper>

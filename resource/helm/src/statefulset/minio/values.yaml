@@ -1,0 +1,14 @@
+name: minio
+replicaCount: 1
+image:
+  repository: dockerhub.kubekey.local/netwisd/minio
+  pullPolicy: IfNotPresent
+  tag: "latest"
+  port: 9000
+env:
+  access:
+    key: root
+  secret:
+    key: Netwisd*8
+service:
+  port: 32105

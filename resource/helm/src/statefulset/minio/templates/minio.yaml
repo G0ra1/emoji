@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ .Values.name }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.name }}
+  serviceName: {{ .Values.name }}
+  replicas: {{ .Values.replicaCount }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.name }}
+    spec:
+      containers:
+      - name: {{ .Values.name }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        securityContext:
+          privileged: true
+        ports:
+        - containerPort: {{ .Values.image.port }}
+        env:
+        - name: MINIO_ACCESS_KEY
+          value: "{{ .Values.env.access.key }}"
+        - name: MINIO_SECRET_KEY
+          value: "{{ .Values.env.secret.key }}"
+        - name: TZ
+          value: "Asia/Shanghai"
+        volumeMounts:
+        - name: data
+          mountPath: /data
+        args:
+          - server
+          - /data
+          - '--console-address'
+          - ':9000'
+          - '--address'
+          - ':9090'
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: minio-pvc

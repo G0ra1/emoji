@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.study.mapper.StudyMarterialsMapper">
+
+<resultMap id="studyMarterialsMap" type="com.netwisd.biz.study.vo.StudyMarterialsVo">
+  <id property="id" column="id"/>
+  <result property="labelCode" column="label_code"/>
+  <result property="labelName" column="label_name"/>
+  <result property="marterialsName" column="marterials_name"/>
+  <result property="isDownload" column="is_download"/>
+  <result property="fileId" column="file_id"/>
+  <result property="fileName" column="file_name"/>
+  <result property="fileUrl" column="file_url"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+  <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+  <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+  <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+  <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+  <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.study.dto.StudyMarterialsDto" resultMap="studyMarterialsMap">
+  select * from incloud_biz_study_marterials studyMarterials where 1=1
+    <if test="studyMarterialsDto.id != null and studyMarterialsDto.id != ''">
+      AND studyMarterials.id = #{studyMarterialsDto.id}
+    </if>
+    <if test="studyMarterialsDto.labelCode != null and studyMarterialsDto.labelCode != ''">
+      AND studyMarterials.label_code like CONCAT('%',#{studyMarterialsDto.labelCode},'%')
+    </if>
+    <if test="studyMarterialsDto.labelName != null and studyMarterialsDto.labelName != ''">
+      AND studyMarterials.label_name like CONCAT('%',#{studyMarterialsDto.labelName},'%')
+    </if>
+    <if test="studyMarterialsDto.marterialsName != null and studyMarterialsDto.marterialsName != ''">
+      AND studyMarterials.marterials_name like CONCAT('%',#{studyMarterialsDto.marterialsName},'%')
+    </if>
+    <if test="studyMarterialsDto.isDownload != null and studyMarterialsDto.isDownload != ''">
+      AND studyMarterials.is_download = #{studyMarterialsDto.isDownload}
+    </if>
+    <if test="studyMarterialsDto.fileId != null and studyMarterialsDto.fileId != ''">
+      AND studyMarterials.file_id = #{studyMarterialsDto.fileId}
+    </if>
+    <if test="studyMarterialsDto.fileName != null and studyMarterialsDto.fileName != ''">
+      AND studyMarterials.file_name like CONCAT('%',#{studyMarterialsDto.fileName},'%')
+    </if>
+    <if test="studyMarterialsDto.fileUrl != null and studyMarterialsDto.fileUrl != ''">
+      AND studyMarterials.file_url like CONCAT('%',#{studyMarterialsDto.fileUrl},'%')
+    </if>
+    <if test="studyMarterialsDto.createUserId != null and studyMarterialsDto.createUserId != ''">
+      AND studyMarterials.create_user_id = #{studyMarterialsDto.createUserId}
+    </if>
+    <if test="studyMarterialsDto.createUserName != null and studyMarterialsDto.createUserName != ''">
+      AND studyMarterials.create_user_name like CONCAT('%',#{studyMarterialsDto.createUserName},'%')
+    </if>
+    <if test="studyMarterialsDto.createUserParentOrgId != null and studyMarterialsDto.createUserParentOrgId != ''">
+      AND studyMarterials.create_user_parent_org_id = #{studyMarterialsDto.createUserParentOrgId}
+    </if>
+    <if test="studyMarterialsDto.createUserParentOrgName != null and studyMarterialsDto.createUserParentOrgName != ''">
+      AND studyMarterials.create_user_parent_org_name like CONCAT('%',#{studyMarterialsDto.createUserParentOrgName},'%')
+    </if>
+    <if test="studyMarterialsDto.createUserParentDeptId != null and studyMarterialsDto.createUserParentDeptId != ''">
+      AND studyMarterials.create_user_parent_dept_id = #{studyMarterialsDto.createUserParentDeptId}
+    </if>
+    <if test="studyMarterialsDto.createUserParentDeptName != null and studyMarterialsDto.createUserParentDeptName != ''">
+      AND studyMarterials.create_user_parent_dept_name like CONCAT('%',#{studyMarterialsDto.createUserParentDeptName},'%')
+    </if>
+    <if test="studyMarterialsDto.createUserOrgFullId != null and studyMarterialsDto.createUserOrgFullId != ''">
+      AND studyMarterials.create_user_org_full_id like CONCAT('%',#{studyMarterialsDto.createUserOrgFullId},'%')
+    </if>
+    order by studyMarterials.id desc
+</select>
+</mapper>

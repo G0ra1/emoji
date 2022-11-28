@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.study.mapper.StudySpecialMaterialsMapper">
+
+    <resultMap id="studySpecialMaterialsMap" type="com.netwisd.biz.study.vo.StudySpecialMaterialsVo">
+        <id property="id" column="id"/>
+        <result property="specialId" column="special_id"/>
+        <result property="materialsId" column="materials_id"/>
+        <result property="materialsName" column="materials_name"/>
+        <result property="materialsTypeCode" column="materials_type_code"/>
+        <result property="materialsTypeName" column="materials_type_name"/>
+        <result property="isDownload" column="is_download"/>
+        <result property="createUserId" column="create_user_id"/>
+        <result property="createUserName" column="create_user_name"/>
+        <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+        <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+        <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+        <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+        <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+    </resultMap>
+    <select id="getPageList" parameterType="com.netwisd.biz.study.dto.StudySpecialMaterialsDto"
+            resultMap="studySpecialMaterialsMap">
+        select * from incloud_biz_study_special_materials studySpecialMaterials where 1=1
+        <if test="studySpecialMaterialsDto.id != null and studySpecialMaterialsDto.id != ''">
+            AND studySpecialMaterials.id = #{studySpecialMaterialsDto.id}
+        </if>
+        <if test="studySpecialMaterialsDto.specialId != null and studySpecialMaterialsDto.specialId != ''">
+            AND studySpecialMaterials.special_id = #{studySpecialMaterialsDto.specialId}
+        </if>
+        <if test="studySpecialMaterialsDto.materialsId != null and studySpecialMaterialsDto.materialsId != ''">
+            AND studySpecialMaterials.materials_id = #{studySpecialMaterialsDto.materialsId}
+        </if>
+        <if test="studySpecialMaterialsDto.materialsName != null and studySpecialMaterialsDto.materialsName != ''">
+            AND studySpecialMaterials.materials_name like CONCAT('%',#{studySpecialMaterialsDto.materialsName},'%')
+        </if>
+        <if test="studySpecialMaterialsDto.materialsTypeCode != null and studySpecialMaterialsDto.materialsTypeCode != ''">
+            AND studySpecialMaterials.materials_type_code like
+            CONCAT('%',#{studySpecialMaterialsDto.materialsTypeCode},'%')
+        </if>
+        <if test="studySpecialMaterialsDto.materialsTypeName != null and studySpecialMaterialsDto.materialsTypeName != ''">
+            AND studySpecialMaterials.materials_type_name like
+            CONCAT('%',#{studySpecialMaterialsDto.materialsTypeName},'%')
+        </if>
+        <if test="studySpecialMaterialsDto.isDownload != null and studySpecialMaterialsDto.isDownload != ''">
+            AND studySpecialMaterials.is_download = #{studySpecialMaterialsDto.isDownload}
+        </if>
+        <if test="studySpecialMaterialsDto.createUserId != null and studySpecialMaterialsDto.createUserId != ''">
+            AND studySpecialMaterials.create_user_id = #{studySpecialMaterialsDto.createUserId}
+        </if>
+        <if test="studySpecialMaterialsDto.createUserName != null and studySpecialMaterialsDto.createUserName != ''">
+            AND studySpecialMaterials.create_user_name like CONCAT('%',#{studySpecialMaterialsDto.createUserName},'%')
+        </if>
+        <if test="studySpecialMaterialsDto.createUserParentOrgId != null and studySpecialMaterialsDto.createUserParentOrgId != ''">
+            AND studySpecialMaterials.create_user_parent_org_id = #{studySpecialMaterialsDto.createUserParentOrgId}
+        </if>
+        <if test="studySpecialMaterialsDto.createUserParentOrgName != null and studySpecialMaterialsDto.createUserParentOrgName != ''">
+            AND studySpecialMaterials.create_user_parent_org_name like
+            CONCAT('%',#{studySpecialMaterialsDto.createUserParentOrgName},'%')
+        </if>
+        <if test="studySpecialMaterialsDto.createUserParentDeptId != null and studySpecialMaterialsDto.createUserParentDeptId != ''">
+            AND studySpecialMaterials.create_user_parent_dept_id = #{studySpecialMaterialsDto.createUserParentDeptId}
+        </if>
+        <if test="studySpecialMaterialsDto.createUserParentDeptName != null and studySpecialMaterialsDto.createUserParentDeptName != ''">
+            AND studySpecialMaterials.create_user_parent_dept_name like
+            CONCAT('%',#{studySpecialMaterialsDto.createUserParentDeptName},'%')
+        </if>
+        <if test="studySpecialMaterialsDto.createUserOrgFullId != null and studySpecialMaterialsDto.createUserOrgFullId != ''">
+            AND studySpecialMaterials.create_user_org_full_id like
+            CONCAT('%',#{studySpecialMaterialsDto.createUserOrgFullId},'%')
+        </if>
+        order by studySpecialMaterials.id desc
+    </select>
+
+    <select id="getSpecialMaterialsListBySpecialId" resultType="com.netwisd.biz.study.vo.StudySpecialMaterialsVo">
+        select
+            specialMaterials.*,
+            marterials.file_id fileId,
+            marterials.file_url fileUrl,
+            marterials.file_name fileName
+        from incloud_biz_study_special_materials specialMaterials
+        left join incloud_biz_study_marterials marterials on specialMaterials.materials_id = marterials.id
+      <where>
+        <if test=" specialId != null ">
+            specialMaterials.special_id=#{specialId}
+        </if>
+      </where>
+    </select>
+
+</mapper>

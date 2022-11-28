@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.asset.mapper.MaterialDeliveryMapper">
+
+<resultMap id="materialDeliveryMap" type="com.netwisd.biz.asset.vo.MaterialDeliveryVo">
+  <id property="id" column="id"/>
+  <result property="code" column="code"/>
+  <result property="type" column="type"/>
+  <result property="sumTotalAmount" column="sum_total_amount"/>
+  <result property="sumTotalUntaxedAmount" column="sum_total_untaxed_amount"/>
+  <result property="sumTotalTaxAmount" column="sum_total_tax_amount"/>
+  <result property="fileIds" column="file_ids"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+  <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+  <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+  <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+  <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+  <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+  <result property="auditSuccessTiem" column="audit_success_tiem"/>
+  <result property="camundaProcdefKey" column="camunda_procdef_key"/>
+  <result property="camundaProcdefId" column="camunda_procdef_id"/>
+  <result property="camundaProcinsId" column="camunda_procins_id"/>
+  <result property="procdefTypeId" column="procdef_type_id"/>
+  <result property="procdefTypeName" column="procdef_type_name"/>
+  <result property="procdefVersion" column="procdef_version"/>
+  <result property="procdefName" column="procdef_name"/>
+  <result property="processName" column="process_name"/>
+  <result property="reason" column="reason"/>
+  <result property="bizKey" column="biz_key"/>
+  <result property="camundaTaskId" column="camunda_task_id"/>
+  <result property="bizPriority" column="biz_priority"/>
+  <result property="auditStatus" column="audit_status"/>
+  <result property="applyTime" column="apply_time"/>
+  <result property="applyUserId" column="apply_user_id"/>
+  <result property="applyUserName" column="apply_user_name"/>
+  <result property="applyUserOrgId" column="apply_user_org_id"/>
+  <result property="applyUserOrgName" column="apply_user_org_name"/>
+  <result property="applyUserDeptId" column="apply_user_dept_id"/>
+  <result property="applyUserDeptName" column="apply_user_dept_name"/>
+  <result property="typeName" column="type_name"/>
+  <result property="withdrawalNumber" column="withdrawal_number"/>
+  <result property="notWithdrawalNumber" column="not_withdrawal_number"/>
+  <result property="withdrawalAmount" column="withdrawal_amount"/>
+  <result property="notWithdrawalAmount" column="not_withdrawal_amount"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.asset.dto.MaterialDeliveryDto" resultMap="materialDeliveryMap">
+  select * from incloud_biz_asset_material_delivery materialDelivery where 1=1
+    <if test="materialDeliveryDto.id != null and materialDeliveryDto.id != ''">
+      AND materialDelivery.id = #{materialDeliveryDto.id}
+    </if>
+    <if test="materialDeliveryDto.code != null and materialDeliveryDto.code != ''">
+      AND materialDelivery.code like CONCAT('%',#{materialDeliveryDto.code},'%')
+    </if>
+    <if test="materialDeliveryDto.type != null and materialDeliveryDto.type != ''">
+      AND materialDelivery.type = #{materialDeliveryDto.type}
+    </if>
+    <if test="materialDeliveryDto.sumTotalAmount != null and materialDeliveryDto.sumTotalAmount != ''">
+      AND materialDelivery.sum_total_amount = #{materialDeliveryDto.sumTotalAmount}
+    </if>
+    <if test="materialDeliveryDto.sumTotalUntaxedAmount != null and materialDeliveryDto.sumTotalUntaxedAmount != ''">
+      AND materialDelivery.sum_total_untaxed_amount = #{materialDeliveryDto.sumTotalUntaxedAmount}
+    </if>
+    <if test="materialDeliveryDto.sumTotalTaxAmount != null and materialDeliveryDto.sumTotalTaxAmount != ''">
+      AND materialDelivery.sum_total_tax_amount = #{materialDeliveryDto.sumTotalTaxAmount}
+    </if>
+    <if test="materialDeliveryDto.fileIds != null and materialDeliveryDto.fileIds != ''">
+      AND materialDelivery.file_ids like CONCAT('%',#{materialDeliveryDto.fileIds},'%')
+    </if>
+    <if test="materialDeliveryDto.createUserId != null and materialDeliveryDto.createUserId != ''">
+      AND materialDelivery.create_user_id = #{materialDeliveryDto.createUserId}
+    </if>
+    <if test="materialDeliveryDto.createUserName != null and materialDeliveryDto.createUserName != ''">
+      AND materialDelivery.create_user_name like CONCAT('%',#{materialDeliveryDto.createUserName},'%')
+    </if>
+    <if test="materialDeliveryDto.createUserParentOrgId != null and materialDeliveryDto.createUserParentOrgId != ''">
+      AND materialDelivery.create_user_parent_org_id = #{materialDeliveryDto.createUserParentOrgId}
+    </if>
+    <if test="materialDeliveryDto.createUserParentOrgName != null and materialDeliveryDto.createUserParentOrgName != ''">
+      AND materialDelivery.create_user_parent_org_name like CONCAT('%',#{materialDeliveryDto.createUserParentOrgName},'%')
+    </if>
+    <if test="materialDeliveryDto.createUserParentDeptId != null and materialDeliveryDto.createUserParentDeptId != ''">
+      AND materialDelivery.create_user_parent_dept_id = #{materialDeliveryDto.createUserParentDeptId}
+    </if>
+    <if test="materialDeliveryDto.createUserParentDeptName != null and materialDeliveryDto.createUserParentDeptName != ''">
+      AND materialDelivery.create_user_parent_dept_name like CONCAT('%',#{materialDeliveryDto.createUserParentDeptName},'%')
+    </if>
+    <if test="materialDeliveryDto.createUserOrgFullId != null and materialDeliveryDto.createUserOrgFullId != ''">
+      AND materialDelivery.create_user_org_full_id like CONCAT('%',#{materialDeliveryDto.createUserOrgFullId},'%')
+    </if>
+    <if test="materialDeliveryDto.auditSuccessTiem != null and materialDeliveryDto.auditSuccessTiem != ''">
+      AND materialDelivery.audit_success_tiem = #{materialDeliveryDto.auditSuccessTiem}
+    </if>
+    <if test="materialDeliveryDto.camundaProcdefKey != null and materialDeliveryDto.camundaProcdefKey != ''">
+      AND materialDelivery.camunda_procdef_key like CONCAT('%',#{materialDeliveryDto.camundaProcdefKey},'%')
+    </if>
+    <if test="materialDeliveryDto.camundaProcdefId != null and materialDeliveryDto.camundaProcdefId != ''">
+      AND materialDelivery.camunda_procdef_id like CONCAT('%',#{materialDeliveryDto.camundaProcdefId},'%')
+    </if>
+    <if test="materialDeliveryDto.camundaProcinsId != null and materialDeliveryDto.camundaProcinsId != ''">
+      AND materialDelivery.camunda_procins_id like CONCAT('%',#{materialDeliveryDto.camundaProcinsId},'%')
+    </if>
+    <if test="materialDeliveryDto.procdefTypeId != null and materialDeliveryDto.procdefTypeId != ''">
+      AND materialDelivery.procdef_type_id = #{materialDeliveryDto.procdefTypeId}
+    </if>
+    <if test="materialDeliveryDto.procdefTypeName != null and materialDeliveryDto.procdefTypeName != ''">
+      AND materialDelivery.procdef_type_name like CONCAT('%',#{materialDeliveryDto.procdefTypeName},'%')
+    </if>
+    <if test="materialDeliveryDto.procdefVersion != null and materialDeliveryDto.procdefVersion != ''">
+      AND materialDelivery.procdef_version = #{materialDeliveryDto.procdefVersion}
+    </if>
+    <if test="materialDeliveryDto.procdefName != null and materialDeliveryDto.procdefName != ''">
+      AND materialDelivery.procdef_name like CONCAT('%',#{materialDeliveryDto.procdefName},'%')
+    </if>
+    <if test="materialDeliveryDto.processName != null and materialDeliveryDto.processName != ''">
+      AND materialDelivery.process_name like CONCAT('%',#{materialDeliveryDto.processName},'%')
+    </if>
+    <if test="materialDeliveryDto.reason != null and materialDeliveryDto.reason != ''">
+      AND materialDelivery.reason like CONCAT('%',#{materialDeliveryDto.reason},'%')
+    </if>
+    <if test="materialDeliveryDto.bizKey != null and materialDeliveryDto.bizKey != ''">
+      AND materialDelivery.biz_key like CONCAT('%',#{materialDeliveryDto.bizKey},'%')
+    </if>
+    <if test="materialDeliveryDto.camundaTaskId != null and materialDeliveryDto.camundaTaskId != ''">
+      AND materialDelivery.camunda_task_id like CONCAT('%',#{materialDeliveryDto.camundaTaskId},'%')
+    </if>
+    <if test="materialDeliveryDto.bizPriority != null and materialDeliveryDto.bizPriority != ''">
+      AND materialDelivery.biz_priority like CONCAT('%',#{materialDeliveryDto.bizPriority},'%')
+    </if>
+    <if test="materialDeliveryDto.auditStatus != null and materialDeliveryDto.auditStatus != ''">
+      AND materialDelivery.audit_status = #{materialDeliveryDto.auditStatus}
+    </if>
+    <if test="materialDeliveryDto.applyTime != null and materialDeliveryDto.applyTime != ''">
+      AND materialDelivery.apply_time = #{materialDeliveryDto.applyTime}
+    </if>
+    <if test="materialDeliveryDto.applyUserId != null and materialDeliveryDto.applyUserId != ''">
+      AND materialDelivery.apply_user_id = #{materialDeliveryDto.applyUserId}
+    </if>
+    <if test="materialDeliveryDto.applyUserName != null and materialDeliveryDto.applyUserName != ''">
+      AND materialDelivery.apply_user_name like CONCAT('%',#{materialDeliveryDto.applyUserName},'%')
+    </if>
+    <if test="materialDeliveryDto.applyUserOrgId != null and materialDeliveryDto.applyUserOrgId != ''">
+      AND materialDelivery.apply_user_org_id = #{materialDeliveryDto.applyUserOrgId}
+    </if>
+    <if test="materialDeliveryDto.applyUserOrgName != null and materialDeliveryDto.applyUserOrgName != ''">
+      AND materialDelivery.apply_user_org_name like CONCAT('%',#{materialDeliveryDto.applyUserOrgName},'%')
+    </if>
+    <if test="materialDeliveryDto.applyUserDeptId != null and materialDeliveryDto.applyUserDeptId != ''">
+      AND materialDelivery.apply_user_dept_id = #{materialDeliveryDto.applyUserDeptId}
+    </if>
+    <if test="materialDeliveryDto.applyUserDeptName != null and materialDeliveryDto.applyUserDeptName != ''">
+      AND materialDelivery.apply_user_dept_name like CONCAT('%',#{materialDeliveryDto.applyUserDeptName},'%')
+    </if>
+    <if test="materialDeliveryDto.typeName != null and materialDeliveryDto.typeName != ''">
+      AND materialDelivery.type_name like CONCAT('%',#{materialDeliveryDto.typeName},'%')
+    </if>
+    <if test="materialDeliveryDto.withdrawalNumber != null and materialDeliveryDto.withdrawalNumber != ''">
+      AND materialDelivery.withdrawal_number = #{materialDeliveryDto.withdrawalNumber}
+    </if>
+    <if test="materialDeliveryDto.notWithdrawalNumber != null and materialDeliveryDto.notWithdrawalNumber != ''">
+      AND materialDelivery.not_withdrawal_number = #{materialDeliveryDto.notWithdrawalNumber}
+    </if>
+    <if test="materialDeliveryDto.withdrawalAmount != null and materialDeliveryDto.withdrawalAmount != ''">
+      AND materialDelivery.withdrawal_amount = #{materialDeliveryDto.withdrawalAmount}
+    </if>
+    <if test="materialDeliveryDto.notWithdrawalAmount != null and materialDeliveryDto.notWithdrawalAmount != ''">
+      AND materialDelivery.not_withdrawal_amount = #{materialDeliveryDto.notWithdrawalAmount}
+    </if>
+    order by materialDelivery.id desc
+</select>
+</mapper>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.mdm.mapper.MdmPostSequDictMapper">
+
+<resultMap id="mdmPostSequDictMap" type="com.netwisd.base.mdm.vo.MdmPostSequDictVo">
+  <id property="id" column="id"/>
+  <result property="postSequName" column="post_sequ_name"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.mdm.dto.MdmPostSequDictDto" resultMap="mdmPostSequDictMap">
+  select * from incloud_base_mdm_post_sequ_dict mdmPostSequDict where 1=1
+    <if test="mdmPostSequDictDto.id != null and mdmPostSequDictDto.id != ''">
+      AND mdmPostSequDict.id = #{mdmPostSequDictDto.id}
+    </if>
+    <if test="mdmPostSequDictDto.postSequName != null and mdmPostSequDictDto.postSequName != ''">
+      AND mdmPostSequDict.post_sequ_name like CONCAT('%',#{mdmPostSequDictDto.postSequName},'%')
+    </if>
+    order by mdmPostSequDict.id desc
+</select>
+</mapper>

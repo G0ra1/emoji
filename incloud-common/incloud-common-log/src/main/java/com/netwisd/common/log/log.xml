@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Default log configuration provided for import
+-->
+<included>
+
+    <appender name="applicationLog" class="com.netwisd.common.log.config.LogbackAppender">
+        <layout>
+            <pattern>%date [%thread] %-5level [%logger{50}] %file:%line - %msg%n</pattern>
+        </layout>
+    </appender>
+
+    <!-- Level: FATAL 0  ERROR 3  WARN 4  INFO 6  DEBUG 7 -->
+    <root level="INFO">
+        <appender-ref ref="applicationLog"/>
+    </root>
+
+</included>

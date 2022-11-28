@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.mdm.mapper.ContractPartycMapper">
+
+<resultMap id="contractPartycMap" type="com.netwisd.biz.mdm.vo.ContractPartycVo">
+  <id property="id" column="id"/>
+  <result property="contractId" column="contract_id"/>
+  <result property="contractCode" column="contract_code"/>
+  <result property="partycId" column="partyc_id"/>
+  <result property="partycCode" column="partyc_code"/>
+  <result property="partycName" column="partyc_name"/>
+  <result property="partycQualification" column="partyc_qualification"/>
+  <result property="contractType" column="contract_type"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+  <result property="parentOrgId" column="parent_org_id"/>
+  <result property="parentOrgName" column="parent_org_name"/>
+  <result property="parentDeptId" column="parent_dept_id"/>
+  <result property="parentDeptName" column="parent_dept_name"/>
+  <result property="orgFullId" column="org_full_id"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.mdm.dto.ContractPartycDto" resultMap="contractPartycMap">
+  select * from incloud_biz_mdm_contract_partyc contractPartyc where 1=1
+    <if test="contractPartycDto.id != null and contractPartycDto.id != ''">
+      AND contractPartyc.id = #{contractPartycDto.id}
+    </if>
+    <if test="contractPartycDto.contractId != null and contractPartycDto.contractId != ''">
+      AND contractPartyc.contract_id = #{contractPartycDto.contractId}
+    </if>
+    <if test="contractPartycDto.contractCode != null and contractPartycDto.contractCode != ''">
+      AND contractPartyc.contract_code like CONCAT('%',#{contractPartycDto.contractCode},'%')
+    </if>
+    <if test="contractPartycDto.partycId != null and contractPartycDto.partycId != ''">
+      AND contractPartyc.partyc_id = #{contractPartycDto.partycId}
+    </if>
+    <if test="contractPartycDto.partycCode != null and contractPartycDto.partycCode != ''">
+      AND contractPartyc.partyc_code like CONCAT('%',#{contractPartycDto.partycCode},'%')
+    </if>
+    <if test="contractPartycDto.partycName != null and contractPartycDto.partycName != ''">
+      AND contractPartyc.partyc_name like CONCAT('%',#{contractPartycDto.partycName},'%')
+    </if>
+    <if test="contractPartycDto.partycQualification != null and contractPartycDto.partycQualification != ''">
+      AND contractPartyc.partyc_qualification like CONCAT('%',#{contractPartycDto.partycQualification},'%')
+    </if>
+    <if test="contractPartycDto.contractType != null and contractPartycDto.contractType != ''">
+      AND contractPartyc.contract_type = #{contractPartycDto.contractType}
+    </if>
+    <if test="contractPartycDto.createUserId != null and contractPartycDto.createUserId != ''">
+      AND contractPartyc.create_user_id = #{contractPartycDto.createUserId}
+    </if>
+    <if test="contractPartycDto.createUserName != null and contractPartycDto.createUserName != ''">
+      AND contractPartyc.create_user_name like CONCAT('%',#{contractPartycDto.createUserName},'%')
+    </if>
+    <if test="contractPartycDto.parentOrgId != null and contractPartycDto.parentOrgId != ''">
+      AND contractPartyc.parent_org_id = #{contractPartycDto.parentOrgId}
+    </if>
+    <if test="contractPartycDto.parentOrgName != null and contractPartycDto.parentOrgName != ''">
+      AND contractPartyc.parent_org_name like CONCAT('%',#{contractPartycDto.parentOrgName},'%')
+    </if>
+    <if test="contractPartycDto.parentDeptId != null and contractPartycDto.parentDeptId != ''">
+      AND contractPartyc.parent_dept_id = #{contractPartycDto.parentDeptId}
+    </if>
+    <if test="contractPartycDto.parentDeptName != null and contractPartycDto.parentDeptName != ''">
+      AND contractPartyc.parent_dept_name like CONCAT('%',#{contractPartycDto.parentDeptName},'%')
+    </if>
+    <if test="contractPartycDto.orgFullId != null and contractPartycDto.orgFullId != ''">
+      AND contractPartyc.org_full_id like CONCAT('%',#{contractPartycDto.orgFullId},'%')
+    </if>
+    order by contractPartyc.id desc
+</select>
+</mapper>

@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>incloud-base</artifactId>
+        <groupId>com.netwisd</groupId>
+        <version>4.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>incloud-base-wf</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.netwisd</groupId>
+            <artifactId>incloud-base-wf-starter</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <!--common中的db包，db中已经包含了core-->
+        <dependency>
+            <groupId>com.netwisd</groupId>
+            <artifactId>incloud-common-db</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.netwisd</groupId>
+            <artifactId>incloud-base-common</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <!--web 模块-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.github.openfeign/feign-httpclient -->
+        <dependency>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-httpclient</artifactId>
+            <version>11.0</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.eweb4j/fel -->
+        <dependency>
+            <groupId>org.eweb4j</groupId>
+            <artifactId>fel</artifactId>
+            <version>0.8</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.camunda.bpm.dmn/camunda-engine-feel-juel -->
+        <!--<dependency>
+            <groupId>org.camunda.bpm.dmn</groupId>
+            <artifactId>camunda-engine-feel-juel</artifactId>
+            <version>7.12.0</version>
+        </dependency>-->
+        <!-- https://mvnrepository.com/artifact/de.odysseus.juel/juel-impl -->
+        <dependency>
+            <groupId>de.odysseus.juel</groupId>
+            <artifactId>juel-api</artifactId>
+            <version>${juel.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>de.odysseus.juel</groupId>
+            <artifactId>juel-impl</artifactId>
+            <version>${juel.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>de.odysseus.juel</groupId>
+            <artifactId>juel-spi</artifactId>
+            <version>${juel.version}</version>
+        </dependency>
+        <!--<dependency>
+            <groupId>org.camunda.feel</groupId>
+            <artifactId>feel-engine</artifactId>
+            <version>1.12.4</version>
+        </dependency>-->
+        <!-- redis -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.camunda.bpm.springboot</groupId>
+            <artifactId>camunda-bpm-spring-boot-starter</artifactId>
+            <version>${camunda.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.camunda.bpm.springboot</groupId>
+            <artifactId>camunda-bpm-spring-boot-starter-rest</artifactId>
+            <version>${camunda.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.camunda.bpm.springboot</groupId>
+            <artifactId>camunda-bpm-spring-boot-starter-webapp</artifactId>
+            <version>${camunda.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-oauth2</artifactId>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.json/json -->
+        <!--<dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20200518</version>
+        </dependency>-->
+        <!--做单元测试-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!--undertow容器-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-undertow</artifactId>
+        </dependency>
+        <!-- openfeign -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+        <!-- nacos的注册发现 -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+        <!-- nacos的配置中心 -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
+        <!-- 服务熔断降级，在入口类中使用@SpringCloudApplication后，默认会引入 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+        </dependency>
+         <!--使用的seata客户端版本与server端要对应 -->
+        <dependency>
+            <groupId>io.seata</groupId>
+            <artifactId>seata-spring-boot-starter</artifactId>
+            <version>${seata.version}</version>
+        </dependency>
+        <!-- dom4j -->
+        <dependency>
+            <groupId>org.dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <version>2.1.3</version>
+        </dependency>
+        <!-- 我们使用的2.2.1版本的spring for alibaba，去掉内置的1.1旧版本 -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-seata</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>io.seata</groupId>
+                    <artifactId>seata-spring-boot-starter</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!-- rocketmq -->
+        <dependency>
+            <groupId>com.netwisd</groupId>
+            <artifactId>incloud-common-msg-rocket</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <layout>ZIP</layout>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

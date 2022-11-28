@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.asset.mapper.InventoryDetailMapper">
+
+<resultMap id="inventoryDetailMap" type="com.netwisd.biz.asset.vo.InventoryDetailVo">
+  <id property="id" column="id"/>
+  <result property="inventoryId" column="inventory_id"/>
+  <result property="assetsId" column="assets_id"/>
+  <result property="assetsDetailId" column="assets_detail_id"/>
+  <result property="classifyId" column="classify_id"/>
+  <result property="classifyCode" column="classify_code"/>
+  <result property="classifyName" column="classify_name"/>
+  <result property="route" column="route"/>
+  <result property="routeName" column="route_name"/>
+  <result property="categoryId" column="category_id"/>
+  <result property="categoryCode" column="category_code"/>
+  <result property="categoryName" column="category_name"/>
+  <result property="taxRate" column="tax_rate"/>
+  <result property="itemCode" column="item_code"/>
+  <result property="itemName" column="item_name"/>
+  <result property="desclong" column="desclong"/>
+  <result property="descshort" column="descshort"/>
+  <result property="unitCode" column="unit_code"/>
+  <result property="unitName" column="unit_name"/>
+  <result property="materialQuality" column="material_quality"/>
+  <result property="standard" column="standard"/>
+  <result property="specs" column="specs"/>
+  <result property="supplierName" column="supplier_name"/>
+  <result property="contractCode" column="contract_code"/>
+  <result property="assetsClassification" column="assets_classification"/>
+  <result property="billCodes" column="bill_codes"/>
+  <result property="billCodeFilesIds" column="bill_code_files_ids"/>
+  <result property="qualityAssuranceLevel" column="quality_assurance_level"/>
+  <result property="manufacturer" column="manufacturer"/>
+  <result property="productionDate" column="production_date"/>
+  <result property="serviceLife" column="service_life"/>
+  <result property="validPeriod" column="valid_period"/>
+  <result property="batchNumber" column="batch_number"/>
+  <result property="acceptanceDate" column="acceptance_date"/>
+  <result property="factoryDate" column="factory_date"/>
+  <result property="factoryCode" column="factory_code"/>
+  <result property="approachDate" column="approach_date"/>
+  <result property="warehouseId" column="warehouse_id"/>
+  <result property="warehouseName" column="warehouse_name"/>
+  <result property="shelfId" column="shelf_id"/>
+  <result property="shelfName" column="shelf_name"/>
+  <result property="assetsCode" column="assets_code"/>
+  <result property="assetsLabel" column="assets_label"/>
+  <result property="rzDate" column="rz_date"/>
+  <result property="acceptanceNumber" column="acceptance_number"/>
+  <result property="accpetanceTime" column="accpetance_time"/>
+  <result property="accpetanceCode" column="accpetance_code"/>
+  <result property="assetsNumber" column="assets_number"/>
+  <result property="assetsAmount" column="assets_amount"/>
+  <result property="assetsUntaxedAmount" column="assets_untaxed_amount"/>
+  <result property="assetsTaxAmount" column="assets_tax_amount"/>
+  <result property="assetsSumAmount" column="assets_sum_amount"/>
+  <result property="assetsSumUntaxedAmount" column="assets_sum_untaxed_amount"/>
+  <result property="assetsSumTaxAmount" column="assets_sum_tax_amount"/>
+  <result property="paperNumber" column="paper_number"/>
+  <result property="inventoryNumber" column="inventory_number"/>
+  <result property="inventoryReason" column="inventory_reason"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.asset.dto.InventoryDetailDto" resultMap="inventoryDetailMap">
+  select * from incloud_biz_asset_inventory_detail inventoryDetail where 1=1
+    <if test="inventoryDetailDto.id != null and inventoryDetailDto.id != ''">
+      AND inventoryDetail.id = #{inventoryDetailDto.id}
+    </if>
+    <if test="inventoryDetailDto.inventoryId != null and inventoryDetailDto.inventoryId != ''">
+      AND inventoryDetail.inventory_id = #{inventoryDetailDto.inventoryId}
+    </if>
+    <if test="inventoryDetailDto.assetsId != null and inventoryDetailDto.assetsId != ''">
+      AND inventoryDetail.assets_id = #{inventoryDetailDto.assetsId}
+    </if>
+    <if test="inventoryDetailDto.assetsDetailId != null and inventoryDetailDto.assetsDetailId != ''">
+      AND inventoryDetail.assets_detail_id = #{inventoryDetailDto.assetsDetailId}
+    </if>
+    <if test="inventoryDetailDto.classifyId != null and inventoryDetailDto.classifyId != ''">
+      AND inventoryDetail.classify_id like CONCAT('%',#{inventoryDetailDto.classifyId},'%')
+    </if>
+    <if test="inventoryDetailDto.classifyCode != null and inventoryDetailDto.classifyCode != ''">
+      AND inventoryDetail.classify_code like CONCAT('%',#{inventoryDetailDto.classifyCode},'%')
+    </if>
+    <if test="inventoryDetailDto.classifyName != null and inventoryDetailDto.classifyName != ''">
+      AND inventoryDetail.classify_name like CONCAT('%',#{inventoryDetailDto.classifyName},'%')
+    </if>
+    <if test="inventoryDetailDto.route != null and inventoryDetailDto.route != ''">
+      AND inventoryDetail.route like CONCAT('%',#{inventoryDetailDto.route},'%')
+    </if>
+    <if test="inventoryDetailDto.routeName != null and inventoryDetailDto.routeName != ''">
+      AND inventoryDetail.route_name like CONCAT('%',#{inventoryDetailDto.routeName},'%')
+    </if>
+    <if test="inventoryDetailDto.categoryId != null and inventoryDetailDto.categoryId != ''">
+      AND inventoryDetail.category_id like CONCAT('%',#{inventoryDetailDto.categoryId},'%')
+    </if>
+    <if test="inventoryDetailDto.categoryCode != null and inventoryDetailDto.categoryCode != ''">
+      AND inventoryDetail.category_code like CONCAT('%',#{inventoryDetailDto.categoryCode},'%')
+    </if>
+    <if test="inventoryDetailDto.categoryName != null and inventoryDetailDto.categoryName != ''">
+      AND inventoryDetail.category_name like CONCAT('%',#{inventoryDetailDto.categoryName},'%')
+    </if>
+    <if test="inventoryDetailDto.taxRate != null and inventoryDetailDto.taxRate != ''">
+      AND inventoryDetail.tax_rate = #{inventoryDetailDto.taxRate}
+    </if>
+    <if test="inventoryDetailDto.itemCode != null and inventoryDetailDto.itemCode != ''">
+      AND inventoryDetail.item_code like CONCAT('%',#{inventoryDetailDto.itemCode},'%')
+    </if>
+    <if test="inventoryDetailDto.itemName != null and inventoryDetailDto.itemName != ''">
+      AND inventoryDetail.item_name like CONCAT('%',#{inventoryDetailDto.itemName},'%')
+    </if>
+    <if test="inventoryDetailDto.desclong != null and inventoryDetailDto.desclong != ''">
+      AND inventoryDetail.desclong like CONCAT('%',#{inventoryDetailDto.desclong},'%')
+    </if>
+    <if test="inventoryDetailDto.descshort != null and inventoryDetailDto.descshort != ''">
+      AND inventoryDetail.descshort like CONCAT('%',#{inventoryDetailDto.descshort},'%')
+    </if>
+    <if test="inventoryDetailDto.unitCode != null and inventoryDetailDto.unitCode != ''">
+      AND inventoryDetail.unit_code like CONCAT('%',#{inventoryDetailDto.unitCode},'%')
+    </if>
+    <if test="inventoryDetailDto.unitName != null and inventoryDetailDto.unitName != ''">
+      AND inventoryDetail.unit_name like CONCAT('%',#{inventoryDetailDto.unitName},'%')
+    </if>
+    <if test="inventoryDetailDto.materialQuality != null and inventoryDetailDto.materialQuality != ''">
+      AND inventoryDetail.material_quality like CONCAT('%',#{inventoryDetailDto.materialQuality},'%')
+    </if>
+    <if test="inventoryDetailDto.standard != null and inventoryDetailDto.standard != ''">
+      AND inventoryDetail.standard like CONCAT('%',#{inventoryDetailDto.standard},'%')
+    </if>
+    <if test="inventoryDetailDto.specs != null and inventoryDetailDto.specs != ''">
+      AND inventoryDetail.specs like CONCAT('%',#{inventoryDetailDto.specs},'%')
+    </if>
+    <if test="inventoryDetailDto.supplierName != null and inventoryDetailDto.supplierName != ''">
+      AND inventoryDetail.supplier_name like CONCAT('%',#{inventoryDetailDto.supplierName},'%')
+    </if>
+    <if test="inventoryDetailDto.contractCode != null and inventoryDetailDto.contractCode != ''">
+      AND inventoryDetail.contract_code like CONCAT('%',#{inventoryDetailDto.contractCode},'%')
+    </if>
+    <if test="inventoryDetailDto.assetsClassification != null and inventoryDetailDto.assetsClassification != ''">
+      AND inventoryDetail.assets_classification like CONCAT('%',#{inventoryDetailDto.assetsClassification},'%')
+    </if>
+    <if test="inventoryDetailDto.billCodes != null and inventoryDetailDto.billCodes != ''">
+      AND inventoryDetail.bill_codes like CONCAT('%',#{inventoryDetailDto.billCodes},'%')
+    </if>
+    <if test="inventoryDetailDto.billCodeFilesIds != null and inventoryDetailDto.billCodeFilesIds != ''">
+      AND inventoryDetail.bill_code_files_ids like CONCAT('%',#{inventoryDetailDto.billCodeFilesIds},'%')
+    </if>
+    <if test="inventoryDetailDto.qualityAssuranceLevel != null and inventoryDetailDto.qualityAssuranceLevel != ''">
+      AND inventoryDetail.quality_assurance_level like CONCAT('%',#{inventoryDetailDto.qualityAssuranceLevel},'%')
+    </if>
+    <if test="inventoryDetailDto.manufacturer != null and inventoryDetailDto.manufacturer != ''">
+      AND inventoryDetail.manufacturer like CONCAT('%',#{inventoryDetailDto.manufacturer},'%')
+    </if>
+    <if test="inventoryDetailDto.productionDate != null and inventoryDetailDto.productionDate != ''">
+      AND inventoryDetail.production_date = #{inventoryDetailDto.productionDate}
+    </if>
+    <if test="inventoryDetailDto.serviceLife != null and inventoryDetailDto.serviceLife != ''">
+      AND inventoryDetail.service_life = #{inventoryDetailDto.serviceLife}
+    </if>
+    <if test="inventoryDetailDto.validPeriod != null and inventoryDetailDto.validPeriod != ''">
+      AND inventoryDetail.valid_period like CONCAT('%',#{inventoryDetailDto.validPeriod},'%')
+    </if>
+    <if test="inventoryDetailDto.batchNumber != null and inventoryDetailDto.batchNumber != ''">
+      AND inventoryDetail.batch_number like CONCAT('%',#{inventoryDetailDto.batchNumber},'%')
+    </if>
+    <if test="inventoryDetailDto.acceptanceDate != null and inventoryDetailDto.acceptanceDate != ''">
+      AND inventoryDetail.acceptance_date = #{inventoryDetailDto.acceptanceDate}
+    </if>
+    <if test="inventoryDetailDto.factoryDate != null and inventoryDetailDto.factoryDate != ''">
+      AND inventoryDetail.factory_date = #{inventoryDetailDto.factoryDate}
+    </if>
+    <if test="inventoryDetailDto.factoryCode != null and inventoryDetailDto.factoryCode != ''">
+      AND inventoryDetail.factory_code like CONCAT('%',#{inventoryDetailDto.factoryCode},'%')
+    </if>
+    <if test="inventoryDetailDto.approachDate != null and inventoryDetailDto.approachDate != ''">
+      AND inventoryDetail.approach_date = #{inventoryDetailDto.approachDate}
+    </if>
+    <if test="inventoryDetailDto.warehouseId != null and inventoryDetailDto.warehouseId != ''">
+      AND inventoryDetail.warehouse_id like CONCAT('%',#{inventoryDetailDto.warehouseId},'%')
+    </if>
+    <if test="inventoryDetailDto.warehouseName != null and inventoryDetailDto.warehouseName != ''">
+      AND inventoryDetail.warehouse_name like CONCAT('%',#{inventoryDetailDto.warehouseName},'%')
+    </if>
+    <if test="inventoryDetailDto.shelfId != null and inventoryDetailDto.shelfId != ''">
+      AND inventoryDetail.shelf_id like CONCAT('%',#{inventoryDetailDto.shelfId},'%')
+    </if>
+    <if test="inventoryDetailDto.shelfName != null and inventoryDetailDto.shelfName != ''">
+      AND inventoryDetail.shelf_name like CONCAT('%',#{inventoryDetailDto.shelfName},'%')
+    </if>
+    <if test="inventoryDetailDto.assetsCode != null and inventoryDetailDto.assetsCode != ''">
+      AND inventoryDetail.assets_code like CONCAT('%',#{inventoryDetailDto.assetsCode},'%')
+    </if>
+    <if test="inventoryDetailDto.assetsLabel != null and inventoryDetailDto.assetsLabel != ''">
+      AND inventoryDetail.assets_label like CONCAT('%',#{inventoryDetailDto.assetsLabel},'%')
+    </if>
+    <if test="inventoryDetailDto.rzDate != null and inventoryDetailDto.rzDate != ''">
+      AND inventoryDetail.rz_date = #{inventoryDetailDto.rzDate}
+    </if>
+    <if test="inventoryDetailDto.acceptanceNumber != null and inventoryDetailDto.acceptanceNumber != ''">
+      AND inventoryDetail.acceptance_number = #{inventoryDetailDto.acceptanceNumber}
+    </if>
+    <if test="inventoryDetailDto.accpetanceTime != null and inventoryDetailDto.accpetanceTime != ''">
+      AND inventoryDetail.accpetance_time like CONCAT('%',#{inventoryDetailDto.accpetanceTime},'%')
+    </if>
+    <if test="inventoryDetailDto.accpetanceCode != null and inventoryDetailDto.accpetanceCode != ''">
+      AND inventoryDetail.accpetance_code like CONCAT('%',#{inventoryDetailDto.accpetanceCode},'%')
+    </if>
+    <if test="inventoryDetailDto.assetsNumber != null and inventoryDetailDto.assetsNumber != ''">
+      AND inventoryDetail.assets_number = #{inventoryDetailDto.assetsNumber}
+    </if>
+    <if test="inventoryDetailDto.assetsAmount != null and inventoryDetailDto.assetsAmount != ''">
+      AND inventoryDetail.assets_amount = #{inventoryDetailDto.assetsAmount}
+    </if>
+    <if test="inventoryDetailDto.assetsUntaxedAmount != null and inventoryDetailDto.assetsUntaxedAmount != ''">
+      AND inventoryDetail.assets_untaxed_amount = #{inventoryDetailDto.assetsUntaxedAmount}
+    </if>
+    <if test="inventoryDetailDto.assetsTaxAmount != null and inventoryDetailDto.assetsTaxAmount != ''">
+      AND inventoryDetail.assets_tax_amount = #{inventoryDetailDto.assetsTaxAmount}
+    </if>
+    <if test="inventoryDetailDto.assetsSumAmount != null and inventoryDetailDto.assetsSumAmount != ''">
+      AND inventoryDetail.assets_sum_amount = #{inventoryDetailDto.assetsSumAmount}
+    </if>
+    <if test="inventoryDetailDto.assetsSumUntaxedAmount != null and inventoryDetailDto.assetsSumUntaxedAmount != ''">
+      AND inventoryDetail.assets_sum_untaxed_amount = #{inventoryDetailDto.assetsSumUntaxedAmount}
+    </if>
+    <if test="inventoryDetailDto.assetsSumTaxAmount != null and inventoryDetailDto.assetsSumTaxAmount != ''">
+      AND inventoryDetail.assets_sum_tax_amount = #{inventoryDetailDto.assetsSumTaxAmount}
+    </if>
+    <if test="inventoryDetailDto.paperNumber != null and inventoryDetailDto.paperNumber != ''">
+      AND inventoryDetail.paper_number = #{inventoryDetailDto.paperNumber}
+    </if>
+    <if test="inventoryDetailDto.inventoryNumber != null and inventoryDetailDto.inventoryNumber != ''">
+      AND inventoryDetail.inventory_number = #{inventoryDetailDto.inventoryNumber}
+    </if>
+    <if test="inventoryDetailDto.inventoryReason != null and inventoryDetailDto.inventoryReason != ''">
+      AND inventoryDetail.inventory_reason like CONCAT('%',#{inventoryDetailDto.inventoryReason},'%')
+    </if>
+    order by inventoryDetail.id desc
+</select>
+</mapper>

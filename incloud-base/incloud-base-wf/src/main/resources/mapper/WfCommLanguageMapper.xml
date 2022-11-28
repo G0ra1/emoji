@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.wf.mapper.WfCommLanguageMapper">
+
+<resultMap id="wfCommLanguageMap" type="com.netwisd.base.wf.vo.WfCommLanguageVo">
+  <id property="id" column="id"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+  <result property="useUserId" column="use_user_id"/>
+  <result property="useUserName" column="use_user_name"/>
+  <result property="content" column="content"/>
+  <result property="isGeneral" column="is_general"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.wf.dto.WfCommLanguageDto" resultMap="wfCommLanguageMap">
+  select * from incloud_base_wf_comm_language wfCommLanguage where 1=1
+    <if test="wfCommLanguageDto.id != null and wfCommLanguageDto.id != ''">
+      AND wfCommLanguage.id = #{wfCommLanguageDto.id}
+    </if>
+    <if test="wfCommLanguageDto.createUserId != null and wfCommLanguageDto.createUserId != ''">
+      AND wfCommLanguage.create_user_id like CONCAT('%',#{wfCommLanguageDto.createUserId},'%')
+    </if>
+    <if test="wfCommLanguageDto.createUserName != null and wfCommLanguageDto.createUserName != ''">
+      AND wfCommLanguage.create_user_name like CONCAT('%',#{wfCommLanguageDto.createUserName},'%')
+    </if>
+    <if test="wfCommLanguageDto.useUserId != null and wfCommLanguageDto.useUserId != ''">
+      AND wfCommLanguage.use_user_id like CONCAT('%',#{wfCommLanguageDto.useUserId},'%')
+    </if>
+    <if test="wfCommLanguageDto.useUserName != null and wfCommLanguageDto.useUserName != ''">
+      AND wfCommLanguage.use_user_name like CONCAT('%',#{wfCommLanguageDto.useUserName},'%')
+    </if>
+    <if test="wfCommLanguageDto.content != null and wfCommLanguageDto.content != ''">
+      AND wfCommLanguage.content like CONCAT('%',#{wfCommLanguageDto.content},'%')
+    </if>
+    <if test="wfCommLanguageDto.isGeneral != null and wfCommLanguageDto.isGeneral != ''">
+      AND wfCommLanguage.is_general = #{wfCommLanguageDto.isGeneral}
+    </if>
+    order by wfCommLanguage.id desc
+</select>
+</mapper>

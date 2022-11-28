@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.asset.mapper.MaintainPlanMapper">
+
+  <resultMap id="maintainPlanMap" type="com.netwisd.biz.asset.vo.MaintainPlanVo">
+    <id property="id" column="id"/>
+    <result property="code" column="code"/>
+    <result property="createUserId" column="create_user_id"/>
+    <result property="createUserName" column="create_user_name"/>
+    <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+    <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+    <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+    <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+    <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+    <result property="auditSuccessTiem" column="audit_success_tiem"/>
+    <result property="camundaProcdefKey" column="camunda_procdef_key"/>
+    <result property="camundaProcdefId" column="camunda_procdef_id"/>
+    <result property="camundaProcinsId" column="camunda_procins_id"/>
+    <result property="procdefTypeId" column="procdef_type_id"/>
+    <result property="procdefTypeName" column="procdef_type_name"/>
+    <result property="procdefVersion" column="procdef_version"/>
+    <result property="procdefName" column="procdef_name"/>
+    <result property="processName" column="process_name"/>
+    <result property="reason" column="reason"/>
+    <result property="bizKey" column="biz_key"/>
+    <result property="camundaTaskId" column="camunda_task_id"/>
+    <result property="bizPriority" column="biz_priority"/>
+    <result property="auditStatus" column="audit_status"/>
+    <result property="planYear" column="plan_year"/>
+  </resultMap>
+  <select id="getPageList" parameterType="com.netwisd.biz.asset.dto.MaintainPlanDto" resultMap="maintainPlanMap">
+    select * from incloud_biz_asset_maintain_plan maintainPlan where 1=1
+    <if test="maintainPlanDto.id != null and maintainPlanDto.id != ''">
+      AND maintainPlan.id = #{maintainPlanDto.id}
+    </if>
+    <if test="maintainPlanDto.code != null and maintainPlanDto.code != ''">
+      AND maintainPlan.code like CONCAT('%',#{maintainPlanDto.code},'%')
+    </if>
+    <if test="maintainPlanDto.createUserId != null and maintainPlanDto.createUserId != ''">
+      AND maintainPlan.create_user_id = #{maintainPlanDto.createUserId}
+    </if>
+    <if test="maintainPlanDto.createUserName != null and maintainPlanDto.createUserName != ''">
+      AND maintainPlan.create_user_name like CONCAT('%',#{maintainPlanDto.createUserName},'%')
+    </if>
+    <if test="maintainPlanDto.createUserParentOrgId != null and maintainPlanDto.createUserParentOrgId != ''">
+      AND maintainPlan.create_user_parent_org_id = #{maintainPlanDto.createUserParentOrgId}
+    </if>
+    <if test="maintainPlanDto.createUserParentOrgName != null and maintainPlanDto.createUserParentOrgName != ''">
+      AND maintainPlan.create_user_parent_org_name like CONCAT('%',#{maintainPlanDto.createUserParentOrgName},'%')
+    </if>
+    <if test="maintainPlanDto.createUserParentDeptId != null and maintainPlanDto.createUserParentDeptId != ''">
+      AND maintainPlan.create_user_parent_dept_id = #{maintainPlanDto.createUserParentDeptId}
+    </if>
+    <if test="maintainPlanDto.createUserParentDeptName != null and maintainPlanDto.createUserParentDeptName != ''">
+      AND maintainPlan.create_user_parent_dept_name like CONCAT('%',#{maintainPlanDto.createUserParentDeptName},'%')
+    </if>
+    <if test="maintainPlanDto.createUserOrgFullId != null and maintainPlanDto.createUserOrgFullId != ''">
+      AND maintainPlan.create_user_org_full_id like CONCAT('%',#{maintainPlanDto.createUserOrgFullId},'%')
+    </if>
+    <if test="maintainPlanDto.auditSuccessTiem != null and maintainPlanDto.auditSuccessTiem != ''">
+      AND maintainPlan.audit_success_tiem = #{maintainPlanDto.auditSuccessTiem}
+    </if>
+    <if test="maintainPlanDto.camundaProcdefKey != null and maintainPlanDto.camundaProcdefKey != ''">
+      AND maintainPlan.camunda_procdef_key like CONCAT('%',#{maintainPlanDto.camundaProcdefKey},'%')
+    </if>
+    <if test="maintainPlanDto.camundaProcdefId != null and maintainPlanDto.camundaProcdefId != ''">
+      AND maintainPlan.camunda_procdef_id like CONCAT('%',#{maintainPlanDto.camundaProcdefId},'%')
+    </if>
+    <if test="maintainPlanDto.camundaProcinsId != null and maintainPlanDto.camundaProcinsId != ''">
+      AND maintainPlan.camunda_procins_id like CONCAT('%',#{maintainPlanDto.camundaProcinsId},'%')
+    </if>
+    <if test="maintainPlanDto.procdefTypeId != null and maintainPlanDto.procdefTypeId != ''">
+      AND maintainPlan.procdef_type_id = #{maintainPlanDto.procdefTypeId}
+    </if>
+    <if test="maintainPlanDto.procdefTypeName != null and maintainPlanDto.procdefTypeName != ''">
+      AND maintainPlan.procdef_type_name like CONCAT('%',#{maintainPlanDto.procdefTypeName},'%')
+    </if>
+    <if test="maintainPlanDto.procdefVersion != null and maintainPlanDto.procdefVersion != ''">
+      AND maintainPlan.procdef_version = #{maintainPlanDto.procdefVersion}
+    </if>
+    <if test="maintainPlanDto.procdefName != null and maintainPlanDto.procdefName != ''">
+      AND maintainPlan.procdef_name like CONCAT('%',#{maintainPlanDto.procdefName},'%')
+    </if>
+    <if test="maintainPlanDto.processName != null and maintainPlanDto.processName != ''">
+      AND maintainPlan.process_name like CONCAT('%',#{maintainPlanDto.processName},'%')
+    </if>
+    <if test="maintainPlanDto.reason != null and maintainPlanDto.reason != ''">
+      AND maintainPlan.reason like CONCAT('%',#{maintainPlanDto.reason},'%')
+    </if>
+    <if test="maintainPlanDto.bizKey != null and maintainPlanDto.bizKey != ''">
+      AND maintainPlan.biz_key like CONCAT('%',#{maintainPlanDto.bizKey},'%')
+    </if>
+    <if test="maintainPlanDto.camundaTaskId != null and maintainPlanDto.camundaTaskId != ''">
+      AND maintainPlan.camunda_task_id like CONCAT('%',#{maintainPlanDto.camundaTaskId},'%')
+    </if>
+    <if test="maintainPlanDto.bizPriority != null and maintainPlanDto.bizPriority != ''">
+      AND maintainPlan.biz_priority like CONCAT('%',#{maintainPlanDto.bizPriority},'%')
+    </if>
+    <if test="maintainPlanDto.auditStatus != null and maintainPlanDto.auditStatus != ''">
+      AND maintainPlan.audit_status = #{maintainPlanDto.auditStatus}
+    </if>
+    <if test="maintainPlanDto.planYear != null and maintainPlanDto.planYear != ''">
+      AND maintainPlan.plan_year like CONCAT('%',#{maintainPlanDto.planYear},'%')
+    </if>
+    order by maintainPlan.id desc
+</select>
+  <select id="getMaxCode" resultType="java.lang.String">
+  SELECT MAX(SUBSTRING_INDEX(code,'-',-1)) AS maxCode FROM `incloud_biz_asset_maintain_plan` WHERE DATE_FORMAT(create_time,'%Y-%m-%d') =  CURDATE()
+</select>
+</mapper>

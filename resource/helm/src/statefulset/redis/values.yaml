@@ -1,0 +1,9 @@
+name: redis
+replicaCount: 1
+image:
+  repository: dockerhub.kubekey.local/netwisd/redis
+  pullPolicy: IfNotPresent
+  tag: "5.0.7"
+  port: 6379
+service:
+  port: 32101

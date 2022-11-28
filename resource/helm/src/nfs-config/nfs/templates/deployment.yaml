@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: nfs-client-provisioner
+  annotations:
+    "helm.sh/hook": pre-install
+    "helm.sh/hook-weight": "-99"
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: nfs-client-provisioner
+  annotations:
+    "helm.sh/hook": pre-install
+    "helm.sh/hook-weight": "-99"
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: nfs-client-provisioner
+  template:
+    metadata:
+      labels:
+        app: nfs-client-provisioner
+    spec:
+      serviceAccount: nfs-client-provisioner
+      containers:
+        - name: nfs-client-provisioner
+          image: easzlab/nfs-subdir-external-provisioner:v4.0.1
+          volumeMounts:
+            - name: nfs-client-root
+              mountPath: /persistentvolumes
+          env:
+            - name: PROVISIONER_NAME
+              value: fuseim.pri/ifs
+            - name: NFS_SERVER
+              value: {{ .Values.data.server }}
+            - name: NFS_PATH
+              value: {{ .Values.data.path }}
+      volumes:
+        - name: nfs-client-root
+          nfs:
+            server: {{ .Values.data.server }}
+            path: {{ .Values.data.path }}

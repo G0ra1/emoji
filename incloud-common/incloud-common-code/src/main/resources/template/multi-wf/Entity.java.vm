@@ -1,0 +1,44 @@
+package ${package}.${moduleName}.entity;
+
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.netwisd.common.db.anntation.Column;
+import com.netwisd.common.db.anntation.Table;
+import com.netwisd.common.db.data.DataType;
+import com.netwisd.base.wf.starter.entitiy.WfEntity;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+    #if(${hasBigDecimal})
+import java.math.BigDecimal;
+#end
+import java.time.LocalDateTime;
+import java.util.Date;
+
+/**
+ * @Description $${comments} 功能描述...
+ * @author 云数网讯 ${author}@netwisd.com
+ * @date ${datetime}
+ */
+@Data
+@Table(value = "${tableName}",comment = "${comments}")
+@TableName("${tableName}")
+@EqualsAndHashCode(callSuper = true)
+@ApiModel(value = "${comments} Entity")
+public class ${className} extends WfEntity<${className}>  {
+
+#foreach ($column in $columns)
+#if($column.columnName != $id.columnName)
+    /**
+     * $column.columnName
+     * $column.comments
+     */
+    @ApiModelProperty(#if($column.comments != '')value="$column.comments"#end#if($column.comments == '')value="$column.columnName"#end#if($column.hidden),hidden=$column.hidden#end)
+    @TableField(value="$column.columnName")
+    @Column(type = DataType.$column.dataTypeCase, length = $column.length, #if($column.precision != 0)precision = $column.precision ,#end#if("$!{column.fkTableName}" != "")fkTableName = "$!{column.fkTableName}" ,#end#if("$!{column.fkFieldName}" != "")fkFieldName = "$!{column.fkFieldName}" ,#end isNull = $column.nullable, comment = "$column.comments")
+    private $column.attrType $column.lowerAttrName;
+#end
+#end
+
+}

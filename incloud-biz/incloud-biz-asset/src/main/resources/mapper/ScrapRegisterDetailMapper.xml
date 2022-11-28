@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.asset.mapper.ScrapRegisterDetailMapper">
+
+<resultMap id="scrapRegisterDetailMap" type="com.netwisd.biz.asset.vo.ScrapRegisterDetailVo">
+  <id property="id" column="id"/>
+  <result property="registerId" column="register_id"/>
+  <result property="applyId" column="apply_id"/>
+  <result property="applyDetailId" column="apply_detail_id"/>
+  <result property="assetsId" column="assets_id"/>
+  <result property="assetsDetailId" column="assets_detail_id"/>
+  <result property="classifyId" column="classify_id"/>
+  <result property="classifyCode" column="classify_code"/>
+  <result property="classifyName" column="classify_name"/>
+  <result property="itemType" column="item_type"/>
+  <result property="itemTypeName" column="item_type_name"/>
+  <result property="route" column="route"/>
+  <result property="routeName" column="route_name"/>
+  <result property="taxRate" column="tax_rate"/>
+  <result property="itemId" column="item_id"/>
+  <result property="itemCode" column="item_code"/>
+  <result property="itemName" column="item_name"/>
+  <result property="desclong" column="desclong"/>
+  <result property="descshort" column="descshort"/>
+  <result property="unitCode" column="unit_code"/>
+  <result property="unitName" column="unit_name"/>
+  <result property="materialQuality" column="material_quality"/>
+  <result property="standard" column="standard"/>
+  <result property="specs" column="specs"/>
+  <result property="skuCode" column="sku_code"/>
+  <result property="skuFullId" column="sku_full_id"/>
+  <result property="skuFullName" column="sku_full_name"/>
+  <result property="supplierName" column="supplier_name"/>
+  <result property="contractCode" column="contract_code"/>
+  <result property="assetsClassification" column="assets_classification"/>
+  <result property="billCodes" column="bill_codes"/>
+  <result property="billCodeFilesIds" column="bill_code_files_ids"/>
+  <result property="qualityAssuranceLevel" column="quality_assurance_level"/>
+  <result property="manufacturer" column="manufacturer"/>
+  <result property="productionDate" column="production_date"/>
+  <result property="serviceLife" column="service_life"/>
+  <result property="validPeriod" column="valid_period"/>
+  <result property="batchNumber" column="batch_number"/>
+  <result property="factoryDate" column="factory_date"/>
+  <result property="factoryCode" column="factory_code"/>
+  <result property="approachDate" column="approach_date"/>
+  <result property="warehouseId" column="warehouse_id"/>
+  <result property="warehouseName" column="warehouse_name"/>
+  <result property="shelfId" column="shelf_id"/>
+  <result property="shelfName" column="shelf_name"/>
+  <result property="assetsCode" column="assets_code"/>
+  <result property="stockNumber" column="stock_number"/>
+  <result property="scrapNumber" column="scrap_number"/>
+  <result property="scrapRegisterNumber" column="scrap_register_number"/>
+  <result property="assetsAmount" column="assets_amount"/>
+  <result property="assetsUntaxedAmount" column="assets_untaxed_amount"/>
+  <result property="assetsTaxAmount" column="assets_tax_amount"/>
+  <result property="assetsSumAmount" column="assets_sum_amount"/>
+  <result property="assetsSumUntaxedAmount" column="assets_sum_untaxed_amount"/>
+  <result property="assetsType" column="assets_type"/>
+  <result property="assetsSumTaxAmount" column="assets_sum_tax_amount"/>
+  <result property="cause" column="cause"/>
+  <result property="scrapDate" column="scrap_date"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.asset.dto.ScrapRegisterDetailDto" resultMap="scrapRegisterDetailMap">
+  select * from incloud_biz_asset_scrap_register_detail scrapRegisterDetail where 1=1
+    <if test="scrapRegisterDetailDto.id != null and scrapRegisterDetailDto.id != ''">
+      AND scrapRegisterDetail.id = #{scrapRegisterDetailDto.id}
+    </if>
+    <if test="scrapRegisterDetailDto.registerId != null and scrapRegisterDetailDto.registerId != ''">
+      AND scrapRegisterDetail.register_id = #{scrapRegisterDetailDto.registerId}
+    </if>
+    <if test="scrapRegisterDetailDto.applyId != null and scrapRegisterDetailDto.applyId != ''">
+      AND scrapRegisterDetail.apply_id = #{scrapRegisterDetailDto.applyId}
+    </if>
+    <if test="scrapRegisterDetailDto.applyDetailId != null and scrapRegisterDetailDto.applyDetailId != ''">
+      AND scrapRegisterDetail.apply_detail_id = #{scrapRegisterDetailDto.applyDetailId}
+    </if>
+    <if test="scrapRegisterDetailDto.assetsId != null and scrapRegisterDetailDto.assetsId != ''">
+      AND scrapRegisterDetail.assets_id = #{scrapRegisterDetailDto.assetsId}
+    </if>
+    <if test="scrapRegisterDetailDto.assetsDetailId != null and scrapRegisterDetailDto.assetsDetailId != ''">
+      AND scrapRegisterDetail.assets_detail_id = #{scrapRegisterDetailDto.assetsDetailId}
+    </if>
+    <if test="scrapRegisterDetailDto.classifyId != null and scrapRegisterDetailDto.classifyId != ''">
+      AND scrapRegisterDetail.classify_id = #{scrapRegisterDetailDto.classifyId}
+    </if>
+    <if test="scrapRegisterDetailDto.classifyCode != null and scrapRegisterDetailDto.classifyCode != ''">
+      AND scrapRegisterDetail.classify_code like CONCAT('%',#{scrapRegisterDetailDto.classifyCode},'%')
+    </if>
+    <if test="scrapRegisterDetailDto.classifyName != null and scrapRegisterDetailDto.classifyName != ''">
+      AND scrapRegisterDetail.classify_name like CONCAT('%',#{scrapRegisterDetailDto.classifyName},'%')
+    </if>
+    <if test="scrapRegisterDetailDto.itemType != null and scrapRegisterDetailDto.itemType != ''">
+      AND scrapRegisterDetail.item_type like CONCAT('%',#{scrapRegisterDetailDto.itemType},'%')
+    </if>
+    <if test="scrapRegisterDetailDto.itemTypeName != null and scrapRegisterDetailDto.itemTypeName != ''">
+      AND scrapRegisterDetail.item_type_name like CONCAT('%',#{scrapRegisterDetailDto.itemTypeName},'%')
+    </if>
+    <if test="scrapRegisterDetailDto.route != null and scrapRegisterDetailDto.route != ''">
+      AND scrapRegisterDetail.route like CONCAT('%',#{scrapRegisterDetailDto.route},'%')
+    </if>
+    <if test="scrapRegisterDetailDto.routeName != null and scrapRegisterDetailDto.routeName != ''">
+      AND scrapRegisterDetail.route_name like CONCAT('%',#{scrapRegisterDetailDto.routeName},'%')
+    </if>
+    <if test="scrapRegisterDetailDto.taxRate != null and scrapRegisterDetailDto.taxRate != ''">
+      AND scrapRegisterDetail.tax_rate = #{scrapRegisterDetailDto.taxRate}
+    </if>
+    <if test="scrapRegisterDetailDto.itemId != null and scrapRegisterDetailDto.itemId != ''">
+      AND scrapRegisterDetail.item_id = #{scrapRegisterDetailDto.itemId}
+    </if>
+    <if test="scrapRegisterDetailDto.itemCode != null and scrapRegisterDetailDto.itemCode != ''">
+      AND scrapRegisterDetail.item_code like CONCAT('%',#{scrapRegisterDetailDto.itemCode},'%')
+    </if>
+    <if test="scrapRegisterDetailDto.itemName != null and scrapRegisterDetailDto.itemName != ''">
+      AND scrapRegisterDetail.item_name like CONCAT('%',#{scrapRegisterDetailDto.itemName},'%')
+    </if>
+    <if test="scrapRegisterDetailDto.desclong != null and scrapRegisterDetailDto.desclong != ''">
+      AND scrapRegisterDetail.desclong like CONCAT('%',#{scrapRegisterDetailDto.desclong},'%')
+    </if>
+    <if test="scrapRegisterDetailDto.descshort != null and scrapRegisterDetailDto.descshort != ''">
+      AND scrapRegisterDetail.descshort like CONCAT('%',#{scrapRegisterDetailDto.descshort},'%')
+    </if>
+    <if test="scrapRegisterDetailDto.unitCode != null and scrapRegisterDetailDto.unitCode != ''">
+      AND scrapRegisterDetail.unit_code like CONCAT('%',#{scrapRegisterDetailDto.unitCode},'%')
+    </if>
+    <if test="scrapRegisterDetailDto.unitName != null and scrapRegisterDetailDto.unitName != ''">
+      AND scrapRegisterDetail.unit_name like CONCAT('%',#{scrapRegisterDetailDto.unitName},'%')
+    </if>
+    <if test="scrapRegisterDetailDto.materialQuality != null and scrapRegisterDetailDto.materialQuality != ''">
+      AND scrapRegisterDetail.material_quality like CONCAT('%',#{scrapRegisterDetailDto.materialQuality},'%')
+    </if>
+    <if test="scrapRegisterDetailDto.standard != null and scrapRegisterDetailDto.standard != ''">
+      AND scrapRegisterDetail.standard like CONCAT('%',#{scrapRegisterDetailDto.standard},'%')
+    </if>
+    <if test="scrapRegisterDetailDto.specs != null and scrapRegisterDetailDto.specs != ''">
+      AND scrapRegisterDetail.specs like CONCAT('%',#{scrapRegisterDetailDto.specs},'%')
+    </if>
+    <if test="scrapRegisterDetailDto.skuCode != null and scrapRegisterDetailDto.skuCode != ''">
+      AND scrapRegisterDetail.sku_code like CONCAT('%',#{scrapRegisterDetailDto.skuCode},'%')
+    </if>
+    <if test="scrapRegisterDetailDto.skuFullId != null and scrapRegisterDetailDto.skuFullId != ''">
+      AND scrapRegisterDetail.sku_full_id like CONCAT('%',#{scrapRegisterDetailDto.skuFullId},'%')
+    </if>
+    <if test="scrapRegisterDetailDto.skuFullName != null and scrapRegisterDetailDto.skuFullName != ''">
+      AND scrapRegisterDetail.sku_full_name like CONCAT('%',#{scrapRegisterDetailDto.skuFullName},'%')
+    </if>
+    <if test="scrapRegisterDetailDto.supplierName != null and scrapRegisterDetailDto.supplierName != ''">
+      AND scrapRegisterDetail.supplier_name like CONCAT('%',#{scrapRegisterDetailDto.supplierName},'%')
+    </if>
+    <if test="scrapRegisterDetailDto.contractCode != null and scrapRegisterDetailDto.contractCode != ''">
+      AND scrapRegisterDetail.contract_code like CONCAT('%',#{scrapRegisterDetailDto.contractCode},'%')
+    </if>
+    <if test="scrapRegisterDetailDto.assetsClassification != null and scrapRegisterDetailDto.assetsClassification != ''">
+      AND scrapRegisterDetail.assets_classification like CONCAT('%',#{scrapRegisterDetailDto.assetsClassification},'%')
+    </if>
+    <if test="scrapRegisterDetailDto.billCodes != null and scrapRegisterDetailDto.billCodes != ''">
+      AND scrapRegisterDetail.bill_codes like CONCAT('%',#{scrapRegisterDetailDto.billCodes},'%')
+    </if>
+    <if test="scrapRegisterDetailDto.billCodeFilesIds != null and scrapRegisterDetailDto.billCodeFilesIds != ''">
+      AND scrapRegisterDetail.bill_code_files_ids like CONCAT('%',#{scrapRegisterDetailDto.billCodeFilesIds},'%')
+    </if>
+    <if test="scrapRegisterDetailDto.qualityAssuranceLevel != null and scrapRegisterDetailDto.qualityAssuranceLevel != ''">
+      AND scrapRegisterDetail.quality_assurance_level like CONCAT('%',#{scrapRegisterDetailDto.qualityAssuranceLevel},'%')
+    </if>
+    <if test="scrapRegisterDetailDto.manufacturer != null and scrapRegisterDetailDto.manufacturer != ''">
+      AND scrapRegisterDetail.manufacturer like CONCAT('%',#{scrapRegisterDetailDto.manufacturer},'%')
+    </if>
+    <if test="scrapRegisterDetailDto.productionDate != null and scrapRegisterDetailDto.productionDate != ''">
+      AND scrapRegisterDetail.production_date = #{scrapRegisterDetailDto.productionDate}
+    </if>
+    <if test="scrapRegisterDetailDto.serviceLife != null and scrapRegisterDetailDto.serviceLife != ''">
+      AND scrapRegisterDetail.service_life = #{scrapRegisterDetailDto.serviceLife}
+    </if>
+    <if test="scrapRegisterDetailDto.validPeriod != null and scrapRegisterDetailDto.validPeriod != ''">
+      AND scrapRegisterDetail.valid_period like CONCAT('%',#{scrapRegisterDetailDto.validPeriod},'%')
+    </if>
+    <if test="scrapRegisterDetailDto.batchNumber != null and scrapRegisterDetailDto.batchNumber != ''">
+      AND scrapRegisterDetail.batch_number like CONCAT('%',#{scrapRegisterDetailDto.batchNumber},'%')
+    </if>
+    <if test="scrapRegisterDetailDto.factoryDate != null and scrapRegisterDetailDto.factoryDate != ''">
+      AND scrapRegisterDetail.factory_date = #{scrapRegisterDetailDto.factoryDate}
+    </if>
+    <if test="scrapRegisterDetailDto.factoryCode != null and scrapRegisterDetailDto.factoryCode != ''">
+      AND scrapRegisterDetail.factory_code like CONCAT('%',#{scrapRegisterDetailDto.factoryCode},'%')
+    </if>
+    <if test="scrapRegisterDetailDto.approachDate != null and scrapRegisterDetailDto.approachDate != ''">
+      AND scrapRegisterDetail.approach_date = #{scrapRegisterDetailDto.approachDate}
+    </if>
+    <if test="scrapRegisterDetailDto.warehouseId != null and scrapRegisterDetailDto.warehouseId != ''">
+      AND scrapRegisterDetail.warehouse_id = #{scrapRegisterDetailDto.warehouseId}
+    </if>
+    <if test="scrapRegisterDetailDto.warehouseName != null and scrapRegisterDetailDto.warehouseName != ''">
+      AND scrapRegisterDetail.warehouse_name like CONCAT('%',#{scrapRegisterDetailDto.warehouseName},'%')
+    </if>
+    <if test="scrapRegisterDetailDto.shelfId != null and scrapRegisterDetailDto.shelfId != ''">
+      AND scrapRegisterDetail.shelf_id = #{scrapRegisterDetailDto.shelfId}
+    </if>
+    <if test="scrapRegisterDetailDto.shelfName != null and scrapRegisterDetailDto.shelfName != ''">
+      AND scrapRegisterDetail.shelf_name like CONCAT('%',#{scrapRegisterDetailDto.shelfName},'%')
+    </if>
+    <if test="scrapRegisterDetailDto.assetsCode != null and scrapRegisterDetailDto.assetsCode != ''">
+      AND scrapRegisterDetail.assets_code like CONCAT('%',#{scrapRegisterDetailDto.assetsCode},'%')
+    </if>
+    <if test="scrapRegisterDetailDto.stockNumber != null and scrapRegisterDetailDto.stockNumber != ''">
+      AND scrapRegisterDetail.stock_number = #{scrapRegisterDetailDto.stockNumber}
+    </if>
+    <if test="scrapRegisterDetailDto.scrapNumber != null and scrapRegisterDetailDto.scrapNumber != ''">
+      AND scrapRegisterDetail.scrap_number = #{scrapRegisterDetailDto.scrapNumber}
+    </if>
+    <if test="scrapRegisterDetailDto.scrapRegisterNumber != null and scrapRegisterDetailDto.scrapRegisterNumber != ''">
+      AND scrapRegisterDetail.scrap_register_number = #{scrapRegisterDetailDto.scrapRegisterNumber}
+    </if>
+    <if test="scrapRegisterDetailDto.assetsAmount != null and scrapRegisterDetailDto.assetsAmount != ''">
+      AND scrapRegisterDetail.assets_amount = #{scrapRegisterDetailDto.assetsAmount}
+    </if>
+    <if test="scrapRegisterDetailDto.assetsUntaxedAmount != null and scrapRegisterDetailDto.assetsUntaxedAmount != ''">
+      AND scrapRegisterDetail.assets_untaxed_amount = #{scrapRegisterDetailDto.assetsUntaxedAmount}
+    </if>
+    <if test="scrapRegisterDetailDto.assetsTaxAmount != null and scrapRegisterDetailDto.assetsTaxAmount != ''">
+      AND scrapRegisterDetail.assets_tax_amount = #{scrapRegisterDetailDto.assetsTaxAmount}
+    </if>
+    <if test="scrapRegisterDetailDto.assetsSumAmount != null and scrapRegisterDetailDto.assetsSumAmount != ''">
+      AND scrapRegisterDetail.assets_sum_amount = #{scrapRegisterDetailDto.assetsSumAmount}
+    </if>
+    <if test="scrapRegisterDetailDto.assetsSumUntaxedAmount != null and scrapRegisterDetailDto.assetsSumUntaxedAmount != ''">
+      AND scrapRegisterDetail.assets_sum_untaxed_amount = #{scrapRegisterDetailDto.assetsSumUntaxedAmount}
+    </if>
+    <if test="scrapRegisterDetailDto.assetsType != null and scrapRegisterDetailDto.assetsType != ''">
+      AND scrapRegisterDetail.assets_type = #{scrapRegisterDetailDto.assetsType}
+    </if>
+    <if test="scrapRegisterDetailDto.assetsSumTaxAmount != null and scrapRegisterDetailDto.assetsSumTaxAmount != ''">
+      AND scrapRegisterDetail.assets_sum_tax_amount = #{scrapRegisterDetailDto.assetsSumTaxAmount}
+    </if>
+    <if test="scrapRegisterDetailDto.cause != null and scrapRegisterDetailDto.cause != ''">
+      AND scrapRegisterDetail.cause like CONCAT('%',#{scrapRegisterDetailDto.cause},'%')
+    </if>
+    <if test="scrapRegisterDetailDto.scrapDate != null and scrapRegisterDetailDto.scrapDate != ''">
+      AND scrapRegisterDetail.scrap_date = #{scrapRegisterDetailDto.scrapDate}
+    </if>
+    order by scrapRegisterDetail.id desc
+</select>
+</mapper>

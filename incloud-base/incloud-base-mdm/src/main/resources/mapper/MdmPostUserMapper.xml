@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.mdm.mapper.MdmPostUserMapper">
+
+<resultMap id="mdmPostUserMap" type="com.netwisd.base.common.mdm.vo.MdmPostUserVo">
+  <id property="id" column="id"/>
+  <result property="orgFullPostId" column="org_full_post_id"/>
+  <result property="orgFullPostName" column="org_full_post_name"/>
+  <result property="postId" column="post_id"/>
+  <result property="postCode" column="post_code"/>
+  <result property="postName" column="post_name"/>
+  <result property="userId" column="user_id"/>
+  <result property="userName" column="user_name"/>
+  <result property="userNameCh" column="user_name_ch"/>
+  <result property="isMaster" column="is_master"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.common.mdm.dto.MdmPostUserDto" resultMap="mdmPostUserMap">
+  select * from incloud_base_mdm_post_user mdmPostUser where 1=1
+    <if test="mdmPostUserDto.id != null and mdmPostUserDto.id != ''">
+      AND mdmPostUser.id = #{mdmPostUserDto.id}
+    </if>
+    <if test="mdmPostUserDto.orgFullPostId != null and mdmPostUserDto.orgFullPostId != ''">
+      AND mdmPostUser.org_full_post_id like CONCAT('%',#{mdmPostUserDto.orgFullPostId},'%')
+    </if>
+    <if test="mdmPostUserDto.postId != null and mdmPostUserDto.postId != ''">
+      AND mdmPostUser.post_id = #{mdmPostUserDto.postId}
+    </if>
+    <if test="mdmPostUserDto.postCode != null and mdmPostUserDto.postCode != ''">
+      AND mdmPostUser.post_code like CONCAT('%',#{mdmPostUserDto.postCode},'%')
+    </if>
+    <if test="mdmPostUserDto.postName != null and mdmPostUserDto.postName != ''">
+      AND mdmPostUser.post_name like CONCAT('%',#{mdmPostUserDto.postName},'%')
+    </if>
+    <if test="mdmPostUserDto.userId != null and mdmPostUserDto.userId != ''">
+      AND mdmPostUser.user_id = #{mdmPostUserDto.userId}
+    </if>
+    <if test="mdmPostUserDto.userName != null and mdmPostUserDto.userName != ''">
+      AND mdmPostUser.user_name like CONCAT('%',#{mdmPostUserDto.userName},'%')
+    </if>
+    <if test="mdmPostUserDto.userNameCh != null and mdmPostUserDto.userNameCh != ''">
+      AND mdmPostUser.user_name_ch like CONCAT('%',#{mdmPostUserDto.userNameCh},'%')
+    </if>
+    <if test="mdmPostUserDto.isMaster != null and mdmPostUserDto.isMaster != ''">
+      AND mdmPostUser.is_master = #{mdmPostUserDto.isMaster}
+    </if>
+    order by mdmPostUser.id desc
+</select>
+</mapper>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.portal.mapper.PortalTemplateMapper">
+
+<resultMap id="portalTemplateMap" type="com.netwisd.base.portal.vo.PortalTemplateVo">
+  <id property="id" column="id"/>
+  <result property="portalId" column="portal_id"/>
+  <result property="portalName" column="portal_name"/>
+  <result property="templateName" column="template_name"/>
+  <result property="templateCode" column="template_code"/>
+  <result property="terminal" column="terminal"/>
+  <result property="templateData" column="template_data"/>
+  <result property="templateVersion" column="template_version"/>
+  <result property="crrVersion" column="crr_version"/>
+  <result property="remark" column="remark"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.portal.dto.PortalTemplateDto" resultMap="portalTemplateMap">
+  select * from incloud_base_portal_template portalTemplate where 1=1
+    <if test="portalTemplateDto.id != null and portalTemplateDto.id != ''">
+      AND portalTemplate.id like CONCAT('%',#{portalTemplateDto.id},'%')
+    </if>
+    <if test="portalTemplateDto.portalId != null and portalTemplateDto.portalId != ''">
+      AND portalTemplate.portal_id = #{portalTemplateDto.portalId}
+    </if>
+    <if test="portalTemplateDto.portalName != null and portalTemplateDto.portalName != ''">
+      AND portalTemplate.portal_name like CONCAT('%',#{portalTemplateDto.portalName},'%')
+    </if>
+    <if test="portalTemplateDto.templateName != null and portalTemplateDto.templateName != ''">
+      AND portalTemplate.template_name like CONCAT('%',#{portalTemplateDto.templateName},'%')
+    </if>
+    <if test="portalTemplateDto.templateCode != null and portalTemplateDto.templateCode != ''">
+      AND portalTemplate.template_code like CONCAT('%',#{portalTemplateDto.templateCode},'%')
+    </if>
+    <if test="portalTemplateDto.terminal != null and portalTemplateDto.terminal != ''">
+      AND portalTemplate.terminal = #{portalTemplateDto.terminal}
+    </if>
+    <if test="portalTemplateDto.templateData != null and portalTemplateDto.templateData != ''">
+      AND portalTemplate.template_data like CONCAT('%',#{portalTemplateDto.templateData},'%')
+    </if>
+    <if test="portalTemplateDto.templateVersion != null and portalTemplateDto.templateVersion != ''">
+      AND portalTemplate.template_version = #{portalTemplateDto.templateVersion}
+    </if>
+    <if test="portalTemplateDto.crrVersion != null and portalTemplateDto.crrVersion != ''">
+      AND portalTemplate.crr_version = #{portalTemplateDto.crrVersion}
+    </if>
+    <if test="portalTemplateDto.remark != null and portalTemplateDto.remark != ''">
+      AND portalTemplate.remark like CONCAT('%',#{portalTemplateDto.remark},'%')
+    </if>
+    order by portalTemplate.id desc
+</select>
+</mapper>

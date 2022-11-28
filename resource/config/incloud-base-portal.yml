@@ -1,0 +1,7 @@
+incloud:
+  table:
+    package: com.netwisd.base.portal.entity
+portal:
+  gepsTaskUrl: http://10.42.2.124:8888
+  oaTaskUrl: http://10.42.2.124:8888
+  gpesTaskCountUrl: http://10.42.2.124:8888/WebService/GetUserTaskCount.asmx

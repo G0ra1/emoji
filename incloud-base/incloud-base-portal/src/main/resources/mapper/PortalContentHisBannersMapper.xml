@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.portal.mapper.PortalContentHisBannersMapper">
+
+    <resultMap id="portalContentHisBannersMap" type="com.netwisd.base.portal.vo.PortalContentHisBannersVo">
+        <id property="id" column="id"/>
+        <result property="linkBannerId" column="link_banner_id"/>
+        <result property="portalId" column="portal_id"/>
+        <result property="portalName" column="portal_name"/>
+        <result property="partId" column="part_id"/>
+        <result property="partName" column="part_name"/>
+        <result property="partTypeId" column="part_type_id"/>
+        <result property="partTypeName" column="part_type_name"/>
+        <result property="title" column="title"/>
+        <result property="description" column="description"/>
+        <result property="contentUrl" column="content_url"/>
+        <result property="imgUrl" column="img_url"/>
+        <result property="auditStatus" column="audit_status"/>
+        <result property="hits" column="hits"/>
+        <result property="remark" column="remark"/>
+        <result property="editorContent" column="editor_content"/>
+        <result property="passTime" column="pass_time"/>
+        <result property="upPassTime" column="up_pass_time"/>
+        <result property="fileId" column="file_id"/>
+    </resultMap>
+    <select id="getPageList" parameterType="com.netwisd.base.portal.dto.PortalContentHisBannersDto"
+            resultMap="portalContentHisBannersMap">
+        select * from incloud_base_portal_content_his_banners portalContentHisBanners where 1=1
+        <if test="portalContentHisBannersDto.id != null and portalContentHisBannersDto.id != ''">
+            AND portalContentHisBanners.id = #{portalContentHisBannersDto.id}
+        </if>
+        <if test="portalContentHisBannersDto.linkBannerId != null and portalContentHisBannersDto.linkBannerId != ''">
+            AND portalContentHisBanners.link_banner_id = #{portalContentHisBannersDto.linkBannerId}
+        </if>
+        <if test="portalContentHisBannersDto.portalId != null and portalContentHisBannersDto.portalId != ''">
+            AND portalContentHisBanners.portal_id = #{portalContentHisBannersDto.portalId}
+        </if>
+        <if test="portalContentHisBannersDto.portalName != null and portalContentHisBannersDto.portalName != ''">
+            AND portalContentHisBanners.portal_name like CONCAT('%',#{portalContentHisBannersDto.portalName},'%')
+        </if>
+        <if test="portalContentHisBannersDto.partId != null and portalContentHisBannersDto.partId != ''">
+            AND portalContentHisBanners.part_id = #{portalContentHisBannersDto.partId}
+        </if>
+        <if test="portalContentHisBannersDto.partName != null and portalContentHisBannersDto.partName != ''">
+            AND portalContentHisBanners.part_name like CONCAT('%',#{portalContentHisBannersDto.partName},'%')
+        </if>
+        <if test="portalContentHisBannersDto.partTypeId != null and portalContentHisBannersDto.partTypeId != ''">
+            AND portalContentHisBanners.part_type_id = #{portalContentHisBannersDto.partTypeId}
+        </if>
+        <if test="portalContentHisBannersDto.partTypeName != null and portalContentHisBannersDto.partTypeName != ''">
+            AND portalContentHisBanners.part_type_name like CONCAT('%',#{portalContentHisBannersDto.partTypeName},'%')
+        </if>
+        <if test="portalContentHisBannersDto.title != null and portalContentHisBannersDto.title != ''">
+            AND portalContentHisBanners.title like CONCAT('%',#{portalContentHisBannersDto.title},'%')
+        </if>
+        <if test="portalContentHisBannersDto.description != null and portalContentHisBannersDto.description != ''">
+            AND portalContentHisBanners.description like CONCAT('%',#{portalContentHisBannersDto.description},'%')
+        </if>
+        <if test="portalContentHisBannersDto.contentUrl != null and portalContentHisBannersDto.contentUrl != ''">
+            AND portalContentHisBanners.content_url like CONCAT('%',#{portalContentHisBannersDto.contentUrl},'%')
+        </if>
+        <if test="portalContentHisBannersDto.imgUrl != null and portalContentHisBannersDto.imgUrl != ''">
+            AND portalContentHisBanners.img_url like CONCAT('%',#{portalContentHisBannersDto.imgUrl},'%')
+        </if>
+        <if test="portalContentHisBannersDto.auditStatus != null and portalContentHisBannersDto.auditStatus != ''">
+            AND portalContentHisBanners.audit_status = #{portalContentHisBannersDto.auditStatus}
+        </if>
+        <if test="portalContentHisBannersDto.hits != null and portalContentHisBannersDto.hits != ''">
+            AND portalContentHisBanners.hits = #{portalContentHisBannersDto.hits}
+        </if>
+        <if test="portalContentHisBannersDto.remark != null and portalContentHisBannersDto.remark != ''">
+            AND portalContentHisBanners.remark like CONCAT('%',#{portalContentHisBannersDto.remark},'%')
+        </if>
+        <if test="portalContentHisBannersDto.editorContent != null and portalContentHisBannersDto.editorContent != ''">
+            AND portalContentHisBanners.editor_content like CONCAT('%',#{portalContentHisBannersDto.editorContent},'%')
+        </if>
+        <if test="portalContentHisBannersDto.passTime != null and portalContentHisBannersDto.passTime != ''">
+            AND portalContentHisBanners.pass_time = #{portalContentHisBannersDto.passTime}
+        </if>
+        <if test="portalContentHisBannersDto.upPassTime != null and portalContentHisBannersDto.upPassTime != ''">
+            AND portalContentHisBanners.up_pass_time = #{portalContentHisBannersDto.upPassTime}
+        </if>
+        <if test="portalContentAdjBannersDto.fileId != null and portalContentAdjBannersDto.fileId != ''">
+            AND portalContentAdjBanners.file_id like CONCAT('%',#{portalContentAdjBannersDto.fileId},'%')
+        </if>
+        order by portalContentHisBanners.id desc
+    </select>
+</mapper>

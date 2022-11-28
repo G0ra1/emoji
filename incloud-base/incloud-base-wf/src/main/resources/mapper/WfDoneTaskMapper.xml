@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.wf.mapper.WfDoneTaskMapper">
+
+<resultMap id="wfDoneTaskMap" type="com.netwisd.base.common.vo.wf.WfDoneTaskVo">
+  <id property="id" column="id"/>
+  <result property="camundaProcdefId" column="camunda_procdef_id"/>
+  <result property="camundaProcdefKey" column="camunda_procdef_key"/>
+  <result property="camundaProcdefVersion" column="camunda_procdef_version"/>
+  <result property="camundaProcinsId" column="camunda_procins_id"/>
+  <result property="camundaTaskId" column="camunda_task_id"/>
+  <result property="camundaExectionId" column="camunda_exection_id"/>
+  <result property="procinsId" column="procins_id"/>
+  <result property="procinsName" column="procins_name"/>
+  <result property="taskName" column="task_name"/>
+  <result property="nodeKey" column="node_key"/>
+  <result property="nodeName" column="node_name"/>
+  <result property="decision" column="decision"/>
+  <result property="descrption" column="descrption"/>
+  <result property="ownner" column="ownner"/>
+  <result property="assignee" column="assignee"/>
+  <result property="priority" column="priority"/>
+  <result property="dueDate" column="due_date"/>
+  <result property="procdefId" column="procdef_id"/>
+  <result property="procdefName" column="procdef_name"/>
+  <result property="procdefTypeId" column="procdef_type_id"/>
+  <result property="procdefTypeName" column="procdef_type_name"/>
+  <result property="cliamTime" column="cliam_time"/>
+  <result property="state" column="state"/>
+  <result property="reason" column="reason"/>
+  <result property="applyTime" column="apply_time"/>
+  <result property="starterId" column="starter_id"/>
+  <result property="starterName" column="starter_name"/>
+  <result property="starterDeptId" column="starter_dept_id"/>
+  <result property="starterDeptName" column="starter_dept_name"/>
+  <result property="starterOrgId" column="starter_org_id"/>
+  <result property="starterOrgName" column="starter_org_name"/>
+  <result property="bizKey" column="biz_key"/>
+  <result property="formKey" column="form_key"/>
+  <result property="startTime" column="start_time"/>
+  <result property="endTime" column="end_time"/>
+  <result property="bizPriority" column="biz_priority"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.wf.dto.WfDoneTaskDto" resultMap="wfDoneTaskMap">
+  select * from incloud_base_wf_done_task wfDoneTask where 1=1
+    <if test="wfDoneTaskDto.id != null and wfDoneTaskDto.id != ''">
+      AND wfDoneTask.id = #{wfDoneTaskDto.id}
+    </if>
+    <if test="wfDoneTaskDto.camundaProcdefId != null and wfDoneTaskDto.camundaProcdefId != ''">
+      AND wfDoneTask.camunda_procdef_id like CONCAT('%',#{wfDoneTaskDto.camundaProcdefId},'%')
+    </if>
+    <if test="wfDoneTaskDto.camundaProcdefKey != null and wfDoneTaskDto.camundaProcdefKey != ''">
+      AND wfDoneTask.camunda_procdef_key like CONCAT('%',#{wfDoneTaskDto.camundaProcdefKey},'%')
+    </if>
+    <if test="wfDoneTaskDto.camundaProcdefVersion != null and wfDoneTaskDto.camundaProcdefVersion != ''">
+      AND wfDoneTask.camunda_procdef_version = #{wfDoneTaskDto.camundaProcdefVersion}
+    </if>
+    <if test="wfDoneTaskDto.camundaProcinsId != null and wfDoneTaskDto.camundaProcinsId != ''">
+      AND wfDoneTask.camunda_procins_id like CONCAT('%',#{wfDoneTaskDto.camundaProcinsId},'%')
+    </if>
+    <if test="wfDoneTaskDto.camundaTaskId != null and wfDoneTaskDto.camundaTaskId != ''">
+      AND wfDoneTask.camunda_task_id like CONCAT('%',#{wfDoneTaskDto.camundaTaskId},'%')
+    </if>
+    <if test="wfDoneTaskDto.camundaExectionId != null and wfDoneTaskDto.camundaExectionId != ''">
+      AND wfDoneTask.camunda_exection_id like CONCAT('%',#{wfDoneTaskDto.camundaExectionId},'%')
+    </if>
+    <if test="wfDoneTaskDto.procinsId != null and wfDoneTaskDto.procinsId != ''">
+      AND wfDoneTask.procins_id = #{wfDoneTaskDto.procinsId}
+    </if>
+    <if test="wfDoneTaskDto.procinsName != null and wfDoneTaskDto.procinsName != ''">
+      AND wfDoneTask.procins_name like CONCAT('%',#{wfDoneTaskDto.procinsName},'%')
+    </if>
+    <if test="wfDoneTaskDto.taskName != null and wfDoneTaskDto.taskName != ''">
+      AND wfDoneTask.task_name like CONCAT('%',#{wfDoneTaskDto.taskName},'%')
+    </if>
+    <if test="wfDoneTaskDto.nodeKey != null and wfDoneTaskDto.nodeKey != ''">
+      AND wfDoneTask.node_key like CONCAT('%',#{wfDoneTaskDto.nodeKey},'%')
+    </if>
+    <if test="wfDoneTaskDto.nodeName != null and wfDoneTaskDto.nodeName != ''">
+      AND wfDoneTask.node_name like CONCAT('%',#{wfDoneTaskDto.nodeName},'%')
+    </if>
+    <if test="wfDoneTaskDto.decision != null and wfDoneTaskDto.decision != ''">
+      AND wfDoneTask.decision like CONCAT('%',#{wfDoneTaskDto.decision},'%')
+    </if>
+    <if test="wfDoneTaskDto.descrption != null and wfDoneTaskDto.descrption != ''">
+      AND wfDoneTask.descrption like CONCAT('%',#{wfDoneTaskDto.descrption},'%')
+    </if>
+    <if test="wfDoneTaskDto.ownner != null and wfDoneTaskDto.ownner != ''">
+      AND wfDoneTask.ownner like CONCAT('%',#{wfDoneTaskDto.ownner},'%')
+    </if>
+    <if test="wfDoneTaskDto.assignee != null and wfDoneTaskDto.assignee != ''">
+      AND wfDoneTask.assignee like CONCAT('%',#{wfDoneTaskDto.assignee},'%')
+    </if>
+    <if test="wfDoneTaskDto.priority != null and wfDoneTaskDto.priority != ''">
+      AND wfDoneTask.priority = #{wfDoneTaskDto.priority}
+    </if>
+    <if test="wfDoneTaskDto.dueDate != null and wfDoneTaskDto.dueDate != ''">
+      AND wfDoneTask.due_date = #{wfDoneTaskDto.dueDate}
+    </if>
+    <if test="wfDoneTaskDto.procdefId != null and wfDoneTaskDto.procdefId != ''">
+      AND wfDoneTask.procdef_id = #{wfDoneTaskDto.procdefId}
+    </if>
+    <if test="wfDoneTaskDto.procdefName != null and wfDoneTaskDto.procdefName != ''">
+      AND wfDoneTask.procdef_name like CONCAT('%',#{wfDoneTaskDto.procdefName},'%')
+    </if>
+    <if test="wfDoneTaskDto.procdefTypeId != null and wfDoneTaskDto.procdefTypeId != ''">
+      AND wfDoneTask.procdef_type_id = #{wfDoneTaskDto.procdefTypeId}
+    </if>
+    <if test="wfDoneTaskDto.procdefTypeName != null and wfDoneTaskDto.procdefTypeName != ''">
+      AND wfDoneTask.procdef_type_name like CONCAT('%',#{wfDoneTaskDto.procdefTypeName},'%')
+    </if>
+    <if test="wfDoneTaskDto.cliamTime != null and wfDoneTaskDto.cliamTime != ''">
+      AND wfDoneTask.cliam_time = #{wfDoneTaskDto.cliamTime}
+    </if>
+    <if test="wfDoneTaskDto.state != null and wfDoneTaskDto.state != ''">
+      AND wfDoneTask.state = #{wfDoneTaskDto.state}
+    </if>
+    <if test="wfDoneTaskDto.reason != null and wfDoneTaskDto.reason != ''">
+      AND wfDoneTask.reason like CONCAT('%',#{wfDoneTaskDto.reason},'%')
+    </if>
+    <if test="wfDoneTaskDto.applyTime != null and wfDoneTaskDto.applyTime != ''">
+      AND wfDoneTask.apply_time = #{wfDoneTaskDto.applyTime}
+    </if>
+    <if test="wfDoneTaskDto.starterId != null and wfDoneTaskDto.starterId != ''">
+      AND wfDoneTask.starter_id like CONCAT('%',#{wfDoneTaskDto.starterId},'%')
+    </if>
+    <if test="wfDoneTaskDto.starterName != null and wfDoneTaskDto.starterName != ''">
+      AND wfDoneTask.starter_name like CONCAT('%',#{wfDoneTaskDto.starterName},'%')
+    </if>
+    <if test="wfDoneTaskDto.starterDeptId != null and wfDoneTaskDto.starterDeptId != ''">
+      AND wfDoneTask.starter_dept_id like CONCAT('%',#{wfDoneTaskDto.starterDeptId},'%')
+    </if>
+    <if test="wfDoneTaskDto.starterDeptName != null and wfDoneTaskDto.starterDeptName != ''">
+      AND wfDoneTask.starter_dept_name like CONCAT('%',#{wfDoneTaskDto.starterDeptName},'%')
+    </if>
+    <if test="wfDoneTaskDto.starterOrgId != null and wfDoneTaskDto.starterOrgId != ''">
+      AND wfDoneTask.starter_org_id like CONCAT('%',#{wfDoneTaskDto.starterOrgId},'%')
+    </if>
+    <if test="wfDoneTaskDto.starterOrgName != null and wfDoneTaskDto.starterOrgName != ''">
+      AND wfDoneTask.starter_org_name like CONCAT('%',#{wfDoneTaskDto.starterOrgName},'%')
+    </if>
+    <if test="wfDoneTaskDto.bizKey != null and wfDoneTaskDto.bizKey != ''">
+      AND wfDoneTask.biz_key like CONCAT('%',#{wfDoneTaskDto.bizKey},'%')
+    </if>
+    order by wfDoneTask.id desc
+</select>
+</mapper>

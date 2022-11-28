@@ -1,0 +1,22 @@
+mybatis:
+  type-aliases-package: com.netwisd.base.user.domain
+  mapper-locations: classpath:/mybatis-mappers/*
+  configuration:
+    mapUnderscoreToCamelCase: true
+incloud:
+  application:
+    superList:
+      - superAdmin
+    sysList:
+  # 系统管理员
+      - systemAdmin
+    safeList:
+  # 安全管理员
+      - safeAdmin
+    auditList:
+  # 审计管理员
+      - auditAdmin
+  # 默认密码
+    password: 123456
+  table:
+    package: com.netwisd.base.user.domain

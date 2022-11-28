@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.asset.mapper.InventoryMapper">
+
+<resultMap id="inventoryMap" type="com.netwisd.biz.asset.vo.InventoryVo">
+  <id property="id" column="id"/>
+  <result property="code" column="code"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+  <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+  <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+  <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+  <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+  <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+  <result property="auditSuccessTiem" column="audit_success_tiem"/>
+  <result property="camundaProcdefKey" column="camunda_procdef_key"/>
+  <result property="camundaProcdefId" column="camunda_procdef_id"/>
+  <result property="camundaProcinsId" column="camunda_procins_id"/>
+  <result property="procdefTypeId" column="procdef_type_id"/>
+  <result property="procdefTypeName" column="procdef_type_name"/>
+  <result property="procdefVersion" column="procdef_version"/>
+  <result property="procdefName" column="procdef_name"/>
+  <result property="processName" column="process_name"/>
+  <result property="reason" column="reason"/>
+  <result property="bizKey" column="biz_key"/>
+  <result property="camundaTaskId" column="camunda_task_id"/>
+  <result property="bizPriority" column="biz_priority"/>
+  <result property="auditStatus" column="audit_status"/>
+  <result property="inventoryYear" column="inventory_year"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.asset.dto.InventoryDto" resultMap="inventoryMap">
+  select * from incloud_biz_asset_inventory inventory where 1=1
+    <if test="inventoryDto.id != null and inventoryDto.id != ''">
+      AND inventory.id = #{inventoryDto.id}
+    </if>
+    <if test="inventoryDto.code != null and inventoryDto.code != ''">
+      AND inventory.code like CONCAT('%',#{inventoryDto.code},'%')
+    </if>
+    <if test="inventoryDto.createUserId != null and inventoryDto.createUserId != ''">
+      AND inventory.create_user_id = #{inventoryDto.createUserId}
+    </if>
+    <if test="inventoryDto.createUserName != null and inventoryDto.createUserName != ''">
+      AND inventory.create_user_name like CONCAT('%',#{inventoryDto.createUserName},'%')
+    </if>
+    <if test="inventoryDto.createUserParentOrgId != null and inventoryDto.createUserParentOrgId != ''">
+      AND inventory.create_user_parent_org_id = #{inventoryDto.createUserParentOrgId}
+    </if>
+    <if test="inventoryDto.createUserParentOrgName != null and inventoryDto.createUserParentOrgName != ''">
+      AND inventory.create_user_parent_org_name like CONCAT('%',#{inventoryDto.createUserParentOrgName},'%')
+    </if>
+    <if test="inventoryDto.createUserParentDeptId != null and inventoryDto.createUserParentDeptId != ''">
+      AND inventory.create_user_parent_dept_id = #{inventoryDto.createUserParentDeptId}
+    </if>
+    <if test="inventoryDto.createUserParentDeptName != null and inventoryDto.createUserParentDeptName != ''">
+      AND inventory.create_user_parent_dept_name like CONCAT('%',#{inventoryDto.createUserParentDeptName},'%')
+    </if>
+    <if test="inventoryDto.createUserOrgFullId != null and inventoryDto.createUserOrgFullId != ''">
+      AND inventory.create_user_org_full_id like CONCAT('%',#{inventoryDto.createUserOrgFullId},'%')
+    </if>
+    <if test="inventoryDto.auditSuccessTiem != null and inventoryDto.auditSuccessTiem != ''">
+      AND inventory.audit_success_tiem = #{inventoryDto.auditSuccessTiem}
+    </if>
+    <if test="inventoryDto.camundaProcdefKey != null and inventoryDto.camundaProcdefKey != ''">
+      AND inventory.camunda_procdef_key like CONCAT('%',#{inventoryDto.camundaProcdefKey},'%')
+    </if>
+    <if test="inventoryDto.camundaProcdefId != null and inventoryDto.camundaProcdefId != ''">
+      AND inventory.camunda_procdef_id like CONCAT('%',#{inventoryDto.camundaProcdefId},'%')
+    </if>
+    <if test="inventoryDto.camundaProcinsId != null and inventoryDto.camundaProcinsId != ''">
+      AND inventory.camunda_procins_id like CONCAT('%',#{inventoryDto.camundaProcinsId},'%')
+    </if>
+    <if test="inventoryDto.procdefTypeId != null and inventoryDto.procdefTypeId != ''">
+      AND inventory.procdef_type_id = #{inventoryDto.procdefTypeId}
+    </if>
+    <if test="inventoryDto.procdefTypeName != null and inventoryDto.procdefTypeName != ''">
+      AND inventory.procdef_type_name like CONCAT('%',#{inventoryDto.procdefTypeName},'%')
+    </if>
+    <if test="inventoryDto.procdefVersion != null and inventoryDto.procdefVersion != ''">
+      AND inventory.procdef_version = #{inventoryDto.procdefVersion}
+    </if>
+    <if test="inventoryDto.procdefName != null and inventoryDto.procdefName != ''">
+      AND inventory.procdef_name like CONCAT('%',#{inventoryDto.procdefName},'%')
+    </if>
+    <if test="inventoryDto.processName != null and inventoryDto.processName != ''">
+      AND inventory.process_name like CONCAT('%',#{inventoryDto.processName},'%')
+    </if>
+    <if test="inventoryDto.reason != null and inventoryDto.reason != ''">
+      AND inventory.reason like CONCAT('%',#{inventoryDto.reason},'%')
+    </if>
+    <if test="inventoryDto.bizKey != null and inventoryDto.bizKey != ''">
+      AND inventory.biz_key like CONCAT('%',#{inventoryDto.bizKey},'%')
+    </if>
+    <if test="inventoryDto.camundaTaskId != null and inventoryDto.camundaTaskId != ''">
+      AND inventory.camunda_task_id like CONCAT('%',#{inventoryDto.camundaTaskId},'%')
+    </if>
+    <if test="inventoryDto.bizPriority != null and inventoryDto.bizPriority != ''">
+      AND inventory.biz_priority like CONCAT('%',#{inventoryDto.bizPriority},'%')
+    </if>
+    <if test="inventoryDto.auditStatus != null and inventoryDto.auditStatus != ''">
+      AND inventory.audit_status = #{inventoryDto.auditStatus}
+    </if>
+    <if test="inventoryDto.inventoryYear != null and inventoryDto.inventoryYear != ''">
+      AND inventory.inventory_year like CONCAT('%',#{inventoryDto.inventoryYear},'%')
+    </if>
+    order by inventory.id desc
+</select>
+  <select id="getMaxCode" resultType="java.lang.String">
+    SELECT MAX(SUBSTRING_INDEX(code,'-',-1)) AS maxCode FROM `incloud_biz_asset_inventory` WHERE DATE_FORMAT(create_time,'%Y-%m-%d') =  CURDATE()
+  </select>
+</mapper>

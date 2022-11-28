@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.wf.mapper.WfNodeDefMapper">
+
+<resultMap id="wfNodeDefMap" type="com.netwisd.base.wf.vo.WfNodeDefVo">
+  <id property="id" column="id"/>
+  <result property="camundaNodeDefId" column="camunda_node_def_id"/>
+  <result property="nodeName" column="node_name"/>
+  <result property="nodeType" column="node_type"/>
+  <result property="dueDate" column="due_date"/>
+  <result property="followUpDate" column="follow_up_date"/>
+  <result property="priority" column="priority"/>
+  <result property="procdefId" column="procdef_id"/>
+  <result property="camundaProcdefId" column="camunda_procdef_id"/>
+  <result property="camundaProcdefKey" column="camunda_procdef_key"/>
+  <result property="isMultiTask" column="is_multi_task"/>
+  <result property="selectRule" column="select_rule"/>
+  <result property="batchRule" column="batch_rule"/>
+  <result property="cancelRule" column="cancel_rule"/>
+  <result property="returnRule" column="return_rule"/>
+  <result property="passingRate" column="passing_rate"/>
+  <result property="passingHandle" column="passing_handle"/>
+  <result property="unpassingHandle" column="unpassing_handle"/>
+  <result property="camundaParentNodeDefId" column="camunda_parent_node_def_id"/>
+  <result property="isLookOver" column="is_look_over"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.wf.dto.WfNodeDefDto" resultMap="wfNodeDefMap">
+  select * from incloud_base_wf_node_def wfNodeDef where 1=1
+    <if test="wfNodeDefDto.id != null and wfNodeDefDto.id != ''">
+      AND wfNodeDef.id = #{wfNodeDefDto.id}
+    </if>
+    <if test="wfNodeDefDto.nodeKey != null and wfNodeDefDto.nodeKey != ''">
+      AND wfNodeDef.node_key like CONCAT('%',#{wfNodeDefDto.nodeKey},'%')
+    </if>
+    <if test="wfNodeDefDto.nodeName != null and wfNodeDefDto.nodeName != ''">
+      AND wfNodeDef.node_name like CONCAT('%',#{wfNodeDefDto.nodeName},'%')
+    </if>
+    <if test="wfNodeDefDto.nodeType != null and wfNodeDefDto.nodeType != ''">
+      AND wfNodeDef.node_type = #{wfNodeDefDto.nodeType}
+    </if>
+    <if test="wfNodeDefDto.dueDate != null and wfNodeDefDto.dueDate != ''">
+      AND wfNodeDef.due_date = #{wfNodeDefDto.dueDate}
+    </if>
+    <if test="wfNodeDefDto.followUpDate != null and wfNodeDefDto.followUpDate != ''">
+      AND wfNodeDef.follow_up_date = #{wfNodeDefDto.followUpDate}
+    </if>
+    <if test="wfNodeDefDto.priority != null and wfNodeDefDto.priority != ''">
+      AND wfNodeDef.priority = #{wfNodeDefDto.priority}
+    </if>
+    <if test="wfNodeDefDto.procdefId != null and wfNodeDefDto.procdefId != ''">
+      AND wfNodeDef.procdef_id = #{wfNodeDefDto.procdefId}
+    </if>
+    <if test="wfNodeDefDto.camundaProcdefId != null and wfNodeDefDto.camundaProcdefId != ''">
+      AND wfNodeDef.camunda_procdef_id like CONCAT('%',#{wfNodeDefDto.camundaProcdefId},'%')
+    </if>
+    <if test="wfNodeDefDto.camundaProcdefKey != null and wfNodeDefDto.camundaProcdefKey != ''">
+      AND wfNodeDef.camunda_procdef_key like CONCAT('%',#{wfNodeDefDto.camundaProcdefKey},'%')
+    </if>
+    order by wfNodeDef.id desc
+</select>
+</mapper>

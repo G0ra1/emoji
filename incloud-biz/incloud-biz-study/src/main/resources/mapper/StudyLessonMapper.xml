@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.study.mapper.StudyLessonMapper">
+
+<resultMap id="studyLessonMap" type="com.netwisd.biz.study.vo.StudyLessonVo">
+  <id property="id" column="id"/>
+  <result property="typeCode" column="type_code"/>
+  <result property="typeName" column="type_name"/>
+  <result property="labelCode" column="label_code"/>
+  <result property="labelName" column="label_name"/>
+  <result property="lessonName" column="lesson_name"/>
+  <result property="hits" column="hits"/>
+  <result property="description" column="description"/>
+  <result property="isIndex" column="is_index"/>
+  <result property="imgId" column="img_id"/>
+  <result property="imgUrl" column="img_url"/>
+  <result property="couSize" column="cou_size"/>
+  <result property="studyTime" column="study_time"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+  <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+  <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+  <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+  <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+  <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+</resultMap>
+<select id="pageForIndex" parameterType="com.netwisd.biz.study.dto.StudyLessonDto" resultMap="studyLessonMap">
+  SELECT
+  lesson.*,
+  ( SELECT COUNT(*) FROM incloud_biz_study_lesson_cou WHERE lesson_id = lesson.id ) AS cou_size ,
+  ( SELECT SUM(cou.study_time) FROM incloud_biz_study_lesson_cou lessonCou
+    LEFT JOIN incloud_biz_study_cou cou ON lessonCou.cou_id = cou.id
+    WHERE lesson_id = lesson.id
+  ) AS study_time
+  FROM
+  incloud_biz_study_lesson lesson
+  WHERE
+    lesson.is_enable = 1
+    AND
+    lesson.status = 1
+    <if test=" studyLessonDto.labelCodes != null and studyLessonDto.labelCodes.size()>0">
+      <foreach collection="studyLessonDto.labelCodes" open="and (" close=")" index="index" item="labelCode" separator="OR">
+        FIND_IN_SET(#{labelCode},label_code)
+      </foreach>
+    </if>
+    <if test="studyLessonDto.typeCode != null and studyLessonDto.typeCode != ''">
+      AND lesson.type_code like CONCAT('%',#{studyLessonDto.typeCode},'%')
+    </if>
+    <if test="studyLessonDto.lessonName != null and studyLessonDto.lessonName != ''">
+      AND lesson.lesson_name like CONCAT('%',#{studyLessonDto.lessonName},'%')
+    </if>
+    <if test="studyLessonDto.isHightHits != null and studyLessonDto.isHightHits != '' and studyLessonDto.isHightHits == 1">
+      order by lesson.hits desc
+    </if>
+    <if test="studyLessonDto.isHightHits != null and studyLessonDto.isHightHits != '' and studyLessonDto.isHightHits == 2">
+      order by lesson.hits
+    </if>
+    <if test="studyLessonDto.isNew != null and studyLessonDto.isNew != '' and studyLessonDto.isNew == 1">
+      order by lesson.create_time desc
+    </if>
+    <if test="studyLessonDto.isNew != null and studyLessonDto.isNew != '' and studyLessonDto.isNew == 2">
+      order by lesson.create_time
+    </if>
+
+</select>
+</mapper>

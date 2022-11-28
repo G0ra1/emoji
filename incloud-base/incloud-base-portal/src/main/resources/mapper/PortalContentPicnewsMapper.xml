@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.portal.mapper.PortalContentPicnewsMapper">
+
+<resultMap id="portalContentPicnewsMap" type="com.netwisd.base.portal.vo.PortalContentPicnewsVo">
+  <id property="id" column="id"/>
+  <result property="portalId" column="portal_id"/>
+  <result property="portalName" column="portal_name"/>
+  <result property="partId" column="part_id"/>
+  <result property="partName" column="part_name"/>
+  <result property="partTypeId" column="part_type_id"/>
+  <result property="partTypeName" column="part_type_name"/>
+  <result property="title" column="title"/>
+  <result property="description" column="description"/>
+  <result property="imgUrl" column="img_url"/>
+  <result property="contentUrl" column="content_url"/>
+  <result property="auditStatus" column="audit_status"/>
+  <result property="hits" column="hits"/>
+  <result property="remark" column="remark"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.portal.dto.PortalContentPicnewsDto" resultMap="portalContentPicnewsMap">
+  select * from incloud_base_portal_content_picnews portalContentPicnews where 1=1
+    <if test="portalContentPicnewsDto.id != null and portalContentPicnewsDto.id != ''">
+      AND portalContentPicnews.id = #{portalContentPicnewsDto.id}
+    </if>
+    <if test="portalContentPicnewsDto.portalId != null and portalContentPicnewsDto.portalId != ''">
+      AND portalContentPicnews.portal_id = #{portalContentPicnewsDto.portalId}
+    </if>
+    <if test="portalContentPicnewsDto.portalName != null and portalContentPicnewsDto.portalName != ''">
+      AND portalContentPicnews.portal_name like CONCAT('%',#{portalContentPicnewsDto.portalName},'%')
+    </if>
+    <if test="portalContentPicnewsDto.partId != null and portalContentPicnewsDto.partId != ''">
+      AND portalContentPicnews.part_id = #{portalContentPicnewsDto.partId}
+    </if>
+    <if test="portalContentPicnewsDto.partName != null and portalContentPicnewsDto.partName != ''">
+      AND portalContentPicnews.part_name like CONCAT('%',#{portalContentPicnewsDto.partName},'%')
+    </if>
+    <if test="portalContentPicnewsDto.partTypeId != null and portalContentPicnewsDto.partTypeId != ''">
+      AND portalContentPicnews.part_type_id = #{portalContentPicnewsDto.partTypeId}
+    </if>
+    <if test="portalContentPicnewsDto.partTypeName != null and portalContentPicnewsDto.partTypeName != ''">
+      AND portalContentPicnews.part_type_name like CONCAT('%',#{portalContentPicnewsDto.partTypeName},'%')
+    </if>
+    <if test="portalContentPicnewsDto.title != null and portalContentPicnewsDto.title != ''">
+      AND portalContentPicnews.title like CONCAT('%',#{portalContentPicnewsDto.title},'%')
+    </if>
+    <if test="portalContentPicnewsDto.description != null and portalContentPicnewsDto.description != ''">
+      AND portalContentPicnews.description like CONCAT('%',#{portalContentPicnewsDto.description},'%')
+    </if>
+    <if test="portalContentPicnewsDto.imgUrl != null and portalContentPicnewsDto.imgUrl != ''">
+      AND portalContentPicnews.img_url like CONCAT('%',#{portalContentPicnewsDto.imgUrl},'%')
+    </if>
+    <if test="portalContentPicnewsDto.contentUrl != null and portalContentPicnewsDto.contentUrl != ''">
+      AND portalContentPicnews.content_url like CONCAT('%',#{portalContentPicnewsDto.contentUrl},'%')
+    </if>
+    <if test="portalContentPicnewsDto.auditStatus != null and portalContentPicnewsDto.auditStatus != ''">
+      AND portalContentPicnews.audit_status = #{portalContentPicnewsDto.auditStatus}
+    </if>
+    <if test="portalContentPicnewsDto.hits != null and portalContentPicnewsDto.hits != ''">
+      AND portalContentPicnews.hits = #{portalContentPicnewsDto.hits}
+    </if>
+    <if test="portalContentPicnewsDto.remark != null and portalContentPicnewsDto.remark != ''">
+      AND portalContentPicnews.remark like CONCAT('%',#{portalContentPicnewsDto.remark},'%')
+    </if>
+    order by portalContentPicnews.id desc
+</select>
+</mapper>

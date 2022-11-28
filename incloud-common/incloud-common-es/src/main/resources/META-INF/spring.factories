@@ -1,0 +1,5 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.netwisd.common.es.config.ElasticSearchConfig,\
+com.netwisd.common.es.config.CanalConfig,\
+com.netwisd.common.es.config.IndexInitConfig,\
+com.netwisd.common.es.controller.ElasticSearchController

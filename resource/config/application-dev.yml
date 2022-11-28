@@ -1,0 +1,124 @@
+#日志输出控制
+logging:
+  level:
+    root: info
+    com.netwisd: debug
+  file: logs/${spring.application.name}.log
+spring:
+  datasource:
+    name: dataSource
+    url: jdbc:mysql://${incloud3_db_host:127.0.0.1}:${incloud3_db_port:3306}/${incloud3_db_schema:incloud3}?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&allowMultiQueries=true&useSSL=false
+    username: ${incloud3_db_user:root}
+    password: ${incloud3_db_pwd:root}
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    druid:
+      name: dataSource
+      url: jdbc:mysql://${incloud3_db_host:127.0.0.1}:${incloud3_db_port:3306}/${incloud3_db_schema:incloud3}?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&allowMultiQueries=true&useSSL=false&allowPublicKeyRetrieval=true
+      username: ${incloud3_db_user:root}
+      password: ${incloud3_db_pwd:root}
+      type: com.alibaba.druid.pool.DruidDataSource
+      driverClassName: com.mysql.cj.jdbc.Driver
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      max-wait: 30000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: select 1
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: false
+      max-pool-prepared-statement-per-connection-size: 20
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=6000
+  redis:
+    host: ${incloud3_redis_host:10.255.0.141}
+    port: ${incloud3_redis_port:6379}
+      #cluster:
+    #nodes: envhost:8000,envhost:8001,envhost:8002,envhost:8003,envhost:8004,envhost:8005
+    password: ${incloud3_redis_pwd:Netwisd*8}
+    timeout: 10s
+    lettuce:
+      pool:
+        min-idle: 0
+        max-idle: 8
+        max-active: 8
+        max-wait: -1ms
+  rabbitmq:
+    addresses: ${incloud3_rabbitmq_host:127.0.0.1}:${incloud3_rabbitmq_port:5672}
+    username: ${incloud3_rabbitmq_username:netwisd}
+    password: ${incloud3_rabbitmq_password:netwisd}
+    virtual-host: ${incloud3_rabbitmq_virtual:/}
+    connection-timeout: 15000
+    publisher-returns: true
+    publisher-confirm-type: CORRELATED
+    listener:
+      simple:
+        acknowledge-mode: manual
+        concurrency: 3
+        max-concurrency: 10
+        default-requeue-rejected: false
+    template:
+      mandatory: true
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    default-property-inclusion: always
+  mvc:
+    throw-exception-if-no-handler-found: true
+  resources:
+    add-mappings: true
+  main:
+    allow-bean-definition-overriding: true
+#mybatis-plus配置控制台打印完整带参数SQL语句
+mybatis-plus:
+  configuration:
+    #log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+    map-underscore-to-camel-case: true
+hystrix:
+  threadpool:
+    default:
+      coreSize: 100
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 99000
+ribbon:
+  ConnectTimeout: 80000
+  ReadTimeout: 80000
+  MaxAutoRetries: 0  #重试次数
+  MaxAutoRetriesNextServer: 0 #重试服务次数
+  OkToRetryOnAllOperations: true #所有请求都开启重试
+security:
+  oauth2:
+    resource:
+      user-info-uri: http://${incloud3_zuul_host}:${incloud3_zuul_port}/oauth/user-me
+      prefer-token-info: false
+mybatis:
+  mapperLocations: classpath:mapper/*.xml
+incloud:
+  database: mysql
+  table:
+    auto: update
+    model: prod #dev模式不会删除字段，prod会完全同步实体类字段
+    enable: true
+  tokenfilter:
+    report: localhost
+elasticsearch:
+  address: 192.168.1.196:9200
+canal:
+  canalServer: 192.168.1.196
+  canalPort: 11111
+  destination: incloud4
+  userName: canal
+  password: canal
+  rocketmq:
+    namesrvAddr: ${incloud3_rocketmq_host:192.168.1.196}:${incloud3_rocketmq_port:9876}
+    topic: incloud4BinLog
+feign:
+  sentinel:
+    enabled: true

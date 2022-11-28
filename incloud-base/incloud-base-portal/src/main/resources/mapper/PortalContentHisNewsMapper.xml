@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.portal.mapper.PortalContentHisNewsMapper">
+
+<resultMap id="portalContentHisNewsMap" type="com.netwisd.base.portal.vo.PortalContentHisNewsVo">
+  <id property="id" column="id"/>
+  <result property="linkNewsId" column="link_news_id"/>
+  <result property="portalId" column="portal_id"/>
+  <result property="portalName" column="portal_name"/>
+  <result property="partId" column="part_id"/>
+  <result property="partName" column="part_name"/>
+  <result property="partTypeId" column="part_type_id"/>
+  <result property="partTypeName" column="part_type_name"/>
+  <result property="title" column="title"/>
+  <result property="description" column="description"/>
+  <result property="contentUrl" column="content_url"/>
+  <result property="auditStatus" column="audit_status"/>
+  <result property="hits" column="hits"/>
+  <result property="remark" column="remark"/>
+  <result property="ueditorContent" column="ueditor_content"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.portal.dto.PortalContentHisNewsDto" resultMap="portalContentHisNewsMap">
+  select * from incloud_base_portal_content_his_news portalContentHisNews where 1=1
+    <if test="portalContentHisNewsDto.id != null and portalContentHisNewsDto.id != ''">
+      AND portalContentHisNews.id = #{portalContentHisNewsDto.id}
+    </if>
+    <if test="portalContentHisNewsDto.linkNewsId != null and portalContentHisNewsDto.linkNewsId != ''">
+      AND portalContentHisNews.link_news_id = #{portalContentHisNewsDto.linkNewsId}
+    </if>
+    <if test="portalContentHisNewsDto.portalId != null and portalContentHisNewsDto.portalId != ''">
+      AND portalContentHisNews.portal_id = #{portalContentHisNewsDto.portalId}
+    </if>
+    <if test="portalContentHisNewsDto.portalName != null and portalContentHisNewsDto.portalName != ''">
+      AND portalContentHisNews.portal_name like CONCAT('%',#{portalContentHisNewsDto.portalName},'%')
+    </if>
+    <if test="portalContentHisNewsDto.partId != null and portalContentHisNewsDto.partId != ''">
+      AND portalContentHisNews.part_id = #{portalContentHisNewsDto.partId}
+    </if>
+    <if test="portalContentHisNewsDto.partName != null and portalContentHisNewsDto.partName != ''">
+      AND portalContentHisNews.part_name like CONCAT('%',#{portalContentHisNewsDto.partName},'%')
+    </if>
+    <if test="portalContentHisNewsDto.partTypeId != null and portalContentHisNewsDto.partTypeId != ''">
+      AND portalContentHisNews.part_type_id = #{portalContentHisNewsDto.partTypeId}
+    </if>
+    <if test="portalContentHisNewsDto.partTypeName != null and portalContentHisNewsDto.partTypeName != ''">
+      AND portalContentHisNews.part_type_name like CONCAT('%',#{portalContentHisNewsDto.partTypeName},'%')
+    </if>
+    <if test="portalContentHisNewsDto.title != null and portalContentHisNewsDto.title != ''">
+      AND portalContentHisNews.title like CONCAT('%',#{portalContentHisNewsDto.title},'%')
+    </if>
+    <if test="portalContentHisNewsDto.description != null and portalContentHisNewsDto.description != ''">
+      AND portalContentHisNews.description like CONCAT('%',#{portalContentHisNewsDto.description},'%')
+    </if>
+    <if test="portalContentHisNewsDto.contentUrl != null and portalContentHisNewsDto.contentUrl != ''">
+      AND portalContentHisNews.content_url like CONCAT('%',#{portalContentHisNewsDto.contentUrl},'%')
+    </if>
+    <if test="portalContentHisNewsDto.auditStatus != null and portalContentHisNewsDto.auditStatus != ''">
+      AND portalContentHisNews.audit_status = #{portalContentHisNewsDto.auditStatus}
+    </if>
+    <if test="portalContentHisNewsDto.hits != null and portalContentHisNewsDto.hits != ''">
+      AND portalContentHisNews.hits = #{portalContentHisNewsDto.hits}
+    </if>
+    <if test="portalContentHisNewsDto.remark != null and portalContentHisNewsDto.remark != ''">
+      AND portalContentHisNews.remark like CONCAT('%',#{portalContentHisNewsDto.remark},'%')
+    </if>
+    <if test="portalContentHisNewsDto.ueditorContent != null and portalContentHisNewsDto.ueditorContent != ''">
+      AND portalContentHisNews.ueditor_content like CONCAT('%',#{portalContentHisNewsDto.ueditorContent},'%')
+    </if>
+    order by portalContentHisNews.id desc
+</select>
+</mapper>

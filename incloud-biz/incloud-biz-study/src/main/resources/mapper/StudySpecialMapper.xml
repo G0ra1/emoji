@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.study.mapper.StudySpecialMapper">
+
+
+    <resultMap id="studySpecialMap" type="com.netwisd.biz.study.vo.StudySpecialVo">
+        <id property="id" column="id"/>
+        <result property="label" column="label"/>
+        <result property="labelCode" column="label_code"/>
+        <result property="typeCode" column="type_code"/>
+        <result property="typeName" column="type_name"/>
+        <result property="specialName" column="special_name"/>
+        <result property="specialTimeType" column="special_time_type"/>
+        <result property="specialStartTime" column="special_start_time"/>
+        <result property="specialEndTime" column="special_end_time"/>
+        <result property="specialPaperId" column="special_paper_id"/>
+        <result property="specialPaperName" column="special_paper_name"/>
+        <result property="specialPaperTotalScore" column="special_paper_total_score"/>
+        <result property="specialPaperStartTime" column="special_paper_start_time"/>
+        <result property="specialPaperEndTime" column="special_paper_end_time"/>
+        <result property="specialLecturer" column="special_lecturer"/>
+        <result property="specialPaperType" column="special_paper_type"/>
+        <result property="specialExamTime" column="special_exam_time"/>
+        <result property="isHaveShortAnswer" column="is_have_short_answer"/>
+        <result property="specialExamPaperTeacherId" column="special_exam_paper_teacher_id"/>
+        <result property="specialExamPaperTeacherName" column="special_exam_paper_teacher_name"/>
+        <result property="fileId" column="file_id"/>
+        <result property="fileUrl" column="file_url"/>
+        <result property="hits" column="hits"/>
+        <result property="isEnable" column="is_enable"/>
+        <result property="isIndex" column="is_index"/>
+        <result property="createUserId" column="create_user_id"/>
+        <result property="createUserName" column="create_user_name"/>
+        <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+        <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+        <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+        <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+        <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+        <result property="description" column="description"/>
+        <result property="specialExamNum" column="special_exam_num"/>
+
+    </resultMap>
+    <select id="getPageList" parameterType="com.netwisd.biz.study.dto.StudySpecialDto" resultMap="studySpecialMap">
+        select * from incloud_biz_study_special studySpecial where 1=1
+        <if test="studySpecialDto.id != null and studySpecialDto.id != ''">
+            AND studySpecial.id = #{studySpecialDto.id}
+        </if>
+        <if test="studySpecialDto.label != null and studySpecialDto.label != ''">
+            AND studySpecial.label like CONCAT('%',#{studySpecialDto.label},'%')
+        </if>
+        <if test="studySpecialDto.labelCode != null and studySpecialDto.labelCode != ''">
+            AND studySpecial.label_code like CONCAT('%',#{studySpecialDto.labelCode},'%')
+        </if>
+        <if test="studySpecialDto.typeCode != null and studySpecialDto.typeCode != ''">
+            AND studySpecial.type_code like CONCAT('%',#{studySpecialDto.typeCode},'%')
+        </if>
+        <if test="studySpecialDto.typeName != null and studySpecialDto.typeName != ''">
+            AND studySpecial.type_name like CONCAT('%',#{studySpecialDto.typeName},'%')
+        </if>
+        <if test="studySpecialDto.specialName != null and studySpecialDto.specialName != ''">
+            AND studySpecial.special_name like CONCAT('%',#{studySpecialDto.specialName},'%')
+        </if>
+        <if test="studySpecialDto.specialTimeType != null and studySpecialDto.specialTimeType != ''">
+            AND studySpecial.special_time_type = #{studySpecialDto.specialTimeType}
+        </if>
+        <if test="studySpecialDto.specialStartTime != null and studySpecialDto.specialStartTime != ''">
+            AND studySpecial.special_start_time = #{studySpecialDto.specialStartTime}
+        </if>
+        <if test="studySpecialDto.specialEndTime != null and studySpecialDto.specialEndTime != ''">
+            AND studySpecial.special_end_time = #{studySpecialDto.specialEndTime}
+        </if>
+        <if test="studySpecialDto.specialPaperId != null and studySpecialDto.specialPaperId != ''">
+            AND studySpecial.special_paper_id = #{studySpecialDto.specialPaperId}
+        </if>
+        <if test="studySpecialDto.specialPaperName != null and studySpecialDto.specialPaperName != ''">
+            AND studySpecial.special_paper_name like CONCAT('%',#{studySpecialDto.specialPaperName},'%')
+        </if>
+        <if test="studySpecialDto.specialPaperTotalScore != null and studySpecialDto.specialPaperTotalScore != ''">
+            AND studySpecial.special_paper_total_score = #{studySpecialDto.specialPaperTotalScore}
+        </if>
+        <if test="studySpecialDto.specialPaperStartTime != null and studySpecialDto.specialPaperStartTime != ''">
+            AND studySpecial.special_paper_start_time = #{studySpecialDto.specialPaperStartTime}
+        </if>
+        <if test="studySpecialDto.specialPaperEndTime != null and studySpecialDto.specialPaperEndTime != ''">
+            AND studySpecial.special_paper_end_time = #{studySpecialDto.specialPaperEndTime}
+        </if>
+        <if test="studySpecialDto.specialPaperType != null and studySpecialDto.specialPaperType != ''">
+            AND studySpecial.special_paper_type like CONCAT('%',#{studySpecialDto.specialPaperType},'%')
+        </if>
+        <if test="studySpecialDto.specialExamTime != null and studySpecialDto.specialExamTime != ''">
+            AND studySpecial.special_exam_time = #{studySpecialDto.specialExamTime}
+        </if>
+        <if test="studySpecialDto.specialLecturer != null and studySpecialDto.specialLecturer != ''">
+            AND studySpecial.special_lecturer like
+            CONCAT('%',#{studySpecialDto.specialLecturer},'%')
+        </if>
+        <if test="studySpecialDto.specialExamNum != null and studySpecialDto.specialExamNum != ''">
+            AND studySpecial.special_exam_num = #{studySpecialDto.specialExamNum}
+        </if>
+        <if test="studySpecialDto.isHaveShortAnswer != null and studySpecialDto.isHaveShortAnswer != ''">
+            AND studySpecial.is_have_short_answer = #{studySpecialDto.isHaveShortAnswer}
+        </if>
+        <if test="studySpecialDto.specialExamPaperTeacherId != null and studySpecialDto.specialExamPaperTeacherId != ''">
+            AND studySpecial.special_exam_paper_teacher_id = #{studySpecialDto.specialExamPaperTeacherId}
+        </if>
+        <if test="studySpecialDto.specialExamPaperTeacherName != null and studySpecialDto.specialExamPaperTeacherName != ''">
+            AND studySpecial.special_exam_paper_teacher_name like
+            CONCAT('%',#{studySpecialDto.specialExamPaperTeacherName},'%')
+        </if>
+        <if test="studySpecialDto.fileId != null and studySpecialDto.fileId != ''">
+            AND studySpecial.file_id = #{studySpecialDto.fileId}
+        </if>
+
+        <if test="studySpecialDto.fileUrl != null and studySpecialDto.fileUrl != ''">
+            AND studySpecial.file_url like CONCAT('%',#{studySpecialDto.fileUrl},'%')
+        </if>
+        <if test="studySpecialDto.hits != null and studySpecialDto.hits != ''">
+            AND studySpecial.hits like CONCAT('%',#{studySpecialDto.hits},'%')
+        </if>
+        <if test="studySpecialDto.isIndex != null and studySpecialDto.isIndex != ''">
+            AND studySpecial.is_index like CONCAT('%',#{studySpecialDto.isIndex},'%')
+        </if>
+        <if test="studySpecialDto.isEnable != null and studySpecialDto.isEnable != ''">
+            AND studySpecial.is_enable like CONCAT('%',#{studySpecialDto.isEnable},'%')
+        </if>
+        <if test="studySpecialDto.createUserId != null and studySpecialDto.createUserId != ''">
+            AND studySpecial.create_user_id = #{studySpecialDto.createUserId}
+        </if>
+        <if test="studySpecialDto.createUserName != null and studySpecialDto.createUserName != ''">
+            AND studySpecial.create_user_name like CONCAT('%',#{studySpecialDto.createUserName},'%')
+        </if>
+        <if test="studySpecialDto.createUserParentOrgId != null and studySpecialDto.createUserParentOrgId != ''">
+            AND studySpecial.create_user_parent_org_id = #{studySpecialDto.createUserParentOrgId}
+        </if>
+        <if test="studySpecialDto.createUserParentOrgName != null and studySpecialDto.createUserParentOrgName != ''">
+            AND studySpecial.create_user_parent_org_name like CONCAT('%',#{studySpecialDto.createUserParentOrgName},'%')
+        </if>
+        <if test="studySpecialDto.createUserParentDeptId != null and studySpecialDto.createUserParentDeptId != ''">
+            AND studySpecial.create_user_parent_dept_id = #{studySpecialDto.createUserParentDeptId}
+        </if>
+        <if test="studySpecialDto.createUserParentDeptName != null and studySpecialDto.createUserParentDeptName != ''">
+            AND studySpecial.create_user_parent_dept_name like
+            CONCAT('%',#{studySpecialDto.createUserParentDeptName},'%')
+        </if>
+        <if test="studySpecialDto.createUserOrgFullId != null and studySpecialDto.createUserOrgFullId != ''">
+            AND studySpecial.create_user_org_full_id like CONCAT('%',#{studySpecialDto.createUserOrgFullId},'%')
+        </if>
+        <if test="studySpecialDto.description != null and studySpecialDto.description != ''">
+            AND studySpecial.description like CONCAT('%',#{studySpecialDto.description},'%')
+        </if>
+
+        order by studySpecial.id desc
+    </select>
+
+
+    <select id="xueyuanPageList" parameterType="com.netwisd.biz.study.dto.StudySpecialDto"
+            resultType="com.netwisd.biz.study.vo.StudySpecialVo">
+        SELECT
+            spe.*,
+            spe.create_time createTime,
+            spe.special_lecturer specialLecturer,
+            (SELECT count(id) FROM incloud_biz_study_special_lesson specLesson WHERE specLesson.special_id = spe.id) lessCount,
+            (SELECT SUM(IFNULL(cou.study_time,0)) FROM incloud_biz_study_cou cou WHERE cou.id IN (SELECT cou_id FROM incloud_biz_study_special_lesson_cou specLessonCou WHERE specLessonCou.special_id=spe.id)) studyTime
+        FROM
+            incloud_biz_study_special spe
+        WHERE
+        ((spe.special_time_type = 0 AND DATE_FORMAT(spe.special_start_time,'%Y-%m-%d') &lt;= DATE_FORMAT(now(),'%Y-%m-%d') AND DATE_FORMAT(spe.special_end_time,'%Y-%m-%d') &gt;= DATE_FORMAT(now(),'%Y-%m-%d')) OR (spe.special_time_type = 1 AND DATE_FORMAT(spe.special_start_time,'%Y-%m-%d') &lt;= DATE_FORMAT(now(),'%Y-%m-%d'))) AND spe.is_enable = 1 AND spe.STATUS &gt; 0
+        <if test=" specialDto.labelCodeList != null and specialDto.labelCodeList.size()>0">
+            <foreach collection="specialDto.labelCodeList" open="and (" close=")" index="index" item="labelCode" separator="OR">
+                FIND_IN_SET(#{labelCode},label_code)
+            </foreach>
+        </if>
+        <if test=" specialDto.specialName != null and specialDto.specialName != '' ">
+            AND spe.special_name like CONCAT('%',#{specialDto.specialName},'%')
+        </if>
+        <if test=" specialDto.typeCode != null and specialDto.typeCode != '' ">
+            AND spe.type_code = #{specialDto.typeCode}
+        </if>
+
+        <choose>
+            <when test='specialDto.orderByField != null and specialDto.orderByField  != "" and specialDto.orderBySort !=null and specialDto.orderBySort !="" '>
+                ORDER BY ${specialDto.orderByField} ${specialDto.orderBySort}
+            </when>
+            <otherwise>
+                ORDER BY createTime DESC
+            </otherwise>
+        </choose>
+    </select>
+    <select id="countSpecialStudyTime" parameterType="java.lang.Long" resultType="java.lang.Long">
+        SELECT
+            SUM(IFNULL(study_time,0)) studyTime
+        FROM
+            incloud_biz_study_cou
+        WHERE
+            id IN (
+            SELECT
+                cou_id
+            FROM
+                incloud_biz_study_special_lesson_cou specLessonCou
+            WHERE
+                specLessonCou.special_id = #{specialId}
+        )
+    </select>
+</mapper>

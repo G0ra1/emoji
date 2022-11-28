@@ -1,0 +1,14 @@
+incloud:
+  table:
+    package: com.netwisd.biz.epm.entity
+sap:
+  isUse: false
+  specialUrl: http://10.135.11.4:50000/sap/bc/zqmys_zxsl?sap-client=600
+  bumenUrl: http://10.135.11.4:50000/sap/bc/zqmys_sl?sap-client=600
+seata:
+  tx-service-group: incloud_biz_epm
+  service:
+    vgroup-mapping:
+      incloud_biz_epm: default
+    grouplist:
+      default: 192.168.1.195:8091

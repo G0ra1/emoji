@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.mdm.mapper.CustomerContactsMapper">
+
+<resultMap id="customerContactsMap" type="com.netwisd.biz.mdm.vo.CustomerContactsVo">
+  <id property="id" column="id"/>
+  <result property="customerId" column="customer_id"/>
+  <result property="customerCode" column="customer_code"/>
+  <result property="contactsId" column="contacts_id"/>
+  <result property="contactsName" column="contacts_name"/>
+  <result property="contactsPhone" column="contacts_phone"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.mdm.dto.CustomerContactsDto" resultMap="customerContactsMap">
+  select * from incloud_biz_mdm_customer_contacts customerContacts where 1=1
+    <if test="customerContactsDto.id != null and customerContactsDto.id != ''">
+      AND customerContacts.id = #{customerContactsDto.id}
+    </if>
+    <if test="customerContactsDto.customerId != null and customerContactsDto.customerId != ''">
+      AND customerContacts.customer_id = #{customerContactsDto.customerId}
+    </if>
+    <if test="customerContactsDto.customerCode != null and customerContactsDto.customerCode != ''">
+      AND customerContacts.customer_code like CONCAT('%',#{customerContactsDto.customerCode},'%')
+    </if>
+    <if test="customerContactsDto.contactsId != null and customerContactsDto.contactsId != ''">
+      AND customerContacts.contacts_id = #{customerContactsDto.contactsId}
+    </if>
+    <if test="customerContactsDto.contactsName != null and customerContactsDto.contactsName != ''">
+      AND customerContacts.contacts_name like CONCAT('%',#{customerContactsDto.contactsName},'%')
+    </if>
+    <if test="customerContactsDto.contactsPhone != null and customerContactsDto.contactsPhone != ''">
+      AND customerContacts.contacts_phone like CONCAT('%',#{customerContactsDto.contactsPhone},'%')
+    </if>
+    order by customerContacts.id desc
+</select>
+</mapper>

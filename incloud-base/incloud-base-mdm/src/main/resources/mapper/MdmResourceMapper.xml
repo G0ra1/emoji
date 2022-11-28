@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.mdm.mapper.MdmResourceMapper">
+
+<resultMap id="mdmResourceMap" type="com.netwisd.base.common.mdm.vo.MdmResourceVo">
+  <id property="id" column="id"/>
+  <result property="resourceCode" column="resource_code"/>
+  <result property="resourceName" column="resource_name"/>
+  <result property="resourceUrl" column="resource_url"/>
+  <result property="resourceType" column="resource_type"/>
+  <result property="sysId" column="sys_id"/>
+  <result property="sysName" column="sys_name"/>
+  <result property="hasKids" column="has_kids"/>
+  <result property="level" column="level"/>
+  <result property="parentId" column="parent_id"/>
+  <result property="icon" column="icon"/>
+  <result property="openWay" column="open_way"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.common.mdm.dto.MdmResourceDto" resultMap="mdmResourceMap">
+  select * from incloud_base_mdm_resource mdmResource where 1=1
+    <if test="mdmResourceDto.id != null and mdmResourceDto.id != ''">
+      AND mdmResource.id = #{mdmResourceDto.id}
+    </if>
+    <if test="mdmResourceDto.resourceCode != null and mdmResourceDto.resourceCode != ''">
+      AND mdmResource.resource_code like CONCAT('%',#{mdmResourceDto.resourceCode},'%')
+    </if>
+    <if test="mdmResourceDto.resourceName != null and mdmResourceDto.resourceName != ''">
+      AND mdmResource.resource_name like CONCAT('%',#{mdmResourceDto.resourceName},'%')
+    </if>
+    <if test="mdmResourceDto.resourceUrl != null and mdmResourceDto.resourceUrl != ''">
+      AND mdmResource.resource_url like CONCAT('%',#{mdmResourceDto.resourceUrl},'%')
+    </if>
+    <if test="mdmResourceDto.resourceType != null and mdmResourceDto.resourceType != ''">
+      AND mdmResource.resource_type = #{mdmResourceDto.resourceType}
+    </if>
+    <if test="mdmResourceDto.sysId != null and mdmResourceDto.sysId != ''">
+      AND mdmResource.sys_id = #{mdmResourceDto.sysId}
+    </if>
+    <if test="mdmResourceDto.sysName != null and mdmResourceDto.sysName != ''">
+      AND mdmResource.sys_name like CONCAT('%',#{mdmResourceDto.sysName},'%')
+    </if>
+    <if test="mdmResourceDto.hasKids != null and mdmResourceDto.hasKids != ''">
+      AND mdmResource.has_kids = #{mdmResourceDto.hasKids}
+    </if>
+    <if test="mdmResourceDto.level != null and mdmResourceDto.level != ''">
+      AND mdmResource.level = #{mdmResourceDto.level}
+    </if>
+    <if test="mdmResourceDto.parentId != null and mdmResourceDto.parentId != ''">
+      AND mdmResource.parent_id = #{mdmResourceDto.parentId}
+    </if>
+    order by mdmResource.id desc
+</select>
+</mapper>

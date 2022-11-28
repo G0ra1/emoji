@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.mdm.mapper.MdmOrgLevelDictMapper">
+
+<resultMap id="mdmOrgLevelDictMap" type="com.netwisd.base.common.mdm.vo.MdmOrgLevelDictVo">
+  <id property="id" column="id"/>
+  <result property="orgLevel" column="org_level"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.common.mdm.dto.MdmOrgLevelDictDto" resultMap="mdmOrgLevelDictMap">
+  select * from incloud_base_mdm_org_level_dict mdmOrgLevelDict where 1=1
+    <if test="mdmOrgLevelDictDto.id != null and mdmOrgLevelDictDto.id != ''">
+      AND mdmOrgLevelDict.id = #{mdmOrgLevelDictDto.id}
+    </if>
+    <if test="mdmOrgLevelDictDto.orgLevel != null and mdmOrgLevelDictDto.orgLevel != ''">
+      AND mdmOrgLevelDict.org_level like CONCAT('%',#{mdmOrgLevelDictDto.orgLevel},'%')
+    </if>
+    order by mdmOrgLevelDict.id desc
+</select>
+</mapper>

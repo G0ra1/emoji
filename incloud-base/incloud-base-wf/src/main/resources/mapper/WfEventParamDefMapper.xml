@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.wf.mapper.WfEventParamDefMapper">
+
+<resultMap id="wfEventParamDefMap" type="com.netwisd.base.wf.vo.WfEventParamDefVo">
+  <id property="id" column="id"/>
+  <result property="eventDefId" column="event_def_id"/>
+  <result property="paramType" column="param_type"/>
+  <result property="paramId" column="param_id"/>
+  <result property="paramValue" column="param_value"/>
+  <result property="nodeDefId" column="node_def_id"/>
+
+  <result property="camundaProcdefId" column="camunda_procdef_id"/>
+  <result property="camundaProcdefKey" column="camunda_procdef_key"/>
+  <result property="camundaNodeDefId" column="camunda_node_def_id"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.wf.dto.WfEventParamDefDto" resultMap="wfEventParamDefMap">
+  select * from incloud_base_wf_event_param_def wfEventParamDef where 1=1
+    <if test="wfEventParamDefDto.id != null and wfEventParamDefDto.id != ''">
+      AND wfEventParamDef.id = #{wfEventParamDefDto.id}
+    </if>
+    <if test="wfEventParamDefDto.eventId != null and wfEventParamDefDto.eventId != ''">
+      AND wfEventParamDef.event_id = #{wfEventParamDefDto.eventId}
+    </if>
+    <if test="wfEventParamDefDto.paramType != null and wfEventParamDefDto.paramType != ''">
+      AND wfEventParamDef.param_type like CONCAT('%',#{wfEventParamDefDto.paramType},'%')
+    </if>
+    <if test="wfEventParamDefDto.varId != null and wfEventParamDefDto.varId != ''">
+      AND wfEventParamDef.var_id like CONCAT('%',#{wfEventParamDefDto.varId},'%')
+    </if>
+    <if test="wfEventParamDefDto.varName != null and wfEventParamDefDto.varName != ''">
+      AND wfEventParamDef.var_name like CONCAT('%',#{wfEventParamDefDto.varName},'%')
+    </if>
+    <if test="wfEventParamDefDto.varDefalutValue != null and wfEventParamDefDto.varDefalutValue != ''">
+      AND wfEventParamDef.var_defalut_value like CONCAT('%',#{wfEventParamDefDto.varDefalutValue},'%')
+    </if>
+    order by wfEventParamDef.id desc
+</select>
+
+  <select id="getEventParamsByConditions" resultType="com.netwisd.base.wf.vo.WfEventParamRuntimeVo">
+    SELECT
+      pdef.param_value,
+      p.*
+    FROM
+      incloud_base_wf_event e,
+      incloud_base_wf_event_param p,
+      incloud_base_wf_event_param_def pdef,
+      incloud_base_wf_event_def edef
+    WHERE
+        e.id = p.event_id
+    AND
+        pdef.param_id = p.id
+    AND
+        pdef.event_def_id = edef.id
+    <if test="eventBindType != null and eventBindType != ''">
+      and edef.event_bind_type = #{eventBindType}
+    </if>
+
+    <if test="camundaProcdefId != null and camundaProcdefId != ''">
+      and edef.camunda_procdef_id = #{camundaProcdefId}
+    </if>
+
+    <if test="eventType != null and eventType != ''">
+      and edef.event_type = #{eventType}
+    </if>
+
+    <if test="camundaNodeDefId != null and camundaNodeDefId != ''">
+      and edef.camunda_node_def_id = #{camundaNodeDefId}
+    </if>
+    and edef.id = #{eventId}
+  </select>
+</mapper>

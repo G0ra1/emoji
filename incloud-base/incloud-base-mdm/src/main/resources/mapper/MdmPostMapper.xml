@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.mdm.mapper.MdmPostMapper">
+
+  <resultMap id="mdmPostMap" type="com.netwisd.base.common.mdm.vo.MdmPostVo">
+    <id property="id" column="id"/>
+    <result property="postUpParentId" column="post_up_parent_id"/>
+    <result property="postUpParentName" column="post_up_parent_name"/>
+    <result property="postLowParentId" column="post_low_parent_id"/>
+    <result property="postLowParentName" column="post_low_parent_name"/>
+    <result property="orgFullName" column="org_full_name"/>
+    <result property="postName" column="post_name"/>
+    <result property="postCode" column="post_code"/>
+    <result property="postUpId" column="post_up_id"/>
+    <result property="postUpName" column="post_up_name"/>
+    <result property="postLowId" column="post_low_id"/>
+    <result property="postLowName" column="post_low_name"/>
+    <result property="postSequId" column="post_sequ_id"/>
+    <result property="postSequName" column="post_sequ_name"/>
+    <result property="postGradeId" column="post_grade_id"/>
+    <result property="postGradeName" column="post_grade_name"/>
+    <result property="postTagId" column="post_tag_id"/>
+    <result property="postTagName" column="post_tag_name"/>
+    <result property="postDuty" column="post_duty"/>
+    <result property="postAbility" column="post_ability"/>
+    <result property="postContent" column="post_content"/>
+    <result property="postCheck" column="post_check"/>
+    <result property="sort" column="sort"/>
+    <result property="isRef" column="is_ref"/>
+    <result property="status" column="status"/>
+    <result property="orgFullId" column="org_full_id"/>
+    <result property="parentDeptId" column="parent_dept_id"/>
+    <result property="parentDeptName" column="parent_dept_name"/>
+    <result property="parentOrgFullName" column="parent_org_full_name"/>
+    <result property="parentDeptFullName" column="parent_dept_full_name"/>
+    <result property="parentOrgId" column="parent_org_id"/>
+    <result property="parentOrgName" column="parent_org_name"/>
+    <result property="masterNumber" column="master_number"/>
+    <result property="partNumber" column="part_number"/>
+    <result property="validStartTime" column="valid_start_time"/>
+    <result property="validEndTime" column="valid_end_time"/>
+  </resultMap>
+  <select id="getPageList" parameterType="com.netwisd.base.common.mdm.dto.MdmPostDto" resultMap="mdmPostMap">
+    select * from incloud_base_mdm_post mdmPost where 1=1
+    <if test="mdmPostDto.id != null and mdmPostDto.id != ''">
+      AND mdmPost.id = #{mdmPostDto.id}
+    </if>
+    <if test="mdmPostDto.orgFullName != null and mdmPostDto.orgFullName != ''">
+      AND mdmPost.org_full_name like CONCAT('%',#{mdmPostDto.orgFullName},'%')
+    </if>
+    <if test="mdmPostDto.postName != null and mdmPostDto.postName != ''">
+      AND mdmPost.post_name like CONCAT('%',#{mdmPostDto.postName},'%')
+    </if>
+    <if test="mdmPostDto.postCode != null and mdmPostDto.postCode != ''">
+      AND mdmPost.post_code like CONCAT('%',#{mdmPostDto.postCode},'%')
+    </if>
+    <if test="mdmPostDto.postUpId != null and mdmPostDto.postUpId != ''">
+      AND mdmPost.post_up_id like CONCAT('%',#{mdmPostDto.postUpId},'%')
+    </if>
+    <if test="mdmPostDto.postUpName != null and mdmPostDto.postUpName != ''">
+      AND mdmPost.post_up_name like CONCAT('%',#{mdmPostDto.postUpName},'%')
+    </if>
+    <if test="mdmPostDto.postLowId != null and mdmPostDto.postLowId != ''">
+      AND mdmPost.post_low_id like CONCAT('%',#{mdmPostDto.postLowId},'%')
+    </if>
+    <if test="mdmPostDto.postLowName != null and mdmPostDto.postLowName != ''">
+      AND mdmPost.post_low_name like CONCAT('%',#{mdmPostDto.postLowName},'%')
+    </if>
+    <if test="mdmPostDto.postSequId != null and mdmPostDto.postSequId != ''">
+      AND mdmPost.post_sequ_id = #{mdmPostDto.postSequId}
+    </if>
+    <if test="mdmPostDto.postSequName != null and mdmPostDto.postSequName != ''">
+      AND mdmPost.post_sequ_name like CONCAT('%',#{mdmPostDto.postSequName},'%')
+    </if>
+    <if test="mdmPostDto.postGradeId != null and mdmPostDto.postGradeId != ''">
+      AND mdmPost.post_grade_id = #{mdmPostDto.postGradeId}
+    </if>
+    <if test="mdmPostDto.postGradeName != null and mdmPostDto.postGradeName != ''">
+      AND mdmPost.post_grade_name like CONCAT('%',#{mdmPostDto.postGradeName},'%')
+    </if>
+    <if test="mdmPostDto.postTagId != null and mdmPostDto.postTagId != ''">
+      AND mdmPost.post_tag_id = #{mdmPostDto.postTagId}
+    </if>
+    <if test="mdmPostDto.postTagName != null and mdmPostDto.postTagName != ''">
+      AND mdmPost.post_tag_name like CONCAT('%',#{mdmPostDto.postTagName},'%')
+    </if>
+    <if test="mdmPostDto.masterNumber != null and mdmPostDto.masterNumber != ''">
+      AND mdmPost.master_number = #{mdmPostDto.masterNumber}
+    </if>
+    <if test="mdmPostDto.partNumber != null and mdmPostDto.partNumber != ''">
+      AND mdmPost.part_number = #{mdmPostDto.partNumber}
+    </if>
+    <if test="mdmPostDto.postDuty != null and mdmPostDto.postDuty != ''">
+      AND mdmPost.post_duty like CONCAT('%',#{mdmPostDto.postDuty},'%')
+    </if>
+    <if test="mdmPostDto.postAbility != null and mdmPostDto.postAbility != ''">
+      AND mdmPost.post_ability like CONCAT('%',#{mdmPostDto.postAbility},'%')
+    </if>
+    <if test="mdmPostDto.postContent != null and mdmPostDto.postContent != ''">
+      AND mdmPost.post_content like CONCAT('%',#{mdmPostDto.postContent},'%')
+    </if>
+    <if test="mdmPostDto.postCheck != null and mdmPostDto.postCheck != ''">
+      AND mdmPost.post_check like CONCAT('%',#{mdmPostDto.postCheck},'%')
+    </if>
+    <if test="mdmPostDto.sort != null and mdmPostDto.sort != ''">
+      AND mdmPost.sort = #{mdmPostDto.sort}
+    </if>
+    <if test="mdmPostDto.isRef != null and mdmPostDto.isRef != ''">
+      AND mdmPost.is_ref = #{mdmPostDto.isRef}
+    </if>
+    <if test="mdmPostDto.status != null and mdmPostDto.status != ''">
+      AND mdmPost.status = #{mdmPostDto.status}
+    </if>
+    <if test="mdmPostDto.orgFullId != null and mdmPostDto.orgFullId != ''">
+      AND mdmPost.org_full_id like CONCAT('%',#{mdmPostDto.orgFullId},'%')
+    </if>
+    <if test="mdmPostDto.parentDeptId != null and mdmPostDto.parentDeptId != ''">
+      AND mdmPost.parent_dept_id = #{mdmPostDto.parentDeptId}
+    </if>
+    <if test="mdmPostDto.parentDeptName != null and mdmPostDto.parentDeptName != ''">
+      AND mdmPost.parent_dept_name like CONCAT('%',#{mdmPostDto.parentDeptName},'%')
+    </if>
+    <if test="mdmPostDto.parentOrgFullName != null and mdmPostDto.parentOrgFullName != ''">
+      AND mdmPost.parent_org_full_name like CONCAT('%',#{mdmPostDto.parentOrgFullName},'%')
+    </if>
+    <if test="mdmPostDto.parentDeptFullName != null and mdmPostDto.parentDeptFullName != ''">
+      AND mdmPost.parent_dept_full_name like CONCAT('%',#{mdmPostDto.parentDeptFullName},'%')
+    </if>
+    <if test="mdmPostDto.postUpParentId != null and mdmPostDto.postUpParentId != ''">
+      AND mdmPost.post_up_parent_id = #{mdmPostDto.postUpParentId}
+    </if>
+    <if test="mdmPostDto.postUpParentName != null and mdmPostDto.postUpParentName != ''">
+      AND mdmPost.post_up_parent_name like CONCAT('%',#{mdmPostDto.postUpParentName},'%')
+    </if>
+    <if test="mdmPostDto.postLowParentId != null and mdmPostDto.postLowParentId != ''">
+      AND mdmPost.post_low_parent_id = #{mdmPostDto.postLowParentId}
+    </if>
+    <if test="mdmPostDto.postLowParentName != null and mdmPostDto.postLowParentName != ''">
+      AND mdmPost.post_low_parent_name like CONCAT('%',#{mdmPostDto.postLowParentName},'%')
+    </if>
+    <if test="mdmPostDto.parentOrgName != null and mdmPostDto.parentOrgName != ''">
+      AND mdmPost.parent_org_name like CONCAT('%',#{mdmPostDto.parentOrgName},'%')
+    </if>
+    <if test="mdmPostDto.parentOrgId != null and mdmPostDto.parentOrgId != ''">
+      AND mdmPost.parent_org_id = #{mdmPostDto.parentOrgId}
+    </if>
+    order by mdmPost.id desc
+  </select>
+
+  <select id="getList" parameterType="com.netwisd.base.common.mdm.dto.MdmPostDto" resultMap="mdmPostMap">
+    select
+      p.*,
+       (select count(*) from incloud_base_mdm_post_user pu where pu.post_id = p.id  and pu.is_master = 1)
+       as master_number,
+       (select count(*) from incloud_base_mdm_post_user pu where pu.post_id = p.id  and pu.is_master = 0)
+       as part_number
+    from
+      incloud_base_mdm_post p
+    where 1=1
+    <if test="mdmPostDto.postName != null and mdmPostDto.postName != ''">
+      AND p.post_name like CONCAT('%',#{mdmPostDto.postName},'%')
+    </if>
+    <if test="mdmPostDto.postSequId != null and mdmPostDto.postSequId != ''">
+      AND p.post_sequ_id = #{mdmPostDto.postSequId}
+    </if>
+    <if test="mdmPostDto.postSequName != null and mdmPostDto.postSequName != ''">
+      AND p.post_sequ_name like CONCAT('%',#{mdmPostDto.postSequName},'%')
+    </if>
+    <if test="mdmPostDto.parentOrgId != null and mdmPostDto.parentOrgId != ''">
+      AND p.org_full_id like CONCAT('%',#{mdmPostDto.parentOrgId},'%')
+    </if>
+    order by p.sort asc
+  </select>
+</mapper>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.dict.mapper.EncondRuleDetailMapper">
+
+<resultMap id="encondRuleDetailMap" type="com.netwisd.base.common.dict.vo.EncondRuleDetailVo">
+  <id property="id" column="id"/>
+  <result property="ruleId" column="rule_id"/>
+  <result property="encondType" column="encond_type"/>
+  <result property="content" column="content"/>
+  <result property="resetCycle" column="reset_cycle"/>
+  <result property="initialValue" column="initial_value"/>
+  <result property="sort" column="sort"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.common.dict.dto.EncondRuleDetailDto" resultMap="encondRuleDetailMap">
+  select * from incloud_base_dict_encond_rule_detail encondRuleDetail where 1=1
+    <if test="encondRuleDetailDto.id != null and encondRuleDetailDto.id != ''">
+      AND encondRuleDetail.id = #{encondRuleDetailDto.id}
+    </if>
+    <if test="encondRuleDetailDto.ruleId != null and encondRuleDetailDto.ruleId != ''">
+      AND encondRuleDetail.rule_id = #{encondRuleDetailDto.ruleId}
+    </if>
+    <if test="encondRuleDetailDto.encondType != null and encondRuleDetailDto.encondType != ''">
+      AND encondRuleDetail.encond_type like CONCAT('%',#{encondRuleDetailDto.encondType},'%')
+    </if>
+    <if test="encondRuleDetailDto.content != null and encondRuleDetailDto.content != ''">
+      AND encondRuleDetail.content like CONCAT('%',#{encondRuleDetailDto.content},'%')
+    </if>
+    <if test="encondRuleDetailDto.resetCycle != null and encondRuleDetailDto.resetCycle != ''">
+      AND encondRuleDetail.reset_cycle like CONCAT('%',#{encondRuleDetailDto.resetCycle},'%')
+    </if>
+    <if test="encondRuleDetailDto.initialValue != null and encondRuleDetailDto.initialValue != ''">
+      AND encondRuleDetail.initial_value like CONCAT('%',#{encondRuleDetailDto.initialValue},'%')
+    </if>
+    <if test="encondRuleDetailDto.sort != null and encondRuleDetailDto.sort != ''">
+      AND encondRuleDetail.sort = #{encondRuleDetailDto.sort}
+    </if>
+    order by encondRuleDetail.id desc
+</select>
+</mapper>

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.mdm.mapper.ContractPurchaseMapper">
+
+<resultMap id="contractPurchaseMap" type="com.netwisd.biz.mdm.vo.ContractPurchaseVo">
+  <id property="id" column="id"/>
+  <result property="projectId" column="project_id"/>
+  <result property="projectName" column="project_name"/>
+  <result property="contractCode" column="contract_code"/>
+  <result property="contractName" column="contract_name"/>
+  <result property="type" column="type"/>
+  <result property="state" column="state"/>
+  <result property="contractDate" column="contract_date"/>
+  <result property="startTime" column="start_time"/>
+  <result property="endTime" column="end_time"/>
+  <result property="contractPrice" column="contract_price"/>
+  <result property="notaxAmount" column="notax_amount"/>
+  <result property="tax" column="tax"/>
+  <result property="employeeId" column="employee_id"/>
+  <result property="employeeName" column="employee_name"/>
+  <result property="objType" column="obj_type"/>
+  <result property="content" column="content"/>
+  <result property="orgId" column="org_id"/>
+  <result property="orgCode" column="org_code"/>
+  <result property="orgName" column="org_name"/>
+  <result property="subject" column="subject"/>
+  <result property="contractCategory" column="contract_category"/>
+  <result property="purchaseType" column="purchase_type"/>
+  <result property="executePrice" column="execute_price"/>
+  <result property="approvalDate" column="approval_date"/>
+  <result property="framecontractId" column="framecontract_id"/>
+  <result property="sourcecontractId" column="sourcecontract_id"/>
+  <result property="addround" column="addround"/>
+  <result property="signtype" column="signtype"/>
+  <result property="dataSourceId" column=" data_source_id"/>
+  <collection property="partyaList" column="id" ofType="com.netwisd.biz.mdm.vo.ContractPartyaVo" select="getPartyas"/>
+  <collection property="detailsList" column="id" ofType="com.netwisd.biz.mdm.vo.ContractPurchaseDetailsVo" select="getDetails"/>
+  <collection property="partybList" column="id" ofType="com.netwisd.biz.mdm.vo.ContractPartybVo" select="getPartybs"/>
+  <collection property="fileList" column="id" ofType="com.netwisd.biz.mdm.vo.ContractPurchaseFileVo" select="getFiles"/>
+</resultMap>
+  <select id="getPartyas" resultType="com.netwisd.biz.mdm.vo.ContractPartyaVo">
+    select * from incloud_biz_mdm_contract_partya pa where pa.contract_id=#{id}
+  </select>
+  <select id="getDetails" resultType="com.netwisd.biz.mdm.vo.ContractPurchaseDetailsVo">
+    select * from incloud_biz_mdm_contract_purchase_details pd where pd.contract_id=#{id}
+  </select>
+  <select id="getPartybs" resultType="com.netwisd.biz.mdm.vo.ContractPartybVo">
+    select * from incloud_biz_mdm_contract_partyb pb where pb.contract_id=#{id}
+  </select>
+  <select id="getFiles" resultType="com.netwisd.biz.mdm.vo.ContractPurchaseFileVo">
+    select * from incloud_biz_mdm_contract_purchase_file file where file.contract_id=#{id}
+  </select>
+  <!--过滤框架合同，且根据甲方查询-->
+  <select id="getPageList" parameterType="com.netwisd.biz.mdm.dto.ContractPurchaseDto" resultMap="contractPurchaseMap">
+    select * from incloud_biz_mdm_contract_purchase contractPurchase where contractPurchase.contract_category in
+    <foreach collection="contractPurchaseDto.contractCategoryList" item="category" index="index" open="(" close=")" separator=",">
+      #{category}
+    </foreach>
+    <if test="contractPurchaseDto.partyaCode != null and contractPurchaseDto.partyaCode != ''">
+      AND contractPurchase.id in
+      (
+      select pa.contract_id from incloud_biz_mdm_contract_partya pa where pa.partya_code = #{contractPurchaseDto.partyaCode}
+      )
+    </if>
+    <if test="contractPurchaseDto.projectId != null and contractPurchaseDto.projectId != ''">
+      AND contractPurchase.project_id = #{contractPurchaseDto.projectId}
+    </if>
+    <if test="contractPurchaseDto.projectName != null and contractPurchaseDto.projectName != ''">
+      AND contractPurchase.project_name like CONCAT('%',#{contractPurchaseDto.projectName},'%')
+    </if>
+    <if test="contractPurchaseDto.contractCode != null and contractPurchaseDto.contractCode != ''">
+      AND contractPurchase.contract_code like CONCAT('%',#{contractPurchaseDto.contractCode},'%')
+    </if>
+    <if test="contractPurchaseDto.contractName != null and contractPurchaseDto.contractName != ''">
+      AND contractPurchase.contract_name like CONCAT('%',#{contractPurchaseDto.contractName},'%')
+    </if>
+    <if test="contractPurchaseDto.type != null and contractPurchaseDto.type != ''">
+      AND contractPurchase.type like CONCAT('%',#{contractPurchaseDto.type},'%')
+    </if>
+    <if test="contractPurchaseDto.state != null and contractPurchaseDto.state != ''">
+      AND contractPurchase.state like CONCAT('%',#{contractPurchaseDto.state},'%')
+    </if>
+    <if test="contractPurchaseDto.contractDate != null and contractPurchaseDto.contractDate != ''">
+      AND contractPurchase.contract_date = #{contractPurchaseDto.contractDate}
+    </if>
+    <if test="contractPurchaseDto.startTime != null and contractPurchaseDto.startTime != ''">
+      AND contractPurchase.start_time = #{contractPurchaseDto.startTime}
+    </if>
+    <if test="contractPurchaseDto.endTime != null and contractPurchaseDto.endTime != ''">
+      AND contractPurchase.end_time = #{contractPurchaseDto.endTime}
+    </if>
+    <if test="contractPurchaseDto.contractPrice != null and contractPurchaseDto.contractPrice != ''">
+      AND contractPurchase.contract_price = #{contractPurchaseDto.contractPrice}
+    </if>
+    <if test="contractPurchaseDto.notaxAmount != null and contractPurchaseDto.notaxAmount != ''">
+      AND contractPurchase.notax_amount = #{contractPurchaseDto.notaxAmount}
+    </if>
+    <if test="contractPurchaseDto.tax != null and contractPurchaseDto.tax != ''">
+      AND contractPurchase.tax = #{contractPurchaseDto.tax}
+    </if>
+    <if test="contractPurchaseDto.employeeId != null and contractPurchaseDto.employeeId != ''">
+      AND contractPurchase.employee_id like CONCAT('%',#{contractPurchaseDto.employeeId},'%')
+    </if>
+    <if test="contractPurchaseDto.employeeName != null and contractPurchaseDto.employeeName != ''">
+      AND contractPurchase.employee_name like CONCAT('%',#{contractPurchaseDto.employeeName},'%')
+    </if>
+    <if test="contractPurchaseDto.objType != null and contractPurchaseDto.objType != ''">
+      AND contractPurchase.obj_type like CONCAT('%',#{contractPurchaseDto.objType},'%')
+    </if>
+    <if test="contractPurchaseDto.content != null and contractPurchaseDto.content != ''">
+      AND contractPurchase.content like CONCAT('%',#{contractPurchaseDto.content},'%')
+    </if>
+    <if test="contractPurchaseDto.orgId != null and contractPurchaseDto.orgId != ''">
+      AND contractPurchase.org_id = #{contractPurchaseDto.orgId}
+    </if>
+    <if test="contractPurchaseDto.orgCode != null and contractPurchaseDto.orgCode != ''">
+      AND contractPurchase.org_code like CONCAT('%',#{contractPurchaseDto.orgCode},'%')
+    </if>
+    <if test="contractPurchaseDto.orgName != null and contractPurchaseDto.orgName != ''">
+      AND contractPurchase.org_name = #{contractPurchaseDto.orgName}
+    </if>
+    <if test="contractPurchaseDto.subject != null and contractPurchaseDto.subject != ''">
+      AND contractPurchase.subject like CONCAT('%',#{contractPurchaseDto.subject},'%')
+    </if>
+    <if test="contractPurchaseDto.contractCategory != null and contractPurchaseDto.contractCategory != ''">
+      AND contractPurchase.contract_category like CONCAT('%',#{contractPurchaseDto.contractCategory},'%')
+    </if>
+    <if test="contractPurchaseDto.purchaseType != null and contractPurchaseDto.purchaseType != ''">
+      AND contractPurchase.purchase_type like CONCAT('%',#{contractPurchaseDto.purchaseType},'%')
+    </if>
+    <if test="contractPurchaseDto.executePrice != null and contractPurchaseDto.executePrice != ''">
+      AND contractPurchase.execute_price = #{contractPurchaseDto.executePrice}
+    </if>
+    <if test="contractPurchaseDto.approvalDate != null and contractPurchaseDto.approvalDate != ''">
+      AND contractPurchase.approval_date = #{contractPurchaseDto.approvalDate}
+    </if>
+    <if test="contractPurchaseDto.framecontractId != null and contractPurchaseDto.framecontractId != ''">
+      AND contractPurchase.framecontract_id like CONCAT('%',#{contractPurchaseDto.framecontractId},'%')
+    </if>
+    <if test="contractPurchaseDto.sourcecontractId != null and contractPurchaseDto.sourcecontractId != ''">
+      AND contractPurchase.sourcecontract_id like CONCAT('%',#{contractPurchaseDto.sourcecontractId},'%')
+    </if>
+    <if test="contractPurchaseDto.addround != null and contractPurchaseDto.addround != ''">
+      AND contractPurchase.addround like CONCAT('%',#{contractPurchaseDto.addround},'%')
+    </if>
+    <if test="contractPurchaseDto.signtype != null and contractPurchaseDto.signtype != ''">
+      AND contractPurchase.signtype like CONCAT('%',#{contractPurchaseDto.signtype},'%')
+    </if>
+    <if test="contractPurchaseDto. dataSourceId != null and contractPurchaseDto. dataSourceId != ''">
+      AND contractPurchase. data_source_id like CONCAT('%',#{contractPurchaseDto. dataSourceId},'%')
+    </if>
+  </select>
+</mapper>

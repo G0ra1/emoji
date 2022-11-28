@@ -1,0 +1,11 @@
+elasticsearch:
+  address: 10.255.0.190:9200
+canal: 
+  canalServer: 10.255.0.190
+  canalPort: 11111
+  destination: incloud3
+  userName: canal
+  password: canal
+incloud:
+  table:
+    package: com.netwisd.biz.search.entity

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.portal.mapper.PortalContentNewsMapper">
+
+<resultMap id="portalContentNewsMap" type="com.netwisd.base.portal.vo.PortalContentNewsVo">
+  <id property="id" column="id"/>
+  <result property="portalId" column="portal_id"/>
+  <result property="portalName" column="portal_name"/>
+  <result property="partId" column="part_id"/>
+  <result property="partName" column="part_name"/>
+  <result property="partTypeId" column="part_type_id"/>
+  <result property="partTypeName" column="part_type_name"/>
+  <result property="title" column="title"/>
+  <result property="description" column="description"/>
+  <result property="contentUrl" column="content_url"/>
+  <result property="auditStatus" column="audit_status"/>
+  <result property="hits" column="hits"/>
+  <result property="remark" column="remark"/>
+  <result property="ueditorContent" column="ueditor_content"/>
+  <result property="dataSource" column="data_source"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.portal.dto.PortalContentNewsDto" resultMap="portalContentNewsMap">
+  select
+  *
+  from
+  incloud_base_portal_content_news portalContentNews
+  WHERE
+  portal_id = #{portalContentNewsDto.portalId}
+  AND
+  IF (
+  part_code = "thirdPartNews"
+  AND #{portalContentNewsDto.isAdmin} != 1,
+  oa_news_range_type = 1
+  OR org_range LIKE CONCAT('%',#{portalContentNewsDto.createUserParentOrgId},'%'),
+  1=1
+  )
+  AND
+  IF (
+  part_code = "thirdPartNotices"
+  AND #{portalContentNewsDto.isAdmin} != 1,
+  org_range LIKE CONCAT('%',#{portalContentNewsDto.createUserParentOrgId},'%')
+  OR dept_range LIKE CONCAT('%',#{portalContentNewsDto.createUserParentDeptId},'%')
+  OR user_range LIKE CONCAT('%',#{portalContentNewsDto.createUserId},'%'),
+  1 = 1
+  )
+  <if test="portalContentNewsDto.title != null and portalContentNewsDto.title != ''">
+    AND portalContentNews.title like CONCAT('%',#{portalContentNewsDto.title},'%')
+  </if>
+  order by create_time desc
+</select>
+<select id="getRepeatCreateUserId" resultType="java.lang.Long">
+  SELECT create_user_id FROM incloud_base_portal_content_news GROUP BY create_user_id HAVING count(*) > 1
+</select>
+</mapper>

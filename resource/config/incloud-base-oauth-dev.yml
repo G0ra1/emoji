@@ -1,0 +1,7 @@
+incloud:
+  tokenfilter:
+    report: http://192.168.1.195:8080
+access_token:
+  store-jwt: false
+  jwt-signing-key: incloud3=$==+_+%0%:)(:)
+  add-userinfo: true

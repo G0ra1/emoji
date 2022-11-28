@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.mdm.mapper.SupplierMapper">
+
+<resultMap id="supplierMap" type="com.netwisd.biz.mdm.vo.SupplierVo">
+  <id property="id" column="id"/>
+  <result property="supplierName" column="supplier_name"/>
+  <result property="supplierCode" column="supplier_code"/>
+  <result property="isAbroad" column="is_abroad"/>
+  <result property="orgName" column="org_name"/>
+  <result property="regType" column="reg_type"/>
+  <result property="invoiceType" column="invoice_type"/>
+  <result property="orgnizationCode" column="orgnization_code"/>
+  <result property="businessLicense" column="business_license"/>
+  <result property="regNumber" column="reg_number"/>
+  <result property="taxpayerType" column="taxpayer_type"/>
+  <result property="registerCapital" column="register_capital"/>
+  <result property="representative" column="representative"/>
+  <result property="currency" column="currency"/>
+  <result property="phone" column="phone"/>
+  <result property="fax" column="fax"/>
+  <result property="address" column="address"/>
+  <result property="zipcode" column="zipcode"/>
+  <result property="credential" column="credential"/>
+  <result property="typeName" column="type_name"/>
+  <result property="property" column="property"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.mdm.dto.SupplierDto" resultMap="supplierMap">
+  select * from incloud_biz_mdm_supplier supplier where 1=1
+    <if test="supplierDto.id != null and supplierDto.id != ''">
+      AND supplier.id = #{supplierDto.id}
+    </if>
+    <if test="supplierDto.supplierName != null and supplierDto.supplierName != ''">
+      AND supplier.supplier_name like CONCAT('%',#{supplierDto.supplierName},'%')
+    </if>
+    <if test="supplierDto.supplierCode != null and supplierDto.supplierCode != ''">
+      AND supplier.supplier_code like CONCAT('%',#{supplierDto.supplierCode},'%')
+    </if>
+    <if test="supplierDto.isAbroad != null and supplierDto.isAbroad != ''">
+      AND supplier.is_abroad like CONCAT('%',#{supplierDto.isAbroad},'%')
+    </if>
+    <if test="supplierDto.orgName != null and supplierDto.orgName != ''">
+      AND supplier.org_name like CONCAT('%',#{supplierDto.orgName},'%')
+    </if>
+    <if test="supplierDto.regType != null and supplierDto.regType != ''">
+      AND supplier.reg_type like CONCAT('%',#{supplierDto.regType},'%')
+    </if>
+    <if test="supplierDto.invoiceType != null and supplierDto.invoiceType != ''">
+      AND supplier.invoice_type like CONCAT('%',#{supplierDto.invoiceType},'%')
+    </if>
+    <if test="supplierDto.orgnizationCode != null and supplierDto.orgnizationCode != ''">
+      AND supplier.orgnization_code like CONCAT('%',#{supplierDto.orgnizationCode},'%')
+    </if>
+    <if test="supplierDto.businessLicense != null and supplierDto.businessLicense != ''">
+      AND supplier.business_license like CONCAT('%',#{supplierDto.businessLicense},'%')
+    </if>
+    <if test="supplierDto.regNumber != null and supplierDto.regNumber != ''">
+      AND supplier.reg_number = #{supplierDto.regNumber}
+    </if>
+    <if test="supplierDto.taxpayerType != null and supplierDto.taxpayerType != ''">
+      AND supplier.taxpayer_type like CONCAT('%',#{supplierDto.taxpayerType},'%')
+    </if>
+    <if test="supplierDto.registerCapital != null and supplierDto.registerCapital != ''">
+      AND supplier.register_capital like CONCAT('%',#{supplierDto.registerCapital},'%')
+    </if>
+    <if test="supplierDto.representative != null and supplierDto.representative != ''">
+      AND supplier.representative like CONCAT('%',#{supplierDto.representative},'%')
+    </if>
+    <if test="supplierDto.currency != null and supplierDto.currency != ''">
+      AND supplier.currency like CONCAT('%',#{supplierDto.currency},'%')
+    </if>
+    <if test="supplierDto.phone != null and supplierDto.phone != ''">
+      AND supplier.phone like CONCAT('%',#{supplierDto.phone},'%')
+    </if>
+    <if test="supplierDto.fax != null and supplierDto.fax != ''">
+      AND supplier.fax like CONCAT('%',#{supplierDto.fax},'%')
+    </if>
+    <if test="supplierDto.address != null and supplierDto.address != ''">
+      AND supplier.address like CONCAT('%',#{supplierDto.address},'%')
+    </if>
+    <if test="supplierDto.zipcode != null and supplierDto.zipcode != ''">
+      AND supplier.zipcode like CONCAT('%',#{supplierDto.zipcode},'%')
+    </if>
+    <if test="supplierDto.credential != null and supplierDto.credential != ''">
+      AND supplier.credential like CONCAT('%',#{supplierDto.credential},'%')
+    </if>
+    <if test="supplierDto.typeName != null and supplierDto.typeName != ''">
+      AND supplier.type_name like CONCAT('%',#{supplierDto.typeName},'%')
+    </if>
+    <if test="supplierDto.property != null and supplierDto.property != ''">
+      AND supplier.property like CONCAT('%',#{supplierDto.property},'%')
+    </if>
+    order by supplier.id desc
+</select>
+
+  <select id="outList"  resultMap="outMap">
+    SELECT
+      supplier.supplier_code,
+      supplier.supplier_name,
+      supplier.is_abroad,
+      supplier.org_name,
+      supplier.reg_type,
+      supplier.invoice_type,
+      supplier.orgnization_code,
+      supplier.business_license,
+      supplier.reg_number,
+      supplier.taxpayer_type,
+      supplier.register_capital,
+      supplier.representative,
+      supplier.representative,
+      supplier.phone,
+      supplier.fax,
+      supplier.address,
+      supplier.zipcode,
+      supplier.credential,
+      supplier.type_name,
+      supplier.property,
+      supplier.data_source_id,
+      bank.id AS b_id,
+      bank.bank_name,
+      bank.bank_account,
+      con.id AS c_id,
+      con.contacts_name,
+      con.contacts_phone
+    FROM
+      incloud_biz_mdm_supplier supplier
+        LEFT JOIN incloud_biz_mdm_supplier_bank bank ON bank.supplier_code = supplier.supplier_code
+        LEFT JOIN incloud_biz_mdm_supplier_contacts con ON con.supplier_code = supplier.supplier_code
+  </select>
+
+  <resultMap id="outMap" type="com.netwisd.biz.mdm.vo.SupplierVo">
+    <id property="id" column="id"/>
+    <result property="supplierName" column="supplier_name"/>
+    <result property="supplierCode" column="supplier_code"/>
+    <result property="isAbroad" column="is_abroad"/>
+    <result property="orgName" column="org_name"/>
+    <result property="regType" column="reg_type"/>
+    <result property="invoiceType" column="invoice_type"/>
+    <result property="orgnizationCode" column="orgnization_code"/>
+    <result property="businessLicense" column="business_license"/>
+    <result property="regNumber" column="reg_number"/>
+    <result property="taxpayerType" column="taxpayer_type"/>
+    <result property="registerCapital" column="register_capital"/>
+    <result property="representative" column="representative"/>
+    <result property="currency" column="currency"/>
+    <result property="phone" column="phone"/>
+    <result property="fax" column="fax"/>
+    <result property="address" column="address"/>
+    <result property="zipcode" column="zipcode"/>
+    <result property="credential" column="credential"/>
+    <result property="typeName" column="type_name"/>
+    <result property="property" column="property"/>
+    <collection property="bankList" column="filesVoList" ofType="com.netwisd.biz.mdm.vo.SupplierBankVo">
+      <id property="id" column="b_id"></id>
+      <result property="bankName" column="bank_name"></result>
+      <result property="bankAccount" column="bank_account"></result>
+    </collection>
+    <collection property="contactsList" column="filesVoList" ofType="com.netwisd.biz.mdm.vo.SupplierContactsVo">
+      <id property="id" column="c_id"></id>
+      <result property="contactsName" column="contacts_name"></result>
+      <result property="contactsPhone" column="contacts_phone"></result>
+    </collection>
+  </resultMap>
+
+
+</mapper>

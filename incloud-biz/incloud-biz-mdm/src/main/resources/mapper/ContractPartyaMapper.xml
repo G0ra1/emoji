@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.mdm.mapper.ContractPartyaMapper">
+
+<resultMap id="contractPartyaMap" type="com.netwisd.biz.mdm.vo.ContractPartyaVo">
+  <id property="id" column="id"/>
+  <result property="contractId" column="contract_id"/>
+  <result property="contractCode" column="contract_code"/>
+  <result property="partyaId" column="partya_id"/>
+  <result property="partyaCode" column="partya_code"/>
+  <result property="partyaName" column="partya_name"/>
+  <result property="contractType" column="contract_type"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.mdm.dto.ContractPartyaDto" resultMap="contractPartyaMap">
+  select * from incloud_biz_mdm_contract_partya contractPartya where 1=1
+    <if test="contractPartyaDto.id != null and contractPartyaDto.id != ''">
+      AND contractPartya.id = #{contractPartyaDto.id}
+    </if>
+    <if test="contractPartyaDto.contractId != null and contractPartyaDto.contractId != ''">
+      AND contractPartya.contract_id = #{contractPartyaDto.contractId}
+    </if>
+    <if test="contractPartyaDto.contractCode != null and contractPartyaDto.contractCode != ''">
+      AND contractPartya.contract_code like CONCAT('%',#{contractPartyaDto.contractCode},'%')
+    </if>
+    <if test="contractPartyaDto.partyaId != null and contractPartyaDto.partyaId != ''">
+      AND contractPartya.partya_id = #{contractPartyaDto.partyaId}
+    </if>
+    <if test="contractPartyaDto.partyaCode != null and contractPartyaDto.partyaCode != ''">
+      AND contractPartya.partya_code like CONCAT('%',#{contractPartyaDto.partyaCode},'%')
+    </if>
+    <if test="contractPartyaDto.partyaName != null and contractPartyaDto.partyaName != ''">
+      AND contractPartya.partya_name like CONCAT('%',#{contractPartyaDto.partyaName},'%')
+    </if>
+    <if test="contractPartyaDto.contractType != null and contractPartyaDto.contractType != ''">
+      AND contractPartya.contract_type like CONCAT('%',#{contractPartyaDto.contractType},'%')
+    </if>
+    order by contractPartya.id desc
+</select>
+</mapper>

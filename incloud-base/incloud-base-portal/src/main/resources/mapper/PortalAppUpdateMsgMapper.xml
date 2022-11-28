@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.portal.mapper.PortalAppUpdateMsgMapper">
+
+<resultMap id="portalAppUpdateMsgMap" type="com.netwisd.base.portal.vo.PortalAppUpdateMsgVo">
+  <id property="id" column="id"/>
+  <result property="appId" column="app_id"/>
+  <result property="appName" column="app_name"/>
+  <result property="appType" column="app_type"/>
+  <result property="appVersion" column="app_version"/>
+  <result property="downloadUrl" column="download_url"/>
+  <result property="updateLog" column="update_log"/>
+  <result property="updateInstall" column="update_install"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.portal.dto.PortalAppUpdateMsgDto" resultMap="portalAppUpdateMsgMap">
+  select * from incloud_base_portal_app_update_msg portalAppUpdateMsg where 1=1
+    <if test="portalAppUpdateMsgDto.id != null and portalAppUpdateMsgDto.id != ''">
+      AND portalAppUpdateMsg.id = #{portalAppUpdateMsgDto.id}
+    </if>
+    <if test="portalAppUpdateMsgDto.appId != null and portalAppUpdateMsgDto.appId != ''">
+      AND portalAppUpdateMsg.app_id like CONCAT('%',#{portalAppUpdateMsgDto.appId},'%')
+    </if>
+    <if test="portalAppUpdateMsgDto.appName != null and portalAppUpdateMsgDto.appName != ''">
+      AND portalAppUpdateMsg.app_name like CONCAT('%',#{portalAppUpdateMsgDto.appName},'%')
+    </if>
+    <if test="portalAppUpdateMsgDto.appType != null and portalAppUpdateMsgDto.appType != ''">
+      AND portalAppUpdateMsg.app_type like CONCAT('%',#{portalAppUpdateMsgDto.appType},'%')
+    </if>
+    <if test="portalAppUpdateMsgDto.appVersion != null and portalAppUpdateMsgDto.appVersion != ''">
+      AND portalAppUpdateMsg.app_version like CONCAT('%',#{portalAppUpdateMsgDto.appVersion},'%')
+    </if>
+    <if test="portalAppUpdateMsgDto.downloadUrl != null and portalAppUpdateMsgDto.downloadUrl != ''">
+      AND portalAppUpdateMsg.download_url like CONCAT('%',#{portalAppUpdateMsgDto.downloadUrl},'%')
+    </if>
+    <if test="portalAppUpdateMsgDto.updateLog != null and portalAppUpdateMsgDto.updateLog != ''">
+      AND portalAppUpdateMsg.update_log like CONCAT('%',#{portalAppUpdateMsgDto.updateLog},'%')
+    </if>
+    <if test="portalAppUpdateMsgDto.updateInstall != null and portalAppUpdateMsgDto.updateInstall != ''">
+      AND portalAppUpdateMsg.update_install = #{portalAppUpdateMsgDto.updateInstall}
+    </if>
+    order by portalAppUpdateMsg.id desc
+</select>
+</mapper>

@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+    com.netwisd.common.msg.rocket.AutoConfiguration ,\
+    com.netwisd.common.msg.rocket.service.BinLogProducerService

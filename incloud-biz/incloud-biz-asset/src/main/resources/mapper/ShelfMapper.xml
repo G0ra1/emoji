@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.asset.mapper.ShelfMapper">
+
+<resultMap id="shelfMap" type="com.netwisd.biz.asset.vo.ShelfVo">
+  <id property="id" column="id"/>
+  <result property="warehouseId" column="warehouse_id"/>
+  <result property="warehouseName" column="warehouse_name"/>
+  <result property="shelfName" column="shelf_name"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+  <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+  <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+  <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+  <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+  <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+  <result property="delFlag" column="del_flag"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.asset.dto.ShelfDto" resultMap="shelfMap">
+  select * from incloud_biz_asset_shelf shelf where 1=1
+    <if test="shelfDto.id != null and shelfDto.id != ''">
+      AND shelf.id = #{shelfDto.id}
+    </if>
+    <if test="shelfDto.warehouseId != null and shelfDto.warehouseId != ''">
+      AND shelf.warehouse_id = #{shelfDto.warehouseId}
+    </if>
+    <if test="shelfDto.warehouseName != null and shelfDto.warehouseName != ''">
+      AND shelf.warehouse_name like CONCAT('%',#{shelfDto.warehouseName},'%')
+    </if>
+    <if test="shelfDto.shelfName != null and shelfDto.shelfName != ''">
+      AND shelf.shelf_name like CONCAT('%',#{shelfDto.shelfName},'%')
+    </if>
+    <if test="shelfDto.createUserId != null and shelfDto.createUserId != ''">
+      AND shelf.create_user_id = #{shelfDto.createUserId}
+    </if>
+    <if test="shelfDto.createUserName != null and shelfDto.createUserName != ''">
+      AND shelf.create_user_name like CONCAT('%',#{shelfDto.createUserName},'%')
+    </if>
+    <if test="shelfDto.createUserParentOrgId != null and shelfDto.createUserParentOrgId != ''">
+      AND shelf.create_user_parent_org_id = #{shelfDto.createUserParentOrgId}
+    </if>
+    <if test="shelfDto.createUserParentOrgName != null and shelfDto.createUserParentOrgName != ''">
+      AND shelf.create_user_parent_org_name like CONCAT('%',#{shelfDto.createUserParentOrgName},'%')
+    </if>
+    <if test="shelfDto.createUserParentDeptId != null and shelfDto.createUserParentDeptId != ''">
+      AND shelf.create_user_parent_dept_id = #{shelfDto.createUserParentDeptId}
+    </if>
+    <if test="shelfDto.createUserParentDeptName != null and shelfDto.createUserParentDeptName != ''">
+      AND shelf.create_user_parent_dept_name like CONCAT('%',#{shelfDto.createUserParentDeptName},'%')
+    </if>
+    <if test="shelfDto.createUserOrgFullId != null and shelfDto.createUserOrgFullId != ''">
+      AND shelf.create_user_org_full_id like CONCAT('%',#{shelfDto.createUserOrgFullId},'%')
+    </if>
+    <if test="shelfDto.delFlag != null and shelfDto.delFlag != ''">
+      AND shelf.del_flag like CONCAT('%',#{shelfDto.delFlag},'%')
+    </if>
+    order by shelf.id desc
+</select>
+</mapper>

@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.asset.mapper.MaterialChangeDetailMapper">
+
+<resultMap id="materialChangeDetailMap" type="com.netwisd.biz.asset.vo.MaterialChangeDetailVo">
+  <id property="id" column="id"/>
+  <result property="classifyId" column="classify_id"/>
+  <result property="classifyCode" column="classify_code"/>
+  <result property="classifyName" column="classify_name"/>
+  <result property="route" column="route"/>
+  <result property="routeName" column="route_name"/>
+  <result property="categoryId" column="category_id"/>
+  <result property="categoryCode" column="category_code"/>
+  <result property="categoryName" column="category_name"/>
+  <result property="taxRate" column="tax_rate"/>
+  <result property="itemCode" column="item_code"/>
+  <result property="itemName" column="item_name"/>
+  <result property="desclong" column="desclong"/>
+  <result property="descshort" column="descshort"/>
+  <result property="unitCode" column="unit_code"/>
+  <result property="unitName" column="unit_name"/>
+  <result property="materialQuality" column="material_quality"/>
+  <result property="standard" column="standard"/>
+  <result property="specs" column="specs"/>
+  <result property="supplierName" column="supplier_name"/>
+  <result property="contractCode" column="contract_code"/>
+  <result property="assetsClassification" column="assets_classification"/>
+  <result property="billCodes" column="bill_codes"/>
+  <result property="billCodeFilesIds" column="bill_code_files_ids"/>
+  <result property="assetsCode" column="assets_code"/>
+  <result property="assetsLabel" column="assets_label"/>
+  <result property="qualityAssuranceLevel" column="quality_assurance_level"/>
+  <result property="manufacturer" column="manufacturer"/>
+  <result property="productionDate" column="production_date"/>
+  <result property="serviceLife" column="service_life"/>
+  <result property="validPeriod" column="valid_period"/>
+  <result property="batchNumber" column="batch_number"/>
+  <result property="acceptanceDate" column="acceptance_date"/>
+  <result property="factoryDate" column="factory_date"/>
+  <result property="factoryCode" column="factory_code"/>
+  <result property="approachDate" column="approach_date"/>
+  <result property="warehouseId" column="warehouse_id"/>
+  <result property="warehouseName" column="warehouse_name"/>
+  <result property="shelfId" column="shelf_id"/>
+  <result property="shelfName" column="shelf_name"/>
+  <result property="rzDate" column="rz_date"/>
+  <result property="assetsNumber" column="assets_number"/>
+  <result property="assetsAmount" column="assets_amount"/>
+  <result property="assetsUntaxedAmount" column="assets_untaxed_amount"/>
+  <result property="assetsTaxAmount" column="assets_tax_amount"/>
+  <result property="assetsSumAmount" column="assets_sum_amount"/>
+  <result property="assetsSumUntaxedAmount" column="assets_sum_untaxed_amount"/>
+  <result property="assetsSumTaxAmount" column="assets_sum_tax_amount"/>
+  <result property="netRate" column="net_rate"/>
+  <result property="estlimateNetSalvage" column="estlimate_net_salvage"/>
+  <result property="secretRelated" column="secret_related"/>
+  <result property="assetDeptId" column="asset_dept_id"/>
+  <result property="assetDeptName" column="asset_dept_name"/>
+  <result property="assetOrgId" column="asset_org_id"/>
+  <result property="assetOrgName" column="asset_org_name"/>
+  <result property="assetOrgFullId" column="asset_org_full_id"/>
+  <result property="itemType" column="item_type"/>
+  <result property="assetSource" column="asset_source"/>
+  <result property="seriesNumber" column="series_number"/>
+  <result property="type" column="type"/>
+  <result property="changeId" column="change_id"/>
+  <result property="assetsDetailId" column="assets_detail_id"/>
+  <result property="itemId" column="item_id"/>
+  <result property="skuCode" column="sku_code"/>
+  <result property="skuFullId" column="sku_full_id"/>
+  <result property="skuFullName" column="sku_full_name"/>
+  <result property="applyTime" column="apply_time"/>
+  <result property="applyUserId" column="apply_user_id"/>
+  <result property="applyUserName" column="apply_user_name"/>
+  <result property="applyUserOrgId" column="apply_user_org_id"/>
+  <result property="applyUserOrgName" column="apply_user_org_name"/>
+  <result property="applyUserDeptId" column="apply_user_dept_id"/>
+  <result property="applyUserDeptName" column="apply_user_dept_name"/>
+  <result property="changeNumber" column="change_number"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+  <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+  <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+  <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+  <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+  <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+  <result property="status" column="status"/>
+  <result property="assetUserId" column="asset_user_id"/>
+  <result property="assetUserName" column="asset_user_name"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.asset.dto.MaterialChangeDetailDto" resultMap="materialChangeDetailMap">
+  select * from incloud_biz_asset_material_change_detail materialChangeDetail where 1=1
+    <if test="materialChangeDetailDto.id != null and materialChangeDetailDto.id != ''">
+      AND materialChangeDetail.id = #{materialChangeDetailDto.id}
+    </if>
+    <if test="materialChangeDetailDto.classifyId != null and materialChangeDetailDto.classifyId != ''">
+      AND materialChangeDetail.classify_id = #{materialChangeDetailDto.classifyId}
+    </if>
+    <if test="materialChangeDetailDto.classifyCode != null and materialChangeDetailDto.classifyCode != ''">
+      AND materialChangeDetail.classify_code like CONCAT('%',#{materialChangeDetailDto.classifyCode},'%')
+    </if>
+    <if test="materialChangeDetailDto.classifyName != null and materialChangeDetailDto.classifyName != ''">
+      AND materialChangeDetail.classify_name like CONCAT('%',#{materialChangeDetailDto.classifyName},'%')
+    </if>
+    <if test="materialChangeDetailDto.route != null and materialChangeDetailDto.route != ''">
+      AND materialChangeDetail.route like CONCAT('%',#{materialChangeDetailDto.route},'%')
+    </if>
+    <if test="materialChangeDetailDto.routeName != null and materialChangeDetailDto.routeName != ''">
+      AND materialChangeDetail.route_name like CONCAT('%',#{materialChangeDetailDto.routeName},'%')
+    </if>
+    <if test="materialChangeDetailDto.categoryId != null and materialChangeDetailDto.categoryId != ''">
+      AND materialChangeDetail.category_id = #{materialChangeDetailDto.categoryId}
+    </if>
+    <if test="materialChangeDetailDto.categoryCode != null and materialChangeDetailDto.categoryCode != ''">
+      AND materialChangeDetail.category_code like CONCAT('%',#{materialChangeDetailDto.categoryCode},'%')
+    </if>
+    <if test="materialChangeDetailDto.categoryName != null and materialChangeDetailDto.categoryName != ''">
+      AND materialChangeDetail.category_name like CONCAT('%',#{materialChangeDetailDto.categoryName},'%')
+    </if>
+    <if test="materialChangeDetailDto.taxRate != null and materialChangeDetailDto.taxRate != ''">
+      AND materialChangeDetail.tax_rate = #{materialChangeDetailDto.taxRate}
+    </if>
+    <if test="materialChangeDetailDto.itemCode != null and materialChangeDetailDto.itemCode != ''">
+      AND materialChangeDetail.item_code like CONCAT('%',#{materialChangeDetailDto.itemCode},'%')
+    </if>
+    <if test="materialChangeDetailDto.itemName != null and materialChangeDetailDto.itemName != ''">
+      AND materialChangeDetail.item_name like CONCAT('%',#{materialChangeDetailDto.itemName},'%')
+    </if>
+    <if test="materialChangeDetailDto.desclong != null and materialChangeDetailDto.desclong != ''">
+      AND materialChangeDetail.desclong like CONCAT('%',#{materialChangeDetailDto.desclong},'%')
+    </if>
+    <if test="materialChangeDetailDto.descshort != null and materialChangeDetailDto.descshort != ''">
+      AND materialChangeDetail.descshort like CONCAT('%',#{materialChangeDetailDto.descshort},'%')
+    </if>
+    <if test="materialChangeDetailDto.unitCode != null and materialChangeDetailDto.unitCode != ''">
+      AND materialChangeDetail.unit_code like CONCAT('%',#{materialChangeDetailDto.unitCode},'%')
+    </if>
+    <if test="materialChangeDetailDto.unitName != null and materialChangeDetailDto.unitName != ''">
+      AND materialChangeDetail.unit_name like CONCAT('%',#{materialChangeDetailDto.unitName},'%')
+    </if>
+    <if test="materialChangeDetailDto.materialQuality != null and materialChangeDetailDto.materialQuality != ''">
+      AND materialChangeDetail.material_quality like CONCAT('%',#{materialChangeDetailDto.materialQuality},'%')
+    </if>
+    <if test="materialChangeDetailDto.standard != null and materialChangeDetailDto.standard != ''">
+      AND materialChangeDetail.standard like CONCAT('%',#{materialChangeDetailDto.standard},'%')
+    </if>
+    <if test="materialChangeDetailDto.specs != null and materialChangeDetailDto.specs != ''">
+      AND materialChangeDetail.specs like CONCAT('%',#{materialChangeDetailDto.specs},'%')
+    </if>
+    <if test="materialChangeDetailDto.supplierName != null and materialChangeDetailDto.supplierName != ''">
+      AND materialChangeDetail.supplier_name like CONCAT('%',#{materialChangeDetailDto.supplierName},'%')
+    </if>
+    <if test="materialChangeDetailDto.contractCode != null and materialChangeDetailDto.contractCode != ''">
+      AND materialChangeDetail.contract_code like CONCAT('%',#{materialChangeDetailDto.contractCode},'%')
+    </if>
+    <if test="materialChangeDetailDto.assetsClassification != null and materialChangeDetailDto.assetsClassification != ''">
+      AND materialChangeDetail.assets_classification like CONCAT('%',#{materialChangeDetailDto.assetsClassification},'%')
+    </if>
+    <if test="materialChangeDetailDto.billCodes != null and materialChangeDetailDto.billCodes != ''">
+      AND materialChangeDetail.bill_codes like CONCAT('%',#{materialChangeDetailDto.billCodes},'%')
+    </if>
+    <if test="materialChangeDetailDto.billCodeFilesIds != null and materialChangeDetailDto.billCodeFilesIds != ''">
+      AND materialChangeDetail.bill_code_files_ids like CONCAT('%',#{materialChangeDetailDto.billCodeFilesIds},'%')
+    </if>
+    <if test="materialChangeDetailDto.assetsCode != null and materialChangeDetailDto.assetsCode != ''">
+      AND materialChangeDetail.assets_code like CONCAT('%',#{materialChangeDetailDto.assetsCode},'%')
+    </if>
+    <if test="materialChangeDetailDto.assetsLabel != null and materialChangeDetailDto.assetsLabel != ''">
+      AND materialChangeDetail.assets_label like CONCAT('%',#{materialChangeDetailDto.assetsLabel},'%')
+    </if>
+    <if test="materialChangeDetailDto.qualityAssuranceLevel != null and materialChangeDetailDto.qualityAssuranceLevel != ''">
+      AND materialChangeDetail.quality_assurance_level like CONCAT('%',#{materialChangeDetailDto.qualityAssuranceLevel},'%')
+    </if>
+    <if test="materialChangeDetailDto.manufacturer != null and materialChangeDetailDto.manufacturer != ''">
+      AND materialChangeDetail.manufacturer like CONCAT('%',#{materialChangeDetailDto.manufacturer},'%')
+    </if>
+    <if test="materialChangeDetailDto.productionDate != null and materialChangeDetailDto.productionDate != ''">
+      AND materialChangeDetail.production_date = #{materialChangeDetailDto.productionDate}
+    </if>
+    <if test="materialChangeDetailDto.serviceLife != null and materialChangeDetailDto.serviceLife != ''">
+      AND materialChangeDetail.service_life = #{materialChangeDetailDto.serviceLife}
+    </if>
+    <if test="materialChangeDetailDto.validPeriod != null and materialChangeDetailDto.validPeriod != ''">
+      AND materialChangeDetail.valid_period like CONCAT('%',#{materialChangeDetailDto.validPeriod},'%')
+    </if>
+    <if test="materialChangeDetailDto.batchNumber != null and materialChangeDetailDto.batchNumber != ''">
+      AND materialChangeDetail.batch_number like CONCAT('%',#{materialChangeDetailDto.batchNumber},'%')
+    </if>
+    <if test="materialChangeDetailDto.acceptanceDate != null and materialChangeDetailDto.acceptanceDate != ''">
+      AND materialChangeDetail.acceptance_date = #{materialChangeDetailDto.acceptanceDate}
+    </if>
+    <if test="materialChangeDetailDto.factoryDate != null and materialChangeDetailDto.factoryDate != ''">
+      AND materialChangeDetail.factory_date = #{materialChangeDetailDto.factoryDate}
+    </if>
+    <if test="materialChangeDetailDto.factoryCode != null and materialChangeDetailDto.factoryCode != ''">
+      AND materialChangeDetail.factory_code like CONCAT('%',#{materialChangeDetailDto.factoryCode},'%')
+    </if>
+    <if test="materialChangeDetailDto.approachDate != null and materialChangeDetailDto.approachDate != ''">
+      AND materialChangeDetail.approach_date = #{materialChangeDetailDto.approachDate}
+    </if>
+    <if test="materialChangeDetailDto.warehouseId != null and materialChangeDetailDto.warehouseId != ''">
+      AND materialChangeDetail.warehouse_id like CONCAT('%',#{materialChangeDetailDto.warehouseId},'%')
+    </if>
+    <if test="materialChangeDetailDto.warehouseName != null and materialChangeDetailDto.warehouseName != ''">
+      AND materialChangeDetail.warehouse_name like CONCAT('%',#{materialChangeDetailDto.warehouseName},'%')
+    </if>
+    <if test="materialChangeDetailDto.shelfId != null and materialChangeDetailDto.shelfId != ''">
+      AND materialChangeDetail.shelf_id like CONCAT('%',#{materialChangeDetailDto.shelfId},'%')
+    </if>
+    <if test="materialChangeDetailDto.shelfName != null and materialChangeDetailDto.shelfName != ''">
+      AND materialChangeDetail.shelf_name like CONCAT('%',#{materialChangeDetailDto.shelfName},'%')
+    </if>
+    <if test="materialChangeDetailDto.rzDate != null and materialChangeDetailDto.rzDate != ''">
+      AND materialChangeDetail.rz_date = #{materialChangeDetailDto.rzDate}
+    </if>
+    <if test="materialChangeDetailDto.assetsNumber != null and materialChangeDetailDto.assetsNumber != ''">
+      AND materialChangeDetail.assets_number = #{materialChangeDetailDto.assetsNumber}
+    </if>
+    <if test="materialChangeDetailDto.assetsAmount != null and materialChangeDetailDto.assetsAmount != ''">
+      AND materialChangeDetail.assets_amount = #{materialChangeDetailDto.assetsAmount}
+    </if>
+    <if test="materialChangeDetailDto.assetsUntaxedAmount != null and materialChangeDetailDto.assetsUntaxedAmount != ''">
+      AND materialChangeDetail.assets_untaxed_amount = #{materialChangeDetailDto.assetsUntaxedAmount}
+    </if>
+    <if test="materialChangeDetailDto.assetsTaxAmount != null and materialChangeDetailDto.assetsTaxAmount != ''">
+      AND materialChangeDetail.assets_tax_amount = #{materialChangeDetailDto.assetsTaxAmount}
+    </if>
+    <if test="materialChangeDetailDto.assetsSumAmount != null and materialChangeDetailDto.assetsSumAmount != ''">
+      AND materialChangeDetail.assets_sum_amount = #{materialChangeDetailDto.assetsSumAmount}
+    </if>
+    <if test="materialChangeDetailDto.assetsSumUntaxedAmount != null and materialChangeDetailDto.assetsSumUntaxedAmount != ''">
+      AND materialChangeDetail.assets_sum_untaxed_amount = #{materialChangeDetailDto.assetsSumUntaxedAmount}
+    </if>
+    <if test="materialChangeDetailDto.assetsSumTaxAmount != null and materialChangeDetailDto.assetsSumTaxAmount != ''">
+      AND materialChangeDetail.assets_sum_tax_amount = #{materialChangeDetailDto.assetsSumTaxAmount}
+    </if>
+    <if test="materialChangeDetailDto.netRate != null and materialChangeDetailDto.netRate != ''">
+      AND materialChangeDetail.net_rate = #{materialChangeDetailDto.netRate}
+    </if>
+    <if test="materialChangeDetailDto.estlimateNetSalvage != null and materialChangeDetailDto.estlimateNetSalvage != ''">
+      AND materialChangeDetail.estlimate_net_salvage = #{materialChangeDetailDto.estlimateNetSalvage}
+    </if>
+    <if test="materialChangeDetailDto.secretRelated != null and materialChangeDetailDto.secretRelated != ''">
+      AND materialChangeDetail.secret_related = #{materialChangeDetailDto.secretRelated}
+    </if>
+    <if test="materialChangeDetailDto.assetDeptId != null and materialChangeDetailDto.assetDeptId != ''">
+      AND materialChangeDetail.asset_dept_id = #{materialChangeDetailDto.assetDeptId}
+    </if>
+    <if test="materialChangeDetailDto.assetDeptName != null and materialChangeDetailDto.assetDeptName != ''">
+      AND materialChangeDetail.asset_dept_name like CONCAT('%',#{materialChangeDetailDto.assetDeptName},'%')
+    </if>
+    <if test="materialChangeDetailDto.assetOrgId != null and materialChangeDetailDto.assetOrgId != ''">
+      AND materialChangeDetail.asset_org_id = #{materialChangeDetailDto.assetOrgId}
+    </if>
+    <if test="materialChangeDetailDto.assetOrgName != null and materialChangeDetailDto.assetOrgName != ''">
+      AND materialChangeDetail.asset_org_name like CONCAT('%',#{materialChangeDetailDto.assetOrgName},'%')
+    </if>
+    <if test="materialChangeDetailDto.assetOrgFullId != null and materialChangeDetailDto.assetOrgFullId != ''">
+      AND materialChangeDetail.asset_org_full_id = #{materialChangeDetailDto.assetOrgFullId}
+    </if>
+    <if test="materialChangeDetailDto.itemType != null and materialChangeDetailDto.itemType != ''">
+      AND materialChangeDetail.item_type like CONCAT('%',#{materialChangeDetailDto.itemType},'%')
+    </if>
+    <if test="materialChangeDetailDto.assetSource != null and materialChangeDetailDto.assetSource != ''">
+      AND materialChangeDetail.asset_source = #{materialChangeDetailDto.assetSource}
+    </if>
+    <if test="materialChangeDetailDto.seriesNumber != null and materialChangeDetailDto.seriesNumber != ''">
+      AND materialChangeDetail.series_number like CONCAT('%',#{materialChangeDetailDto.seriesNumber},'%')
+    </if>
+    <if test="materialChangeDetailDto.type != null and materialChangeDetailDto.type != ''">
+      AND materialChangeDetail.type = #{materialChangeDetailDto.type}
+    </if>
+    <if test="materialChangeDetailDto.changeId != null and materialChangeDetailDto.changeId != ''">
+      AND materialChangeDetail.change_id = #{materialChangeDetailDto.changeId}
+    </if>
+    <if test="materialChangeDetailDto.assetsDetailId != null and materialChangeDetailDto.assetsDetailId != ''">
+      AND materialChangeDetail.assets_detail_id = #{materialChangeDetailDto.assetsDetailId}
+    </if>
+    <if test="materialChangeDetailDto.itemId != null and materialChangeDetailDto.itemId != ''">
+      AND materialChangeDetail.item_id = #{materialChangeDetailDto.itemId}
+    </if>
+    <if test="materialChangeDetailDto.skuCode != null and materialChangeDetailDto.skuCode != ''">
+      AND materialChangeDetail.sku_code like CONCAT('%',#{materialChangeDetailDto.skuCode},'%')
+    </if>
+    <if test="materialChangeDetailDto.skuFullId != null and materialChangeDetailDto.skuFullId != ''">
+      AND materialChangeDetail.sku_full_id like CONCAT('%',#{materialChangeDetailDto.skuFullId},'%')
+    </if>
+    <if test="materialChangeDetailDto.skuFullName != null and materialChangeDetailDto.skuFullName != ''">
+      AND materialChangeDetail.sku_full_name like CONCAT('%',#{materialChangeDetailDto.skuFullName},'%')
+    </if>
+    <if test="materialChangeDetailDto.applyTime != null and materialChangeDetailDto.applyTime != ''">
+      AND materialChangeDetail.apply_time = #{materialChangeDetailDto.applyTime}
+    </if>
+    <if test="materialChangeDetailDto.applyUserId != null and materialChangeDetailDto.applyUserId != ''">
+      AND materialChangeDetail.apply_user_id = #{materialChangeDetailDto.applyUserId}
+    </if>
+    <if test="materialChangeDetailDto.applyUserName != null and materialChangeDetailDto.applyUserName != ''">
+      AND materialChangeDetail.apply_user_name like CONCAT('%',#{materialChangeDetailDto.applyUserName},'%')
+    </if>
+    <if test="materialChangeDetailDto.applyUserOrgId != null and materialChangeDetailDto.applyUserOrgId != ''">
+      AND materialChangeDetail.apply_user_org_id = #{materialChangeDetailDto.applyUserOrgId}
+    </if>
+    <if test="materialChangeDetailDto.applyUserOrgName != null and materialChangeDetailDto.applyUserOrgName != ''">
+      AND materialChangeDetail.apply_user_org_name like CONCAT('%',#{materialChangeDetailDto.applyUserOrgName},'%')
+    </if>
+    <if test="materialChangeDetailDto.applyUserDeptId != null and materialChangeDetailDto.applyUserDeptId != ''">
+      AND materialChangeDetail.apply_user_dept_id = #{materialChangeDetailDto.applyUserDeptId}
+    </if>
+    <if test="materialChangeDetailDto.applyUserDeptName != null and materialChangeDetailDto.applyUserDeptName != ''">
+      AND materialChangeDetail.apply_user_dept_name like CONCAT('%',#{materialChangeDetailDto.applyUserDeptName},'%')
+    </if>
+    <if test="materialChangeDetailDto.changeNumber != null and materialChangeDetailDto.changeNumber != ''">
+      AND materialChangeDetail.change_number = #{materialChangeDetailDto.changeNumber}
+    </if>
+    <if test="materialChangeDetailDto.createUserId != null and materialChangeDetailDto.createUserId != ''">
+      AND materialChangeDetail.create_user_id = #{materialChangeDetailDto.createUserId}
+    </if>
+    <if test="materialChangeDetailDto.createUserName != null and materialChangeDetailDto.createUserName != ''">
+      AND materialChangeDetail.create_user_name like CONCAT('%',#{materialChangeDetailDto.createUserName},'%')
+    </if>
+    <if test="materialChangeDetailDto.createUserParentOrgId != null and materialChangeDetailDto.createUserParentOrgId != ''">
+      AND materialChangeDetail.create_user_parent_org_id = #{materialChangeDetailDto.createUserParentOrgId}
+    </if>
+    <if test="materialChangeDetailDto.createUserParentOrgName != null and materialChangeDetailDto.createUserParentOrgName != ''">
+      AND materialChangeDetail.create_user_parent_org_name like CONCAT('%',#{materialChangeDetailDto.createUserParentOrgName},'%')
+    </if>
+    <if test="materialChangeDetailDto.createUserParentDeptId != null and materialChangeDetailDto.createUserParentDeptId != ''">
+      AND materialChangeDetail.create_user_parent_dept_id = #{materialChangeDetailDto.createUserParentDeptId}
+    </if>
+    <if test="materialChangeDetailDto.createUserParentDeptName != null and materialChangeDetailDto.createUserParentDeptName != ''">
+      AND materialChangeDetail.create_user_parent_dept_name like CONCAT('%',#{materialChangeDetailDto.createUserParentDeptName},'%')
+    </if>
+    <if test="materialChangeDetailDto.createUserOrgFullId != null and materialChangeDetailDto.createUserOrgFullId != ''">
+      AND materialChangeDetail.create_user_org_full_id like CONCAT('%',#{materialChangeDetailDto.createUserOrgFullId},'%')
+    </if>
+    <if test="materialChangeDetailDto.status != null and materialChangeDetailDto.status != ''">
+      AND materialChangeDetail.status like CONCAT('%',#{materialChangeDetailDto.status},'%')
+    </if>
+    <if test="materialChangeDetailDto.assetUserId != null and materialChangeDetailDto.assetUserId != ''">
+      AND materialChangeDetail.asset_user_id = #{materialChangeDetailDto.assetUserId}
+    </if>
+    <if test="materialChangeDetailDto.assetUserName != null and materialChangeDetailDto.assetUserName != ''">
+      AND materialChangeDetail.asset_user_name like CONCAT('%',#{materialChangeDetailDto.assetUserName},'%')
+    </if>
+    order by materialChangeDetail.id desc
+</select>
+</mapper>

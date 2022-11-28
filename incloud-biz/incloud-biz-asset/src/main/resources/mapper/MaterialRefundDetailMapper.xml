@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.asset.mapper.MaterialRefundDetailMapper">
+
+<resultMap id="materialRefundDetailMap" type="com.netwisd.biz.asset.vo.MaterialRefundDetailVo">
+  <id property="id" column="id"/>
+  <result property="refundId" column="refund_id"/>
+  <result property="assetsId" column="assets_id"/>
+  <result property="assetsDetailId" column="assets_detail_id"/>
+  <result property="assetsAcceptId" column="assets_accept_id"/>
+  <result property="itemId" column="item_id"/>
+  <result property="itemCode" column="item_code"/>
+  <result property="itemName" column="item_name"/>
+  <result property="unitCode" column="unit_code"/>
+  <result property="unitName" column="unit_name"/>
+  <result property="materialQuality" column="material_quality"/>
+  <result property="standard" column="standard"/>
+  <result property="specs" column="specs"/>
+  <result property="assetsCode" column="assets_code"/>
+  <result property="assetsLabel" column="assets_label"/>
+  <result property="warehouseId" column="warehouse_id"/>
+  <result property="warehouseName" column="warehouse_name"/>
+  <result property="shelfId" column="shelf_id"/>
+  <result property="shelfName" column="shelf_name"/>
+  <result property="taxRate" column="tax_rate"/>
+  <result property="acceptNumber" column="accept_number"/>
+  <result property="refundNumber" column="refund_number"/>
+  <result property="refundAmount" column="refund_amount"/>
+  <result property="refundUntaxedAmount" column="refund_untaxed_amount"/>
+  <result property="refundTaxAmount" column="refund_tax_amount"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.asset.dto.MaterialRefundDetailDto" resultMap="materialRefundDetailMap">
+  select * from incloud_biz_asset_material_refund_detail materialRefundDetail where 1=1
+    <if test="materialRefundDetailDto.id != null and materialRefundDetailDto.id != ''">
+      AND materialRefundDetail.id = #{materialRefundDetailDto.id}
+    </if>
+    <if test="materialRefundDetailDto.refundId != null and materialRefundDetailDto.refundId != ''">
+      AND materialRefundDetail.refund_id = #{materialRefundDetailDto.refundId}
+    </if>
+    <if test="materialRefundDetailDto.assetsId != null and materialRefundDetailDto.assetsId != ''">
+      AND materialRefundDetail.assets_id = #{materialRefundDetailDto.assetsId}
+    </if>
+    <if test="materialRefundDetailDto.assetsDetailId != null and materialRefundDetailDto.assetsDetailId != ''">
+      AND materialRefundDetail.assets_detail_id = #{materialRefundDetailDto.assetsDetailId}
+    </if>
+    <if test="materialRefundDetailDto.assetsAcceptId != null and materialRefundDetailDto.assetsAcceptId != ''">
+      AND materialRefundDetail.assets_accept_id = #{materialRefundDetailDto.assetsAcceptId}
+    </if>
+    <if test="materialRefundDetailDto.itemId != null and materialRefundDetailDto.itemId != ''">
+      AND materialRefundDetail.item_id like CONCAT('%',#{materialRefundDetailDto.itemId},'%')
+    </if>
+    <if test="materialRefundDetailDto.itemName != null and materialRefundDetailDto.itemName != ''">
+      AND materialRefundDetail.item_name like CONCAT('%',#{materialRefundDetailDto.itemName},'%')
+    </if>
+    <if test="materialRefundDetailDto.unitCode != null and materialRefundDetailDto.unitCode != ''">
+      AND materialRefundDetail.unit_code like CONCAT('%',#{materialRefundDetailDto.unitCode},'%')
+    </if>
+    <if test="materialRefundDetailDto.unitName != null and materialRefundDetailDto.unitName != ''">
+      AND materialRefundDetail.unit_name like CONCAT('%',#{materialRefundDetailDto.unitName},'%')
+    </if>
+    <if test="materialRefundDetailDto.materialQuality != null and materialRefundDetailDto.materialQuality != ''">
+      AND materialRefundDetail.material_quality like CONCAT('%',#{materialRefundDetailDto.materialQuality},'%')
+    </if>
+    <if test="materialRefundDetailDto.standard != null and materialRefundDetailDto.standard != ''">
+      AND materialRefundDetail.standard like CONCAT('%',#{materialRefundDetailDto.standard},'%')
+    </if>
+    <if test="materialRefundDetailDto.specs != null and materialRefundDetailDto.specs != ''">
+      AND materialRefundDetail.specs like CONCAT('%',#{materialRefundDetailDto.specs},'%')
+    </if>
+    <if test="materialRefundDetailDto.assetsCode != null and materialRefundDetailDto.assetsCode != ''">
+      AND materialRefundDetail.assets_code like CONCAT('%',#{materialRefundDetailDto.assetsCode},'%')
+    </if>
+    <if test="materialRefundDetailDto.assetsLabel != null and materialRefundDetailDto.assetsLabel != ''">
+      AND materialRefundDetail.assets_label like CONCAT('%',#{materialRefundDetailDto.assetsLabel},'%')
+    </if>
+    <if test="materialRefundDetailDto.warehouseId != null and materialRefundDetailDto.warehouseId != ''">
+      AND materialRefundDetail.warehouse_id like CONCAT('%',#{materialRefundDetailDto.warehouseId},'%')
+    </if>
+    <if test="materialRefundDetailDto.warehouseName != null and materialRefundDetailDto.warehouseName != ''">
+      AND materialRefundDetail.warehouse_name like CONCAT('%',#{materialRefundDetailDto.warehouseName},'%')
+    </if>
+    <if test="materialRefundDetailDto.shelfId != null and materialRefundDetailDto.shelfId != ''">
+      AND materialRefundDetail.shelf_id like CONCAT('%',#{materialRefundDetailDto.shelfId},'%')
+    </if>
+    <if test="materialRefundDetailDto.shelfName != null and materialRefundDetailDto.shelfName != ''">
+      AND materialRefundDetail.shelf_name like CONCAT('%',#{materialRefundDetailDto.shelfName},'%')
+    </if>
+    <if test="materialRefundDetailDto.taxRate != null and materialRefundDetailDto.taxRate != ''">
+      AND materialRefundDetail.tax_rate = #{materialRefundDetailDto.taxRate}
+    </if>
+    <if test="materialRefundDetailDto.acceptNumber != null and materialRefundDetailDto.acceptNumber != ''">
+      AND materialRefundDetail.accept_number = #{materialRefundDetailDto.acceptNumber}
+    </if>
+    <if test="materialRefundDetailDto.refundNumber != null and materialRefundDetailDto.refundNumber != ''">
+      AND materialRefundDetail.refund_number = #{materialRefundDetailDto.refundNumber}
+    </if>
+    <if test="materialRefundDetailDto.refundAmount != null and materialRefundDetailDto.refundAmount != ''">
+      AND materialRefundDetail.refund_amount = #{materialRefundDetailDto.refundAmount}
+    </if>
+    <if test="materialRefundDetailDto.refundUntaxedAmount != null and materialRefundDetailDto.refundUntaxedAmount != ''">
+      AND materialRefundDetail.refund_untaxed_amount = #{materialRefundDetailDto.refundUntaxedAmount}
+    </if>
+    <if test="materialRefundDetailDto.refundTaxAmount != null and materialRefundDetailDto.refundTaxAmount != ''">
+      AND materialRefundDetail.refund_tax_amount = #{materialRefundDetailDto.refundTaxAmount}
+    </if>
+    order by materialRefundDetail.id desc
+</select>
+</mapper>

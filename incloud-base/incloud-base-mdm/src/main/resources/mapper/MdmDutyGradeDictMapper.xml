@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.mdm.mapper.MdmDutyGradeDictMapper">
+
+<resultMap id="mdmDutyGradeDictMap" type="com.netwisd.base.mdm.vo.MdmDutyGradeDictVo">
+  <id property="id" column="id"/>
+  <result property="dutyGradeName" column="duty_grade_name"/>
+  <result property="dutySequId" column="duty_sequ_id"/>
+  <result property="dutySequName" column="duty_sequ_name"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+  <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+  <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+  <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+  <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+  <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.mdm.dto.MdmDutyGradeDictDto" resultMap="mdmDutyGradeDictMap">
+  select * from incloud_base_mdm_duty_grade_dict mdmDutyGradeDict where 1=1
+    <if test="mdmDutyGradeDictDto.id != null and mdmDutyGradeDictDto.id != ''">
+      AND mdmDutyGradeDict.id = #{mdmDutyGradeDictDto.id}
+    </if>
+    <if test="mdmDutyGradeDictDto.dutyGradeName != null and mdmDutyGradeDictDto.dutyGradeName != ''">
+      AND mdmDutyGradeDict.duty_grade_name like CONCAT('%',#{mdmDutyGradeDictDto.dutyGradeName},'%')
+    </if>
+    <if test="mdmDutyGradeDictDto.dutySequId != null and mdmDutyGradeDictDto.dutySequId != ''">
+      AND mdmDutyGradeDict.duty_sequ_id = #{mdmDutyGradeDictDto.dutySequId}
+    </if>
+    <if test="mdmDutyGradeDictDto.dutySequName != null and mdmDutyGradeDictDto.dutySequName != ''">
+      AND mdmDutyGradeDict.duty_sequ_name like CONCAT('%',#{mdmDutyGradeDictDto.dutySequName},'%')
+    </if>
+    <if test="mdmDutyGradeDictDto.createUserId != null and mdmDutyGradeDictDto.createUserId != ''">
+      AND mdmDutyGradeDict.create_user_id = #{mdmDutyGradeDictDto.createUserId}
+    </if>
+    <if test="mdmDutyGradeDictDto.createUserName != null and mdmDutyGradeDictDto.createUserName != ''">
+      AND mdmDutyGradeDict.create_user_name like CONCAT('%',#{mdmDutyGradeDictDto.createUserName},'%')
+    </if>
+    <if test="mdmDutyGradeDictDto.createUserParentOrgId != null and mdmDutyGradeDictDto.createUserParentOrgId != ''">
+      AND mdmDutyGradeDict.create_user_parent_org_id = #{mdmDutyGradeDictDto.createUserParentOrgId}
+    </if>
+    <if test="mdmDutyGradeDictDto.createUserParentOrgName != null and mdmDutyGradeDictDto.createUserParentOrgName != ''">
+      AND mdmDutyGradeDict.create_user_parent_org_name like CONCAT('%',#{mdmDutyGradeDictDto.createUserParentOrgName},'%')
+    </if>
+    <if test="mdmDutyGradeDictDto.createUserParentDeptId != null and mdmDutyGradeDictDto.createUserParentDeptId != ''">
+      AND mdmDutyGradeDict.create_user_parent_dept_id = #{mdmDutyGradeDictDto.createUserParentDeptId}
+    </if>
+    <if test="mdmDutyGradeDictDto.createUserParentDeptName != null and mdmDutyGradeDictDto.createUserParentDeptName != ''">
+      AND mdmDutyGradeDict.create_user_parent_dept_name like CONCAT('%',#{mdmDutyGradeDictDto.createUserParentDeptName},'%')
+    </if>
+    <if test="mdmDutyGradeDictDto.createUserOrgFullId != null and mdmDutyGradeDictDto.createUserOrgFullId != ''">
+      AND mdmDutyGradeDict.create_user_org_full_id like CONCAT('%',#{mdmDutyGradeDictDto.createUserOrgFullId},'%')
+    </if>
+    order by mdmDutyGradeDict.id desc
+</select>
+</mapper>

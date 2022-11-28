@@ -1,0 +1,15 @@
+nacos:
+  servers: "nacos-0.nacos-headless.test.svc.cluster.local:8848"
+  replicas: 1
+  service:
+    port: 32102
+  data:
+    mysql:
+      dbname: "incloud4"
+      port: "3306"
+      user: "root"
+      password: "Netwisd*8"
+  images:
+    image: dockerhub.kubekey.local/netwisd/nacos  #"dockerhub.kubekey.local/netwisd/nacos"
+    tag: "1.4.2"
+  

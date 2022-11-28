@@ -1,0 +1,28 @@
+server:
+  port: 8033
+spring:
+  application:
+    name: @artifactId@
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${INCLOUD_NACOS_SERVICE_HOST:127.0.0.1}:${INCLOUD_NACOS_SERVICE_PORT:8848}
+        namespace: ${INCLOUD_NACOS_NAMESPACE:incloud3}
+        #ip: ${incloud3_instance_ip}
+      config:
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+        file-extension: yml
+        shared-configs: application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+        namespace: ${spring.cloud.nacos.discovery.namespace}
+  rocketmq:
+    disable: false
+    namesrvAddr: ${INCLOUD_ROCKETMQ_SERVICE_HOST:10.42.2.160}:${INCLOUD_ROCKETMQ_SERVICE_PORT:9876}
+    itemTopics: mdm_item_topic
+    itemClassifyTopics: mdm_itemClassify_topic
+    customerTopics: mdm_customer_topic
+    sellTopics: mdm_sell_topic
+    projectTopics: mdm_project_topic
+    supplierTopics: mdm_supplier_topic
+    purchaseTopics: mdm_purchase_topic
+  profiles:
+    active: @profiles.active@

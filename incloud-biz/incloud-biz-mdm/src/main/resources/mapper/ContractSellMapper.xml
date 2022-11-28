@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.mdm.mapper.ContractSellMapper">
+
+<resultMap id="contractSellMap" type="com.netwisd.biz.mdm.vo.ContractSellVo">
+  <id property="id" column="id"/>
+  <result property="projectId" column="project_id"/>
+  <result property="projectCode" column="project_code"/>
+  <result property="projectName" column="project_name"/>
+  <result property="contractCode" column="contract_code"/>
+  <result property="contractName" column="contract_name"/>
+  <result property="appraisalCode" column="appraisal_code"/>
+  <result property="contractDate" column="contract_date"/>
+  <result property="contractClassify" column="contract_classify"/>
+  <result property="type" column="type"/>
+  <result property="contractPrice" column="contract_price"/>
+  <result property="contractPriceUp" column="contract_price_up"/>
+  <result property="cashDepositRatio" column="cash_deposit_ratio"/>
+  <result property="state" column="state"/>
+  <result property="agentName" column="agent_name"/>
+  <result property="agentCode" column="agent_code"/>
+  <result property="recordsCode" column="records_code"/>
+  <result property="tax" column="tax"/>
+  <result property="useQualification" column="use_qualification"/>
+  <result property="biddingProject" column="bidding_project"/>
+  <result property="buildProject" column="build_project"/>
+  <result property="stateOnfile" column="state_onfile"/>
+  <result property="unionContractPrice" column="union_contract_price"/>
+  <result property="startTime" column="start_time"/>
+  <result property="endTime" column="end_time"/>
+  <result property="duration" column="duration"/>
+  <result property="valuation" column="valuation"/>
+  <result property="payForm" column="pay_form"/>
+  <result property="disputeSolve" column="dispute_solve"/>
+  <result property="pledgeYear" column="pledge_year"/>
+  <result property="majorProject" column="major_project"/>
+  <result property="moneySource" column="money_source"/>
+  <result property="investor" column="investor"/>
+  <result property="qualityTarget" column="quality_target"/>
+  <result property="contractMode" column="contract_mode"/>
+  <result property="territory" column="territory"/>
+  <result property="projectType" column="project_type"/>
+  <result property="dataSourceId" column="data_source_id"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.mdm.dto.ContractSellDto" resultMap="contractSellMap">
+  select * from incloud_biz_mdm_contract_sell contractSell where 1=1
+    <if test="contractSellDto.id != null and contractSellDto.id != ''">
+      AND contractSell.id = #{contractSellDto.id}
+    </if>
+    <if test="contractSellDto.projectId != null and contractSellDto.projectId != ''">
+      AND contractSell.project_id like CONCAT('%',#{contractSellDto.projectId},'%')
+    </if>
+    <if test="contractSellDto.projectCode != null and contractSellDto.projectCode != ''">
+      AND contractSell.project_code like CONCAT('%',#{contractSellDto.projectCode},'%')
+    </if>
+    <if test="contractSellDto.projectName != null and contractSellDto.projectName != ''">
+      AND contractSell.project_name like CONCAT('%',#{contractSellDto.projectName},'%')
+    </if>
+    <if test="contractSellDto.contractCode != null and contractSellDto.contractCode != ''">
+      AND contractSell.contract_code like CONCAT('%',#{contractSellDto.contractCode},'%')
+    </if>
+    <if test="contractSellDto.contractName != null and contractSellDto.contractName != ''">
+      AND contractSell.contract_name like CONCAT('%',#{contractSellDto.contractName},'%')
+    </if>
+    <if test="contractSellDto.appraisalCode != null and contractSellDto.appraisalCode != ''">
+      AND contractSell.appraisal_code like CONCAT('%',#{contractSellDto.appraisalCode},'%')
+    </if>
+    <if test="contractSellDto.contractDate != null and contractSellDto.contractDate != ''">
+      AND contractSell.contract_date = #{contractSellDto.contractDate}
+    </if>
+    <if test="contractSellDto.contractClassify != null and contractSellDto.contractClassify != ''">
+      AND contractSell.contract_classify like CONCAT('%',#{contractSellDto.contractClassify},'%')
+    </if>
+    <if test="contractSellDto.type != null and contractSellDto.type != ''">
+      AND contractSell.type like CONCAT('%',#{contractSellDto.type},'%')
+    </if>
+    <if test="contractSellDto.contractPrice != null and contractSellDto.contractPrice != ''">
+      AND contractSell.contract_price = #{contractSellDto.contractPrice}
+    </if>
+    <if test="contractSellDto.contractPriceUp != null and contractSellDto.contractPriceUp != ''">
+      AND contractSell.contract_price_up like CONCAT('%',#{contractSellDto.contractPriceUp},'%')
+    </if>
+    <if test="contractSellDto.cashDepositRatio != null and contractSellDto.cashDepositRatio != ''">
+      AND contractSell.cash_deposit_ratio like CONCAT('%',#{contractSellDto.cashDepositRatio},'%')
+    </if>
+    <if test="contractSellDto.state != null and contractSellDto.state != ''">
+      AND contractSell.state like CONCAT('%',#{contractSellDto.state},'%')
+    </if>
+    <if test="contractSellDto.agentName != null and contractSellDto.agentName != ''">
+      AND contractSell.agent_name like CONCAT('%',#{contractSellDto.agentName},'%')
+    </if>
+    <if test="contractSellDto.agentId != null and contractSellDto.agentId != ''">
+      AND contractSell.agent_id like CONCAT('%',#{contractSellDto.agentId},'%')
+    </if>
+    <if test="contractSellDto.recordsCode != null and contractSellDto.recordsCode != ''">
+      AND contractSell.records_code like CONCAT('%',#{contractSellDto.recordsCode},'%')
+    </if>
+    <if test="contractSellDto.tax != null and contractSellDto.tax != ''">
+      AND contractSell.tax = #{contractSellDto.tax}
+    </if>
+    <if test="contractSellDto.useQualification != null and contractSellDto.useQualification != ''">
+      AND contractSell.use_qualification like CONCAT('%',#{contractSellDto.useQualification},'%')
+    </if>
+    <if test="contractSellDto.biddingProject != null and contractSellDto.biddingProject != ''">
+      AND contractSell.bidding_project like CONCAT('%',#{contractSellDto.biddingProject},'%')
+    </if>
+    <if test="contractSellDto.buildProject != null and contractSellDto.buildProject != ''">
+      AND contractSell.build_project like CONCAT('%',#{contractSellDto.buildProject},'%')
+    </if>
+    <if test="contractSellDto.stateOnfile != null and contractSellDto.stateOnfile != ''">
+      AND contractSell.state_onfile like CONCAT('%',#{contractSellDto.stateOnfile},'%')
+    </if>
+    <if test="contractSellDto.unionContractPrice != null and contractSellDto.unionContractPrice != ''">
+      AND contractSell.union_contract_price = #{contractSellDto.unionContractPrice}
+    </if>
+    <if test="contractSellDto.startTime != null and contractSellDto.startTime != ''">
+      AND contractSell.start_time = #{contractSellDto.startTime}
+    </if>
+    <if test="contractSellDto.endTime != null and contractSellDto.endTime != ''">
+      AND contractSell.end_time = #{contractSellDto.endTime}
+    </if>
+    <if test="contractSellDto.duration != null and contractSellDto.duration != ''">
+      AND contractSell.duration like CONCAT('%',#{contractSellDto.duration},'%')
+    </if>
+    <if test="contractSellDto.valuation != null and contractSellDto.valuation != ''">
+      AND contractSell.valuation like CONCAT('%',#{contractSellDto.valuation},'%')
+    </if>
+    <if test="contractSellDto.payForm != null and contractSellDto.payForm != ''">
+      AND contractSell.pay_form like CONCAT('%',#{contractSellDto.payForm},'%')
+    </if>
+    <if test="contractSellDto.disputeSolve != null and contractSellDto.disputeSolve != ''">
+      AND contractSell.dispute_solve like CONCAT('%',#{contractSellDto.disputeSolve},'%')
+    </if>
+    <if test="contractSellDto.pledgeYear != null and contractSellDto.pledgeYear != ''">
+      AND contractSell.pledge_year like CONCAT('%',#{contractSellDto.pledgeYear},'%')
+    </if>
+    <if test="contractSellDto.majorProject != null and contractSellDto.majorProject != ''">
+      AND contractSell.major_project like CONCAT('%',#{contractSellDto.majorProject},'%')
+    </if>
+    <if test="contractSellDto.moneySource != null and contractSellDto.moneySource != ''">
+      AND contractSell.money_source like CONCAT('%',#{contractSellDto.moneySource},'%')
+    </if>
+    <if test="contractSellDto.investor != null and contractSellDto.investor != ''">
+      AND contractSell.investor like CONCAT('%',#{contractSellDto.investor},'%')
+    </if>
+    <if test="contractSellDto.qualityTarget != null and contractSellDto.qualityTarget != ''">
+      AND contractSell.quality_target like CONCAT('%',#{contractSellDto.qualityTarget},'%')
+    </if>
+    <if test="contractSellDto.contractMode != null and contractSellDto.contractMode != ''">
+      AND contractSell.contract_mode like CONCAT('%',#{contractSellDto.contractMode},'%')
+    </if>
+    <if test="contractSellDto.territory != null and contractSellDto.territory != ''">
+      AND contractSell.territory like CONCAT('%',#{contractSellDto.territory},'%')
+    </if>
+    <if test="contractSellDto.projectType != null and contractSellDto.projectType != ''">
+      AND contractSell.project_type like CONCAT('%',#{contractSellDto.projectType},'%')
+    </if>
+    <if test="contractSellDto.dataSourceId != null and contractSellDto.dataSourceId != ''">
+      AND contractSell.data_source_id like CONCAT('%',#{contractSellDto.dataSourceId},'%')
+    </if>
+    order by contractSell.id desc
+</select>
+
+  <select id="outList" resultMap="outListMap">
+    SELECT
+      sell.id ,
+      sell.project_id ,
+      sell.project_code ,
+      sell.project_name ,
+      sell.project_name ,
+      sell.contract_name ,
+      sell.appraisal_code ,
+      sell.contract_date ,
+      sell.contract_classify ,
+      sell.type ,
+      sell.contract_price ,
+      sell.contract_price_up ,
+      sell.cash_deposit_ratio ,
+      sell.state ,
+      sell.agent_name ,
+      sell.agent_code ,
+      sell.records_code ,
+      sell.tax ,
+      sell.use_qualification ,
+      sell.bidding_project ,
+      sell.build_project ,
+      sell.state_onfile ,
+      sell.union_contract_price ,
+      sell.start_time ,
+      sell.end_time ,
+      sell.duration ,
+      sell.valuation ,
+      sell.pay_form ,
+      sell.dispute_solve ,
+      sell.pledge_year ,
+      sell.major_project ,
+      sell.money_source ,
+      sell.investor ,
+      sell.quality_target ,
+      sell.contract_mode ,
+      sell.territory ,
+      sell.project_type ,
+      det.id AS d_id,
+      det.material_id ,
+      det.contract_id ,
+      det.contract_code ,
+      det.contract_name ,
+      det.material_code ,
+      det.material_name ,
+      det.material_name ,
+      det.unit ,
+      det.plan_quantity ,
+      det.texture ,
+      det.price ,
+      det.total_price ,
+      det.cost ,
+      det.tax ,
+      det.invoice_type ,
+      det.tax_rate
+    FROM
+      incloud_biz_mdm_contract_sell sell
+        LEFT JOIN incloud_biz_mdm_contract_sell_details det ON det.contract_code = sell.contract_code
+  </select>
+  <resultMap id="outListMap" type="com.netwisd.biz.mdm.vo.ContractSellVo">
+    <id property="id" column="id"/>
+    <result property="projectId" column="project_id"/>
+    <result property="projectCode" column="project_code"/>
+    <result property="projectName" column="project_name"/>
+    <result property="contractCode" column="contract_code"/>
+    <result property="contractName" column="contract_name"/>
+    <result property="appraisalCode" column="appraisal_code"/>
+    <result property="contractDate" column="contract_date"/>
+    <result property="contractClassify" column="contract_classify"/>
+    <result property="type" column="type"/>
+    <result property="contractPrice" column="contract_price"/>
+    <result property="contractPriceUp" column="contract_price_up"/>
+    <result property="cashDepositRatio" column="cash_deposit_ratio"/>
+    <result property="state" column="state"/>
+    <result property="agentName" column="agent_name"/>
+    <result property="agentCode" column="agent_code"/>
+    <result property="recordsCode" column="records_code"/>
+    <result property="tax" column="tax"/>
+    <result property="useQualification" column="use_qualification"/>
+    <result property="biddingProject" column="bidding_project"/>
+    <result property="buildProject" column="build_project"/>
+    <result property="stateOnfile" column="state_onfile"/>
+    <result property="unionContractPrice" column="union_contract_price"/>
+    <result property="startTime" column="start_time"/>
+    <result property="endTime" column="end_time"/>
+    <result property="duration" column="duration"/>
+    <result property="valuation" column="valuation"/>
+    <result property="payForm" column="pay_form"/>
+    <result property="disputeSolve" column="dispute_solve"/>
+    <result property="pledgeYear" column="pledge_year"/>
+    <result property="majorProject" column="major_project"/>
+    <result property="moneySource" column="money_source"/>
+    <result property="investor" column="investor"/>
+    <result property="qualityTarget" column="quality_target"/>
+    <result property="contractMode" column="contract_mode"/>
+    <result property="territory" column="territory"/>
+    <result property="projectType" column="project_type"/>
+    <result property="dataSourceId" column="data_source_id"/>
+    <collection property="detailsList" column="detailsList" ofType="com.netwisd.biz.mdm.vo.ContractSellDetailsVo">
+      <id property="id" column="d_id"></id>
+      <result property="materialId" column="material_id"/>
+      <result property="contractId" column="contract_id"/>
+      <result property="contractCode" column="contract_code"/>
+      <result property="contractName" column="contract_name"/>
+      <result property="materialCode" column="material_code"/>
+      <result property="materialName" column="material_name"/>
+      <result property="specification" column="specification"/>
+      <result property="unit" column="unit"/>
+      <result property="planQuantity" column="plan_quantity"/>
+      <result property="texture" column="texture"/>
+      <result property="price" column="price"/>
+      <result property="totalPrice" column="total_price"/>
+      <result property="cost" column="cost"/>
+      <result property="tax" column="tax"/>
+      <result property="invoiceType" column="invoice_type"/>
+      <result property="taxRate" column="tax_rate"/>
+    </collection>
+  </resultMap>
+</mapper>

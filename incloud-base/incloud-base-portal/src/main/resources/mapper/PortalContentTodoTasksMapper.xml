@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.portal.mapper.PortalContentTodoTasksMapper">
+
+<resultMap id="portalContentTodoTasksMap" type="com.netwisd.base.portal.vo.PortalContentTodoTasksVo">
+  <id property="id" column="id"/>
+  <result property="starterIdCard" column="starter_id_card"/>
+  <result property="starterName" column="starter_name"/>
+  <result property="starterDeptId" column="starter_dept_id"/>
+  <result property="starterDeptName" column="starter_dept_name"/>
+  <result property="starterOrgId" column="starter_org_id"/>
+  <result property="starterOrgName" column="starter_org_name"/>
+  <result property="applyTime" column="apply_time"/>
+  <result property="reason" column="reason"/>
+  <result property="procinsId" column="procins_id"/>
+  <result property="procinsName" column="procins_name"/>
+  <result property="currentNodeName" column="current_node_name"/>
+  <result property="bizKey" column="biz_key"/>
+  <result property="cliamTime" column="cliam_time"/>
+  <result property="taskState" column="task_state"/>
+  <result property="sysBizCode" column="sys_biz_code"/>
+  <result property="handleStartTime" column="handle_start_time"/>
+  <result property="ownnerIdCard" column="ownner_id_card"/>
+  <result property="ownnerName" column="ownner_name"/>
+  <result property="assigneeIdCard" column="assignee_id_card"/>
+  <result property="assigneeName" column="assignee_name"/>
+  <result property="isDraft" column="is_draft"/>
+  <result property="sysBizId" column="sys_biz_id"/>
+  <result property="sysPcBizUrl" column="sys_pc_biz_url"/>
+  <result property="sysAppBizUrl" column="sys_app_biz_url"/>
+  <result property="sysBizClassify" column="sys_biz_classify"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.portal.dto.PortalContentTodoTasksDto" resultMap="portalContentTodoTasksMap">
+  select * from incloud_base_portal_content_todo_tasks portalContentTodoTasks where 1=1
+    <if test="portalContentTodoTasksDto.id != null and portalContentTodoTasksDto.id != ''">
+      AND portalContentTodoTasks.id = #{portalContentTodoTasksDto.id}
+    </if>
+    <if test="portalContentTodoTasksDto.starterId != null and portalContentTodoTasksDto.starterId != ''">
+      AND portalContentTodoTasks.starter_id = #{portalContentTodoTasksDto.starterId}
+    </if>
+    <if test="portalContentTodoTasksDto.starterName != null and portalContentTodoTasksDto.starterName != ''">
+      AND portalContentTodoTasks.starter_name like CONCAT('%',#{portalContentTodoTasksDto.starterName},'%')
+    </if>
+    <if test="portalContentTodoTasksDto.starterDeptId != null and portalContentTodoTasksDto.starterDeptId != ''">
+      AND portalContentTodoTasks.starter_dept_id = #{portalContentTodoTasksDto.starterDeptId}
+    </if>
+    <if test="portalContentTodoTasksDto.starterDeptName != null and portalContentTodoTasksDto.starterDeptName != ''">
+      AND portalContentTodoTasks.starter_dept_name like CONCAT('%',#{portalContentTodoTasksDto.starterDeptName},'%')
+    </if>
+    <if test="portalContentTodoTasksDto.starterOrgId != null and portalContentTodoTasksDto.starterOrgId != ''">
+      AND portalContentTodoTasks.starter_org_id = #{portalContentTodoTasksDto.starterOrgId}
+    </if>
+    <if test="portalContentTodoTasksDto.starterOrgName != null and portalContentTodoTasksDto.starterOrgName != ''">
+      AND portalContentTodoTasks.starter_org_name like CONCAT('%',#{portalContentTodoTasksDto.starterOrgName},'%')
+    </if>
+    <if test="portalContentTodoTasksDto.applyTime != null and portalContentTodoTasksDto.applyTime != ''">
+      AND portalContentTodoTasks.apply_time = #{portalContentTodoTasksDto.applyTime}
+    </if>
+    <if test="portalContentTodoTasksDto.reason != null and portalContentTodoTasksDto.reason != ''">
+      AND portalContentTodoTasks.reason like CONCAT('%',#{portalContentTodoTasksDto.reason},'%')
+    </if>
+    <if test="portalContentTodoTasksDto.procinsId != null and portalContentTodoTasksDto.procinsId != ''">
+      AND portalContentTodoTasks.procins_id like CONCAT('%',#{portalContentTodoTasksDto.procinsId},'%')
+    </if>
+    <if test="portalContentTodoTasksDto.procinsName != null and portalContentTodoTasksDto.procinsName != ''">
+      AND portalContentTodoTasks.procins_name like CONCAT('%',#{portalContentTodoTasksDto.procinsName},'%')
+    </if>
+    <if test="portalContentTodoTasksDto.currentNodeName != null and portalContentTodoTasksDto.currentNodeName != ''">
+      AND portalContentTodoTasks.current_node_name like CONCAT('%',#{portalContentTodoTasksDto.currentNodeName},'%')
+    </if>
+    <if test="portalContentTodoTasksDto.bizKey != null and portalContentTodoTasksDto.bizKey != ''">
+      AND portalContentTodoTasks.biz_key like CONCAT('%',#{portalContentTodoTasksDto.bizKey},'%')
+    </if>
+    <if test="portalContentTodoTasksDto.cliamTime != null and portalContentTodoTasksDto.cliamTime != ''">
+      AND portalContentTodoTasks.cliam_time = #{portalContentTodoTasksDto.cliamTime}
+    </if>
+    <if test="portalContentTodoTasksDto.taskState != null and portalContentTodoTasksDto.taskState != ''">
+      AND portalContentTodoTasks.task_state = #{portalContentTodoTasksDto.taskState}
+    </if>
+    <if test="portalContentTodoTasksDto.handleStartTime != null and portalContentTodoTasksDto.handleStartTime != ''">
+      AND portalContentTodoTasks.handle_start_time = #{portalContentTodoTasksDto.handleStartTime}
+    </if>
+    <if test="portalContentTodoTasksDto.ownner != null and portalContentTodoTasksDto.ownner != ''">
+      AND portalContentTodoTasks.ownner like CONCAT('%',#{portalContentTodoTasksDto.ownner},'%')
+    </if>
+    <if test="portalContentTodoTasksDto.assigneeId != null and portalContentTodoTasksDto.assigneeId != ''">
+      AND portalContentTodoTasks.assignee_id like CONCAT('%',#{portalContentTodoTasksDto.assigneeId},'%')
+    </if>
+    <if test="portalContentTodoTasksDto.assigneeName != null and portalContentTodoTasksDto.assigneeName != ''">
+      AND portalContentTodoTasks.assignee_name like CONCAT('%',#{portalContentTodoTasksDto.assigneeName},'%')
+    </if>
+    <if test="portalContentTodoTasksDto.isDraft != null and portalContentTodoTasksDto.isDraft != ''">
+      AND portalContentTodoTasks.is_draft = #{portalContentTodoTasksDto.isDraft}
+    </if>
+    order by portalContentTodoTasks.id desc
+</select>
+</mapper>

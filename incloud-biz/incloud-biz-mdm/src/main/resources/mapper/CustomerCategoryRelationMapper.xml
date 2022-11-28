@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.mdm.mapper.CustomerCategoryRelationMapper">
+
+<resultMap id="customerCategoryRelationMap" type="com.netwisd.biz.mdm.vo.CustomerCategoryRelationVo">
+  <id property="id" column="id"/>
+  <result property="customerId" column="customer_id"/>
+  <result property="customerTypeId" column="customer_type_id"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.mdm.dto.CustomerCategoryRelationDto" resultMap="customerCategoryRelationMap">
+  select * from incloud_biz_mdm_customer_category_relation customerCategoryRelation where 1=1
+    <if test="customerCategoryRelationDto.id != null and customerCategoryRelationDto.id != ''">
+      AND customerCategoryRelation.id = #{customerCategoryRelationDto.id}
+    </if>
+    <if test="customerCategoryRelationDto.customerId != null and customerCategoryRelationDto.customerId != ''">
+      AND customerCategoryRelation.customer_id = #{customerCategoryRelationDto.customerId}
+    </if>
+    <if test="customerCategoryRelationDto.customerTypeId != null and customerCategoryRelationDto.customerTypeId != ''">
+      AND customerCategoryRelation.customer_type_id = #{customerCategoryRelationDto.customerTypeId}
+    </if>
+    order by customerCategoryRelation.id desc
+</select>
+</mapper>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.mdm.mapper.PushMsgMapper">
+
+<resultMap id="pushMsgMap" type="com.netwisd.biz.mdm.vo.PushMsgVo">
+  <id property="id" column="id"/>
+  <result property="sysCode" column="sys_code"/>
+  <result property="moduleCode" column="module_code"/>
+  <result property="accessToken" column="access_token"/>
+  <result property="userId" column="user_id"/>
+  <result property="userName" column="user_name"/>
+  <result property="deptId" column="dept_id"/>
+  <result property="deptName" column="dept_name"/>
+  <result property="orgId" column="org_id"/>
+  <result property="orgName" column="org_name"/>
+  <result property="msg" column="msg"/>
+  <result property="priority" column="priority"/>
+  <result property="state" column="state"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.mdm.dto.PushMsgDto" resultMap="pushMsgMap">
+  select * from incloud_base_socket_push_msg pushMsg where 1=1
+    <if test="pushMsgDto.id != null and pushMsgDto.id != ''">
+      AND pushMsg.id = #{pushMsgDto.id}
+    </if>
+    <if test="pushMsgDto.sysCode != null and pushMsgDto.sysCode != ''">
+      AND pushMsg.sys_code like CONCAT('%',#{pushMsgDto.sysCode},'%')
+    </if>
+    <if test="pushMsgDto.moduleCode != null and pushMsgDto.moduleCode != ''">
+      AND pushMsg.module_code like CONCAT('%',#{pushMsgDto.moduleCode},'%')
+    </if>
+    <if test="pushMsgDto.accessToken != null and pushMsgDto.accessToken != ''">
+      AND pushMsg.access_token like CONCAT('%',#{pushMsgDto.accessToken},'%')
+    </if>
+    <if test="pushMsgDto.userId != null and pushMsgDto.userId != ''">
+      AND pushMsg.user_id like CONCAT('%',#{pushMsgDto.userId},'%')
+    </if>
+    <if test="pushMsgDto.userName != null and pushMsgDto.userName != ''">
+      AND pushMsg.user_name like CONCAT('%',#{pushMsgDto.userName},'%')
+    </if>
+    <if test="pushMsgDto.deptId != null and pushMsgDto.deptId != ''">
+      AND pushMsg.dept_id like CONCAT('%',#{pushMsgDto.deptId},'%')
+    </if>
+    <if test="pushMsgDto.deptName != null and pushMsgDto.deptName != ''">
+      AND pushMsg.dept_name like CONCAT('%',#{pushMsgDto.deptName},'%')
+    </if>
+    <if test="pushMsgDto.orgId != null and pushMsgDto.orgId != ''">
+      AND pushMsg.org_id like CONCAT('%',#{pushMsgDto.orgId},'%')
+    </if>
+    <if test="pushMsgDto.orgName != null and pushMsgDto.orgName != ''">
+      AND pushMsg.org_name like CONCAT('%',#{pushMsgDto.orgName},'%')
+    </if>
+    <if test="pushMsgDto.msg != null and pushMsgDto.msg != ''">
+      AND pushMsg.msg like CONCAT('%',#{pushMsgDto.msg},'%')
+    </if>
+    <if test="pushMsgDto.priority != null and pushMsgDto.priority != ''">
+      AND pushMsg.priority = #{pushMsgDto.priority}
+    </if>
+    <if test="pushMsgDto.state != null and pushMsgDto.state != ''">
+      AND pushMsg.state = #{pushMsgDto.state}
+    </if>
+    order by pushMsg.id desc
+</select>
+</mapper>

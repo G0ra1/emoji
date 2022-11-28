@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.wf.mapper.WfSequEventParamDefMapper">
+
+<resultMap id="wfSequEventParamDefMap" type="com.netwisd.base.wf.vo.WfSequEventParamDefVo">
+  <id property="id" column="id"/>
+  <result property="eventDefId" column="event_def_id"/>
+  <result property="paramType" column="param_type"/>
+  <result property="paramId" column="param_id"/>
+  <result property="paramName" column="param_name"/>
+  <result property="paramDefalutValue" column="param_defalut_value"/>
+
+  <result property="camundaProcdefId" column="camunda_procdef_id"/>
+  <result property="camundaProcdefKey" column="camunda_procdef_key"/>
+  <result property="camundaSequDefId" column="camunda_sequ_def_id"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.wf.dto.WfSequEventParamDefDto" resultMap="wfSequEventParamDefMap">
+  select * from incloud_base_wf_sequ_event_param_def wfSequEventParamDef where 1=1
+    <if test="wfSequEventParamDefDto.id != null and wfSequEventParamDefDto.id != ''">
+      AND wfSequEventParamDef.id = #{wfSequEventParamDefDto.id}
+    </if>
+    <if test="wfSequEventParamDefDto.eventId != null and wfSequEventParamDefDto.eventId != ''">
+      AND wfSequEventParamDef.event_id = #{wfSequEventParamDefDto.eventId}
+    </if>
+    <if test="wfSequEventParamDefDto.paramType != null and wfSequEventParamDefDto.paramType != ''">
+      AND wfSequEventParamDef.param_type like CONCAT('%',#{wfSequEventParamDefDto.paramType},'%')
+    </if>
+    <if test="wfSequEventParamDefDto.paramId != null and wfSequEventParamDefDto.paramId != ''">
+      AND wfSequEventParamDef.param_id like CONCAT('%',#{wfSequEventParamDefDto.paramId},'%')
+    </if>
+    <if test="wfSequEventParamDefDto.paramName != null and wfSequEventParamDefDto.paramName != ''">
+      AND wfSequEventParamDef.param_name like CONCAT('%',#{wfSequEventParamDefDto.paramName},'%')
+    </if>
+    <if test="wfSequEventParamDefDto.paramDefalutValue != null and wfSequEventParamDefDto.paramDefalutValue != ''">
+      AND wfSequEventParamDef.param_defalut_value like CONCAT('%',#{wfSequEventParamDefDto.paramDefalutValue},'%')
+    </if>
+    order by wfSequEventParamDef.id desc
+</select>
+</mapper>

@@ -1,0 +1,8 @@
+name: incloud-biz-mdm
+replicaCount: 1
+image:
+  repository: dockerhub.kubekey.local/zhongyuanjian/incloud-biz-mdm
+  pullPolicy: Always
+  tag: "latest"
+  port: 8033
+imageEnvConfigMap: incloud-config

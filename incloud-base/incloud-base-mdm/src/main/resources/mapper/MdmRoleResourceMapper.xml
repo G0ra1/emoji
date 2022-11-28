@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.mdm.mapper.MdmRoleResourceMapper">
+
+<resultMap id="mdmRoleResourceMap" type="com.netwisd.base.mdm.vo.MdmRoleResourceVo">
+  <id property="id" column="id"/>
+  <result property="roleId" column="role_id"/>
+  <result property="resourceId" column="resource_id"/>
+  <result property="roleCode" column="role_code"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.mdm.dto.MdmRoleResourceDto" resultMap="mdmRoleResourceMap">
+  select * from incloud_base_mdm_role_resource mdmRoleResource where 1=1
+    <if test="mdmRoleResourceDto.id != null and mdmRoleResourceDto.id != ''">
+      AND mdmRoleResource.id = #{mdmRoleResourceDto.id}
+    </if>
+    <if test="mdmRoleResourceDto.roleId != null and mdmRoleResourceDto.roleId != ''">
+      AND mdmRoleResource.role_id = #{mdmRoleResourceDto.roleId}
+    </if>
+    <if test="mdmRoleResourceDto.resourceId != null and mdmRoleResourceDto.resourceId != ''">
+      AND mdmRoleResource.resource_id = #{mdmRoleResourceDto.resourceId}
+    </if>
+    order by mdmRoleResource.id desc
+</select>
+</mapper>

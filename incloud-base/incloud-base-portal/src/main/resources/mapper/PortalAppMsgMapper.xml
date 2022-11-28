@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.portal.mapper.PortalAppMsgMapper">
+
+<resultMap id="portalAppMsgMap" type="com.netwisd.base.portal.vo.PortalAppMsgVo">
+  <id property="id" column="id"/>
+  <result property="bundleId" column="bundle_id"/>
+  <result property="version" column="version"/>
+  <result property="platform" column="platform"/>
+  <result property="marketName" column="market_name"/>
+  <result property="state" column="state"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.portal.dto.PortalAppMsgDto" resultMap="portalAppMsgMap">
+  select * from incloud_base_portal_app_msg portalAppMsg where 1=1
+    <if test="portalAppMsgDto.id != null and portalAppMsgDto.id != ''">
+      AND portalAppMsg.id = #{portalAppMsgDto.id}
+    </if>
+    <if test="portalAppMsgDto.bundleId != null and portalAppMsgDto.bundleId != ''">
+      AND portalAppMsg.bundle_id like CONCAT('%',#{portalAppMsgDto.bundleId},'%')
+    </if>
+    <if test="portalAppMsgDto.version != null and portalAppMsgDto.version != ''">
+      AND portalAppMsg.version like CONCAT('%',#{portalAppMsgDto.version},'%')
+    </if>
+    <if test="portalAppMsgDto.platform != null and portalAppMsgDto.platform != ''">
+      AND portalAppMsg.platform like CONCAT('%',#{portalAppMsgDto.platform},'%')
+    </if>
+    <if test="portalAppMsgDto.marketName != null and portalAppMsgDto.marketName != ''">
+      AND portalAppMsg.market_name like CONCAT('%',#{portalAppMsgDto.marketName},'%')
+    </if>
+    <if test="portalAppMsgDto.state != null and portalAppMsgDto.state != ''">
+      AND portalAppMsg.state like CONCAT('%',#{portalAppMsgDto.state},'%')
+    </if>
+    order by portalAppMsg.id desc
+</select>
+</mapper>

@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.asset.mapper.MaterialStorageDetailMapper">
+
+<resultMap id="materialStorageDetailMap" type="com.netwisd.biz.asset.vo.MaterialStorageDetailVo">
+  <id property="id" column="id"/>
+  <result property="storageId" column="storage_id"/>
+  <result property="assetsId" column="assets_id"/>
+  <result property="assetsDetailId" column="assets_detail_id"/>
+  <result property="classifyId" column="classify_id"/>
+  <result property="classifyCode" column="classify_code"/>
+  <result property="classifyName" column="classify_name"/>
+  <result property="itemType" column="item_type"/>
+  <result property="route" column="route"/>
+  <result property="routeName" column="route_name"/>
+  <result property="taxRate" column="tax_rate"/>
+  <result property="itemId" column="item_id"/>
+  <result property="itemCode" column="item_code"/>
+  <result property="itemName" column="item_name"/>
+  <result property="desclong" column="desclong"/>
+  <result property="descshort" column="descshort"/>
+  <result property="unitCode" column="unit_code"/>
+  <result property="unitName" column="unit_name"/>
+  <result property="materialQuality" column="material_quality"/>
+  <result property="standard" column="standard"/>
+  <result property="specs" column="specs"/>
+  <result property="supplierName" column="supplier_name"/>
+  <result property="contractCode" column="contract_code"/>
+  <result property="assetsClassification" column="assets_classification"/>
+  <result property="billCodes" column="bill_codes"/>
+  <result property="billCodeFilesIds" column="bill_code_files_ids"/>
+  <result property="qualityAssuranceLevel" column="quality_assurance_level"/>
+  <result property="manufacturer" column="manufacturer"/>
+  <result property="productionDate" column="production_date"/>
+  <result property="serviceLife" column="service_life"/>
+  <result property="validPeriod" column="valid_period"/>
+  <result property="batchNumber" column="batch_number"/>
+  <result property="acceptanceDate" column="acceptance_date"/>
+  <result property="factoryDate" column="factory_date"/>
+  <result property="factoryCode" column="factory_code"/>
+  <result property="approachDate" column="approach_date"/>
+  <result property="warehouseId" column="warehouse_id"/>
+  <result property="warehouseName" column="warehouse_name"/>
+  <result property="shelfId" column="shelf_id"/>
+  <result property="shelfName" column="shelf_name"/>
+  <result property="assetsCode" column="assets_code"/>
+  <result property="assetsLabel" column="assets_label"/>
+  <result property="rzDate" column="rz_date"/>
+  <result property="acceptanceNumber" column="acceptance_number"/>
+  <result property="accpetanceTime" column="accpetance_time"/>
+  <result property="accpetanceCode" column="accpetance_code"/>
+  <result property="assetsNumber" column="assets_number"/>
+  <result property="assetsAmount" column="assets_amount"/>
+  <result property="assetsUntaxedAmount" column="assets_untaxed_amount"/>
+  <result property="assetsTaxAmount" column="assets_tax_amount"/>
+  <result property="assetsSumAmount" column="assets_sum_amount"/>
+  <result property="assetsSumUntaxedAmount" column="assets_sum_untaxed_amount"/>
+  <result property="assetsSumTaxAmount" column="assets_sum_tax_amount"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.asset.dto.MaterialStorageDetailDto" resultMap="materialStorageDetailMap">
+  select * from incloud_biz_asset_material_storage_detail materialStorageDetail where 1=1
+    <if test="materialStorageDetailDto.id != null and materialStorageDetailDto.id != ''">
+      AND materialStorageDetail.id = #{materialStorageDetailDto.id}
+    </if>
+    <if test="materialStorageDetailDto.storageId != null and materialStorageDetailDto.storageId != ''">
+      AND materialStorageDetail.storage_id = #{materialStorageDetailDto.storageId}
+    </if>
+    <if test="materialStorageDetailDto.assetsId != null and materialStorageDetailDto.assetsId != ''">
+      AND materialStorageDetail.assets_id = #{materialStorageDetailDto.assetsId}
+    </if>
+    <if test="materialStorageDetailDto.assetsDetailId != null and materialStorageDetailDto.assetsDetailId != ''">
+      AND materialStorageDetail.assets_detail_id = #{materialStorageDetailDto.assetsDetailId}
+    </if>
+    <if test="materialStorageDetailDto.classifyId != null and materialStorageDetailDto.classifyId != ''">
+      AND materialStorageDetail.classify_id like CONCAT('%',#{materialStorageDetailDto.classifyId},'%')
+    </if>
+    <if test="materialStorageDetailDto.classifyCode != null and materialStorageDetailDto.classifyCode != ''">
+      AND materialStorageDetail.classify_code like CONCAT('%',#{materialStorageDetailDto.classifyCode},'%')
+    </if>
+    <if test="materialStorageDetailDto.classifyName != null and materialStorageDetailDto.classifyName != ''">
+      AND materialStorageDetail.classify_name like CONCAT('%',#{materialStorageDetailDto.classifyName},'%')
+    </if>
+    <if test="materialStorageDetailDto.itemType != null and materialStorageDetailDto.itemType != ''">
+      AND materialStorageDetail.item_type like CONCAT('%',#{materialStorageDetailDto.itemType},'%')
+    </if>
+    <if test="materialStorageDetailDto.route != null and materialStorageDetailDto.route != ''">
+      AND materialStorageDetail.route like CONCAT('%',#{materialStorageDetailDto.route},'%')
+    </if>
+    <if test="materialStorageDetailDto.routeName != null and materialStorageDetailDto.routeName != ''">
+      AND materialStorageDetail.route_name like CONCAT('%',#{materialStorageDetailDto.routeName},'%')
+    </if>
+    <if test="materialStorageDetailDto.taxRate != null and materialStorageDetailDto.taxRate != ''">
+      AND materialStorageDetail.tax_rate = #{materialStorageDetailDto.taxRate}
+    </if>
+    <if test="materialStorageDetailDto.itemId != null and materialStorageDetailDto.itemId != ''">
+      AND materialStorageDetail.item_id like CONCAT('%',#{materialStorageDetailDto.itemId},'%')
+    </if>
+    <if test="materialStorageDetailDto.itemCode != null and materialStorageDetailDto.itemCode != ''">
+      AND materialStorageDetail.item_code like CONCAT('%',#{materialStorageDetailDto.itemCode},'%')
+    </if>
+    <if test="materialStorageDetailDto.itemName != null and materialStorageDetailDto.itemName != ''">
+      AND materialStorageDetail.item_name like CONCAT('%',#{materialStorageDetailDto.itemName},'%')
+    </if>
+    <if test="materialStorageDetailDto.desclong != null and materialStorageDetailDto.desclong != ''">
+      AND materialStorageDetail.desclong like CONCAT('%',#{materialStorageDetailDto.desclong},'%')
+    </if>
+    <if test="materialStorageDetailDto.descshort != null and materialStorageDetailDto.descshort != ''">
+      AND materialStorageDetail.descshort like CONCAT('%',#{materialStorageDetailDto.descshort},'%')
+    </if>
+    <if test="materialStorageDetailDto.unitCode != null and materialStorageDetailDto.unitCode != ''">
+      AND materialStorageDetail.unit_code like CONCAT('%',#{materialStorageDetailDto.unitCode},'%')
+    </if>
+    <if test="materialStorageDetailDto.unitName != null and materialStorageDetailDto.unitName != ''">
+      AND materialStorageDetail.unit_name like CONCAT('%',#{materialStorageDetailDto.unitName},'%')
+    </if>
+    <if test="materialStorageDetailDto.materialQuality != null and materialStorageDetailDto.materialQuality != ''">
+      AND materialStorageDetail.material_quality like CONCAT('%',#{materialStorageDetailDto.materialQuality},'%')
+    </if>
+    <if test="materialStorageDetailDto.standard != null and materialStorageDetailDto.standard != ''">
+      AND materialStorageDetail.standard like CONCAT('%',#{materialStorageDetailDto.standard},'%')
+    </if>
+    <if test="materialStorageDetailDto.specs != null and materialStorageDetailDto.specs != ''">
+      AND materialStorageDetail.specs like CONCAT('%',#{materialStorageDetailDto.specs},'%')
+    </if>
+    <if test="materialStorageDetailDto.supplierName != null and materialStorageDetailDto.supplierName != ''">
+      AND materialStorageDetail.supplier_name like CONCAT('%',#{materialStorageDetailDto.supplierName},'%')
+    </if>
+    <if test="materialStorageDetailDto.contractCode != null and materialStorageDetailDto.contractCode != ''">
+      AND materialStorageDetail.contract_code like CONCAT('%',#{materialStorageDetailDto.contractCode},'%')
+    </if>
+    <if test="materialStorageDetailDto.assetsClassification != null and materialStorageDetailDto.assetsClassification != ''">
+      AND materialStorageDetail.assets_classification like CONCAT('%',#{materialStorageDetailDto.assetsClassification},'%')
+    </if>
+    <if test="materialStorageDetailDto.billCodes != null and materialStorageDetailDto.billCodes != ''">
+      AND materialStorageDetail.bill_codes like CONCAT('%',#{materialStorageDetailDto.billCodes},'%')
+    </if>
+    <if test="materialStorageDetailDto.billCodeFilesIds != null and materialStorageDetailDto.billCodeFilesIds != ''">
+      AND materialStorageDetail.bill_code_files_ids like CONCAT('%',#{materialStorageDetailDto.billCodeFilesIds},'%')
+    </if>
+    <if test="materialStorageDetailDto.qualityAssuranceLevel != null and materialStorageDetailDto.qualityAssuranceLevel != ''">
+      AND materialStorageDetail.quality_assurance_level like CONCAT('%',#{materialStorageDetailDto.qualityAssuranceLevel},'%')
+    </if>
+    <if test="materialStorageDetailDto.manufacturer != null and materialStorageDetailDto.manufacturer != ''">
+      AND materialStorageDetail.manufacturer like CONCAT('%',#{materialStorageDetailDto.manufacturer},'%')
+    </if>
+    <if test="materialStorageDetailDto.productionDate != null and materialStorageDetailDto.productionDate != ''">
+      AND materialStorageDetail.production_date = #{materialStorageDetailDto.productionDate}
+    </if>
+    <if test="materialStorageDetailDto.serviceLife != null and materialStorageDetailDto.serviceLife != ''">
+      AND materialStorageDetail.service_life = #{materialStorageDetailDto.serviceLife}
+    </if>
+    <if test="materialStorageDetailDto.validPeriod != null and materialStorageDetailDto.validPeriod != ''">
+      AND materialStorageDetail.valid_period like CONCAT('%',#{materialStorageDetailDto.validPeriod},'%')
+    </if>
+    <if test="materialStorageDetailDto.batchNumber != null and materialStorageDetailDto.batchNumber != ''">
+      AND materialStorageDetail.batch_number like CONCAT('%',#{materialStorageDetailDto.batchNumber},'%')
+    </if>
+    <if test="materialStorageDetailDto.acceptanceDate != null and materialStorageDetailDto.acceptanceDate != ''">
+      AND materialStorageDetail.acceptance_date = #{materialStorageDetailDto.acceptanceDate}
+    </if>
+    <if test="materialStorageDetailDto.factoryDate != null and materialStorageDetailDto.factoryDate != ''">
+      AND materialStorageDetail.factory_date = #{materialStorageDetailDto.factoryDate}
+    </if>
+    <if test="materialStorageDetailDto.factoryCode != null and materialStorageDetailDto.factoryCode != ''">
+      AND materialStorageDetail.factory_code like CONCAT('%',#{materialStorageDetailDto.factoryCode},'%')
+    </if>
+    <if test="materialStorageDetailDto.approachDate != null and materialStorageDetailDto.approachDate != ''">
+      AND materialStorageDetail.approach_date = #{materialStorageDetailDto.approachDate}
+    </if>
+    <if test="materialStorageDetailDto.warehouseId != null and materialStorageDetailDto.warehouseId != ''">
+      AND materialStorageDetail.warehouse_id like CONCAT('%',#{materialStorageDetailDto.warehouseId},'%')
+    </if>
+    <if test="materialStorageDetailDto.warehouseName != null and materialStorageDetailDto.warehouseName != ''">
+      AND materialStorageDetail.warehouse_name like CONCAT('%',#{materialStorageDetailDto.warehouseName},'%')
+    </if>
+    <if test="materialStorageDetailDto.shelfId != null and materialStorageDetailDto.shelfId != ''">
+      AND materialStorageDetail.shelf_id like CONCAT('%',#{materialStorageDetailDto.shelfId},'%')
+    </if>
+    <if test="materialStorageDetailDto.shelfName != null and materialStorageDetailDto.shelfName != ''">
+      AND materialStorageDetail.shelf_name like CONCAT('%',#{materialStorageDetailDto.shelfName},'%')
+    </if>
+    <if test="materialStorageDetailDto.assetsCode != null and materialStorageDetailDto.assetsCode != ''">
+      AND materialStorageDetail.assets_code like CONCAT('%',#{materialStorageDetailDto.assetsCode},'%')
+    </if>
+    <if test="materialStorageDetailDto.assetsLabel != null and materialStorageDetailDto.assetsLabel != ''">
+      AND materialStorageDetail.assets_label like CONCAT('%',#{materialStorageDetailDto.assetsLabel},'%')
+    </if>
+    <if test="materialStorageDetailDto.rzDate != null and materialStorageDetailDto.rzDate != ''">
+      AND materialStorageDetail.rz_date = #{materialStorageDetailDto.rzDate}
+    </if>
+    <if test="materialStorageDetailDto.acceptanceNumber != null and materialStorageDetailDto.acceptanceNumber != ''">
+      AND materialStorageDetail.acceptance_number = #{materialStorageDetailDto.acceptanceNumber}
+    </if>
+    <if test="materialStorageDetailDto.accpetanceTime != null and materialStorageDetailDto.accpetanceTime != ''">
+      AND materialStorageDetail.accpetance_time like CONCAT('%',#{materialStorageDetailDto.accpetanceTime},'%')
+    </if>
+    <if test="materialStorageDetailDto.accpetanceCode != null and materialStorageDetailDto.accpetanceCode != ''">
+      AND materialStorageDetail.accpetance_code like CONCAT('%',#{materialStorageDetailDto.accpetanceCode},'%')
+    </if>
+    <if test="materialStorageDetailDto.assetsNumber != null and materialStorageDetailDto.assetsNumber != ''">
+      AND materialStorageDetail.assets_number = #{materialStorageDetailDto.assetsNumber}
+    </if>
+    <if test="materialStorageDetailDto.assetsAmount != null and materialStorageDetailDto.assetsAmount != ''">
+      AND materialStorageDetail.assets_amount = #{materialStorageDetailDto.assetsAmount}
+    </if>
+    <if test="materialStorageDetailDto.assetsUntaxedAmount != null and materialStorageDetailDto.assetsUntaxedAmount != ''">
+      AND materialStorageDetail.assets_untaxed_amount = #{materialStorageDetailDto.assetsUntaxedAmount}
+    </if>
+    <if test="materialStorageDetailDto.assetsTaxAmount != null and materialStorageDetailDto.assetsTaxAmount != ''">
+      AND materialStorageDetail.assets_tax_amount = #{materialStorageDetailDto.assetsTaxAmount}
+    </if>
+    <if test="materialStorageDetailDto.assetsSumAmount != null and materialStorageDetailDto.assetsSumAmount != ''">
+      AND materialStorageDetail.assets_sum_amount = #{materialStorageDetailDto.assetsSumAmount}
+    </if>
+    <if test="materialStorageDetailDto.assetsSumUntaxedAmount != null and materialStorageDetailDto.assetsSumUntaxedAmount != ''">
+      AND materialStorageDetail.assets_sum_untaxed_amount = #{materialStorageDetailDto.assetsSumUntaxedAmount}
+    </if>
+    <if test="materialStorageDetailDto.assetsSumTaxAmount != null and materialStorageDetailDto.assetsSumTaxAmount != ''">
+      AND materialStorageDetail.assets_sum_tax_amount = #{materialStorageDetailDto.assetsSumTaxAmount}
+    </if>
+    order by materialStorageDetail.id desc
+</select>
+</mapper>

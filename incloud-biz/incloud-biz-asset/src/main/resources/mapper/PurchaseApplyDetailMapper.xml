@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.asset.mapper.PurchaseApplyDetailMapper">
+
+<resultMap id="purchaseApplyDetailMap" type="com.netwisd.biz.asset.vo.PurchaseApplyDetailVo">
+  <id property="id" column="id"/>
+  <result property="applyId" column="apply_id"/>
+  <result property="planallId" column="planall_id"/>
+  <result property="route" column="route"/>
+  <result property="routeName" column="route_name"/>
+  <result property="classifyCode" column="classify_code"/>
+  <result property="classifyName" column="classify_name"/>
+  <result property="itemCode" column="item_code"/>
+  <result property="itemName" column="item_name"/>
+  <result property="desclong" column="desclong"/>
+  <result property="descshort" column="descshort"/>
+  <result property="unitCode" column="unit_code"/>
+  <result property="unitName" column="unit_name"/>
+  <result property="specs" column="specs"/>
+  <result property="standard" column="standard"/>
+  <result property="materialQuality" column="material_quality"/>
+  <result property="taxRate" column="tax_rate"/>
+  <result property="taxAmount" column="tax_amount"/>
+  <result property="applyNumber" column="apply_number"/>
+  <result property="applyAmount" column="apply_amount"/>
+  <result property="applyUntaxedAmount" column="apply_untaxed_amount"/>
+  <result property="applySumAmount" column="apply_sum_amount"/>
+  <result property="applySumUntaxedAmount" column="apply_sum_untaxed_amount"/>
+  <result property="purpose" column="purpose"/>
+  <result property="explanation" column="explanation"/>
+  <result property="applyCode" column="apply_code"/>
+  <result property="classifyId" column="classify_id"/>
+  <result property="itemType" column="item_type"/>
+  <result property="registerNumber" column="register_number"/>
+  <result property="acceptanceNumber" column="acceptance_number"/>
+  <result property="storageNumber" column="storage_number"/>
+  <result property="skuCode" column="sku_code"/>
+  <result property="skuFullId" column="sku_full_id"/>
+  <result property="skuFullName" column="sku_full_name"/>
+  <result property="applyTaxAmount" column="apply_tax_amount"/>
+  <result property="applySumTaxAmount" column="apply_sum_tax_amount"/>
+  <result property="notRegisterNumber" column="not_register_number"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+  <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+  <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+  <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+  <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+  <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+  <result property="applyTime" column="apply_time"/>
+  <result property="applyUserId" column="apply_user_id"/>
+  <result property="applyUserName" column="apply_user_name"/>
+  <result property="applyUserOrgId" column="apply_user_org_id"/>
+  <result property="applyUserOrgName" column="apply_user_org_name"/>
+  <result property="applyUserDeptId" column="apply_user_dept_id"/>
+  <result property="applyUserDeptName" column="apply_user_dept_name"/>
+  <result property="planYear" column="plan_year"/>
+  <result property="status" column="status"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.asset.dto.PurchaseApplyDetailDto" resultMap="purchaseApplyDetailMap">
+  select * from incloud_biz_asset_purchase_apply_detail purchaseApplyDetail where 1=1
+    <if test="purchaseApplyDetailDto.id != null and purchaseApplyDetailDto.id != ''">
+      AND purchaseApplyDetail.id = #{purchaseApplyDetailDto.id}
+    </if>
+    <if test="purchaseApplyDetailDto.applyId != null and purchaseApplyDetailDto.applyId != ''">
+      AND purchaseApplyDetail.apply_id = #{purchaseApplyDetailDto.applyId}
+    </if>
+    <if test="purchaseApplyDetailDto.planallId != null and purchaseApplyDetailDto.planallId != ''">
+      AND purchaseApplyDetail.planall_id = #{purchaseApplyDetailDto.planallId}
+    </if>
+    <if test="purchaseApplyDetailDto.route != null and purchaseApplyDetailDto.route != ''">
+      AND purchaseApplyDetail.route like CONCAT('%',#{purchaseApplyDetailDto.route},'%')
+    </if>
+    <if test="purchaseApplyDetailDto.routeName != null and purchaseApplyDetailDto.routeName != ''">
+      AND purchaseApplyDetail.route_name like CONCAT('%',#{purchaseApplyDetailDto.routeName},'%')
+    </if>
+    <if test="purchaseApplyDetailDto.classifyCode != null and purchaseApplyDetailDto.classifyCode != ''">
+      AND purchaseApplyDetail.classify_code like CONCAT('%',#{purchaseApplyDetailDto.classifyCode},'%')
+    </if>
+    <if test="purchaseApplyDetailDto.classifyName != null and purchaseApplyDetailDto.classifyName != ''">
+      AND purchaseApplyDetail.classify_name like CONCAT('%',#{purchaseApplyDetailDto.classifyName},'%')
+    </if>
+    <if test="purchaseApplyDetailDto.itemCode != null and purchaseApplyDetailDto.itemCode != ''">
+      AND purchaseApplyDetail.item_code like CONCAT('%',#{purchaseApplyDetailDto.itemCode},'%')
+    </if>
+    <if test="purchaseApplyDetailDto.itemName != null and purchaseApplyDetailDto.itemName != ''">
+      AND purchaseApplyDetail.item_name like CONCAT('%',#{purchaseApplyDetailDto.itemName},'%')
+    </if>
+    <if test="purchaseApplyDetailDto.desclong != null and purchaseApplyDetailDto.desclong != ''">
+      AND purchaseApplyDetail.desclong like CONCAT('%',#{purchaseApplyDetailDto.desclong},'%')
+    </if>
+    <if test="purchaseApplyDetailDto.descshort != null and purchaseApplyDetailDto.descshort != ''">
+      AND purchaseApplyDetail.descshort like CONCAT('%',#{purchaseApplyDetailDto.descshort},'%')
+    </if>
+    <if test="purchaseApplyDetailDto.unitCode != null and purchaseApplyDetailDto.unitCode != ''">
+      AND purchaseApplyDetail.unit_code like CONCAT('%',#{purchaseApplyDetailDto.unitCode},'%')
+    </if>
+    <if test="purchaseApplyDetailDto.unitName != null and purchaseApplyDetailDto.unitName != ''">
+      AND purchaseApplyDetail.unit_name like CONCAT('%',#{purchaseApplyDetailDto.unitName},'%')
+    </if>
+    <if test="purchaseApplyDetailDto.specs != null and purchaseApplyDetailDto.specs != ''">
+      AND purchaseApplyDetail.specs like CONCAT('%',#{purchaseApplyDetailDto.specs},'%')
+    </if>
+    <if test="purchaseApplyDetailDto.standard != null and purchaseApplyDetailDto.standard != ''">
+      AND purchaseApplyDetail.standard like CONCAT('%',#{purchaseApplyDetailDto.standard},'%')
+    </if>
+    <if test="purchaseApplyDetailDto.materialQuality != null and purchaseApplyDetailDto.materialQuality != ''">
+      AND purchaseApplyDetail.material_quality like CONCAT('%',#{purchaseApplyDetailDto.materialQuality},'%')
+    </if>
+    <if test="purchaseApplyDetailDto.taxRate != null and purchaseApplyDetailDto.taxRate != ''">
+      AND purchaseApplyDetail.tax_rate like CONCAT('%',#{purchaseApplyDetailDto.taxRate},'%')
+    </if>
+    <if test="purchaseApplyDetailDto.taxAmount != null and purchaseApplyDetailDto.taxAmount != ''">
+      AND purchaseApplyDetail.tax_amount = #{purchaseApplyDetailDto.taxAmount}
+    </if>
+    <if test="purchaseApplyDetailDto.applyNumber != null and purchaseApplyDetailDto.applyNumber != ''">
+      AND purchaseApplyDetail.apply_number = #{purchaseApplyDetailDto.applyNumber}
+    </if>
+    <if test="purchaseApplyDetailDto.applyAmount != null and purchaseApplyDetailDto.applyAmount != ''">
+      AND purchaseApplyDetail.apply_amount = #{purchaseApplyDetailDto.applyAmount}
+    </if>
+    <if test="purchaseApplyDetailDto.applyUntaxedAmount != null and purchaseApplyDetailDto.applyUntaxedAmount != ''">
+      AND purchaseApplyDetail.apply_untaxed_amount = #{purchaseApplyDetailDto.applyUntaxedAmount}
+    </if>
+    <if test="purchaseApplyDetailDto.applySumAmount != null and purchaseApplyDetailDto.applySumAmount != ''">
+      AND purchaseApplyDetail.apply_sum_amount = #{purchaseApplyDetailDto.applySumAmount}
+    </if>
+    <if test="purchaseApplyDetailDto.applySumUntaxedAmount != null and purchaseApplyDetailDto.applySumUntaxedAmount != ''">
+      AND purchaseApplyDetail.apply_sum_untaxed_amount = #{purchaseApplyDetailDto.applySumUntaxedAmount}
+    </if>
+    <if test="purchaseApplyDetailDto.purpose != null and purchaseApplyDetailDto.purpose != ''">
+      AND purchaseApplyDetail.purpose like CONCAT('%',#{purchaseApplyDetailDto.purpose},'%')
+    </if>
+    <if test="purchaseApplyDetailDto.explanation != null and purchaseApplyDetailDto.explanation != ''">
+      AND purchaseApplyDetail.explanation like CONCAT('%',#{purchaseApplyDetailDto.explanation},'%')
+    </if>
+    <if test="purchaseApplyDetailDto.applyCode != null and purchaseApplyDetailDto.applyCode != ''">
+      AND purchaseApplyDetail.apply_code like CONCAT('%',#{purchaseApplyDetailDto.applyCode},'%')
+    </if>
+    <if test="purchaseApplyDetailDto.classifyId != null and purchaseApplyDetailDto.classifyId != ''">
+      AND purchaseApplyDetail.classify_id = #{purchaseApplyDetailDto.classifyId}
+    </if>
+    <if test="purchaseApplyDetailDto.itemType != null and purchaseApplyDetailDto.itemType != ''">
+      AND purchaseApplyDetail.item_type like CONCAT('%',#{purchaseApplyDetailDto.itemType},'%')
+    </if>
+    <if test="purchaseApplyDetailDto.registerNumber != null and purchaseApplyDetailDto.registerNumber != ''">
+      AND purchaseApplyDetail.register_number = #{purchaseApplyDetailDto.registerNumber}
+    </if>
+    <if test="purchaseApplyDetailDto.acceptanceNumber != null and purchaseApplyDetailDto.acceptanceNumber != ''">
+      AND purchaseApplyDetail.acceptance_number = #{purchaseApplyDetailDto.acceptanceNumber}
+    </if>
+    <if test="purchaseApplyDetailDto.storageNumber != null and purchaseApplyDetailDto.storageNumber != ''">
+      AND purchaseApplyDetail.storage_number = #{purchaseApplyDetailDto.storageNumber}
+    </if>
+    <if test="purchaseApplyDetailDto.skuCode != null and purchaseApplyDetailDto.skuCode != ''">
+      AND purchaseApplyDetail.sku_code like CONCAT('%',#{purchaseApplyDetailDto.skuCode},'%')
+    </if>
+    <if test="purchaseApplyDetailDto.skuFullId != null and purchaseApplyDetailDto.skuFullId != ''">
+      AND purchaseApplyDetail.sku_full_id like CONCAT('%',#{purchaseApplyDetailDto.skuFullId},'%')
+    </if>
+    <if test="purchaseApplyDetailDto.skuFullName != null and purchaseApplyDetailDto.skuFullName != ''">
+      AND purchaseApplyDetail.sku_full_name like CONCAT('%',#{purchaseApplyDetailDto.skuFullName},'%')
+    </if>
+    <if test="purchaseApplyDetailDto.applyTaxAmount != null and purchaseApplyDetailDto.applyTaxAmount != ''">
+      AND purchaseApplyDetail.apply_tax_amount = #{purchaseApplyDetailDto.applyTaxAmount}
+    </if>
+    <if test="purchaseApplyDetailDto.applySumTaxAmount != null and purchaseApplyDetailDto.applySumTaxAmount != ''">
+      AND purchaseApplyDetail.apply_sum_tax_amount = #{purchaseApplyDetailDto.applySumTaxAmount}
+    </if>
+    <if test="purchaseApplyDetailDto.notRegisterNumber != null and purchaseApplyDetailDto.notRegisterNumber != ''">
+      AND purchaseApplyDetail.not_register_number = #{purchaseApplyDetailDto.notRegisterNumber}
+    </if>
+    <if test="purchaseApplyDetailDto.createUserId != null and purchaseApplyDetailDto.createUserId != ''">
+      AND purchaseApplyDetail.create_user_id = #{purchaseApplyDetailDto.createUserId}
+    </if>
+    <if test="purchaseApplyDetailDto.createUserName != null and purchaseApplyDetailDto.createUserName != ''">
+      AND purchaseApplyDetail.create_user_name like CONCAT('%',#{purchaseApplyDetailDto.createUserName},'%')
+    </if>
+    <if test="purchaseApplyDetailDto.createUserParentOrgId != null and purchaseApplyDetailDto.createUserParentOrgId != ''">
+      AND purchaseApplyDetail.create_user_parent_org_id = #{purchaseApplyDetailDto.createUserParentOrgId}
+    </if>
+    <if test="purchaseApplyDetailDto.createUserParentOrgName != null and purchaseApplyDetailDto.createUserParentOrgName != ''">
+      AND purchaseApplyDetail.create_user_parent_org_name like CONCAT('%',#{purchaseApplyDetailDto.createUserParentOrgName},'%')
+    </if>
+    <if test="purchaseApplyDetailDto.createUserParentDeptId != null and purchaseApplyDetailDto.createUserParentDeptId != ''">
+      AND purchaseApplyDetail.create_user_parent_dept_id = #{purchaseApplyDetailDto.createUserParentDeptId}
+    </if>
+    <if test="purchaseApplyDetailDto.createUserParentDeptName != null and purchaseApplyDetailDto.createUserParentDeptName != ''">
+      AND purchaseApplyDetail.create_user_parent_dept_name like CONCAT('%',#{purchaseApplyDetailDto.createUserParentDeptName},'%')
+    </if>
+    <if test="purchaseApplyDetailDto.createUserOrgFullId != null and purchaseApplyDetailDto.createUserOrgFullId != ''">
+      AND purchaseApplyDetail.create_user_org_full_id like CONCAT('%',#{purchaseApplyDetailDto.createUserOrgFullId},'%')
+    </if>
+    <if test="purchaseApplyDetailDto.applyTime != null and purchaseApplyDetailDto.applyTime != ''">
+      AND purchaseApplyDetail.apply_time = #{purchaseApplyDetailDto.applyTime}
+    </if>
+    <if test="purchaseApplyDetailDto.applyUserId != null and purchaseApplyDetailDto.applyUserId != ''">
+      AND purchaseApplyDetail.apply_user_id = #{purchaseApplyDetailDto.applyUserId}
+    </if>
+    <if test="purchaseApplyDetailDto.applyUserName != null and purchaseApplyDetailDto.applyUserName != ''">
+      AND purchaseApplyDetail.apply_user_name like CONCAT('%',#{purchaseApplyDetailDto.applyUserName},'%')
+    </if>
+    <if test="purchaseApplyDetailDto.applyUserOrgId != null and purchaseApplyDetailDto.applyUserOrgId != ''">
+      AND purchaseApplyDetail.apply_user_org_id = #{purchaseApplyDetailDto.applyUserOrgId}
+    </if>
+    <if test="purchaseApplyDetailDto.applyUserOrgName != null and purchaseApplyDetailDto.applyUserOrgName != ''">
+      AND purchaseApplyDetail.apply_user_org_name like CONCAT('%',#{purchaseApplyDetailDto.applyUserOrgName},'%')
+    </if>
+    <if test="purchaseApplyDetailDto.applyUserDeptId != null and purchaseApplyDetailDto.applyUserDeptId != ''">
+      AND purchaseApplyDetail.apply_user_dept_id = #{purchaseApplyDetailDto.applyUserDeptId}
+    </if>
+    <if test="purchaseApplyDetailDto.applyUserDeptName != null and purchaseApplyDetailDto.applyUserDeptName != ''">
+      AND purchaseApplyDetail.apply_user_dept_name like CONCAT('%',#{purchaseApplyDetailDto.applyUserDeptName},'%')
+    </if>
+    <if test="purchaseApplyDetailDto.planYear != null and purchaseApplyDetailDto.planYear != ''">
+      AND purchaseApplyDetail.plan_year like CONCAT('%',#{purchaseApplyDetailDto.planYear},'%')
+    </if>
+    <if test="purchaseApplyDetailDto.status != null and purchaseApplyDetailDto.status != ''">
+      AND purchaseApplyDetail.status like CONCAT('%',#{purchaseApplyDetailDto.status},'%')
+    </if>
+    <if test="purchaseApplyDetailDto.searchCondition != null and purchaseApplyDetailDto.searchCondition != ''">
+      AND (
+      purchaseApplyDetailDto.apply_code like CONCAT('%',#{purchaseApplyDto.searchCondition},'%')
+      OR
+      purchaseApplyDetailDto.item_code like CONCAT('%',#{purchaseApplyDto.searchCondition},'%')
+      OR
+      purchaseApplyDetailDto.item_name like CONCAT('%',#{purchaseApplyDto.searchCondition},'%')
+      OR
+      purchaseApplyDetailDto.plan_year like CONCAT('%',#{purchaseApplyDto.searchCondition},'%')
+      )
+    </if>
+    order by purchaseApplyDetail.id desc
+</select>
+</mapper>

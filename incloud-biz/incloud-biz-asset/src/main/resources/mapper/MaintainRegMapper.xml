@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.asset.mapper.MaintainRegMapper">
+
+<resultMap id="maintainRegMap" type="com.netwisd.biz.asset.vo.MaintainRegVo">
+  <id property="id" column="id"/>
+  <result property="code" column="code"/>
+  <result property="sumTotalAmount" column="sum_total_amount"/>
+  <result property="sumTotalUntaxedAmount" column="sum_total_untaxed_amount"/>
+  <result property="sumTotalTaxAmount" column="sum_total_tax_amount"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+  <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+  <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+  <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+  <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+  <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+  <result property="auditSuccessTiem" column="audit_success_tiem"/>
+  <result property="camundaProcdefKey" column="camunda_procdef_key"/>
+  <result property="camundaProcdefId" column="camunda_procdef_id"/>
+  <result property="camundaProcinsId" column="camunda_procins_id"/>
+  <result property="procdefTypeId" column="procdef_type_id"/>
+  <result property="procdefTypeName" column="procdef_type_name"/>
+  <result property="procdefVersion" column="procdef_version"/>
+  <result property="procdefName" column="procdef_name"/>
+  <result property="processName" column="process_name"/>
+  <result property="reason" column="reason"/>
+  <result property="bizKey" column="biz_key"/>
+  <result property="camundaTaskId" column="camunda_task_id"/>
+  <result property="bizPriority" column="biz_priority"/>
+  <result property="auditStatus" column="audit_status"/>
+  <result property="maintainApplyDetailId" column="maintain_apply_detail_id"/>
+  <result property="assetsName" column="assets_name"/>
+  <result property="maintainDate" column="maintain_date"/>
+  <result property="purchaseAmount" column="purchase_amount"/>
+  <result property="maintainNumber" column="maintain_number"/>
+  <result property="maintainAmount" column="maintain_amount"/>
+  <result property="maintainItems" column="maintain_items"/>
+  <result property="regType" column="reg_type"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.asset.dto.MaintainRegDto" resultMap="maintainRegMap">
+  select * from incloud_biz_asset_maintain_reg maintainReg where 1=1
+    <if test="maintainRegDto.id != null and maintainRegDto.id != ''">
+      AND maintainReg.id = #{maintainRegDto.id}
+    </if>
+    <if test="maintainRegDto.code != null and maintainRegDto.code != ''">
+      AND maintainReg.code like CONCAT('%',#{maintainRegDto.code},'%')
+    </if>
+    <if test="maintainRegDto.sumTotalAmount != null and maintainRegDto.sumTotalAmount != ''">
+      AND maintainReg.sum_total_amount = #{maintainRegDto.sumTotalAmount}
+    </if>
+    <if test="maintainRegDto.sumTotalUntaxedAmount != null and maintainRegDto.sumTotalUntaxedAmount != ''">
+      AND maintainReg.sum_total_untaxed_amount = #{maintainRegDto.sumTotalUntaxedAmount}
+    </if>
+    <if test="maintainRegDto.sumTotalTaxAmount != null and maintainRegDto.sumTotalTaxAmount != ''">
+      AND maintainReg.sum_total_tax_amount = #{maintainRegDto.sumTotalTaxAmount}
+    </if>
+    <if test="maintainRegDto.createUserId != null and maintainRegDto.createUserId != ''">
+      AND maintainReg.create_user_id = #{maintainRegDto.createUserId}
+    </if>
+    <if test="maintainRegDto.createUserName != null and maintainRegDto.createUserName != ''">
+      AND maintainReg.create_user_name like CONCAT('%',#{maintainRegDto.createUserName},'%')
+    </if>
+    <if test="maintainRegDto.createUserParentOrgId != null and maintainRegDto.createUserParentOrgId != ''">
+      AND maintainReg.create_user_parent_org_id = #{maintainRegDto.createUserParentOrgId}
+    </if>
+    <if test="maintainRegDto.createUserParentOrgName != null and maintainRegDto.createUserParentOrgName != ''">
+      AND maintainReg.create_user_parent_org_name like CONCAT('%',#{maintainRegDto.createUserParentOrgName},'%')
+    </if>
+    <if test="maintainRegDto.createUserParentDeptId != null and maintainRegDto.createUserParentDeptId != ''">
+      AND maintainReg.create_user_parent_dept_id = #{maintainRegDto.createUserParentDeptId}
+    </if>
+    <if test="maintainRegDto.createUserParentDeptName != null and maintainRegDto.createUserParentDeptName != ''">
+      AND maintainReg.create_user_parent_dept_name like CONCAT('%',#{maintainRegDto.createUserParentDeptName},'%')
+    </if>
+    <if test="maintainRegDto.createUserOrgFullId != null and maintainRegDto.createUserOrgFullId != ''">
+      AND maintainReg.create_user_org_full_id like CONCAT('%',#{maintainRegDto.createUserOrgFullId},'%')
+    </if>
+    <if test="maintainRegDto.auditSuccessTiem != null and maintainRegDto.auditSuccessTiem != ''">
+      AND maintainReg.audit_success_tiem = #{maintainRegDto.auditSuccessTiem}
+    </if>
+    <if test="maintainRegDto.camundaProcdefKey != null and maintainRegDto.camundaProcdefKey != ''">
+      AND maintainReg.camunda_procdef_key like CONCAT('%',#{maintainRegDto.camundaProcdefKey},'%')
+    </if>
+    <if test="maintainRegDto.camundaProcdefId != null and maintainRegDto.camundaProcdefId != ''">
+      AND maintainReg.camunda_procdef_id like CONCAT('%',#{maintainRegDto.camundaProcdefId},'%')
+    </if>
+    <if test="maintainRegDto.camundaProcinsId != null and maintainRegDto.camundaProcinsId != ''">
+      AND maintainReg.camunda_procins_id like CONCAT('%',#{maintainRegDto.camundaProcinsId},'%')
+    </if>
+    <if test="maintainRegDto.procdefTypeId != null and maintainRegDto.procdefTypeId != ''">
+      AND maintainReg.procdef_type_id = #{maintainRegDto.procdefTypeId}
+    </if>
+    <if test="maintainRegDto.procdefTypeName != null and maintainRegDto.procdefTypeName != ''">
+      AND maintainReg.procdef_type_name like CONCAT('%',#{maintainRegDto.procdefTypeName},'%')
+    </if>
+    <if test="maintainRegDto.procdefVersion != null and maintainRegDto.procdefVersion != ''">
+      AND maintainReg.procdef_version = #{maintainRegDto.procdefVersion}
+    </if>
+    <if test="maintainRegDto.procdefName != null and maintainRegDto.procdefName != ''">
+      AND maintainReg.procdef_name like CONCAT('%',#{maintainRegDto.procdefName},'%')
+    </if>
+    <if test="maintainRegDto.processName != null and maintainRegDto.processName != ''">
+      AND maintainReg.process_name like CONCAT('%',#{maintainRegDto.processName},'%')
+    </if>
+    <if test="maintainRegDto.reason != null and maintainRegDto.reason != ''">
+      AND maintainReg.reason like CONCAT('%',#{maintainRegDto.reason},'%')
+    </if>
+    <if test="maintainRegDto.bizKey != null and maintainRegDto.bizKey != ''">
+      AND maintainReg.biz_key like CONCAT('%',#{maintainRegDto.bizKey},'%')
+    </if>
+    <if test="maintainRegDto.camundaTaskId != null and maintainRegDto.camundaTaskId != ''">
+      AND maintainReg.camunda_task_id like CONCAT('%',#{maintainRegDto.camundaTaskId},'%')
+    </if>
+    <if test="maintainRegDto.bizPriority != null and maintainRegDto.bizPriority != ''">
+      AND maintainReg.biz_priority like CONCAT('%',#{maintainRegDto.bizPriority},'%')
+    </if>
+    <if test="maintainRegDto.auditStatus != null and maintainRegDto.auditStatus != ''">
+      AND maintainReg.audit_status = #{maintainRegDto.auditStatus}
+    </if>
+    <if test="maintainRegDto.maintainApplyDetailId != null and maintainRegDto.maintainApplyDetailId != ''">
+      AND maintainReg.maintain_apply_detail_id = #{maintainRegDto.maintainApplyDetailId}
+    </if>
+    <if test="maintainRegDto.assetsName != null and maintainRegDto.assetsName != ''">
+      AND maintainReg.assets_name = #{maintainRegDto.assetsName}
+    </if>
+    <if test="maintainRegDto.maintainDate != null and maintainRegDto.maintainDate != ''">
+      AND maintainReg.maintain_date = #{maintainRegDto.maintainDate}
+    </if>
+    <if test="maintainRegDto.purchaseAmount != null and maintainRegDto.purchaseAmount != ''">
+      AND maintainReg.purchase_amount = #{maintainRegDto.purchaseAmount}
+    </if>
+    <if test="maintainRegDto.maintainNumber != null and maintainRegDto.maintainNumber != ''">
+      AND maintainReg.maintain_number = #{maintainRegDto.maintainNumber}
+    </if>
+    <if test="maintainRegDto.maintainAmount != null and maintainRegDto.maintainAmount != ''">
+      AND maintainReg.maintain_amount = #{maintainRegDto.maintainAmount}
+    </if>
+    <if test="maintainRegDto.maintainItems != null and maintainRegDto.maintainItems != ''">
+      AND maintainReg.maintain_items like CONCAT('%',#{maintainRegDto.maintainItems},'%')
+    </if>
+    <if test="maintainRegDto.regType != null and maintainRegDto.regType != ''">
+      AND maintainReg.reg_type = #{maintainRegDto.regType}
+    </if>
+    order by maintainReg.id desc
+</select>
+  <select id="getMaxCode" resultType="java.lang.String">
+    SELECT MAX(SUBSTRING_INDEX(code,'-',-1)) AS maxCode FROM `incloud_biz_asset_maintain_reg` WHERE DATE_FORMAT(create_time,'%Y-%m-%d') =  CURDATE()
+  </select>
+</mapper>

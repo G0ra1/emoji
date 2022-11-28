@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.wf.mapper.WfEventDefMapper">
+
+<resultMap id="wfEventDefMap" type="com.netwisd.base.wf.vo.WfEventDefVo">
+  <id property="id" column="id"/>
+  <result property="eventType" column="event_type"/>
+  <result property="eventBindType" column="event_bind_type"/>
+  <result property="eventId" column="event_id"/>
+  <result property="eventSubmitSign" column="event_submit_sign"/>
+  <result property="procdefId" column="procdef_id"/>
+  <result property="nodeDefId" column="node_def_id"/>
+  <result property="eventTypeSign" column="event_type_sign"/>
+  <result property="camundaProcdefId" column="camunda_procdef_id"/>
+  <result property="camundaProcdefKey" column="camunda_procdef_key"/>
+  <result property="camundaNodeDefId" column="camunda_node_def_id"/>
+  <result property="netwisdOrder" column="netwisd_order"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.wf.dto.WfEventDefDto" resultMap="wfEventDefMap">
+  select * from incloud_base_wf_event_def wfEventDef where 1=1
+    <if test="wfEventDefDto.id != null and wfEventDefDto.id != ''">
+      AND wfEventDef.id = #{wfEventDefDto.id}
+    </if>
+    <if test="wfEventDefDto.eventBindType != null and wfEventDefDto.eventBindType != ''">
+      AND wfEventDef.event_bind_type = #{wfEventDefDto.eventBindType}
+    </if>
+    <if test="wfEventDefDto.eventId != null and wfEventDefDto.eventId != ''">
+      AND wfEventDef.event_id = #{wfEventDefDto.eventId}
+    </if>
+    <if test="wfEventDefDto.eventSubmitSign != null and wfEventDefDto.eventSubmitSign != ''">
+      AND wfEventDef.event_submit_sign = #{wfEventDefDto.eventSubmitSign}
+    </if>
+    <if test="wfEventDefDto.procdefId != null and wfEventDefDto.procdefId != ''">
+      AND wfEventDef.procdef_id = #{wfEventDefDto.procdefId}
+    </if>
+    <if test="wfEventDefDto.nodeId != null and wfEventDefDto.nodeId != ''">
+      AND wfEventDef.node_id = #{wfEventDefDto.nodeId}
+    </if>
+    order by wfEventDef.id desc
+</select>
+  <select id="getEventByConditions" resultType="com.netwisd.base.wf.vo.WfEventRuntimeVo">
+    SELECT *,evef.id def_evef_id from incloud_base_wf_event ev right join incloud_base_wf_event_def evef on evef.event_id = ev.id
+    where
+    evef.camunda_procdef_id = #{camundaProcdefId}
+    <if test="camundaNodeDefId != null and camundaNodeDefId != ''">
+      AND evef.camunda_node_def_id = #{camundaNodeDefId}
+    </if>
+    and evef.event_bind_type = #{eventBindType}
+    and evef.event_type = #{eventType}
+    order by evef.netwisd_order asc
+  </select>
+
+  <select id="getMultiEventByConditions" resultType="com.netwisd.base.wf.vo.WfEventRuntimeVo">
+    SELECT * from incloud_base_wf_event ev right join incloud_base_wf_event_def evef on evef.event_id = ev.id
+    where
+    evef.camunda_procdef_id = #{camundaProcdefId}
+    <if test="camundaNodeDefId != null and camundaNodeDefId != ''">
+      AND evef.camunda_node_def_id = #{camundaNodeDefId}
+    </if>
+    and evef.event_bind_type in
+    <foreach  item="item" collection="eventBindTypes" index="index"  open="(" separator="," close=")">
+      #{item}
+    </foreach>
+    and evef.event_type = #{eventType}
+    order by evef.netwisd_order asc
+  </select>
+</mapper>

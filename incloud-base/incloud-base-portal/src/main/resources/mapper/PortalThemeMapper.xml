@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.portal.mapper.PortalThemeMapper">
+
+    <resultMap id="portalThemeMap" type="com.netwisd.base.portal.vo.PortalThemeVo">
+        <id property="id" column="id"/>
+        <result property="themeName" column="theme_name"/>
+        <result property="isUse" column="is_use"/>
+        <result property="isInside" column="is_inside"/>
+        <result property="themeData" column="theme_data"/>
+        <result property="remark" column="remark"/>
+    </resultMap>
+    <select id="getPageList" parameterType="com.netwisd.base.portal.dto.PortalThemeDto" resultMap="portalThemeMap">
+        select * from incloud_base_portal_theme portalTheme where 1=1
+        <if test="portalThemeDto.id != null and portalThemeDto.id != ''">
+            AND portalTheme.id = #{portalThemeDto.id}
+        </if>
+        <if test="portalThemeDto.themeName != null and portalThemeDto.themeName != ''">
+            AND portalTheme.theme_name like CONCAT('%',#{portalThemeDto.themeName},'%')
+        </if>
+        <if test="portalThemeDto.isUse != null and portalThemeDto.isUse != ''">
+            AND portalTheme.is_use = #{portalThemeDto.isUse}
+        </if>
+        <if test="portalThemeDto.isInside != null and portalThemeDto.isInside != ''">
+            AND portalTheme.is_inside = #{portalThemeDto.isInside}
+        </if>
+        <if test="portalThemeDto.themeData != null and portalThemeDto.themeData != ''">
+            AND portalTheme.theme_data like CONCAT('%',#{portalThemeDto.themeData},'%')
+        </if>
+        <if test="portalThemeDto.remark != null and portalThemeDto.remark != ''">
+            AND portalTheme.remark like CONCAT('%',#{portalThemeDto.remark},'%')
+        </if>
+        order by portalTheme.id desc
+    </select>
+</mapper>

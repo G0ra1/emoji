@@ -1,0 +1,22 @@
+package ${package}.${moduleName}.service;
+
+import com.baomidou.mybatisplus.extension.service.IService;
+import ${package}.${moduleName}.entity.${className};
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import ${package}.${moduleName}.dto.${className}Dto;
+import ${package}.${moduleName}.vo.${className}Vo;
+import java.util.List;
+
+/**
+ * @Description ${comments} 功能描述...
+ * @author 云数网讯 ${author}@netwisd.com
+ * @date ${datetime}
+ */
+public interface ${className}Service extends IService<${className}> {
+    Page<${className}Vo> page(${className}Dto ${classname}Dto);
+    List<${className}Vo> list(${className}Dto ${classname}Dto);
+    ${className}Vo get(Long id);
+    Boolean save(${className}Dto ${classname}Dto);
+    Boolean update(${className}Dto ${classname}Dto);
+    Boolean delete(Long id);
+}

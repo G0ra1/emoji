@@ -1,0 +1,106 @@
+{
+  "settings": {
+    "number_of_shards": 3,
+    "number_of_replicas": 2,
+    "analysis": {
+      "analyzer": {
+        "comma": {
+          "type": "pattern",
+          "pattern": ","
+        }
+      }
+    }
+  },
+  "mappings": {
+    "properties": {
+      "id": {
+        "type": "long"
+      },
+      "appName": {
+        "type": "keyword"
+      },
+      "logType": {
+        "type": "keyword"
+      },
+      "operateType": {
+        "type": "keyword"
+      },
+      "content": {
+        "type": "text",
+        "analyzer": "ik_max_word",
+        "search_analyzer": "ik_smart"
+      },
+      "contentStd": {
+        "type": "text",
+        "analyzer": "standard",
+        "search_analyzer": "standard"
+      },
+      "remoteAddr": {
+        "type": "keyword"
+      },
+      "userAgent": {
+        "type": "text",
+        "analyzer": "ik_max_word",
+        "search_analyzer": "ik_smart"
+      },
+      "userAgentStd": {
+        "type": "text",
+        "analyzer": "standard",
+        "search_analyzer": "standard"
+      },
+      "requestUri": {
+        "type": "text",
+        "analyzer": "ik_max_word",
+        "search_analyzer": "ik_smart"
+      },
+      "requestUriStd": {
+        "type": "text",
+        "analyzer": "standard",
+        "search_analyzer": "standard"
+      },
+      "requestType": {
+        "type": "keyword"
+      },
+      "method": {
+        "type": "text",
+        "analyzer": "ik_max_word",
+        "search_analyzer": "ik_smart"
+      },
+      "methodStd": {
+        "type": "text",
+        "analyzer": "standard",
+        "search_analyzer": "standard"
+      },
+      "params": {
+        "type": "text",
+        "analyzer": "ik_max_word",
+        "search_analyzer": "ik_smart"
+      },
+      "paramsStd": {
+        "type": "text",
+        "analyzer": "standard",
+        "search_analyzer": "standard"
+      },
+      "execTime": {
+        "type": "integer"
+      },
+      "createUserId": {
+        "type": "keyword"
+      },
+      "createUserName": {
+        "type": "text",
+        "analyzer": "ik_max_word",
+        "search_analyzer": "ik_smart"
+      },
+      "createUserNameStd": {
+        "type": "text",
+        "analyzer": "standard",
+        "search_analyzer": "standard"
+      },
+      "createTime": {
+        "type": "date",
+        "format": "yyyy-MM-dd HH:mm:ss"
+      }
+    }
+  }
+}

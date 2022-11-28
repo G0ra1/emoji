@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.portal.mapper.FileInfoMapper">
+
+<resultMap id="fileInfoMap" type="com.netwisd.base.portal.vo.FileInfoVo">
+  <id property="id" column="id"/>
+  <result property="fileName" column="file_name"/>
+  <result property="fileIsImg" column="file_is_img"/>
+  <result property="fileContentType" column="file_content_type"/>
+  <result property="fileSource" column="file_source"/>
+  <result property="fileStoreTypeEnum" column="file_store_type"/>
+  <result property="fileMd5Code" column="file_md5_code"/>
+  <result property="fileBucketName" column="file_bucket_name"/>
+  <result property="fileSize" column="file_size"/>
+  <result property="filePath" column="file_path"/>
+  <result property="fileUrl" column="file_url"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+  <result property="bizId" column="biz_id"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.portal.dto.FileInfoDto" resultMap="fileInfoMap">
+  select * from incloud_biz_epm_file_info fileInfo where 1=1
+    <if test="fileInfoDto.id != null and fileInfoDto.id != ''">
+      AND fileInfo.id = #{fileInfoDto.id}
+    </if>
+    <if test="fileInfoDto.fileName != null and fileInfoDto.fileName != ''">
+      AND fileInfo.file_name like CONCAT('%',#{fileInfoDto.fileName},'%')
+    </if>
+    <if test="fileInfoDto.fileIsImg != null and fileInfoDto.fileIsImg != ''">
+      AND fileInfo.file_is_img = #{fileInfoDto.fileIsImg}
+    </if>
+    <if test="fileInfoDto.fileContentType != null and fileInfoDto.fileContentType != ''">
+      AND fileInfo.file_content_type like CONCAT('%',#{fileInfoDto.fileContentType},'%')
+    </if>
+    <if test="fileInfoDto.fileSource != null and fileInfoDto.fileSource != ''">
+      AND fileInfo.file_source like CONCAT('%',#{fileInfoDto.fileSource},'%')
+    </if>
+    <if test="fileInfoDto.fileStoreTypeEnum != null and fileInfoDto.fileStoreTypeEnum != ''">
+      AND fileInfo.file_store_type like CONCAT('%',#{fileInfoDto.fileStoreTypeEnum},'%')
+    </if>
+    <if test="fileInfoDto.fileMd5Code != null and fileInfoDto.fileMd5Code != ''">
+      AND fileInfo.file_md5_code like CONCAT('%',#{fileInfoDto.fileMd5Code},'%')
+    </if>
+    <if test="fileInfoDto.fileBucketName != null and fileInfoDto.fileBucketName != ''">
+      AND fileInfo.file_bucket_name like CONCAT('%',#{fileInfoDto.fileBucketName},'%')
+    </if>
+    <if test="fileInfoDto.fileSize != null and fileInfoDto.fileSize != ''">
+      AND fileInfo.file_size = #{fileInfoDto.fileSize}
+    </if>
+    <if test="fileInfoDto.filePath != null and fileInfoDto.filePath != ''">
+      AND fileInfo.file_path like CONCAT('%',#{fileInfoDto.filePath},'%')
+    </if>
+    <if test="fileInfoDto.fileUrl != null and fileInfoDto.fileUrl != ''">
+      AND fileInfo.file_url like CONCAT('%',#{fileInfoDto.fileUrl},'%')
+    </if>
+    <if test="fileInfoDto.createUserId != null and fileInfoDto.createUserId != ''">
+      AND fileInfo.create_user_id like CONCAT('%',#{fileInfoDto.createUserId},'%')
+    </if>
+    <if test="fileInfoDto.createUserName != null and fileInfoDto.createUserName != ''">
+      AND fileInfo.create_user_name like CONCAT('%',#{fileInfoDto.createUserName},'%')
+    </if>
+    <if test="fileInfoDto.bizId != null and fileInfoDto.bizId != ''">
+      AND fileInfo.biz_id = #{fileInfoDto.bizId}
+    </if>
+    order by fileInfo.id desc
+</select>
+</mapper>

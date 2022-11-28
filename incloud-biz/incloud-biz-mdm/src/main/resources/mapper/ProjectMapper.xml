@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.mdm.mapper.ProjectMapper">
+
+<resultMap id="projectMap" type="com.netwisd.biz.mdm.vo.ProjectVo">
+  <id property="id" column="id"/>
+  <result property="projectCode" column="project_code"/>
+  <result property="projectName" column="project_name"/>
+  <result property="shortName" column="short_name"/>
+  <result property="constructionDept" column="construction_dept"/>
+  <result property="constructionUnits" column="construction_units"/>
+  <result property="catagory" column="catagory"/>
+  <result property="territory" column="territory"/>
+  <result property="site" column="site"/>
+  <result property="priorityProject" column="priority_project"/>
+  <result property="projectManager" column="project_manager"/>
+  <result property="projectLeader" column="project_leader"/>
+  <result property="buildOrganization" column="build_organization"/>
+  <result property="buildOrganCategory" column="build_organ_category"/>
+  <result property="designOrgan" column="design_organ"/>
+  <result property="supervisorOrgan" column="supervisor_organ"/>
+  <result property="planPermissionNum" column="plan_permission_num"/>
+  <result property="constructionNum" column="construction_num"/>
+  <result property="completRecordTime" column="complet_record_time"/>
+  <result property="contractStartTime" column="contract_start_time"/>
+  <result property="contractEndTime" column="contract_end_time"/>
+  <result property="projectTime" column="project_time"/>
+  <result property="startTimeActual" column="start_time_actual"/>
+  <result property="endTimeActual" column="end_time_actual"/>
+  <result property="projectTimeActual" column="project_time_actual"/>
+  <result property="state" column="state"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.mdm.dto.ProjectDto" resultMap="projectMap">
+  select * from incloud_biz_mdm_project project where 1=1
+    <if test="projectDto.id != null and projectDto.id != ''">
+      AND project.id = #{projectDto.id}
+    </if>
+    <if test="projectDto.projectCode != null and projectDto.projectCode != ''">
+      AND project.project_code like CONCAT('%',#{projectDto.projectCode},'%')
+    </if>
+    <if test="projectDto.projectName != null and projectDto.projectName != ''">
+      AND project.project_name like CONCAT('%',#{projectDto.projectName},'%')
+    </if>
+    <if test="projectDto.shortName != null and projectDto.shortName != ''">
+      AND project.short_name like CONCAT('%',#{projectDto.shortName},'%')
+    </if>
+    <if test="projectDto.constructionDept != null and projectDto.constructionDept != ''">
+      AND project.construction_dept like CONCAT('%',#{projectDto.constructionDept},'%')
+    </if>
+    <if test="projectDto.constructionUnits != null and projectDto.constructionUnits != ''">
+      AND project.construction_units like CONCAT('%',#{projectDto.constructionUnits},'%')
+    </if>
+    <if test="projectDto.catagory != null and projectDto.catagory != ''">
+      AND project.catagory like CONCAT('%',#{projectDto.catagory},'%')
+    </if>
+    <if test="projectDto.territory != null and projectDto.territory != ''">
+      AND project.territory like CONCAT('%',#{projectDto.territory},'%')
+    </if>
+    <if test="projectDto.site != null and projectDto.site != ''">
+      AND project.site like CONCAT('%',#{projectDto.site},'%')
+    </if>
+    <if test="projectDto.priorityProject != null and projectDto.priorityProject != ''">
+      AND project.priority_project like CONCAT('%',#{projectDto.priorityProject},'%')
+    </if>
+    <if test="projectDto.projectManager != null and projectDto.projectManager != ''">
+      AND project.project_manager like CONCAT('%',#{projectDto.projectManager},'%')
+    </if>
+    <if test="projectDto.projectLeader != null and projectDto.projectLeader != ''">
+      AND project.project_leader like CONCAT('%',#{projectDto.projectLeader},'%')
+    </if>
+    <if test="projectDto.buildOrganization != null and projectDto.buildOrganization != ''">
+      AND project.build_organization like CONCAT('%',#{projectDto.buildOrganization},'%')
+    </if>
+    <if test="projectDto.buildOrganCategory != null and projectDto.buildOrganCategory != ''">
+      AND project.build_organ_category like CONCAT('%',#{projectDto.buildOrganCategory},'%')
+    </if>
+    <if test="projectDto.designOrgan != null and projectDto.designOrgan != ''">
+      AND project.design_organ like CONCAT('%',#{projectDto.designOrgan},'%')
+    </if>
+    <if test="projectDto.supervisorOrgan != null and projectDto.supervisorOrgan != ''">
+      AND project.supervisor_organ like CONCAT('%',#{projectDto.supervisorOrgan},'%')
+    </if>
+    <if test="projectDto.planPermissionNum != null and projectDto.planPermissionNum != ''">
+      AND project.plan_permission_num like CONCAT('%',#{projectDto.planPermissionNum},'%')
+    </if>
+    <if test="projectDto.constructionNum != null and projectDto.constructionNum != ''">
+      AND project.construction_num like CONCAT('%',#{projectDto.constructionNum},'%')
+    </if>
+    <if test="projectDto.completRecordTime != null and projectDto.completRecordTime != ''">
+      AND project.complet_record_time = #{projectDto.completRecordTime}
+    </if>
+    <if test="projectDto.contractStartTime != null and projectDto.contractStartTime != ''">
+      AND project.contract_start_time = #{projectDto.contractStartTime}
+    </if>
+    <if test="projectDto.contractEndTime != null and projectDto.contractEndTime != ''">
+      AND project.contract_end_time = #{projectDto.contractEndTime}
+    </if>
+    <if test="projectDto.projectTime != null and projectDto.projectTime != ''">
+      AND project.project_time like CONCAT('%',#{projectDto.projectTime},'%')
+    </if>
+    <if test="projectDto.startTimeActual != null and projectDto.startTimeActual != ''">
+      AND project.start_time_actual = #{projectDto.startTimeActual}
+    </if>
+    <if test="projectDto.endTimeActual != null and projectDto.endTimeActual != ''">
+      AND project.end_time_actual = #{projectDto.endTimeActual}
+    </if>
+    <if test="projectDto.projectTimeActual != null and projectDto.projectTimeActual != ''">
+      AND project.project_time_actual like CONCAT('%',#{projectDto.projectTimeActual},'%')
+    </if>
+    <if test="projectDto.state != null and projectDto.state != ''">
+      AND project.state like CONCAT('%',#{projectDto.state},'%')
+    </if>
+    order by project.id desc
+</select>
+</mapper>

@@ -1,0 +1,4 @@
+data:
+  path: /nfs/zhongyuanjian
+  server: 192.168.0.24
+namespace: zhongyuanjian

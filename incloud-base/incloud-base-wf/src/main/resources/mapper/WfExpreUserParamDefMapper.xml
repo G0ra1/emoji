@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.wf.mapper.WfExpreUserParamDefMapper">
+
+<resultMap id="wfExpreUserParamDefMap" type="com.netwisd.base.wf.vo.WfExpreUserParamDefVo">
+  <id property="id" column="id"/>
+  <result property="nodeDefId" column="node_def_id"/>
+  <result property="nodeType" column="node_type"/>
+  <result property="expreParamName" column="expre_param_name"/>
+  <result property="expreParamDesc" column="expre_param_desc"/>
+  <result property="expreParamValue" column="expre_param_value"/>
+  <result property="expreParamSource" column="expre_param_source"/>
+  <result property="expreUserDefId" column="expre_user_def_id"/>
+
+  <result property="camundaProcdefId" column="camunda_procdef_id"/>
+  <result property="camundaProcdefKey" column="camunda_procdef_key"/>
+  <result property="camundaProcdefKey" column="camunda_procdef_key"/>
+  <result property="expreParamVarType" column="expre_param_var_type"/>
+  <result property="formId" column="form_id"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.wf.dto.WfExpreUserParamDefDto" resultMap="wfExpreUserParamDefMap">
+  select * from incloud_base_wf_expre_user_param_def wfExpreUserParamDef where 1=1
+    <if test="wfExpreUserParamDefDto.id != null and wfExpreUserParamDefDto.id != ''">
+      AND wfExpreUserParamDef.id = #{wfExpreUserParamDefDto.id}
+    </if>
+    <if test="wfExpreUserParamDefDto.nodeId != null and wfExpreUserParamDefDto.nodeId != ''">
+      AND wfExpreUserParamDef.node_id = #{wfExpreUserParamDefDto.nodeId}
+    </if>
+    <if test="wfExpreUserParamDefDto.nodeType != null and wfExpreUserParamDefDto.nodeType != ''">
+      AND wfExpreUserParamDef.node_type = #{wfExpreUserParamDefDto.nodeType}
+    </if>
+    <if test="wfExpreUserParamDefDto.expreParamId != null and wfExpreUserParamDefDto.expreParamId != ''">
+      AND wfExpreUserParamDef.expre_param_id = #{wfExpreUserParamDefDto.expreParamId}
+    </if>
+    <if test="wfExpreUserParamDefDto.expreParamValue != null and wfExpreUserParamDefDto.expreParamValue != ''">
+      AND wfExpreUserParamDef.expre_param_value like CONCAT('%',#{wfExpreUserParamDefDto.expreParamValue},'%')
+    </if>
+    <if test="wfExpreUserParamDefDto.expreParamSource != null and wfExpreUserParamDefDto.expreParamSource != ''">
+      AND wfExpreUserParamDef.expre_param_source = #{wfExpreUserParamDefDto.expreParamSource}
+    </if>
+    order by wfExpreUserParamDef.id desc
+</select>
+</mapper>

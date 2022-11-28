@@ -1,0 +1,8 @@
+name: incloud-base-portal
+replicaCount: 1
+image:
+  repository: dockerhub.kubekey.local/zhongyuanjian/incloud-base-portal
+  pullPolicy: Always
+  tag: "latest"
+  port: 8030
+imageEnvConfigMap: incloud-config

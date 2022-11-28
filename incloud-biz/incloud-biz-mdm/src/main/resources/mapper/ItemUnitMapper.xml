@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.mdm.mapper.ItemUnitMapper">
+
+<resultMap id="itemUnitMap" type="com.netwisd.biz.mdm.vo.ItemUnitVo">
+  <id property="id" column="id"/>
+  <result property="itemId" column="item_id"/>
+  <result property="unitName" column="unit_name"/>
+  <result property="conversionRate" column="conversion_rate"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+  <result property="dataSourceState" column="data_source_state"/>
+  <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+  <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+  <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+  <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+  <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.mdm.dto.ItemUnitDto" resultMap="itemUnitMap">
+  select * from incloud_biz_mdm_item_unit itemUnit where 1=1
+    <if test="itemUnitDto.id != null and itemUnitDto.id != ''">
+      AND itemUnit.id = #{itemUnitDto.id}
+    </if>
+    <if test="itemUnitDto.itemId != null and itemUnitDto.itemId != ''">
+      AND itemUnit.item_id = #{itemUnitDto.itemId}
+    </if>
+    <if test="itemUnitDto.unitName != null and itemUnitDto.unitName != ''">
+      AND itemUnit.unit_name like CONCAT('%',#{itemUnitDto.unitName},'%')
+    </if>
+    <if test="itemUnitDto.conversionRate != null and itemUnitDto.conversionRate != ''">
+      AND itemUnit.conversion_rate like CONCAT('%',#{itemUnitDto.conversionRate},'%')
+    </if>
+    <if test="itemUnitDto.createUserId != null and itemUnitDto.createUserId != ''">
+      AND itemUnit.create_user_id = #{itemUnitDto.createUserId}
+    </if>
+    <if test="itemUnitDto.createUserName != null and itemUnitDto.createUserName != ''">
+      AND itemUnit.create_user_name like CONCAT('%',#{itemUnitDto.createUserName},'%')
+    </if>
+    <if test="itemUnitDto.dataSourceState != null and itemUnitDto.dataSourceState != ''">
+      AND itemUnit.data_source_state like CONCAT('%',#{itemUnitDto.dataSourceState},'%')
+    </if>
+    <if test="itemUnitDto.createUserParentOrgId != null and itemUnitDto.createUserParentOrgId != ''">
+      AND itemUnit.create_user_parent_org_id = #{itemUnitDto.createUserParentOrgId}
+    </if>
+    <if test="itemUnitDto.createUserParentOrgName != null and itemUnitDto.createUserParentOrgName != ''">
+      AND itemUnit.create_user_parent_org_name like CONCAT('%',#{itemUnitDto.createUserParentOrgName},'%')
+    </if>
+    <if test="itemUnitDto.createUserParentDeptId != null and itemUnitDto.createUserParentDeptId != ''">
+      AND itemUnit.create_user_parent_dept_id = #{itemUnitDto.createUserParentDeptId}
+    </if>
+    <if test="itemUnitDto.createUserParentDeptName != null and itemUnitDto.createUserParentDeptName != ''">
+      AND itemUnit.create_user_parent_dept_name like CONCAT('%',#{itemUnitDto.createUserParentDeptName},'%')
+    </if>
+    <if test="itemUnitDto.createUserOrgFullId != null and itemUnitDto.createUserOrgFullId != ''">
+      AND itemUnit.create_user_org_full_id like CONCAT('%',#{itemUnitDto.createUserOrgFullId},'%')
+    </if>
+    order by itemUnit.id desc
+</select>
+</mapper>

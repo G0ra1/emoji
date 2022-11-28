@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.asset.mapper.MaintainPlanDetailMapper">
+
+<resultMap id="maintainPlanDetailMap" type="com.netwisd.biz.asset.vo.MaintainPlanDetailVo">
+  <id property="id" column="id"/>
+  <result property="maintainPlanId" column="maintain_plan_id"/>
+  <result property="assetsId" column="assets_id"/>
+  <result property="assetsDetailId" column="assets_detail_id"/>
+  <result property="classifyId" column="classify_id"/>
+  <result property="classifyCode" column="classify_code"/>
+  <result property="classifyName" column="classify_name"/>
+  <result property="route" column="route"/>
+  <result property="routeName" column="route_name"/>
+  <result property="categoryId" column="category_id"/>
+  <result property="categoryCode" column="category_code"/>
+  <result property="categoryName" column="category_name"/>
+  <result property="itemCode" column="item_code"/>
+  <result property="itemName" column="item_name"/>
+  <result property="desclong" column="desclong"/>
+  <result property="descshort" column="descshort"/>
+  <result property="unitCode" column="unit_code"/>
+  <result property="unitName" column="unit_name"/>
+  <result property="materialQuality" column="material_quality"/>
+  <result property="standard" column="standard"/>
+  <result property="specs" column="specs"/>
+  <result property="assetsClassification" column="assets_classification"/>
+  <result property="assetsCode" column="assets_code"/>
+  <result property="taxRate" column="tax_rate"/>
+  <result property="stockNumber" column="stock_number"/>
+  <result property="maintainPlanNumber" column="maintain_plan_number"/>
+  <result property="purchaseAmount" column="purchase_amount"/>
+  <result property="purchaseUntaxedAmount" column="purchase_untaxed_amount"/>
+  <result property="purchaseTaxAmount" column="purchase_tax_amount"/>
+  <result property="purchaseSumAmount" column="purchase_sum_amount"/>
+  <result property="purchaseSumUntaxedAmount" column="purchase_sum_untaxed_amount"/>
+  <result property="purchaseSumTaxAmount" column="purchase_sum_tax_amount"/>
+  <result property="isSecret" column="is_secret"/>
+  <result property="maintainPlanData" column="maintain_plan_data"/>
+  <result property="maintainContent" column="maintain_content"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.asset.dto.MaintainPlanDetailDto" resultMap="maintainPlanDetailMap">
+  select * from incloud_biz_asset_maintain_plan_detail maintainPlanDetail where 1=1
+    <if test="maintainPlanDetailDto.id != null and maintainPlanDetailDto.id != ''">
+      AND maintainPlanDetail.id = #{maintainPlanDetailDto.id}
+    </if>
+    <if test="maintainPlanDetailDto.maintainPlanId != null and maintainPlanDetailDto.maintainPlanId != ''">
+      AND maintainPlanDetail.maintain_plan_id = #{maintainPlanDetailDto.maintainPlanId}
+    </if>
+    <if test="maintainPlanDetailDto.assetsId != null and maintainPlanDetailDto.assetsId != ''">
+      AND maintainPlanDetail.assets_id = #{maintainPlanDetailDto.assetsId}
+    </if>
+    <if test="maintainPlanDetailDto.assetsDetailId != null and maintainPlanDetailDto.assetsDetailId != ''">
+      AND maintainPlanDetail.assets_detail_id = #{maintainPlanDetailDto.assetsDetailId}
+    </if>
+    <if test="maintainPlanDetailDto.classifyId != null and maintainPlanDetailDto.classifyId != ''">
+      AND maintainPlanDetail.classify_id = #{maintainPlanDetailDto.classifyId}
+    </if>
+    <if test="maintainPlanDetailDto.classifyCode != null and maintainPlanDetailDto.classifyCode != ''">
+      AND maintainPlanDetail.classify_code like CONCAT('%',#{maintainPlanDetailDto.classifyCode},'%')
+    </if>
+    <if test="maintainPlanDetailDto.classifyName != null and maintainPlanDetailDto.classifyName != ''">
+      AND maintainPlanDetail.classify_name like CONCAT('%',#{maintainPlanDetailDto.classifyName},'%')
+    </if>
+    <if test="maintainPlanDetailDto.route != null and maintainPlanDetailDto.route != ''">
+      AND maintainPlanDetail.route like CONCAT('%',#{maintainPlanDetailDto.route},'%')
+    </if>
+    <if test="maintainPlanDetailDto.routeName != null and maintainPlanDetailDto.routeName != ''">
+      AND maintainPlanDetail.route_name like CONCAT('%',#{maintainPlanDetailDto.routeName},'%')
+    </if>
+    <if test="maintainPlanDetailDto.categoryId != null and maintainPlanDetailDto.categoryId != ''">
+      AND maintainPlanDetail.category_id = #{maintainPlanDetailDto.categoryId}
+    </if>
+    <if test="maintainPlanDetailDto.categoryCode != null and maintainPlanDetailDto.categoryCode != ''">
+      AND maintainPlanDetail.category_code like CONCAT('%',#{maintainPlanDetailDto.categoryCode},'%')
+    </if>
+    <if test="maintainPlanDetailDto.categoryName != null and maintainPlanDetailDto.categoryName != ''">
+      AND maintainPlanDetail.category_name like CONCAT('%',#{maintainPlanDetailDto.categoryName},'%')
+    </if>
+    <if test="maintainPlanDetailDto.itemCode != null and maintainPlanDetailDto.itemCode != ''">
+      AND maintainPlanDetail.item_code like CONCAT('%',#{maintainPlanDetailDto.itemCode},'%')
+    </if>
+    <if test="maintainPlanDetailDto.itemName != null and maintainPlanDetailDto.itemName != ''">
+      AND maintainPlanDetail.item_name like CONCAT('%',#{maintainPlanDetailDto.itemName},'%')
+    </if>
+    <if test="maintainPlanDetailDto.desclong != null and maintainPlanDetailDto.desclong != ''">
+      AND maintainPlanDetail.desclong like CONCAT('%',#{maintainPlanDetailDto.desclong},'%')
+    </if>
+    <if test="maintainPlanDetailDto.descshort != null and maintainPlanDetailDto.descshort != ''">
+      AND maintainPlanDetail.descshort like CONCAT('%',#{maintainPlanDetailDto.descshort},'%')
+    </if>
+    <if test="maintainPlanDetailDto.unitCode != null and maintainPlanDetailDto.unitCode != ''">
+      AND maintainPlanDetail.unit_code like CONCAT('%',#{maintainPlanDetailDto.unitCode},'%')
+    </if>
+    <if test="maintainPlanDetailDto.unitName != null and maintainPlanDetailDto.unitName != ''">
+      AND maintainPlanDetail.unit_name like CONCAT('%',#{maintainPlanDetailDto.unitName},'%')
+    </if>
+    <if test="maintainPlanDetailDto.materialQuality != null and maintainPlanDetailDto.materialQuality != ''">
+      AND maintainPlanDetail.material_quality like CONCAT('%',#{maintainPlanDetailDto.materialQuality},'%')
+    </if>
+    <if test="maintainPlanDetailDto.standard != null and maintainPlanDetailDto.standard != ''">
+      AND maintainPlanDetail.standard like CONCAT('%',#{maintainPlanDetailDto.standard},'%')
+    </if>
+    <if test="maintainPlanDetailDto.specs != null and maintainPlanDetailDto.specs != ''">
+      AND maintainPlanDetail.specs like CONCAT('%',#{maintainPlanDetailDto.specs},'%')
+    </if>
+    <if test="maintainPlanDetailDto.assetsClassification != null and maintainPlanDetailDto.assetsClassification != ''">
+      AND maintainPlanDetail.assets_classification like CONCAT('%',#{maintainPlanDetailDto.assetsClassification},'%')
+    </if>
+    <if test="maintainPlanDetailDto.assetsCode != null and maintainPlanDetailDto.assetsCode != ''">
+      AND maintainPlanDetail.assets_code like CONCAT('%',#{maintainPlanDetailDto.assetsCode},'%')
+    </if>
+    <if test="maintainPlanDetailDto.taxRate != null and maintainPlanDetailDto.taxRate != ''">
+      AND maintainPlanDetail.tax_rate = #{maintainPlanDetailDto.taxRate}
+    </if>
+    <if test="maintainPlanDetailDto.stockNumber != null and maintainPlanDetailDto.stockNumber != ''">
+      AND maintainPlanDetail.stock_number = #{maintainPlanDetailDto.stockNumber}
+    </if>
+    <if test="maintainPlanDetailDto.maintainPlanNumber != null and maintainPlanDetailDto.maintainPlanNumber != ''">
+      AND maintainPlanDetail.maintain_plan_number = #{maintainPlanDetailDto.maintainPlanNumber}
+    </if>
+    <if test="maintainPlanDetailDto.purchaseAmount != null and maintainPlanDetailDto.purchaseAmount != ''">
+      AND maintainPlanDetail.purchase_amount = #{maintainPlanDetailDto.purchaseAmount}
+    </if>
+    <if test="maintainPlanDetailDto.purchaseUntaxedAmount != null and maintainPlanDetailDto.purchaseUntaxedAmount != ''">
+      AND maintainPlanDetail.purchase_untaxed_amount = #{maintainPlanDetailDto.purchaseUntaxedAmount}
+    </if>
+    <if test="maintainPlanDetailDto.purchaseTaxAmount != null and maintainPlanDetailDto.purchaseTaxAmount != ''">
+      AND maintainPlanDetail.purchase_tax_amount = #{maintainPlanDetailDto.purchaseTaxAmount}
+    </if>
+    <if test="maintainPlanDetailDto.purchaseSumAmount != null and maintainPlanDetailDto.purchaseSumAmount != ''">
+      AND maintainPlanDetail.purchase_sum_amount = #{maintainPlanDetailDto.purchaseSumAmount}
+    </if>
+    <if test="maintainPlanDetailDto.purchaseSumUntaxedAmount != null and maintainPlanDetailDto.purchaseSumUntaxedAmount != ''">
+      AND maintainPlanDetail.purchase_sum_untaxed_amount = #{maintainPlanDetailDto.purchaseSumUntaxedAmount}
+    </if>
+    <if test="maintainPlanDetailDto.purchaseSumTaxAmount != null and maintainPlanDetailDto.purchaseSumTaxAmount != ''">
+      AND maintainPlanDetail.purchase_sum_tax_amount = #{maintainPlanDetailDto.purchaseSumTaxAmount}
+    </if>
+    <if test="maintainPlanDetailDto.isSecret != null and maintainPlanDetailDto.isSecret != ''">
+      AND maintainPlanDetail.is_secret = #{maintainPlanDetailDto.isSecret}
+    </if>
+    <if test="maintainPlanDetailDto.maintainPlanData != null and maintainPlanDetailDto.maintainPlanData != ''">
+      AND maintainPlanDetail.maintain_plan_data = #{maintainPlanDetailDto.maintainPlanData}
+    </if>
+    <if test="maintainPlanDetailDto.maintainContent != null and maintainPlanDetailDto.maintainContent != ''">
+      AND maintainPlanDetail.maintain_content like CONCAT('%',#{maintainPlanDetailDto.maintainContent},'%')
+    </if>
+    order by maintainPlanDetail.id desc
+</select>
+</mapper>

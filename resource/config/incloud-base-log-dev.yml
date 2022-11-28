@@ -1,0 +1,15 @@
+incloud:
+  table:
+    package: com.netwisd.base.log.entity
+  index:
+    update: false
+feign: #开启Feign熔断
+  hystrix:
+    enabled: true
+elasticsearch:
+  address: ${incloud3_es_ip:192.168.1.195}:${incloud3_es_port:9200}
+canal:
+  canalServer: 192.168.1.196
+  canalPort: 11111
+  destination: incloud4
+  userName: canal

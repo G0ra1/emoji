@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.wf.mapper.WfExpreSequParamDefMapper">
+
+<resultMap id="wfExpreSequParamDefMap" type="com.netwisd.base.wf.vo.WfExpreSequParamDefVo">
+  <id property="id" column="id"/>
+  <result property="expreParamId" column="expre_param_id"/>
+  <result property="expreParamValue" column="expre_param_value"/>
+  <result property="expreParamSource" column="expre_param_source"/>
+  <result property="expreSequDefId" column="expre_sequ_def_id"/>
+
+  <result property="camundaSequId" column="camunda_sequ_id"/>
+  <result property="camundaProcdefId" column="camunda_procdef_id"/>
+  <result property="camundaProcdefKey" column="camunda_procdef_key"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.wf.dto.WfExpreSequParamDefDto" resultMap="wfExpreSequParamDefMap">
+  select * from incloud_base_wf_expre_sequ_param_def wfExpreSequParamDef where 1=1
+    <if test="wfExpreSequParamDefDto.id != null and wfExpreSequParamDefDto.id != ''">
+      AND wfExpreSequParamDef.id = #{wfExpreSequParamDefDto.id}
+    </if>
+    <if test="wfExpreSequParamDefDto.expreParamId != null and wfExpreSequParamDefDto.expreParamId != ''">
+      AND wfExpreSequParamDef.expre_param_id = #{wfExpreSequParamDefDto.expreParamId}
+    </if>
+    <if test="wfExpreSequParamDefDto.expreParamValue != null and wfExpreSequParamDefDto.expreParamValue != ''">
+      AND wfExpreSequParamDef.expre_param_value like CONCAT('%',#{wfExpreSequParamDefDto.expreParamValue},'%')
+    </if>
+    <if test="wfExpreSequParamDefDto.expreParamSource != null and wfExpreSequParamDefDto.expreParamSource != ''">
+      AND wfExpreSequParamDef.expre_param_source = #{wfExpreSequParamDefDto.expreParamSource}
+    </if>
+    <if test="wfExpreSequParamDefDto.expreSequDefId != null and wfExpreSequParamDefDto.expreSequDefId != ''">
+      AND wfExpreSequParamDef.expre_sequ_def_id = #{wfExpreSequParamDefDto.expreSequDefId}
+    </if>
+    order by wfExpreSequParamDef.id desc
+</select>
+</mapper>

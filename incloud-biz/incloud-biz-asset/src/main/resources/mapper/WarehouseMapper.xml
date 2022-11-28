@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.asset.mapper.WarehouseMapper">
+
+<resultMap id="warehouseMap" type="com.netwisd.biz.asset.vo.WarehouseVo">
+  <id property="id" column="id"/>
+  <result property="warehouseName" column="warehouse_name"/>
+  <result property="orgId" column="org_id"/>
+  <result property="orgName" column="org_name"/>
+  <result property="deptId" column="dept_id"/>
+  <result property="deptName" column="dept_name"/>
+  <result property="address" column="address"/>
+  <result property="respondUserId" column="respond_user_id"/>
+  <result property="respondUserName" column="respond_user_name"/>
+  <result property="parentId" column="parent_id"/>
+  <result property="delFlag" column="del_flag"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.asset.dto.WarehouseDto" resultMap="warehouseMap">
+  select * from incloud_biz_asset_warehouse warehouse where 1=1
+    <if test="warehouseDto.id != null and warehouseDto.id != ''">
+      AND warehouse.id = #{warehouseDto.id}
+    </if>
+    <if test="warehouseDto.warehouseName != null and warehouseDto.warehouseName != ''">
+      AND warehouse.warehouse_name like CONCAT('%',#{warehouseDto.warehouseName},'%')
+    </if>
+    <if test="warehouseDto.orgId != null and warehouseDto.orgId != ''">
+      AND warehouse.org_id = #{warehouseDto.orgId}
+    </if>
+    <if test="warehouseDto.orgName != null and warehouseDto.orgName != ''">
+      AND warehouse.org_name = #{warehouseDto.orgName}
+    </if>
+    <if test="warehouseDto.deptId != null and warehouseDto.deptId != ''">
+      AND warehouse.dept_id = #{warehouseDto.deptId}
+    </if>
+    <if test="warehouseDto.deptName != null and warehouseDto.deptName != ''">
+      AND warehouse.dept_name = #{warehouseDto.deptName}
+    </if>
+    <if test="warehouseDto.address != null and warehouseDto.address != ''">
+      AND warehouse.address = #{warehouseDto.address}
+    </if>
+    <if test="warehouseDto.respondUserId != null and warehouseDto.respondUserId != ''">
+      AND warehouse.respond_user_id = #{warehouseDto.respondUserId}
+    </if>
+    <if test="warehouseDto.respondUserName != null and warehouseDto.respondUserName != ''">
+      AND warehouse.respond_user_name = #{warehouseDto.respondUserName}
+    </if>
+    <if test="warehouseDto.creatorId != null and warehouseDto.creatorId != ''">
+      AND warehouse.creator_id like CONCAT('%',#{warehouseDto.creatorId},'%')
+    </if>
+    <if test="warehouseDto.creatorName != null and warehouseDto.creatorName != ''">
+      AND warehouse.creator_name like CONCAT('%',#{warehouseDto.creatorName},'%')
+    </if>
+    <if test="warehouseDto.updaterId != null and warehouseDto.updaterId != ''">
+      AND warehouse.updater_id like CONCAT('%',#{warehouseDto.updaterId},'%')
+    </if>
+    <if test="warehouseDto.updaterName != null and warehouseDto.updaterName != ''">
+      AND warehouse.updater_name like CONCAT('%',#{warehouseDto.updaterName},'%')
+    </if>
+    <if test="warehouseDto.delFlag != null and warehouseDto.delFlag != ''">
+      AND warehouse.del_flag like CONCAT('%',#{warehouseDto.delFlag},'%')
+    </if>
+    order by warehouse.id desc
+</select>
+</mapper>

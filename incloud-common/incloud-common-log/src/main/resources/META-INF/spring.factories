@@ -1,0 +1,4 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+    com.netwisd.common.log.config.LogAutoConfiguration
+org.springframework.boot.env.EnvironmentPostProcessor=\
+    com.netwisd.common.log.init.ApplicationLoggerInitializer

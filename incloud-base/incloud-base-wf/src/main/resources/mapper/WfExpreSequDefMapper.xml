@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.wf.mapper.WfExpreSequDefMapper">
+
+<resultMap id="wfExpreSequDefMap" type="com.netwisd.base.wf.vo.WfExpreSequDefVo">
+  <id property="id" column="id"/>
+  <result property="expreId" column="expre_id"/>
+  <result property="expression" column="expression"/>
+  <result property="sequDefId" column="sequ_def_id"/>
+  <result property="camundaSequId" column="camunda_sequ_id"/>
+  <result property="camundaProcdefId" column="camunda_procdef_id"/>
+  <result property="camundaProcdefKey" column="camunda_procdef_key"/>
+  <result property="procdefId" column="procdef_id"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.wf.dto.WfExpreSequDefDto" resultMap="wfExpreSequDefMap">
+  select * from incloud_base_wf_expre_sequ_def wfExpreSequDef where 1=1
+    <if test="wfExpreSequDefDto.id != null and wfExpreSequDefDto.id != ''">
+      AND wfExpreSequDef.id = #{wfExpreSequDefDto.id}
+    </if>
+    <if test="wfExpreSequDefDto.expreId != null and wfExpreSequDefDto.expreId != ''">
+      AND wfExpreSequDef.expre_id = #{wfExpreSequDefDto.expreId}
+    </if>
+    <if test="wfExpreSequDefDto.expression != null and wfExpreSequDefDto.expression != ''">
+      AND wfExpreSequDef.expression like CONCAT('%',#{wfExpreSequDefDto.expression},'%')
+    </if>
+    <if test="wfExpreSequDefDto.sequDefId != null and wfExpreSequDefDto.sequDefId != ''">
+      AND wfExpreSequDef.sequ_def_id = #{wfExpreSequDefDto.sequDefId}
+    </if>
+    <if test="wfExpreSequDefDto.camundaSequId != null and wfExpreSequDefDto.camundaSequId != ''">
+      AND wfExpreSequDef.camunda_sequ_id like CONCAT('%',#{wfExpreSequDefDto.camundaSequId},'%')
+    </if>
+    <if test="wfExpreSequDefDto.camundaProcdefId != null and wfExpreSequDefDto.camundaProcdefId != ''">
+      AND wfExpreSequDef.camunda_procdef_id like CONCAT('%',#{wfExpreSequDefDto.camundaProcdefId},'%')
+    </if>
+    <if test="wfExpreSequDefDto.camundaProcdefKey != null and wfExpreSequDefDto.camundaProcdefKey != ''">
+      AND wfExpreSequDef.camunda_procdef_key like CONCAT('%',#{wfExpreSequDefDto.camundaProcdefKey},'%')
+    </if>
+    <if test="wfExpreSequDefDto.procdefId != null and wfExpreSequDefDto.procdefId != ''">
+      AND wfExpreSequDef.procdef_id = #{wfExpreSequDefDto.procdefId}
+    </if>
+    order by wfExpreSequDef.id desc
+</select>
+</mapper>

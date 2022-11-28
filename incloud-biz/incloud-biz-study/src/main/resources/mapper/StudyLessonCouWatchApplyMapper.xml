@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.study.mapper.StudyLessonCouWatchApplyMapper">
+
+<resultMap id="studyLessonCouWatchApplyMap" type="com.netwisd.biz.study.vo.StudyLessonCouWatchApplyVo">
+  <id property="id" column="id"/>
+  <result property="userId" column="user_id"/>
+  <result property="userName" column="user_name"/>
+  <result property="userNameCh" column="user_name_ch"/>
+  <result property="rangeId" column="range_id"/>
+  <result property="rangeName" column="range_name"/>
+  <result property="rangeType" column="range_type"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+  <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+  <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+  <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+  <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+  <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.study.dto.StudyLessonCouWatchApplyDto" resultMap="studyLessonCouWatchApplyMap">
+  select * from incloud_biz_study_lesson_cou_watch_apply studyLessonCouWatchApply where 1=1
+    <if test="studyLessonCouWatchApplyDto.id != null and studyLessonCouWatchApplyDto.id != ''">
+      AND studyLessonCouWatchApply.id = #{studyLessonCouWatchApplyDto.id}
+    </if>
+    <if test="studyLessonCouWatchApplyDto.userId != null and studyLessonCouWatchApplyDto.userId != ''">
+      AND studyLessonCouWatchApply.user_id = #{studyLessonCouWatchApplyDto.userId}
+    </if>
+    <if test="studyLessonCouWatchApplyDto.userName != null and studyLessonCouWatchApplyDto.userName != ''">
+      AND studyLessonCouWatchApply.user_name like CONCAT('%',#{studyLessonCouWatchApplyDto.userName},'%')
+    </if>
+    <if test="studyLessonCouWatchApplyDto.userNameCh != null and studyLessonCouWatchApplyDto.userNameCh != ''">
+      AND studyLessonCouWatchApply.user_name_ch like CONCAT('%',#{studyLessonCouWatchApplyDto.userNameCh},'%')
+    </if>
+    <if test="studyLessonCouWatchApplyDto.rangeId != null and studyLessonCouWatchApplyDto.rangeId != ''">
+      AND studyLessonCouWatchApply.range_id = #{studyLessonCouWatchApplyDto.rangeId}
+    </if>
+    <if test="studyLessonCouWatchApplyDto.rangeName != null and studyLessonCouWatchApplyDto.rangeName != ''">
+      AND studyLessonCouWatchApply.range_name like CONCAT('%',#{studyLessonCouWatchApplyDto.rangeName},'%')
+    </if>
+    <if test="studyLessonCouWatchApplyDto.rangeType != null and studyLessonCouWatchApplyDto.rangeType != ''">
+      AND studyLessonCouWatchApply.range_type = #{studyLessonCouWatchApplyDto.rangeType}
+    </if>
+    <if test="studyLessonCouWatchApplyDto.createUserId != null and studyLessonCouWatchApplyDto.createUserId != ''">
+      AND studyLessonCouWatchApply.create_user_id = #{studyLessonCouWatchApplyDto.createUserId}
+    </if>
+    <if test="studyLessonCouWatchApplyDto.createUserName != null and studyLessonCouWatchApplyDto.createUserName != ''">
+      AND studyLessonCouWatchApply.create_user_name like CONCAT('%',#{studyLessonCouWatchApplyDto.createUserName},'%')
+    </if>
+    <if test="studyLessonCouWatchApplyDto.createUserParentOrgId != null and studyLessonCouWatchApplyDto.createUserParentOrgId != ''">
+      AND studyLessonCouWatchApply.create_user_parent_org_id = #{studyLessonCouWatchApplyDto.createUserParentOrgId}
+    </if>
+    <if test="studyLessonCouWatchApplyDto.createUserParentOrgName != null and studyLessonCouWatchApplyDto.createUserParentOrgName != ''">
+      AND studyLessonCouWatchApply.create_user_parent_org_name like CONCAT('%',#{studyLessonCouWatchApplyDto.createUserParentOrgName},'%')
+    </if>
+    <if test="studyLessonCouWatchApplyDto.createUserParentDeptId != null and studyLessonCouWatchApplyDto.createUserParentDeptId != ''">
+      AND studyLessonCouWatchApply.create_user_parent_dept_id = #{studyLessonCouWatchApplyDto.createUserParentDeptId}
+    </if>
+    <if test="studyLessonCouWatchApplyDto.createUserParentDeptName != null and studyLessonCouWatchApplyDto.createUserParentDeptName != ''">
+      AND studyLessonCouWatchApply.create_user_parent_dept_name like CONCAT('%',#{studyLessonCouWatchApplyDto.createUserParentDeptName},'%')
+    </if>
+    <if test="studyLessonCouWatchApplyDto.createUserOrgFullId != null and studyLessonCouWatchApplyDto.createUserOrgFullId != ''">
+      AND studyLessonCouWatchApply.create_user_org_full_id like CONCAT('%',#{studyLessonCouWatchApplyDto.createUserOrgFullId},'%')
+    </if>
+    order by studyLessonCouWatchApply.id desc
+</select>
+</mapper>

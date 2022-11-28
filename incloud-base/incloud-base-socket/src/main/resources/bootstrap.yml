@@ -1,0 +1,25 @@
+server:
+  port: 8010
+spring:
+  application:
+    name: @artifactId@
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${INCLOUD_NACOS_SERVICE_HOST}:${INCLOUD_NACOS_SERVICE_PORT}
+        namespace: ${INCLOUD_NACOS_NAMESPACE}
+      config:
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+        file-extension: yml
+        shared-configs: application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+        namespace: ${spring.cloud.nacos.discovery.namespace}
+  profiles:
+    active: @profiles.active@
+  rocketmq:
+    namesrvAddr: ${INCLOUD_ROCKETMQ_SERVICE_HOST}:${INCLOUD_ROCKETMQ_SERVICE_PORT}
+jiguang:
+  appKey: ${incloud3_jiguang_appKey:d64e36e20b302276f07c2cff}
+  masterSecret: ${incloud3_jiguang_masterSecret:814349e86969c933fba259a9}
+incloud:
+  table:
+    package: com.netwisd.base.msg.entity

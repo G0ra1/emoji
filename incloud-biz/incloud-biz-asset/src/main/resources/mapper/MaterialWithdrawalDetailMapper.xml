@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.asset.mapper.MaterialWithdrawalDetailMapper">
+
+<resultMap id="materialWithdrawalDetailMap" type="com.netwisd.biz.asset.vo.MaterialWithdrawalDetailVo">
+  <id property="id" column="id"/>
+  <result property="withdrawalId" column="withdrawal_id"/>
+  <result property="assetsId" column="assets_id"/>
+  <result property="assetsDetailId" column="assets_detail_id"/>
+  <result property="assetsDeliveryId" column="assets_delivery_id"/>
+  <result property="itemId" column="item_id"/>
+  <result property="itemCode" column="item_code"/>
+  <result property="itemName" column="item_name"/>
+  <result property="unitCode" column="unit_code"/>
+  <result property="unitName" column="unit_name"/>
+  <result property="materialQuality" column="material_quality"/>
+  <result property="standard" column="standard"/>
+  <result property="specs" column="specs"/>
+  <result property="skuCode" column="sku_code"/>
+  <result property="skuFullId" column="sku_full_id"/>
+  <result property="skuFullName" column="sku_full_name"/>
+  <result property="assetsCode" column="assets_code"/>
+  <result property="assetsLabel" column="assets_label"/>
+  <result property="warehouseId" column="warehouse_id"/>
+  <result property="warehouseName" column="warehouse_name"/>
+  <result property="shelfId" column="shelf_id"/>
+  <result property="shelfName" column="shelf_name"/>
+  <result property="taxRate" column="tax_rate"/>
+  <result property="acceptNumber" column="accept_number"/>
+  <result property="withdrawalNumber" column="withdrawal_number"/>
+  <result property="withdrawalAmount" column="withdrawal_amount"/>
+  <result property="withdrawalUntaxedAmount" column="withdrawal_untaxed_amount"/>
+  <result property="withdrawalTaxAmount" column="withdrawal_tax_amount"/>
+  <result property="itemType" column="item_type"/>
+  <result property="itemTypeName" column="item_type_name"/>
+  <result property="acceptResultId" column="accept_result_id"/>
+  <result property="explanation" column="explanation"/>
+
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.asset.dto.MaterialWithdrawalDetailDto" resultMap="materialWithdrawalDetailMap">
+  select * from incloud_biz_asset_material_withdrawal_detail materialWithdrawalDetail where 1=1
+    <if test="materialWithdrawalDetailDto.id != null and materialWithdrawalDetailDto.id != ''">
+      AND materialWithdrawalDetail.id = #{materialWithdrawalDetailDto.id}
+    </if>
+    <if test="materialWithdrawalDetailDto.withdrawalId != null and materialWithdrawalDetailDto.withdrawalId != ''">
+      AND materialWithdrawalDetail.withdrawal_id = #{materialWithdrawalDetailDto.withdrawalId}
+    </if>
+    <if test="materialWithdrawalDetailDto.assetsId != null and materialWithdrawalDetailDto.assetsId != ''">
+      AND materialWithdrawalDetail.assets_id = #{materialWithdrawalDetailDto.assetsId}
+    </if>
+    <if test="materialWithdrawalDetailDto.assetsDetailId != null and materialWithdrawalDetailDto.assetsDetailId != ''">
+      AND materialWithdrawalDetail.assets_detail_id = #{materialWithdrawalDetailDto.assetsDetailId}
+    </if>
+    <if test="materialWithdrawalDetailDto.assetsDeliveryId != null and materialWithdrawalDetailDto.assetsDeliveryId != ''">
+      AND materialWithdrawalDetail.assets_delivery_id = #{materialWithdrawalDetailDto.assetsDeliveryId}
+    </if>
+    <if test="materialWithdrawalDetailDto.itemId != null and materialWithdrawalDetailDto.itemId != ''">
+      AND materialWithdrawalDetail.item_id = #{materialWithdrawalDetailDto.itemId}
+    </if>
+    <if test="materialWithdrawalDetailDto.itemCode != null and materialWithdrawalDetailDto.itemCode != ''">
+      AND materialWithdrawalDetail.item_code like CONCAT('%',#{materialWithdrawalDetailDto.itemCode},'%')
+    </if>
+    <if test="materialWithdrawalDetailDto.itemName != null and materialWithdrawalDetailDto.itemName != ''">
+      AND materialWithdrawalDetail.item_name like CONCAT('%',#{materialWithdrawalDetailDto.itemName},'%')
+    </if>
+    <if test="materialWithdrawalDetailDto.unitCode != null and materialWithdrawalDetailDto.unitCode != ''">
+      AND materialWithdrawalDetail.unit_code like CONCAT('%',#{materialWithdrawalDetailDto.unitCode},'%')
+    </if>
+    <if test="materialWithdrawalDetailDto.unitName != null and materialWithdrawalDetailDto.unitName != ''">
+      AND materialWithdrawalDetail.unit_name like CONCAT('%',#{materialWithdrawalDetailDto.unitName},'%')
+    </if>
+    <if test="materialWithdrawalDetailDto.materialQuality != null and materialWithdrawalDetailDto.materialQuality != ''">
+      AND materialWithdrawalDetail.material_quality like CONCAT('%',#{materialWithdrawalDetailDto.materialQuality},'%')
+    </if>
+    <if test="materialWithdrawalDetailDto.standard != null and materialWithdrawalDetailDto.standard != ''">
+      AND materialWithdrawalDetail.standard like CONCAT('%',#{materialWithdrawalDetailDto.standard},'%')
+    </if>
+    <if test="materialWithdrawalDetailDto.specs != null and materialWithdrawalDetailDto.specs != ''">
+      AND materialWithdrawalDetail.specs like CONCAT('%',#{materialWithdrawalDetailDto.specs},'%')
+    </if>
+    <if test="materialWithdrawalDetailDto.skuCode != null and materialWithdrawalDetailDto.skuCode != ''">
+      AND materialWithdrawalDetail.sku_code like CONCAT('%',#{materialWithdrawalDetailDto.skuCode},'%')
+    </if>
+    <if test="materialWithdrawalDetailDto.skuFullId != null and materialWithdrawalDetailDto.skuFullId != ''">
+      AND materialWithdrawalDetail.sku_full_id like CONCAT('%',#{materialWithdrawalDetailDto.skuFullId},'%')
+    </if>
+    <if test="materialWithdrawalDetailDto.skuFullName != null and materialWithdrawalDetailDto.skuFullName != ''">
+      AND materialWithdrawalDetail.sku_full_name like CONCAT('%',#{materialWithdrawalDetailDto.skuFullName},'%')
+    </if>
+    <if test="materialWithdrawalDetailDto.assetsCode != null and materialWithdrawalDetailDto.assetsCode != ''">
+      AND materialWithdrawalDetail.assets_code like CONCAT('%',#{materialWithdrawalDetailDto.assetsCode},'%')
+    </if>
+    <if test="materialWithdrawalDetailDto.assetsLabel != null and materialWithdrawalDetailDto.assetsLabel != ''">
+      AND materialWithdrawalDetail.assets_label like CONCAT('%',#{materialWithdrawalDetailDto.assetsLabel},'%')
+    </if>
+    <if test="materialWithdrawalDetailDto.warehouseId != null and materialWithdrawalDetailDto.warehouseId != ''">
+      AND materialWithdrawalDetail.warehouse_id like CONCAT('%',#{materialWithdrawalDetailDto.warehouseId},'%')
+    </if>
+    <if test="materialWithdrawalDetailDto.warehouseName != null and materialWithdrawalDetailDto.warehouseName != ''">
+      AND materialWithdrawalDetail.warehouse_name like CONCAT('%',#{materialWithdrawalDetailDto.warehouseName},'%')
+    </if>
+    <if test="materialWithdrawalDetailDto.shelfId != null and materialWithdrawalDetailDto.shelfId != ''">
+      AND materialWithdrawalDetail.shelf_id like CONCAT('%',#{materialWithdrawalDetailDto.shelfId},'%')
+    </if>
+    <if test="materialWithdrawalDetailDto.shelfName != null and materialWithdrawalDetailDto.shelfName != ''">
+      AND materialWithdrawalDetail.shelf_name like CONCAT('%',#{materialWithdrawalDetailDto.shelfName},'%')
+    </if>
+    <if test="materialWithdrawalDetailDto.taxRate != null and materialWithdrawalDetailDto.taxRate != ''">
+      AND materialWithdrawalDetail.tax_rate = #{materialWithdrawalDetailDto.taxRate}
+    </if>
+    <if test="materialWithdrawalDetailDto.acceptNumber != null and materialWithdrawalDetailDto.acceptNumber != ''">
+      AND materialWithdrawalDetail.accept_number = #{materialWithdrawalDetailDto.acceptNumber}
+    </if>
+    <if test="materialWithdrawalDetailDto.withdrawalNumber != null and materialWithdrawalDetailDto.withdrawalNumber != ''">
+      AND materialWithdrawalDetail.withdrawal_number = #{materialWithdrawalDetailDto.withdrawalNumber}
+    </if>
+    <if test="materialWithdrawalDetailDto.withdrawalAmount != null and materialWithdrawalDetailDto.withdrawalAmount != ''">
+      AND materialWithdrawalDetail.withdrawal_amount = #{materialWithdrawalDetailDto.withdrawalAmount}
+    </if>
+    <if test="materialWithdrawalDetailDto.withdrawalUntaxedAmount != null and materialWithdrawalDetailDto.withdrawalUntaxedAmount != ''">
+      AND materialWithdrawalDetail.withdrawal_untaxed_amount = #{materialWithdrawalDetailDto.withdrawalUntaxedAmount}
+    </if>
+    <if test="materialWithdrawalDetailDto.withdrawalTaxAmount != null and materialWithdrawalDetailDto.withdrawalTaxAmount != ''">
+      AND materialWithdrawalDetail.withdrawal_tax_amount = #{materialWithdrawalDetailDto.withdrawalTaxAmount}
+    </if>
+    <if test="materialWithdrawalDetailDto.itemType != null and materialWithdrawalDetailDto.itemType != ''">
+      AND materialWithdrawalDetail.item_Type = #{materialWithdrawalDetailDto.itemType}
+    </if>
+    <if test="materialWithdrawalDetailDto.itemTypeName != null and materialWithdrawalDetailDto.itemTypeName != ''">
+      AND materialWithdrawalDetail.item_Type_name = #{materialWithdrawalDetailDto.itemTypeName}
+    </if>
+    <if test="materialWithdrawalDetailDto.acceptResultId != null and materialWithdrawalDetailDto.acceptResultId != ''">
+      AND materialWithdrawalDetail.accept_result_id = #{materialWithdrawalDetailDto.acceptResultId}
+    </if>
+    <if test="materialWithdrawalDetailDto.explanation != null and materialWithdrawalDetailDto.explanation != ''">
+      AND materialWithdrawalDetail.explanation = #{materialWithdrawalDetailDto.explanation}
+    </if>
+    order by materialWithdrawalDetail.id desc
+</select>
+</mapper>

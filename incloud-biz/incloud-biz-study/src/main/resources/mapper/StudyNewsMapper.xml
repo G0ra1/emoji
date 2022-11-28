@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.study.mapper.StudyNewsMapper">
+
+<resultMap id="studyNewsMap" type="com.netwisd.biz.study.vo.StudyNewsVo">
+  <id property="id" column="id"/>
+  <result property="newsTitle" column="news_title"/>
+  <result property="newsBrowse" column="news_browse"/>
+  <result property="newsType" column="news_type"/>
+  <result property="newsTypeName" column="news_type_name"/>
+  <result property="newsDetail" column="news_detail"/>
+  <result property="newsPhotoUrl" column="news_photo_url"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.study.dto.StudyNewsDto" resultMap="studyNewsMap">
+  select * from incloud_biz_study_news studyNews where 1=1
+    <if test="studyNewsDto.id != null and studyNewsDto.id != ''">
+      AND studyNews.id = #{studyNewsDto.id}
+    </if>
+    <if test="studyNewsDto.newsTitle != null and studyNewsDto.newsTitle != ''">
+      AND studyNews.news_title like CONCAT('%',#{studyNewsDto.newsTitle},'%')
+    </if>
+    <if test="studyNewsDto.newsBrowse != null and studyNewsDto.newsBrowse != ''">
+      AND studyNews.news_browse = #{studyNewsDto.newsBrowse}
+    </if>
+    <if test="studyNewsDto.newsType != null and studyNewsDto.newsType != ''">
+      AND studyNews.news_type = #{studyNewsDto.newsType}
+    </if>
+    <if test="studyNewsDto.newsTypeName != null and studyNewsDto.newsTypeName != ''">
+      AND studyNews.news_type_name = #{studyNewsDto.newsTypeName}
+    </if>
+    <if test="studyNewsDto.newsDetail != null and studyNewsDto.newsDetail != ''">
+      AND studyNews.news_detail like CONCAT('%',#{studyNewsDto.newsDetail},'%')
+    </if>
+    <if test="studyNewsDto.newsPhotoUrl != null and studyNewsDto.newsPhotoUrl != ''">
+      AND studyNews.news_photo_url like CONCAT('%',#{studyNewsDto.newsPhotoUrl},'%')
+    </if>
+    order by studyNews.id desc
+</select>
+</mapper>

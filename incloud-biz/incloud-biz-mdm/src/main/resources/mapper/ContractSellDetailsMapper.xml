@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.mdm.mapper.ContractSellDetailsMapper">
+
+<resultMap id="contractSellDetailsMap" type="com.netwisd.biz.mdm.vo.ContractSellDetailsVo">
+  <id property="id" column="id"/>
+  <result property="materialId" column="material_id"/>
+  <result property="contractId" column="contract_id"/>
+  <result property="contractCode" column="contract_code"/>
+  <result property="contractName" column="contract_name"/>
+  <result property="materialCode" column="material_code"/>
+  <result property="materialName" column="material_name"/>
+  <result property="specification" column="specification"/>
+  <result property="unit" column="unit"/>
+  <result property="planQuantity" column="plan_quantity"/>
+  <result property="texture" column="texture"/>
+  <result property="price" column="price"/>
+  <result property="totalPrice" column="total_price"/>
+  <result property="cost" column="cost"/>
+  <result property="tax" column="tax"/>
+  <result property="invoiceType" column="invoice_type"/>
+  <result property="taxRate" column="tax_rate"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.mdm.dto.ContractSellDetailsDto" resultMap="contractSellDetailsMap">
+  select * from incloud_biz_mdm_contract_sell_details contractSellDetails where 1=1
+    <if test="contractSellDetailsDto.id != null and contractSellDetailsDto.id != ''">
+      AND contractSellDetails.id = #{contractSellDetailsDto.id}
+    </if>
+    <if test="contractSellDetailsDto.materialId != null and contractSellDetailsDto.materialId != ''">
+      AND contractSellDetails.material_id = #{contractSellDetailsDto.materialId}
+    </if>
+    <if test="contractSellDetailsDto.contractId != null and contractSellDetailsDto.contractId != ''">
+      AND contractSellDetails.contract_id = #{contractSellDetailsDto.contractId}
+    </if>
+    <if test="contractSellDetailsDto.contractCode != null and contractSellDetailsDto.contractCode != ''">
+      AND contractSellDetails.contract_code like CONCAT('%',#{contractSellDetailsDto.contractCode},'%')
+    </if>
+    <if test="contractSellDetailsDto.contractName != null and contractSellDetailsDto.contractName != ''">
+      AND contractSellDetails.contract_name like CONCAT('%',#{contractSellDetailsDto.contractName},'%')
+    </if>
+    <if test="contractSellDetailsDto.materialCode != null and contractSellDetailsDto.materialCode != ''">
+      AND contractSellDetails.material_code like CONCAT('%',#{contractSellDetailsDto.materialCode},'%')
+    </if>
+    <if test="contractSellDetailsDto.materialName != null and contractSellDetailsDto.materialName != ''">
+      AND contractSellDetails.material_name like CONCAT('%',#{contractSellDetailsDto.materialName},'%')
+    </if>
+    <if test="contractSellDetailsDto.specification != null and contractSellDetailsDto.specification != ''">
+      AND contractSellDetails.specification like CONCAT('%',#{contractSellDetailsDto.specification},'%')
+    </if>
+    <if test="contractSellDetailsDto.unit != null and contractSellDetailsDto.unit != ''">
+      AND contractSellDetails.unit like CONCAT('%',#{contractSellDetailsDto.unit},'%')
+    </if>
+    <if test="contractSellDetailsDto.planQuantity != null and contractSellDetailsDto.planQuantity != ''">
+      AND contractSellDetails.plan_quantity like CONCAT('%',#{contractSellDetailsDto.planQuantity},'%')
+    </if>
+    <if test="contractSellDetailsDto.texture != null and contractSellDetailsDto.texture != ''">
+      AND contractSellDetails.texture like CONCAT('%',#{contractSellDetailsDto.texture},'%')
+    </if>
+    <if test="contractSellDetailsDto.price != null and contractSellDetailsDto.price != ''">
+      AND contractSellDetails.price = #{contractSellDetailsDto.price}
+    </if>
+    <if test="contractSellDetailsDto.totalPrice != null and contractSellDetailsDto.totalPrice != ''">
+      AND contractSellDetails.total_price = #{contractSellDetailsDto.totalPrice}
+    </if>
+    <if test="contractSellDetailsDto.cost != null and contractSellDetailsDto.cost != ''">
+      AND contractSellDetails.cost = #{contractSellDetailsDto.cost}
+    </if>
+    <if test="contractSellDetailsDto.tax != null and contractSellDetailsDto.tax != ''">
+      AND contractSellDetails.tax = #{contractSellDetailsDto.tax}
+    </if>
+    <if test="contractSellDetailsDto.invoiceType != null and contractSellDetailsDto.invoiceType != ''">
+      AND contractSellDetails.invoice_type like CONCAT('%',#{contractSellDetailsDto.invoiceType},'%')
+    </if>
+    <if test="contractSellDetailsDto.taxRate != null and contractSellDetailsDto.taxRate != ''">
+      AND contractSellDetails.tax_rate = #{contractSellDetailsDto.taxRate}
+    </if>
+    order by contractSellDetails.id desc
+</select>
+</mapper>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.wf.mapper.WfEventParamMapper">
+
+<resultMap id="wfEventParamMap" type="com.netwisd.base.wf.vo.WfEventParamVo">
+  <id property="id" column="id"/>
+  <result property="eventId" column="event_id"/>
+  <result property="paramType" column="param_type"/>
+  <result property="paramName" column="param_name"/>
+  <result property="paramDefalutValue" column="param_defalut_value"/>
+  <result property="paramId" column="param_id"/>
+<!--  <result property="isPullDown" column="is_pull_down"/>-->
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.wf.dto.WfEventParamDto" resultMap="wfEventParamMap">
+  select * from incloud_base_wf_event_param wfEventParam where 1=1
+    <if test="wfEventParamDto.id != null and wfEventParamDto.id != ''">
+      AND wfEventParam.id = #{wfEventParamDto.id}
+    </if>
+    <if test="wfEventParamDto.eventId != null and wfEventParamDto.eventId != ''">
+      AND wfEventParam.event_id = #{wfEventParamDto.eventId}
+    </if>
+    <if test="wfEventParamDto.paramType != null and wfEventParamDto.paramType != ''">
+      AND wfEventParam.param_type like CONCAT('%',#{wfEventParamDto.paramType},'%')
+    </if>
+    <if test="wfEventParamDto.varId != null and wfEventParamDto.varId != ''">
+      AND wfEventParam.var_id like CONCAT('%',#{wfEventParamDto.varId},'%')
+    </if>
+    <if test="wfEventParamDto.varName != null and wfEventParamDto.varName != ''">
+      AND wfEventParam.var_name like CONCAT('%',#{wfEventParamDto.varName},'%')
+    </if>
+    <if test="wfEventParamDto.varDefalutValue != null and wfEventParamDto.varDefalutValue != ''">
+      AND wfEventParam.var_defalut_value like CONCAT('%',#{wfEventParamDto.varDefalutValue},'%')
+    </if>
+    order by wfEventParam.id desc
+</select>
+</mapper>

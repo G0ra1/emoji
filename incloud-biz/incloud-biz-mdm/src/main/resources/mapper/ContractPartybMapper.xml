@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.mdm.mapper.ContractPartybMapper">
+
+<resultMap id="contractPartybMap" type="com.netwisd.biz.mdm.vo.ContractPartybVo">
+  <id property="id" column="id"/>
+  <result property="contractId" column="contract_id"/>
+  <result property="contractCode" column="contract_code"/>
+  <result property="partybId" column="partyb_id"/>
+  <result property="partybCode" column="partyb_code"/>
+  <result property="partybName" column="partyb_name"/>
+  <result property="contractType" column="contract_type"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.mdm.dto.ContractPartybDto" resultMap="contractPartybMap">
+  select * from incloud_biz_mdm_contract_partyb contractPartyb where 1=1
+    <if test="contractPartybDto.id != null and contractPartybDto.id != ''">
+      AND contractPartyb.id = #{contractPartybDto.id}
+    </if>
+    <if test="contractPartybDto.contractId != null and contractPartybDto.contractId != ''">
+      AND contractPartyb.contract_id = #{contractPartybDto.contractId}
+    </if>
+    <if test="contractPartybDto.contractCode != null and contractPartybDto.contractCode != ''">
+      AND contractPartyb.contract_code like CONCAT('%',#{contractPartybDto.contractCode},'%')
+    </if>
+    <if test="contractPartybDto.partybId != null and contractPartybDto.partybId != ''">
+      AND contractPartyb.partyb_id = #{contractPartybDto.partybId}
+    </if>
+    <if test="contractPartybDto.partybCode != null and contractPartybDto.partybCode != ''">
+      AND contractPartyb.partyb_code like CONCAT('%',#{contractPartybDto.partybCode},'%')
+    </if>
+    <if test="contractPartybDto.partybName != null and contractPartybDto.partybName != ''">
+      AND contractPartyb.partyb_name like CONCAT('%',#{contractPartybDto.partybName},'%')
+    </if>
+    <if test="contractPartybDto.contractType != null and contractPartybDto.contractType != ''">
+      AND contractPartyb.contract_type = #{contractPartybDto.contractType}
+    </if>
+    order by contractPartyb.id desc
+</select>
+</mapper>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.wf.mapper.WfProcDefRelMapper">
+
+<resultMap id="wfProcDefRelMap" type="com.netwisd.base.wf.vo.WfProcDefRelVo">
+  <id property="id" column="id"/>
+  <result property="mainCamundaProcdefId" column="main_camunda_procdef_id"/>
+  <result property="mainProcdefName" column="main_procdef_name"/>
+  <result property="mainProcdefId" column="main_procdef_id"/>
+  <result property="childCamundaProcdefKey" column="child_camunda_procdef_key"/>
+  <result property="childProcdefVersion" column="child_procdef_version"/>
+
+  <result property="childCamundaProcdefId" column="child_camunda_procdef_id"/>
+  <result property="childProcdefName" column="child_procdef_name"/>
+  <result property="childProcdefId" column="child_procdef_id"/>
+  <result property="mainCamundaNodeDefId" column="main_camunda_node_def_id"/>
+  <result property="mainNodeDefId" column="main_node_def_id"/>
+  <result property="mainNodeName" column="main_node_name"/>
+
+
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.wf.dto.WfProcDefRelDto" resultMap="wfProcDefRelMap">
+  select * from incloud_base_wf_proc_def_rel wfProcDefRel where 1=1
+    <if test="wfProcDefRelDto.id != null and wfProcDefRelDto.id != ''">
+      AND wfProcDefRel.id = #{wfProcDefRelDto.id}
+    </if>
+    <if test="wfProcDefRelDto.mainCamundaProcdefId != null and wfProcDefRelDto.mainCamundaProcdefId != ''">
+      AND wfProcDefRel.main_camunda_procdef_id like CONCAT('%',#{wfProcDefRelDto.mainCamundaProcdefId},'%')
+    </if>
+    <if test="wfProcDefRelDto.childCamundaProcdefKey != null and wfProcDefRelDto.childCamundaProcdefKey != ''">
+      AND wfProcDefRel.child_camunda_procdef_key like CONCAT('%',#{wfProcDefRelDto.childCamundaProcdefKey},'%')
+    </if>
+    <if test="wfProcDefRelDto.childCamundaNodeDefId != null and wfProcDefRelDto.childCamundaNodeDefId != ''">
+      AND wfProcDefRel.child_camunda_node_def_id like CONCAT('%',#{wfProcDefRelDto.childCamundaNodeDefId},'%')
+    </if>
+    order by wfProcDefRel.id desc
+</select>
+</mapper>

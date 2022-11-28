@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.study.mapper.StudyUserExamMapper">
+
+    <resultMap id="studyUserExamMap" type="com.netwisd.biz.study.vo.StudyUserExamVo">
+        <id property="id" column="id"/>
+        <result property="userId" column="user_id"/>
+        <result property="userName" column="user_name"/>
+        <result property="specialId" column="special_id"/>
+        <result property="lessonId" column="lesson_id"/>
+        <result property="paperId" column="paper_id"/>
+        <result property="paperCode" column="paper_code"/>
+        <result property="paperStatus" column="paper_status"/>
+        <result property="paperType" column="paper_type"/>
+        <result property="paperName" column="paper_name"/>
+        <result property="paperTotalScore" column="paper_total_score"/>
+        <result property="examScore" column="exam_score"/>
+        <result property="remark" column="remark"/>
+        <result property="specialExamTime" column="special_exam_time"/>
+        <result property="paperStartTime" column="paper_start_time"/>
+        <result property="paperEndTime" column="paper_end_time"/>
+        <result property="examLevel" column="exam_level"/>
+        <result property="handTime" column="hand_time"/>
+        <result property="markingId" column="marking_id"/>
+        <result property="markingName" column="marking_name"/>
+        <result property="markingTime" column="marking_time"/>
+        <result property="answerStartTime" column="answer_start_time"/>
+        <result property="answerEndTime" column="answer_end_time"/>
+        <result property="isSubmit" column="is_submit"/>
+    </resultMap>
+    <select id="getPageList" parameterType="com.netwisd.biz.study.dto.StudyUserExamDto" resultMap="studyUserExamMap">
+        select * from incloud_biz_study_user_exam studyUserExam where 1=1
+        <if test="studyUserExamDto.id != null and studyUserExamDto.id != ''">
+            AND studyUserExam.id = #{studyUserExamDto.id}
+        </if>
+        <if test="studyUserExamDto.userId != null and studyUserExamDto.userId != ''">
+            AND studyUserExam.user_id = #{studyUserExamDto.userId}
+        </if>
+        <if test="studyUserExamDto.userName != null and studyUserExamDto.userName != ''">
+            AND studyUserExam.user_name like CONCAT('%',#{studyUserExamDto.userName},'%')
+        </if>
+        <if test="studyUserExamDto.specialId != null and studyUserExamDto.specialId != ''">
+            AND studyUserExam.special_id = #{studyUserExamDto.specialId}
+        </if>
+        <if test="studyUserExamDto.lessonId != null and studyUserExamDto.lessonId != ''">
+            AND studyUserExam.lesson_id = #{studyUserExamDto.lessonId}
+        </if>
+        <if test="studyUserExamDto.paperId != null and studyUserExamDto.paperId != ''">
+            AND studyUserExam.paper_id = #{studyUserExamDto.paperId}
+        </if>
+        <if test="studyUserExamDto.paperCode != null and studyUserExamDto.paperCode != ''">
+            AND studyUserExam.paper_code = #{studyUserExamDto.paperCode}
+        </if>
+        <if test="studyUserExamDto.paperStatus != null and studyUserExamDto.paperStatus != ''">
+            AND studyUserExam.paper_status = #{studyUserExamDto.paperStatus}
+        </if>
+        <if test="studyUserExamDto.paperType != null and studyUserExamDto.paperType != ''">
+            AND studyUserExam.paper_type like CONCAT('%',#{studyUserExamDto.paperType},'%')
+        </if>
+        <if test="studyUserExamDto.paperName != null and studyUserExamDto.paperName != ''">
+            AND studyUserExam.paper_name like CONCAT('%',#{studyUserExamDto.paperName},'%')
+        </if>
+        <if test="studyUserExamDto.paperTotalScore != null and studyUserExamDto.paperTotalScore != ''">
+            AND studyUserExam.paper_total_score = #{studyUserExamDto.paperTotalScore}
+        </if>
+        <if test="studyUserExamDto.examScore != null and studyUserExamDto.examScore != ''">
+            AND studyUserExam.exam_score = #{studyUserExamDto.examScore}
+        </if>
+        <if test="studyUserExamDto.remark != null and studyUserExamDto.remark != ''">
+            AND studyUserExam.remark like CONCAT('%',#{studyUserExamDto.remark},'%')
+        </if>
+        <if test="studyUserExamDto.specialExamTime != null and studyUserExamDto.specialExamTime != ''">
+            AND studyUserExam.special_exam_time = #{studyUserExamDto.specialExamTime}
+        </if>
+        <if test="studyUserExamDto.paperStartTime != null and studyUserExamDto.paperStartTime != ''">
+            AND studyUserExam.paper_start_time = #{studyUserExamDto.paperStartTime}
+        </if>
+        <if test="studyUserExamDto.paperEndTime != null and studyUserExamDto.paperEndTime != ''">
+            AND studyUserExam.paper_end_time = #{studyUserExamDto.paperEndTime}
+        </if>
+        <if test="studyUserExamDto.examLevel != null and studyUserExamDto.examLevel != ''">
+            AND studyUserExam.exam_level = #{studyUserExamDto.examLevel}
+        </if>
+        <if test="studyUserExamDto.handTime != null and studyUserExamDto.handTime != ''">
+            AND studyUserExam.hand_time = #{studyUserExamDto.handTime}
+        </if>
+        <if test="studyUserExamDto.markingId != null and studyUserExamDto.markingId != ''">
+            AND studyUserExam.marking_id = #{studyUserExamDto.markingId}
+        </if>
+        <if test="studyUserExamDto.markingName != null and studyUserExamDto.markingName != ''">
+            AND studyUserExam.marking_name like CONCAT('%',#{studyUserExamDto.markingName},'%')
+        </if>
+        <if test="studyUserExamDto.markingTime != null and studyUserExamDto.markingTime != ''">
+            AND studyUserExam.marking_time = #{studyUserExamDto.markingTime}
+        </if>
+        <if test="studyUserExamDto.answerStartTime != null and studyUserExamDto.answerStartTime != ''">
+            AND studyUserExam.answer_start_time = #{studyUserExamDto.answerStartTime}
+        </if>
+        <if test="studyUserExamDto.answerEndTime != null and studyUserExamDto.answerEndTime != ''">
+            AND studyUserExam.answer_end_time = #{studyUserExamDto.answerEndTime}
+        </if>
+        <if test="studyUserExamDto.isSubmit != null and studyUserExamDto.isSubmit != ''">
+            AND studyUserExam.is_submit = #{studyUserExamDto.isSubmit}
+        </if>
+        order by studyUserExam.id desc
+    </select>
+</mapper>

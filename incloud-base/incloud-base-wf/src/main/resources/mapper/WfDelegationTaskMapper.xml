@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.wf.mapper.WfDelegationTaskMapper">
+
+<resultMap id="delegationTaskMap" type="com.netwisd.base.wf.vo.WfDelegationTaskVo">
+  <id property="id" column="id"/>
+  <result property="camundaProcdefId" column="camunda_procdef_id"/>
+  <result property="camundaProcdefKey" column="camunda_procdef_key"/>
+  <result property="camundaProcdefVersion" column="camunda_procdef_version"/>
+  <result property="camundaProcinsId" column="camunda_procins_id"/>
+  <result property="camundaTaskId" column="camunda_task_id"/>
+  <result property="camundaNodeKey" column="camunda_node_key"/>
+  <result property="camundaNodeName" column="camunda_node_name"/>
+  <result property="camundaNodeType" column="camunda_node_type"/>
+  <result property="procinsId" column="procins_id"/>
+  <result property="procinsName" column="procins_name"/>
+  <result property="ownner" column="ownner"/>
+  <result property="ownnerName" column="ownner_name"/>
+  <result property="assignee" column="assignee"/>
+  <result property="assigneeName" column="assignee_name"/>
+  <result property="procdefId" column="procdef_id"/>
+  <result property="procdefName" column="procdef_name"/>
+  <result property="procdefTypeId" column="procdef_type_id"/>
+  <result property="procdefTypeName" column="procdef_type_name"/>
+  <result property="cliamTime" column="cliam_time"/>
+  <result property="state" column="state"/>
+  <result property="reason" column="reason"/>
+  <result property="applyTime" column="apply_time"/>
+  <result property="starterId" column="starter_id"/>
+  <result property="starterName" column="starter_name"/>
+  <result property="starterDeptId" column="starter_dept_id"/>
+  <result property="starterDeptName" column="starter_dept_name"/>
+  <result property="starterOrgId" column="starter_org_id"/>
+  <result property="starterOrgName" column="starter_org_name"/>
+  <result property="bizKey" column="biz_key"/>
+  <result property="isDuplicated" column="is_duplicated"/>
+  <result property="isCallActivity" column="is_call_activity"/>
+  <result property="isClone" column="is_clone"/>
+  <result property="camundaParentProcinsId" column="camunda_parent_procins_id"/>
+  <result property="parentProcinsId" column="parent_procins_id"/>
+  <result property="isClonedByCamundaProcdefId" column="is_cloned_by_camunda_procdef_id"/>
+  <result property="currentActivityId" column="current_activity_id"/>
+  <result property="currentActivityName" column="current_activity_name"/>
+  <result property="currentActivityAssignee" column="current_activity_assignee"/>
+  <result property="currentActivityAssigneeName" column="current_activity_assignee_name"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+  <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+  <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+  <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+  <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+  <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+  <result property="priority" column="priority"/>
+  <result property="bizPriority" column="biz_priority"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.wf.dto.WfDelegationTaskDto" resultMap="delegationTaskMap">
+  select * from incloud_base_wf_delegation_task wfDelegationTask where 1=1
+    <if test="wfDelegationTaskDto.id != null and wfDelegationTaskDto.id != ''">
+      AND wfDelegationTask.id = #{wfDelegationTaskDto.id}
+    </if>
+    <if test="wfDelegationTaskDto.camundaProcdefId != null and wfDelegationTaskDto.camundaProcdefId != ''">
+      AND wfDelegationTask.camunda_procdef_id like CONCAT('%',#{wfDelegationTaskDto.camundaProcdefId},'%')
+    </if>
+    <if test="wfDelegationTaskDto.camundaProcdefKey != null and wfDelegationTaskDto.camundaProcdefKey != ''">
+      AND wfDelegationTask.camunda_procdef_key like CONCAT('%',#{wfDelegationTaskDto.camundaProcdefKey},'%')
+    </if>
+    <if test="wfDelegationTaskDto.camundaProcdefVersion != null and wfDelegationTaskDto.camundaProcdefVersion != ''">
+      AND wfDelegationTask.camunda_procdef_version = #{wfDelegationTaskDto.camundaProcdefVersion}
+    </if>
+    <if test="wfDelegationTaskDto.camundaProcinsId != null and wfDelegationTaskDto.camundaProcinsId != ''">
+      AND wfDelegationTask.camunda_procins_id like CONCAT('%',#{wfDelegationTaskDto.camundaProcinsId},'%')
+    </if>
+    <if test="wfDelegationTaskDto.camundaTaskId != null and wfDelegationTaskDto.camundaTaskId != ''">
+      AND wfDelegationTask.camunda_task_id like CONCAT('%',#{wfDelegationTaskDto.camundaTaskId},'%')
+    </if>
+    <if test="wfDelegationTaskDto.camundaNodeKey != null and wfDelegationTaskDto.camundaNodeKey != ''">
+      AND wfDelegationTask.camunda_node_key like CONCAT('%',#{wfDelegationTaskDto.camundaNodeKey},'%')
+    </if>
+    <if test="wfDelegationTaskDto.camundaNodeName != null and wfDelegationTaskDto.camundaNodeName != ''">
+      AND wfDelegationTask.camunda_node_name like CONCAT('%',#{wfDelegationTaskDto.camundaNodeName},'%')
+    </if>
+    <if test="wfDelegationTaskDto.camundaNodeType != null and wfDelegationTaskDto.camundaNodeType != ''">
+      AND wfDelegationTask.camunda_node_type = #{wfDelegationTaskDto.camundaNodeType}
+    </if>
+    <if test="wfDelegationTaskDto.procinsId != null and wfDelegationTaskDto.procinsId != ''">
+      AND wfDelegationTask.procins_id = #{wfDelegationTaskDto.procinsId}
+    </if>
+    <if test="wfDelegationTaskDto.procinsName != null and wfDelegationTaskDto.procinsName != ''">
+      AND wfDelegationTask.procins_name like CONCAT('%',#{wfDelegationTaskDto.procinsName},'%')
+    </if>
+    <if test="wfDelegationTaskDto.ownner != null and wfDelegationTaskDto.ownner != ''">
+      AND wfDelegationTask.ownner like CONCAT('%',#{wfDelegationTaskDto.ownner},'%')
+    </if>
+    <if test="wfDelegationTaskDto.ownnerName != null and wfDelegationTaskDto.ownnerName != ''">
+      AND wfDelegationTask.ownner_name like CONCAT('%',#{wfDelegationTaskDto.ownnerName},'%')
+    </if>
+    <if test="wfDelegationTaskDto.assignee != null and wfDelegationTaskDto.assignee != ''">
+      AND wfDelegationTask.assignee like CONCAT('%',#{wfDelegationTaskDto.assignee},'%')
+    </if>
+    <if test="wfDelegationTaskDto.assigneeName != null and wfDelegationTaskDto.assigneeName != ''">
+      AND wfDelegationTask.assignee_name like CONCAT('%',#{wfDelegationTaskDto.assigneeName},'%')
+    </if>
+    <if test="wfDelegationTaskDto.procdefId != null and wfDelegationTaskDto.procdefId != ''">
+      AND wfDelegationTask.procdef_id = #{wfDelegationTaskDto.procdefId}
+    </if>
+    <if test="wfDelegationTaskDto.procdefName != null and wfDelegationTaskDto.procdefName != ''">
+      AND wfDelegationTask.procdef_name like CONCAT('%',#{wfDelegationTaskDto.procdefName},'%')
+    </if>
+    <if test="wfDelegationTaskDto.procdefTypeId != null and wfDelegationTaskDto.procdefTypeId != ''">
+      AND wfDelegationTask.procdef_type_id = #{wfDelegationTaskDto.procdefTypeId}
+    </if>
+    <if test="wfDelegationTaskDto.procdefTypeName != null and wfDelegationTaskDto.procdefTypeName != ''">
+      AND wfDelegationTask.procdef_type_name like CONCAT('%',#{wfDelegationTaskDto.procdefTypeName},'%')
+    </if>
+    <if test="wfDelegationTaskDto.cliamTime != null and wfDelegationTaskDto.cliamTime != ''">
+      AND wfDelegationTask.cliam_time = #{wfDelegationTaskDto.cliamTime}
+    </if>
+    <if test="wfDelegationTaskDto.state != null and wfDelegationTaskDto.state != ''">
+      AND wfDelegationTask.state = #{wfDelegationTaskDto.state}
+    </if>
+    <if test="wfDelegationTaskDto.reason != null and wfDelegationTaskDto.reason != ''">
+      AND wfDelegationTask.reason like CONCAT('%',#{wfDelegationTaskDto.reason},'%')
+    </if>
+    <if test="wfDelegationTaskDto.applyTime != null and wfDelegationTaskDto.applyTime != ''">
+      AND wfDelegationTask.apply_time = #{wfDelegationTaskDto.applyTime}
+    </if>
+    <if test="wfDelegationTaskDto.starterId != null and wfDelegationTaskDto.starterId != ''">
+      AND wfDelegationTask.starter_id = #{wfDelegationTaskDto.starterId}
+    </if>
+    <if test="wfDelegationTaskDto.starterName != null and wfDelegationTaskDto.starterName != ''">
+      AND wfDelegationTask.starter_name like CONCAT('%',#{wfDelegationTaskDto.starterName},'%')
+    </if>
+    <if test="wfDelegationTaskDto.starterDeptId != null and wfDelegationTaskDto.starterDeptId != ''">
+      AND wfDelegationTask.starter_dept_id = #{wfDelegationTaskDto.starterDeptId}
+    </if>
+    <if test="wfDelegationTaskDto.starterDeptName != null and wfDelegationTaskDto.starterDeptName != ''">
+      AND wfDelegationTask.starter_dept_name like CONCAT('%',#{wfDelegationTaskDto.starterDeptName},'%')
+    </if>
+    <if test="wfDelegationTaskDto.starterOrgId != null and wfDelegationTaskDto.starterOrgId != ''">
+      AND wfDelegationTask.starter_org_id = #{wfDelegationTaskDto.starterOrgId}
+    </if>
+    <if test="wfDelegationTaskDto.starterOrgName != null and wfDelegationTaskDto.starterOrgName != ''">
+      AND wfDelegationTask.starter_org_name like CONCAT('%',#{wfDelegationTaskDto.starterOrgName},'%')
+    </if>
+    <if test="wfDelegationTaskDto.bizKey != null and wfDelegationTaskDto.bizKey != ''">
+      AND wfDelegationTask.biz_key like CONCAT('%',#{wfDelegationTaskDto.bizKey},'%')
+    </if>
+    <if test="wfDelegationTaskDto.isDuplicated != null and wfDelegationTaskDto.isDuplicated != ''">
+      AND wfDelegationTask.is_duplicated = #{wfDelegationTaskDto.isDuplicated}
+    </if>
+    <if test="wfDelegationTaskDto.outDuplicateTaskId != null and wfDelegationTaskDto.outDuplicateTaskId != ''">
+      AND wfDelegationTask.out_duplicate_task_id = #{wfDelegationTaskDto.outDuplicateTaskId}
+    </if>
+    <if test="wfDelegationTaskDto.isCallActivity != null and wfDelegationTaskDto.isCallActivity != ''">
+      AND wfDelegationTask.is_call_activity = #{wfDelegationTaskDto.isCallActivity}
+    </if>
+    <if test="wfDelegationTaskDto.isClone != null and wfDelegationTaskDto.isClone != ''">
+      AND wfDelegationTask.is_clone = #{wfDelegationTaskDto.isClone}
+    </if>
+    <if test="wfDelegationTaskDto.camundaParentProcinsId != null and wfDelegationTaskDto.camundaParentProcinsId != ''">
+      AND wfDelegationTask.camunda_parent_procins_id like CONCAT('%',#{wfDelegationTaskDto.camundaParentProcinsId},'%')
+    </if>
+    <if test="wfDelegationTaskDto.parentProcinsId != null and wfDelegationTaskDto.parentProcinsId != ''">
+      AND wfDelegationTask.parent_procins_id = #{wfDelegationTaskDto.parentProcinsId}
+    </if>
+    <if test="wfDelegationTaskDto.isClonedByCamundaProcdefId != null and wfDelegationTaskDto.isClonedByCamundaProcdefId != ''">
+      AND wfDelegationTask.is_cloned_by_camunda_procdef_id like CONCAT('%',#{wfDelegationTaskDto.isClonedByCamundaProcdefId},'%')
+    </if>
+    <if test="wfDelegationTaskDto.currentActivityId != null and wfDelegationTaskDto.currentActivityId != ''">
+      AND wfDelegationTask.current_activity_id like CONCAT('%',#{wfDelegationTaskDto.currentActivityId},'%')
+    </if>
+    <if test="wfDelegationTaskDto.currentActivityName != null and wfDelegationTaskDto.currentActivityName != ''">
+      AND wfDelegationTask.current_activity_name like CONCAT('%',#{wfDelegationTaskDto.currentActivityName},'%')
+    </if>
+    <if test="wfDelegationTaskDto.currentActivityAssignee != null and wfDelegationTaskDto.currentActivityAssignee != ''">
+      AND wfDelegationTask.current_activity_assignee like CONCAT('%',#{wfDelegationTaskDto.currentActivityAssignee},'%')
+    </if>
+    <if test="wfDelegationTaskDto.currentActivityAssigneeName != null and wfDelegationTaskDto.currentActivityAssigneeName != ''">
+      AND wfDelegationTask.current_activity_assignee_name like CONCAT('%',#{wfDelegationTaskDto.currentActivityAssigneeName},'%')
+    </if>
+    <if test="wfDelegationTaskDto.createUserId != null and wfDelegationTaskDto.createUserId != ''">
+      AND wfDelegationTask.create_user_id = #{wfDelegationTaskDto.createUserId}
+    </if>
+    <if test="wfDelegationTaskDto.createUserName != null and wfDelegationTaskDto.createUserName != ''">
+      AND wfDelegationTask.create_user_name like CONCAT('%',#{wfDelegationTaskDto.createUserName},'%')
+    </if>
+    <if test="wfDelegationTaskDto.createUserParentOrgId != null and wfDelegationTaskDto.createUserParentOrgId != ''">
+      AND wfDelegationTask.create_user_parent_org_id = #{wfDelegationTaskDto.createUserParentOrgId}
+    </if>
+    <if test="wfDelegationTaskDto.createUserParentOrgName != null and wfDelegationTaskDto.createUserParentOrgName != ''">
+      AND wfDelegationTask.create_user_parent_org_name like CONCAT('%',#{wfDelegationTaskDto.createUserParentOrgName},'%')
+    </if>
+    <if test="wfDelegationTaskDto.createUserParentDeptId != null and wfDelegationTaskDto.createUserParentDeptId != ''">
+      AND wfDelegationTask.create_user_parent_dept_id = #{wfDelegationTaskDto.createUserParentDeptId}
+    </if>
+    <if test="wfDelegationTaskDto.createUserParentDeptName != null and wfDelegationTaskDto.createUserParentDeptName != ''">
+      AND wfDelegationTask.create_user_parent_dept_name like CONCAT('%',#{wfDelegationTaskDto.createUserParentDeptName},'%')
+    </if>
+    <if test="wfDelegationTaskDto.createUserOrgFullId != null and wfDelegationTaskDto.createUserOrgFullId != ''">
+      AND wfDelegationTask.create_user_org_full_id like CONCAT('%',#{wfDelegationTaskDto.createUserOrgFullId},'%')
+    </if>
+    order by wfDelegationTask.id desc
+</select>
+</mapper>

@@ -1,0 +1,29 @@
+incloud:
+  table:
+    package: com.netwisd.biz.mdm.entity
+spring:
+  servlet:
+    multipart:
+      max-request-size: 100MB
+      max-file-size: 100MB
+  jms:
+    pub-sub-domain: false
+  # 股份配置信息
+  gldInfo:
+    url:
+      supplierUrl: http://inter.cnecc.com/api/suppliers?token=
+      supplierTypeUrl: http://inter.cnecc.com/api/suppliercategorys?token=
+      contractUrl: http://inter.cnecc.com/api/contracts?token=
+      conMaterialUrl: http://inter.cnecc.com/api/contracts/materials?token=
+      orgnizationsUrl: http://inter.cnecc.com/api/orgnizations?token=
+      projectUrl: http://inter.cnecc.com/api/projects?token=
+      redirectUri: http://44m90c3673.yicp.fun:14280/api/getToken
+  activemq:
+    broker-url: failover:(tcp://192.168.1.195:61616,tcp://192.168.1.195:61617,tcp://192.168.1.195:61618)
+    user: admin
+    password: admin
+    pool:
+      enabled: true
+      max-connections: 50
+    packages:
+      trust-all: true

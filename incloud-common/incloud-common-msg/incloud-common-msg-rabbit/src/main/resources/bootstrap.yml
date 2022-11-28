@@ -1,0 +1,19 @@
+#此配置并不起作用，只是为了查看方便
+spring:
+  rabbitmq:
+    addresses: ${incloud3_rabbitmq_host:127.0.0.1}:${incloud3_rabbitmq_host:5672}
+    username: ${incloud3_rabbitmq_username:netwisd}
+    password: ${incloud3_rabbitmq_password:netwisd}
+    virtual-host: ${incloud3_rabbitmq_virtual:/}
+    connection-timeout: 15000
+    publisher-returns: true
+    publisher-confirm-type: CORRELATED
+    listener:
+      simple:
+        acknowledge-mode: manual
+        concurrency: 3
+        max-concurrency: 10
+        default-requeue-rejected: false
+    template:
+      mandatory: true
+

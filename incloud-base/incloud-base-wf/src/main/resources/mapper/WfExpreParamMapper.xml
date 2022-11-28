@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.wf.mapper.WfExpreParamMapper">
+
+<resultMap id="wfExpreParamMap" type="com.netwisd.base.wf.vo.WfExpreParamVo">
+  <id property="id" column="id"/>
+  <result property="paramVarType" column="param_var_type"/>
+  <result property="paramId" column="param_id"/>
+  <result property="paramName" column="param_name"/>
+  <result property="expreId" column="expre_id"/>
+  <result property="param_desc" column="paramDesc"/>
+  <result property="sequence_num" column="sequenceNum"/>
+  <result property="is_del" column="isDel"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.wf.dto.WfExpreParamDto" resultMap="wfExpreParamMap">
+  select * from incloud_base_wf_expre_param wfExpreParam where 1=1
+    <if test="wfExpreParamDto.id != null and wfExpreParamDto.id != ''">
+      AND wfExpreParam.id = #{wfExpreParamDto.id}
+    </if>
+    <if test="wfExpreParamDto.paramType != null and wfExpreParamDto.paramType != ''">
+      AND wfExpreParam.param_type = #{wfExpreParamDto.paramType}
+    </if>
+    <if test="wfExpreParamDto.paramVarType != null and wfExpreParamDto.paramVarType != ''">
+      AND wfExpreParam.param_var_type = #{wfExpreParamDto.paramVarType}
+    </if>
+    <if test="wfExpreParamDto.paramId != null and wfExpreParamDto.paramId != ''">
+      AND wfExpreParam.param_id like CONCAT('%',#{wfExpreParamDto.paramId},'%')
+    </if>
+    <if test="wfExpreParamDto.paramName != null and wfExpreParamDto.paramName != ''">
+      AND wfExpreParam.param_name like CONCAT('%',#{wfExpreParamDto.paramName},'%')
+    </if>
+    <if test="wfExpreParamDto.expreId != null and wfExpreParamDto.expreId != ''">
+      AND wfExpreParam.expre_id = #{wfExpreParamDto.expreId}
+    </if>
+    <if test="wfExpreParamDto.remark != null and wfExpreParamDto.remark != ''">
+      AND wfExpreParam.remark like CONCAT('%',#{wfExpreParamDto.remark},'%')
+    </if>
+    order by wfExpreParam.id desc
+</select>
+</mapper>

@@ -1,0 +1,39 @@
+spring:
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+file:
+  local:
+    path: /opt/localFile
+#    path: ${file-path:d:/uploadFiles}
+    prefix: /statics
+    urlPrefix: /file${file.local.prefix}
+    #urlPrefix: http://10.255.0.186/api-f
+  aliyun:
+    endpoint: xxx
+    accessKeyId: xxx
+    accessKeySecret: xxx
+    bucketName: xxx
+    domain: https://xxx
+  minio:
+    #url: http://10.255.0.190:9000
+    url: http://${incloud3_minio_host:10.255.0.190}:${incloud3_minio_port:9000}
+    accessKey: ${incloud3_minio_accessKey:root}
+    secretKey: ${incloud3_minio_secretKey:Netwisd*8}
+    bucketName: ${incloud3_minio_bucketName:incloud3}
+  enable:
+    storeType: LOCAL
+elasticsearch:
+  address: 192.168.1.196:9200
+canal: 
+  canalServer: 192.168.1.196
+  canalPort: 11111
+  destination: incloud4
+  userName: canal
+  password: canal
+incloud:
+  table:
+    package: com.netwisd.base.file.entity
+  index:
+    update: false

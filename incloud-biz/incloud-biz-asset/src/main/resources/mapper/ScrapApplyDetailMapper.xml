@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.asset.mapper.ScrapApplyDetailMapper">
+
+<resultMap id="scrapApplyDetailMap" type="com.netwisd.biz.asset.vo.ScrapApplyDetailVo">
+  <id property="id" column="id"/>
+  <result property="applyId" column="apply_id"/>
+  <result property="assetsId" column="assets_id"/>
+  <result property="assetsDetailId" column="assets_detail_id"/>
+  <result property="classifyId" column="classify_id"/>
+  <result property="classifyCode" column="classify_code"/>
+  <result property="classifyName" column="classify_name"/>
+  <result property="itemType" column="item_type"/>
+  <result property="itemTypeName" column="item_type_name"/>
+  <result property="route" column="route"/>
+  <result property="routeName" column="route_name"/>
+  <result property="taxRate" column="tax_rate"/>
+  <result property="itemId" column="item_id"/>
+  <result property="itemCode" column="item_code"/>
+  <result property="itemName" column="item_name"/>
+  <result property="desclong" column="desclong"/>
+  <result property="descshort" column="descshort"/>
+  <result property="unitCode" column="unit_code"/>
+  <result property="unitName" column="unit_name"/>
+  <result property="materialQuality" column="material_quality"/>
+  <result property="standard" column="standard"/>
+  <result property="specs" column="specs"/>
+  <result property="skuCode" column="sku_code"/>
+  <result property="skuFullId" column="sku_full_id"/>
+  <result property="skuFullName" column="sku_full_name"/>
+  <result property="supplierName" column="supplier_name"/>
+  <result property="contractCode" column="contract_code"/>
+  <result property="assetsClassification" column="assets_classification"/>
+  <result property="billCodes" column="bill_codes"/>
+  <result property="billCodeFilesIds" column="bill_code_files_ids"/>
+  <result property="qualityAssuranceLevel" column="quality_assurance_level"/>
+  <result property="manufacturer" column="manufacturer"/>
+  <result property="productionDate" column="production_date"/>
+  <result property="serviceLife" column="service_life"/>
+  <result property="validPeriod" column="valid_period"/>
+  <result property="batchNumber" column="batch_number"/>
+  <result property="factoryDate" column="factory_date"/>
+  <result property="factoryCode" column="factory_code"/>
+  <result property="approachDate" column="approach_date"/>
+  <result property="warehouseId" column="warehouse_id"/>
+  <result property="warehouseName" column="warehouse_name"/>
+  <result property="shelfId" column="shelf_id"/>
+  <result property="shelfName" column="shelf_name"/>
+  <result property="assetsCode" column="assets_code"/>
+  <result property="stockNumber" column="stock_number"/>
+  <result property="scrapNumber" column="scrap_number"/>
+  <result property="assetsAmount" column="assets_amount"/>
+  <result property="assetsUntaxedAmount" column="assets_untaxed_amount"/>
+  <result property="assetsTaxAmount" column="assets_tax_amount"/>
+  <result property="assetsSumAmount" column="assets_sum_amount"/>
+  <result property="assetsSumUntaxedAmount" column="assets_sum_untaxed_amount"/>
+  <result property="assetsType" column="assets_type"/>
+  <result property="assetsSumTaxAmount" column="assets_sum_tax_amount"/>
+  <result property="cause" column="cause"/>
+  <result property="scrapRegisterNumber" column="scrap_register_number"/>
+  <result property="notScrapRegisterNumber" column="not_scrap_register_number"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.asset.dto.ScrapApplyDetailDto" resultMap="scrapApplyDetailMap">
+  select * from incloud_biz_asset_scrap_apply_detail scrapApplyDetail where 1=1
+    <if test="scrapApplyDetailDto.id != null and scrapApplyDetailDto.id != ''">
+      AND scrapApplyDetail.id = #{scrapApplyDetailDto.id}
+    </if>
+    <if test="scrapApplyDetailDto.applyId != null and scrapApplyDetailDto.applyId != ''">
+      AND scrapApplyDetail.apply_id = #{scrapApplyDetailDto.applyId}
+    </if>
+    <if test="scrapApplyDetailDto.assetsId != null and scrapApplyDetailDto.assetsId != ''">
+      AND scrapApplyDetail.assets_id = #{scrapApplyDetailDto.assetsId}
+    </if>
+    <if test="scrapApplyDetailDto.assetsDetailId != null and scrapApplyDetailDto.assetsDetailId != ''">
+      AND scrapApplyDetail.assets_detail_id = #{scrapApplyDetailDto.assetsDetailId}
+    </if>
+    <if test="scrapApplyDetailDto.classifyId != null and scrapApplyDetailDto.classifyId != ''">
+      AND scrapApplyDetail.classify_id = #{scrapApplyDetailDto.classifyId}
+    </if>
+    <if test="scrapApplyDetailDto.classifyCode != null and scrapApplyDetailDto.classifyCode != ''">
+      AND scrapApplyDetail.classify_code like CONCAT('%',#{scrapApplyDetailDto.classifyCode},'%')
+    </if>
+    <if test="scrapApplyDetailDto.classifyName != null and scrapApplyDetailDto.classifyName != ''">
+      AND scrapApplyDetail.classify_name like CONCAT('%',#{scrapApplyDetailDto.classifyName},'%')
+    </if>
+    <if test="scrapApplyDetailDto.itemType != null and scrapApplyDetailDto.itemType != ''">
+      AND scrapApplyDetail.item_type like CONCAT('%',#{scrapApplyDetailDto.itemType},'%')
+    </if>
+    <if test="scrapApplyDetailDto.itemTypeName != null and scrapApplyDetailDto.itemTypeName != ''">
+      AND scrapApplyDetail.item_type_name like CONCAT('%',#{scrapApplyDetailDto.itemTypeName},'%')
+    </if>
+    <if test="scrapApplyDetailDto.route != null and scrapApplyDetailDto.route != ''">
+      AND scrapApplyDetail.route like CONCAT('%',#{scrapApplyDetailDto.route},'%')
+    </if>
+    <if test="scrapApplyDetailDto.routeName != null and scrapApplyDetailDto.routeName != ''">
+      AND scrapApplyDetail.route_name like CONCAT('%',#{scrapApplyDetailDto.routeName},'%')
+    </if>
+    <if test="scrapApplyDetailDto.taxRate != null and scrapApplyDetailDto.taxRate != ''">
+      AND scrapApplyDetail.tax_rate = #{scrapApplyDetailDto.taxRate}
+    </if>
+    <if test="scrapApplyDetailDto.itemId != null and scrapApplyDetailDto.itemId != ''">
+      AND scrapApplyDetail.item_id = #{scrapApplyDetailDto.itemId}
+    </if>
+    <if test="scrapApplyDetailDto.itemCode != null and scrapApplyDetailDto.itemCode != ''">
+      AND scrapApplyDetail.item_code like CONCAT('%',#{scrapApplyDetailDto.itemCode},'%')
+    </if>
+    <if test="scrapApplyDetailDto.itemName != null and scrapApplyDetailDto.itemName != ''">
+      AND scrapApplyDetail.item_name like CONCAT('%',#{scrapApplyDetailDto.itemName},'%')
+    </if>
+    <if test="scrapApplyDetailDto.desclong != null and scrapApplyDetailDto.desclong != ''">
+      AND scrapApplyDetail.desclong like CONCAT('%',#{scrapApplyDetailDto.desclong},'%')
+    </if>
+    <if test="scrapApplyDetailDto.descshort != null and scrapApplyDetailDto.descshort != ''">
+      AND scrapApplyDetail.descshort like CONCAT('%',#{scrapApplyDetailDto.descshort},'%')
+    </if>
+    <if test="scrapApplyDetailDto.unitCode != null and scrapApplyDetailDto.unitCode != ''">
+      AND scrapApplyDetail.unit_code like CONCAT('%',#{scrapApplyDetailDto.unitCode},'%')
+    </if>
+    <if test="scrapApplyDetailDto.unitName != null and scrapApplyDetailDto.unitName != ''">
+      AND scrapApplyDetail.unit_name like CONCAT('%',#{scrapApplyDetailDto.unitName},'%')
+    </if>
+    <if test="scrapApplyDetailDto.materialQuality != null and scrapApplyDetailDto.materialQuality != ''">
+      AND scrapApplyDetail.material_quality like CONCAT('%',#{scrapApplyDetailDto.materialQuality},'%')
+    </if>
+    <if test="scrapApplyDetailDto.standard != null and scrapApplyDetailDto.standard != ''">
+      AND scrapApplyDetail.standard like CONCAT('%',#{scrapApplyDetailDto.standard},'%')
+    </if>
+    <if test="scrapApplyDetailDto.specs != null and scrapApplyDetailDto.specs != ''">
+      AND scrapApplyDetail.specs like CONCAT('%',#{scrapApplyDetailDto.specs},'%')
+    </if>
+    <if test="scrapApplyDetailDto.skuCode != null and scrapApplyDetailDto.skuCode != ''">
+      AND scrapApplyDetail.sku_code like CONCAT('%',#{scrapApplyDetailDto.skuCode},'%')
+    </if>
+    <if test="scrapApplyDetailDto.skuFullId != null and scrapApplyDetailDto.skuFullId != ''">
+      AND scrapApplyDetail.sku_full_id like CONCAT('%',#{scrapApplyDetailDto.skuFullId},'%')
+    </if>
+    <if test="scrapApplyDetailDto.skuFullName != null and scrapApplyDetailDto.skuFullName != ''">
+      AND scrapApplyDetail.sku_full_name like CONCAT('%',#{scrapApplyDetailDto.skuFullName},'%')
+    </if>
+    <if test="scrapApplyDetailDto.supplierName != null and scrapApplyDetailDto.supplierName != ''">
+      AND scrapApplyDetail.supplier_name like CONCAT('%',#{scrapApplyDetailDto.supplierName},'%')
+    </if>
+    <if test="scrapApplyDetailDto.contractCode != null and scrapApplyDetailDto.contractCode != ''">
+      AND scrapApplyDetail.contract_code like CONCAT('%',#{scrapApplyDetailDto.contractCode},'%')
+    </if>
+    <if test="scrapApplyDetailDto.assetsClassification != null and scrapApplyDetailDto.assetsClassification != ''">
+      AND scrapApplyDetail.assets_classification like CONCAT('%',#{scrapApplyDetailDto.assetsClassification},'%')
+    </if>
+    <if test="scrapApplyDetailDto.billCodes != null and scrapApplyDetailDto.billCodes != ''">
+      AND scrapApplyDetail.bill_codes like CONCAT('%',#{scrapApplyDetailDto.billCodes},'%')
+    </if>
+    <if test="scrapApplyDetailDto.billCodeFilesIds != null and scrapApplyDetailDto.billCodeFilesIds != ''">
+      AND scrapApplyDetail.bill_code_files_ids like CONCAT('%',#{scrapApplyDetailDto.billCodeFilesIds},'%')
+    </if>
+    <if test="scrapApplyDetailDto.qualityAssuranceLevel != null and scrapApplyDetailDto.qualityAssuranceLevel != ''">
+      AND scrapApplyDetail.quality_assurance_level like CONCAT('%',#{scrapApplyDetailDto.qualityAssuranceLevel},'%')
+    </if>
+    <if test="scrapApplyDetailDto.manufacturer != null and scrapApplyDetailDto.manufacturer != ''">
+      AND scrapApplyDetail.manufacturer like CONCAT('%',#{scrapApplyDetailDto.manufacturer},'%')
+    </if>
+    <if test="scrapApplyDetailDto.productionDate != null and scrapApplyDetailDto.productionDate != ''">
+      AND scrapApplyDetail.production_date = #{scrapApplyDetailDto.productionDate}
+    </if>
+    <if test="scrapApplyDetailDto.serviceLife != null and scrapApplyDetailDto.serviceLife != ''">
+      AND scrapApplyDetail.service_life = #{scrapApplyDetailDto.serviceLife}
+    </if>
+    <if test="scrapApplyDetailDto.validPeriod != null and scrapApplyDetailDto.validPeriod != ''">
+      AND scrapApplyDetail.valid_period like CONCAT('%',#{scrapApplyDetailDto.validPeriod},'%')
+    </if>
+    <if test="scrapApplyDetailDto.batchNumber != null and scrapApplyDetailDto.batchNumber != ''">
+      AND scrapApplyDetail.batch_number like CONCAT('%',#{scrapApplyDetailDto.batchNumber},'%')
+    </if>
+    <if test="scrapApplyDetailDto.factoryDate != null and scrapApplyDetailDto.factoryDate != ''">
+      AND scrapApplyDetail.factory_date = #{scrapApplyDetailDto.factoryDate}
+    </if>
+    <if test="scrapApplyDetailDto.factoryCode != null and scrapApplyDetailDto.factoryCode != ''">
+      AND scrapApplyDetail.factory_code like CONCAT('%',#{scrapApplyDetailDto.factoryCode},'%')
+    </if>
+    <if test="scrapApplyDetailDto.approachDate != null and scrapApplyDetailDto.approachDate != ''">
+      AND scrapApplyDetail.approach_date = #{scrapApplyDetailDto.approachDate}
+    </if>
+    <if test="scrapApplyDetailDto.warehouseId != null and scrapApplyDetailDto.warehouseId != ''">
+      AND scrapApplyDetail.warehouse_id = #{scrapApplyDetailDto.warehouseId}
+    </if>
+    <if test="scrapApplyDetailDto.warehouseName != null and scrapApplyDetailDto.warehouseName != ''">
+      AND scrapApplyDetail.warehouse_name like CONCAT('%',#{scrapApplyDetailDto.warehouseName},'%')
+    </if>
+    <if test="scrapApplyDetailDto.shelfId != null and scrapApplyDetailDto.shelfId != ''">
+      AND scrapApplyDetail.shelf_id = #{scrapApplyDetailDto.shelfId}
+    </if>
+    <if test="scrapApplyDetailDto.shelfName != null and scrapApplyDetailDto.shelfName != ''">
+      AND scrapApplyDetail.shelf_name like CONCAT('%',#{scrapApplyDetailDto.shelfName},'%')
+    </if>
+    <if test="scrapApplyDetailDto.assetsCode != null and scrapApplyDetailDto.assetsCode != ''">
+      AND scrapApplyDetail.assets_code like CONCAT('%',#{scrapApplyDetailDto.assetsCode},'%')
+    </if>
+    <if test="scrapApplyDetailDto.stockNumber != null and scrapApplyDetailDto.stockNumber != ''">
+      AND scrapApplyDetail.stock_number = #{scrapApplyDetailDto.stockNumber}
+    </if>
+    <if test="scrapApplyDetailDto.scrapNumber != null and scrapApplyDetailDto.scrapNumber != ''">
+      AND scrapApplyDetail.scrap_number = #{scrapApplyDetailDto.scrapNumber}
+    </if>
+    <if test="scrapApplyDetailDto.assetsAmount != null and scrapApplyDetailDto.assetsAmount != ''">
+      AND scrapApplyDetail.assets_amount = #{scrapApplyDetailDto.assetsAmount}
+    </if>
+    <if test="scrapApplyDetailDto.assetsUntaxedAmount != null and scrapApplyDetailDto.assetsUntaxedAmount != ''">
+      AND scrapApplyDetail.assets_untaxed_amount = #{scrapApplyDetailDto.assetsUntaxedAmount}
+    </if>
+    <if test="scrapApplyDetailDto.assetsTaxAmount != null and scrapApplyDetailDto.assetsTaxAmount != ''">
+      AND scrapApplyDetail.assets_tax_amount = #{scrapApplyDetailDto.assetsTaxAmount}
+    </if>
+    <if test="scrapApplyDetailDto.assetsSumAmount != null and scrapApplyDetailDto.assetsSumAmount != ''">
+      AND scrapApplyDetail.assets_sum_amount = #{scrapApplyDetailDto.assetsSumAmount}
+    </if>
+    <if test="scrapApplyDetailDto.assetsSumUntaxedAmount != null and scrapApplyDetailDto.assetsSumUntaxedAmount != ''">
+      AND scrapApplyDetail.assets_sum_untaxed_amount = #{scrapApplyDetailDto.assetsSumUntaxedAmount}
+    </if>
+    <if test="scrapApplyDetailDto.assetsType != null and scrapApplyDetailDto.assetsType != ''">
+      AND scrapApplyDetail.assets_type = #{scrapApplyDetailDto.assetsType}
+    </if>
+    <if test="scrapApplyDetailDto.assetsSumTaxAmount != null and scrapApplyDetailDto.assetsSumTaxAmount != ''">
+      AND scrapApplyDetail.assets_sum_tax_amount = #{scrapApplyDetailDto.assetsSumTaxAmount}
+    </if>
+    <if test="scrapApplyDetailDto.cause != null and scrapApplyDetailDto.cause != ''">
+      AND scrapApplyDetail.cause like CONCAT('%',#{scrapApplyDetailDto.cause},'%')
+    </if>
+    <if test="scrapApplyDetailDto.scrapRegisterNumber != null and scrapApplyDetailDto.scrapRegisterNumber != ''">
+      AND scrapApplyDetail.scrap_register_number = #{scrapApplyDetailDto.scrapRegisterNumber}
+    </if>
+    <if test="scrapApplyDetailDto.notScrapRegisterNumber != null and scrapApplyDetailDto.notScrapRegisterNumber != ''">
+      AND scrapApplyDetail.not_scrap_register_number = #{scrapApplyDetailDto.notScrapRegisterNumber}
+    </if>
+    order by scrapApplyDetail.id desc
+</select>
+</mapper>

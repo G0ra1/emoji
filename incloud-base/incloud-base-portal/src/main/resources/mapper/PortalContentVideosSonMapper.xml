@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.portal.mapper.PortalContentVideosSonMapper">
+
+<resultMap id="portalContentVideosSonMap" type="com.netwisd.base.portal.vo.PortalContentVideosSonVo">
+  <id property="id" column="id"/>
+  <result property="linkVideosId" column="link_videos_id"/>
+  <result property="title" column="title"/>
+  <result property="description" column="description"/>
+  <result property="fileId" column="file_id"/>
+  <result property="contentUrl" column="content_url"/>
+  <result property="hits" column="hits"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.portal.dto.PortalContentVideosSonDto" resultMap="portalContentVideosSonMap">
+  select * from incloud_base_portal_content_videos_son portalContentVideosSon where 1=1
+    <if test="portalContentVideosSonDto.id != null and portalContentVideosSonDto.id != ''">
+      AND portalContentVideosSon.id = #{portalContentVideosSonDto.id}
+    </if>
+    <if test="portalContentVideosSonDto.linkVideosId != null and portalContentVideosSonDto.linkVideosId != ''">
+      AND portalContentVideosSon.link_videos_id = #{portalContentVideosSonDto.linkVideosId}
+    </if>
+    <if test="portalContentVideosSonDto.title != null and portalContentVideosSonDto.title != ''">
+      AND portalContentVideosSon.title like CONCAT('%',#{portalContentVideosSonDto.title},'%')
+    </if>
+    <if test="portalContentVideosSonDto.description != null and portalContentVideosSonDto.description != ''">
+      AND portalContentVideosSon.description like CONCAT('%',#{portalContentVideosSonDto.description},'%')
+    </if>
+    <if test="portalContentVideosSonDto.fileId != null and portalContentVideosSonDto.fileId != ''">
+      AND portalContentVideosSon.file_id = #{portalContentVideosSonDto.fileId}
+    </if>
+    <if test="portalContentVideosSonDto.contentUrl != null and portalContentVideosSonDto.contentUrl != ''">
+      AND portalContentVideosSon.content_url like CONCAT('%',#{portalContentVideosSonDto.contentUrl},'%')
+    </if>
+  <if test="portalContentVideosSonDto.hits != null and portalContentVideosSonDto.hits != ''">
+    AND portalContentVideosSon.hits = #{portalContentVideosSonDto.hits}
+  </if>
+    order by portalContentVideosSon.id desc
+</select>
+</mapper>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.model.mapper.ModelTestMapper">
+
+<resultMap id="modelTestMap" type="com.netwisd.base.model.vo.ModelTestVo">
+  <id property="id" column="id"/>
+  <result property="name" column="name"/>
+  <result property="age" column="age"/>
+  <result property="sex" column="sex"/>
+  <result property="salary" column="salary"/>
+  <result property="deptName" column="dept_name"/>
+  <result property="orgName" column="org_name"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.model.dto.ModelTestDto" resultMap="modelTestMap">
+  select * from incloud_base_model_test modelTest where 1=1
+    <if test="modelTestDto.id != null and modelTestDto.id != ''">
+      AND modelTest.id = #{modelTestDto.id}
+    </if>
+    <if test="modelTestDto.name != null and modelTestDto.name != ''">
+      AND modelTest.name like CONCAT('%',#{modelTestDto.name},'%')
+    </if>
+    <if test="modelTestDto.age != null and modelTestDto.age != ''">
+      AND modelTest.age = #{modelTestDto.age}
+    </if>
+    <if test="modelTestDto.sex != null and modelTestDto.sex != ''">
+      AND modelTest.sex = #{modelTestDto.sex}
+    </if>
+    <if test="modelTestDto.salary != null and modelTestDto.salary != ''">
+      AND modelTest.salary = #{modelTestDto.salary}
+    </if>
+    <if test="modelTestDto.deptName != null and modelTestDto.deptName != ''">
+      AND modelTest.dept_name like CONCAT('%',#{modelTestDto.deptName},'%')
+    </if>
+    <if test="modelTestDto.orgName != null and modelTestDto.orgName != ''">
+      AND modelTest.org_name like CONCAT('%',#{modelTestDto.orgName},'%')
+    </if>
+    order by modelTest.id desc
+</select>
+</mapper>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.wf.mapper.WfSequEventDefMapper">
+
+<resultMap id="wfSequEventDefMap" type="com.netwisd.base.wf.vo.WfSequEventDefVo">
+  <id property="id" column="id"/>
+  <result property="eventBindType" column="event_bind_type"/>
+  <result property="eventId" column="event_id"/>
+  <result property="procdefId" column="procdef_id"/>
+  <result property="sequDefId" column="sequ_def_id"/>
+  <result property="camundaProcdefId" column="camunda_procdef_id"/>
+  <result property="camundaProcdefKey" column="camunda_procdef_key"/>
+  <result property="camundaSequDefId" column="camunda_sequ_def_id"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.wf.dto.WfSequEventDefDto" resultMap="wfSequEventDefMap">
+  select * from incloud_base_wf_sequ_event_def wfSequEventDef where 1=1
+    <if test="wfSequEventDefDto.id != null and wfSequEventDefDto.id != ''">
+      AND wfSequEventDef.id = #{wfSequEventDefDto.id}
+    </if>
+    <if test="wfSequEventDefDto.eventBindType != null and wfSequEventDefDto.eventBindType != ''">
+      AND wfSequEventDef.event_bind_type like CONCAT('%',#{wfSequEventDefDto.eventBindType},'%')
+    </if>
+    <if test="wfSequEventDefDto.eventId != null and wfSequEventDefDto.eventId != ''">
+      AND wfSequEventDef.event_id = #{wfSequEventDefDto.eventId}
+    </if>
+    <if test="wfSequEventDefDto.procdefId != null and wfSequEventDefDto.procdefId != ''">
+      AND wfSequEventDef.procdef_id = #{wfSequEventDefDto.procdefId}
+    </if>
+    <if test="wfSequEventDefDto.sequDefId != null and wfSequEventDefDto.sequDefId != ''">
+      AND wfSequEventDef.sequ_def_id = #{wfSequEventDefDto.sequDefId}
+    </if>
+    <if test="wfSequEventDefDto.camundaProcdefId != null and wfSequEventDefDto.camundaProcdefId != ''">
+      AND wfSequEventDef.camunda_procdef_id like CONCAT('%',#{wfSequEventDefDto.camundaProcdefId},'%')
+    </if>
+    <if test="wfSequEventDefDto.camundaProcdefKey != null and wfSequEventDefDto.camundaProcdefKey != ''">
+      AND wfSequEventDef.camunda_procdef_key like CONCAT('%',#{wfSequEventDefDto.camundaProcdefKey},'%')
+    </if>
+    <if test="wfSequEventDefDto.camundaSequDefId != null and wfSequEventDefDto.camundaSequDefId != ''">
+      AND wfSequEventDef.camunda_sequ_def_id like CONCAT('%',#{wfSequEventDefDto.camundaSequDefId},'%')
+    </if>
+    order by wfSequEventDef.id desc
+</select>
+</mapper>

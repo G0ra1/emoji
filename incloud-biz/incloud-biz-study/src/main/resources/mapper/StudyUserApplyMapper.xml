@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.study.mapper.StudyUserApplyMapper">
+
+<resultMap id="studyUserApplyMap" type="com.netwisd.biz.study.vo.StudyUserApplyVo">
+  <id property="id" column="id"/>
+  <result property="userNameCh" column="user_name_ch"/>
+  <result property="phoneNum" column="phone_num"/>
+  <result property="passWord" column="pass_word"/>
+  <result property="cardType" column="card_type"/>
+  <result property="idCard" column="id_card"/>
+  <result property="email" column="email"/>
+  <result property="userType" column="user_type"/>
+  <result property="sex" column="sex"/>
+  <result property="description" column="description"/>
+  <result property="userStatus" column="user_status"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.study.dto.StudyUserApplyDto" resultMap="studyUserApplyMap">
+  select * from incloud_biz_study_user_apply studyUserApply where 1=1
+    <if test="studyUserApplyDto.id != null and studyUserApplyDto.id != ''">
+      AND studyUserApply.id = #{studyUserApplyDto.id}
+    </if>
+    <if test="studyUserApplyDto.userNameCh != null and studyUserApplyDto.userNameCh != ''">
+      AND studyUserApply.user_name_ch like CONCAT('%',#{studyUserApplyDto.userNameCh},'%')
+    </if>
+    <if test="studyUserApplyDto.phoneNum != null and studyUserApplyDto.phoneNum != ''">
+      AND studyUserApply.phone_num like CONCAT('%',#{studyUserApplyDto.phoneNum},'%')
+    </if>
+    <if test="studyUserApplyDto.passWord != null and studyUserApplyDto.passWord != ''">
+      AND studyUserApply.pass_word like CONCAT('%',#{studyUserApplyDto.passWord},'%')
+    </if>
+    <if test="studyUserApplyDto.cardType != null and studyUserApplyDto.cardType != ''">
+      AND studyUserApply.card_type = #{studyUserApplyDto.cardType}
+    </if>
+    <if test="studyUserApplyDto.idCard != null and studyUserApplyDto.idCard != ''">
+      AND studyUserApply.id_card like CONCAT('%',#{studyUserApplyDto.idCard},'%')
+    </if>
+    <if test="studyUserApplyDto.email != null and studyUserApplyDto.email != ''">
+      AND studyUserApply.email like CONCAT('%',#{studyUserApplyDto.email},'%')
+    </if>
+    <if test="studyUserApplyDto.userType != null and studyUserApplyDto.userType != ''">
+      AND studyUserApply.user_type = #{studyUserApplyDto.userType}
+    </if>
+    <if test="studyUserApplyDto.sex != null and studyUserApplyDto.sex != ''">
+      AND studyUserApply.sex = #{studyUserApplyDto.sex}
+    </if>
+    <if test="studyUserApplyDto.description != null and studyUserApplyDto.description != ''">
+      AND studyUserApply.description like CONCAT('%',#{studyUserApplyDto.description},'%')
+    </if>
+    <if test="studyUserApplyDto.userStatus != null and studyUserApplyDto.userStatus != ''">
+      AND studyUserApply.user_status = #{studyUserApplyDto.userStatus}
+    </if>
+    order by studyUserApply.id desc
+</select>
+</mapper>

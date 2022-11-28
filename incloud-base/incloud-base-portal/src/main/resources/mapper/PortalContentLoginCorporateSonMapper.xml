@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.portal.mapper.PortalContentLoginCorporateSonMapper">
+
+    <resultMap id="portalContentLoginCorporateSonMap"
+               type="com.netwisd.base.portal.vo.PortalContentLoginCorporateSonVo">
+        <id property="id" column="id"/>
+        <result property="loginId" column="login_id"/>
+        <result property="corporateCulturePicturesId" column="corporate_culture_pictures_id"/>
+        <result property="corporateCulturePicturesUrl" column="corporate_culture_pictures_url"/>
+    </resultMap>
+    <select id="getPageList" parameterType="com.netwisd.base.portal.dto.PortalContentLoginCorporateSonDto"
+            resultMap="portalContentLoginCorporateSonMap">
+        select * from incloud_base_portal_content_login_corporate_son portalContentLoginCorporateSon where 1=1
+        <if test="portalContentLoginCorporateSonDto.id != null and portalContentLoginCorporateSonDto.id != ''">
+            AND portalContentLoginCorporateSon.id = #{portalContentLoginCorporateSonDto.id}
+        </if>
+        <if test="portalContentLoginCorporateSonDto.loginId != null and portalContentLoginCorporateSonDto.loginId != ''">
+            AND portalContentLoginCorporateSon.login_id = #{portalContentLoginCorporateSonDto.loginId}
+        </if>
+        <if test="portalContentLoginCorporateSonDto.corporateCulturePicturesId != null and portalContentLoginCorporateSonDto.corporateCulturePicturesId != ''">
+            AND portalContentLoginCorporateSon.corporate_culture_pictures_id =
+            #{portalContentLoginCorporateSonDto.corporateCulturePicturesId}
+        </if>
+        <if test="portalContentLoginCorporateSonDto.corporateCulturePicturesUrl != null and portalContentLoginCorporateSonDto.corporateCulturePicturesUrl != ''">
+            AND portalContentLoginCorporateSon.corporate_culture_pictures_url like
+            CONCAT('%',#{portalContentLoginCorporateSonDto.corporateCulturePicturesUrl},'%')
+        </if>
+        order by portalContentLoginCorporateSon.id desc
+    </select>
+</mapper>

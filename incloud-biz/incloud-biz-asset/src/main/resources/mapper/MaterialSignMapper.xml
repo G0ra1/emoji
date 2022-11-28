@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.asset.mapper.MaterialSignMapper">
+
+  <resultMap id="materialSignMap" type="com.netwisd.biz.asset.vo.MaterialSignVo">
+    <id property="id" column="id"/>
+    <result property="code" column="code"/>
+    <result property="signType" column="sign_type"/>
+    <result property="taskId" column="task_id"/>
+    <result property="businessId" column="business_id"/>
+    <result property="signUserId" column="sign_user_id"/>
+    <result property="signUserName" column="sign_user_name"/>
+    <result property="signUserParentOrgId" column="sign_user_parent_org_id"/>
+    <result property="signUserParentOrgName" column="sign_user_parent_org_name"/>
+    <result property="signUserParentDeptId" column="sign_user_parent_dept_id"/>
+    <result property="signUserParentDeptName" column="sign_user_parent_dept_name"/>
+    <result property="signUserOrgFullId" column="sign_user_org_full_id"/>
+    <result property="signTime" column="sign_time"/>
+    <result property="fileIds" column="file_ids"/>
+    <result property="createUserId" column="create_user_id"/>
+    <result property="createUserName" column="create_user_name"/>
+    <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+    <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+    <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+    <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+    <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+    <result property="auditSuccessTiem" column="audit_success_tiem"/>
+    <result property="camundaProcdefKey" column="camunda_procdef_key"/>
+    <result property="camundaProcdefId" column="camunda_procdef_id"/>
+    <result property="camundaProcinsId" column="camunda_procins_id"/>
+    <result property="procdefTypeId" column="procdef_type_id"/>
+    <result property="procdefTypeName" column="procdef_type_name"/>
+    <result property="procdefVersion" column="procdef_version"/>
+    <result property="procdefName" column="procdef_name"/>
+    <result property="processName" column="process_name"/>
+    <result property="reason" column="reason"/>
+    <result property="bizKey" column="biz_key"/>
+    <result property="camundaTaskId" column="camunda_task_id"/>
+    <result property="bizPriority" column="biz_priority"/>
+    <result property="auditStatus" column="audit_status"/>
+    <result property="applyTime" column="apply_time"/>
+    <result property="applyUserId" column="apply_user_id"/>
+    <result property="applyUserName" column="apply_user_name"/>
+    <result property="applyUserOrgId" column="apply_user_org_id"/>
+    <result property="applyUserOrgName" column="apply_user_org_name"/>
+    <result property="applyUserDeptId" column="apply_user_dept_id"/>
+    <result property="applyUserDeptName" column="apply_user_dept_name"/>
+    <result property="distributeType" column="distribute_type"/>
+    <result property="sourceId" column="source_id"/>
+    <result property="sourceCode" column="source_code"/>
+    <result property="explanation" column="explanation"/>
+  </resultMap>
+  <select id="getPageList" parameterType="com.netwisd.biz.asset.dto.MaterialSignDto" resultMap="materialSignMap">
+    select * from incloud_biz_asset_material_sign materialSign where 1=1
+    <if test="materialSignDto.id != null and materialSignDto.id != ''">
+      AND materialSign.id = #{materialSignDto.id}
+    </if>
+    <if test="materialSignDto.code != null and materialSignDto.code != ''">
+      AND materialSign.code like CONCAT('%',#{materialSignDto.code},'%')
+    </if>
+    <if test="materialSignDto.signType != null and materialSignDto.signType != ''">
+      AND materialSign.sign_type like CONCAT('%',#{materialSignDto.signType},'%')
+    </if>
+    <if test="materialSignDto.taskId != null and materialSignDto.taskId != ''">
+      AND materialSign.task_id = #{materialSignDto.taskId}
+    </if>
+    <if test="materialSignDto.businessId != null and materialSignDto.businessId != ''">
+      AND materialSign.business_id = #{materialSignDto.businessId}
+    </if>
+    <if test="materialSignDto.signUserId != null and materialSignDto.signUserId != ''">
+      AND materialSign.sign_user_id = #{materialSignDto.signUserId}
+    </if>
+    <if test="materialSignDto.signUserName != null and materialSignDto.signUserName != ''">
+      AND materialSign.sign_user_name like CONCAT('%',#{materialSignDto.signUserName},'%')
+    </if>
+    <if test="materialSignDto.signUserParentOrgId != null and materialSignDto.signUserParentOrgId != ''">
+      AND materialSign.sign_user_parent_org_id = #{materialSignDto.signUserParentOrgId}
+    </if>
+    <if test="materialSignDto.signUserParentOrgName != null and materialSignDto.signUserParentOrgName != ''">
+      AND materialSign.sign_user_parent_org_name like CONCAT('%',#{materialSignDto.signUserParentOrgName},'%')
+    </if>
+    <if test="materialSignDto.signUserParentDeptId != null and materialSignDto.signUserParentDeptId != ''">
+      AND materialSign.sign_user_parent_dept_id = #{materialSignDto.signUserParentDeptId}
+    </if>
+    <if test="materialSignDto.signUserParentDeptName != null and materialSignDto.signUserParentDeptName != ''">
+      AND materialSign.sign_user_parent_dept_name like CONCAT('%',#{materialSignDto.signUserParentDeptName},'%')
+    </if>
+    <if test="materialSignDto.signUserOrgFullId != null and materialSignDto.signUserOrgFullId != ''">
+      AND materialSign.sign_user_org_full_id like CONCAT('%',#{materialSignDto.signUserOrgFullId},'%')
+    </if>
+    <if test="materialSignDto.signTime != null and materialSignDto.signTime != ''">
+      AND materialSign.sign_time = #{materialSignDto.signTime}
+    </if>
+    <if test="materialSignDto.fileIds != null and materialSignDto.fileIds != ''">
+      AND materialSign.file_ids like CONCAT('%',#{materialSignDto.fileIds},'%')
+    </if>
+    <if test="materialSignDto.createUserId != null and materialSignDto.createUserId != ''">
+      AND materialSign.create_user_id = #{materialSignDto.createUserId}
+    </if>
+    <if test="materialSignDto.createUserName != null and materialSignDto.createUserName != ''">
+      AND materialSign.create_user_name like CONCAT('%',#{materialSignDto.createUserName},'%')
+    </if>
+    <if test="materialSignDto.createUserParentOrgId != null and materialSignDto.createUserParentOrgId != ''">
+      AND materialSign.create_user_parent_org_id = #{materialSignDto.createUserParentOrgId}
+    </if>
+    <if test="materialSignDto.createUserParentOrgName != null and materialSignDto.createUserParentOrgName != ''">
+      AND materialSign.create_user_parent_org_name like CONCAT('%',#{materialSignDto.createUserParentOrgName},'%')
+    </if>
+    <if test="materialSignDto.createUserParentDeptId != null and materialSignDto.createUserParentDeptId != ''">
+      AND materialSign.create_user_parent_dept_id = #{materialSignDto.createUserParentDeptId}
+    </if>
+    <if test="materialSignDto.createUserParentDeptName != null and materialSignDto.createUserParentDeptName != ''">
+      AND materialSign.create_user_parent_dept_name like CONCAT('%',#{materialSignDto.createUserParentDeptName},'%')
+    </if>
+    <if test="materialSignDto.createUserOrgFullId != null and materialSignDto.createUserOrgFullId != ''">
+      AND materialSign.create_user_org_full_id like CONCAT('%',#{materialSignDto.createUserOrgFullId},'%')
+    </if>
+    <if test="materialSignDto.auditSuccessTiem != null and materialSignDto.auditSuccessTiem != ''">
+      AND materialSign.audit_success_tiem = #{materialSignDto.auditSuccessTiem}
+    </if>
+    <if test="materialSignDto.camundaProcdefKey != null and materialSignDto.camundaProcdefKey != ''">
+      AND materialSign.camunda_procdef_key like CONCAT('%',#{materialSignDto.camundaProcdefKey},'%')
+    </if>
+    <if test="materialSignDto.camundaProcdefId != null and materialSignDto.camundaProcdefId != ''">
+      AND materialSign.camunda_procdef_id like CONCAT('%',#{materialSignDto.camundaProcdefId},'%')
+    </if>
+    <if test="materialSignDto.camundaProcinsId != null and materialSignDto.camundaProcinsId != ''">
+      AND materialSign.camunda_procins_id like CONCAT('%',#{materialSignDto.camundaProcinsId},'%')
+    </if>
+    <if test="materialSignDto.procdefTypeId != null and materialSignDto.procdefTypeId != ''">
+      AND materialSign.procdef_type_id = #{materialSignDto.procdefTypeId}
+    </if>
+    <if test="materialSignDto.procdefTypeName != null and materialSignDto.procdefTypeName != ''">
+      AND materialSign.procdef_type_name like CONCAT('%',#{materialSignDto.procdefTypeName},'%')
+    </if>
+    <if test="materialSignDto.procdefVersion != null and materialSignDto.procdefVersion != ''">
+      AND materialSign.procdef_version = #{materialSignDto.procdefVersion}
+    </if>
+    <if test="materialSignDto.procdefName != null and materialSignDto.procdefName != ''">
+      AND materialSign.procdef_name like CONCAT('%',#{materialSignDto.procdefName},'%')
+    </if>
+    <if test="materialSignDto.processName != null and materialSignDto.processName != ''">
+      AND materialSign.process_name like CONCAT('%',#{materialSignDto.processName},'%')
+    </if>
+    <if test="materialSignDto.reason != null and materialSignDto.reason != ''">
+      AND materialSign.reason like CONCAT('%',#{materialSignDto.reason},'%')
+    </if>
+    <if test="materialSignDto.bizKey != null and materialSignDto.bizKey != ''">
+      AND materialSign.biz_key like CONCAT('%',#{materialSignDto.bizKey},'%')
+    </if>
+    <if test="materialSignDto.camundaTaskId != null and materialSignDto.camundaTaskId != ''">
+      AND materialSign.camunda_task_id like CONCAT('%',#{materialSignDto.camundaTaskId},'%')
+    </if>
+    <if test="materialSignDto.bizPriority != null and materialSignDto.bizPriority != ''">
+      AND materialSign.biz_priority like CONCAT('%',#{materialSignDto.bizPriority},'%')
+    </if>
+    <if test="materialSignDto.auditStatus != null and materialSignDto.auditStatus != ''">
+      AND materialSign.audit_status = #{materialSignDto.auditStatus}
+    </if>
+    <if test="materialSignDto.applyTime != null and materialSignDto.applyTime != ''">
+      AND materialSign.apply_time = #{materialSignDto.applyTime}
+    </if>
+    <if test="materialSignDto.applyUserId != null and materialSignDto.applyUserId != ''">
+      AND materialSign.apply_user_id = #{materialSignDto.applyUserId}
+    </if>
+    <if test="materialSignDto.applyUserName != null and materialSignDto.applyUserName != ''">
+      AND materialSign.apply_user_name like CONCAT('%',#{materialSignDto.applyUserName},'%')
+    </if>
+    <if test="materialSignDto.applyUserOrgId != null and materialSignDto.applyUserOrgId != ''">
+      AND materialSign.apply_user_org_id = #{materialSignDto.applyUserOrgId}
+    </if>
+    <if test="materialSignDto.applyUserOrgName != null and materialSignDto.applyUserOrgName != ''">
+      AND materialSign.apply_user_org_name like CONCAT('%',#{materialSignDto.applyUserOrgName},'%')
+    </if>
+    <if test="materialSignDto.applyUserDeptId != null and materialSignDto.applyUserDeptId != ''">
+      AND materialSign.apply_user_dept_id = #{materialSignDto.applyUserDeptId}
+    </if>
+    <if test="materialSignDto.applyUserDeptName != null and materialSignDto.applyUserDeptName != ''">
+      AND materialSign.apply_user_dept_name like CONCAT('%',#{materialSignDto.applyUserDeptName},'%')
+    </if>
+    <if test="materialSignDto.distributeType != null and materialSignDto.distributeType != ''">
+      AND materialSign.distribute_type = #{materialSignDto.distributeType}
+    </if>
+    <if test="materialSignDto.sourceId != null and materialSignDto.sourceId != ''">
+      AND materialSign.source_id = #{materialSignDto.sourceId}
+    </if>
+    <if test="materialSignDto.sourceCode != null and materialSignDto.sourceCode != ''">
+      AND materialSign.source_code like CONCAT('%',#{materialSignDto.sourceCode},'%')
+    </if>
+    <if test="materialSignDto.explanation != null and materialSignDto.explanation != ''">
+      AND materialSign.explanation like CONCAT('%',#{materialSignDto.explanation},'%')
+    </if>
+    order by materialSign.id desc
+  </select>
+</mapper>

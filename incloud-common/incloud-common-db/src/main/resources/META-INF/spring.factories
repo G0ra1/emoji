@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.netwisd.common.db.config.TableHandlerConfig ,\
+com.netwisd.common.db.config.DbConfig

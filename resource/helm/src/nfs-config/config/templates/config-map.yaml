@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: incloud-config
+  annotations:
+    "helm.sh/hook": pre-install
+    "helm.sh/hook-weight": "-100"
+data:
+  INCLOUD_NACOS_NAMESPACE: "incloud3"
+  INCLOUD_DB_USER: "root"
+  INCLOUD_DB_PWD: "Netwisd*8"
+  INCLOUD_DB_SCHEMA: "incloud3"
+  INCLOUD_DB_BACKET: "backdata"
+  INCLOUD_REDIS_PWD: "Netwisd*8"
+  INCLOUD_MINIO_ACCESSKEY: "root"
+  INCLOUD_MINIO_SECRETKEY: "Netwisd*8"
+  INCLOUD_MINIO_BACKETNAME: "incloud3"

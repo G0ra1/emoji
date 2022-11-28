@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.netwisd.common.msg.rabbit.config.RabbitMqConfig

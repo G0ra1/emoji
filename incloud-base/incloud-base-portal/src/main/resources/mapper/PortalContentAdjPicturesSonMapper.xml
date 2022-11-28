@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.portal.mapper.PortalContentAdjPicturesSonMapper">
+
+<resultMap id="portalContentAdjPicturesSonMap" type="com.netwisd.base.portal.vo.PortalContentAdjPicturesSonVo">
+  <id property="id" column="id"/>
+  <result property="linkPicturesId" column="link_pictures_id"/>
+  <result property="title" column="title"/>
+  <result property="description" column="description"/>
+  <result property="isOutLink" column="is_out_link"/>
+  <result property="fileId" column="file_id"/>
+  <result property="contentUrl" column="content_url"/>
+  <result property="hits" column="hits"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.portal.dto.PortalContentAdjPicturesSonDto" resultMap="portalContentAdjPicturesSonMap">
+  select * from incloud_base_portal_content_adj_pictures_son portalContentAdjPicturesSon where 1=1
+    <if test="portalContentAdjPicturesSonDto.id != null and portalContentAdjPicturesSonDto.id != ''">
+      AND portalContentAdjPicturesSon.id = #{portalContentAdjPicturesSonDto.id}
+    </if>
+    <if test="portalContentAdjPicturesSonDto.linkPicturesId != null and portalContentAdjPicturesSonDto.linkPicturesId != ''">
+      AND portalContentAdjPicturesSon.link_pictures_id = #{portalContentAdjPicturesSonDto.linkPicturesId}
+    </if>
+    <if test="portalContentAdjPicturesSonDto.title != null and portalContentAdjPicturesSonDto.title != ''">
+      AND portalContentAdjPicturesSon.title like CONCAT('%',#{portalContentAdjPicturesSonDto.title},'%')
+    </if>
+    <if test="portalContentAdjPicturesSonDto.description != null and portalContentAdjPicturesSonDto.description != ''">
+      AND portalContentAdjPicturesSon.description like CONCAT('%',#{portalContentAdjPicturesSonDto.description},'%')
+    </if>
+    <if test="portalContentAdjPicturesSonDto.isOutLink != null and portalContentAdjPicturesSonDto.isOutLink != ''">
+      AND portalContentAdjPicturesSon.is_out_link = #{portalContentAdjPicturesSonDto.isOutLink}
+    </if>
+    <if test="portalContentAdjPicturesSonDto.fileId != null and portalContentAdjPicturesSonDto.fileId != ''">
+      AND portalContentAdjPicturesSon.file_id = #{portalContentAdjPicturesSonDto.fileId}
+    </if>
+    <if test="portalContentAdjPicturesSonDto.contentUrl != null and portalContentAdjPicturesSonDto.contentUrl != ''">
+      AND portalContentAdjPicturesSon.content_url like CONCAT('%',#{portalContentAdjPicturesSonDto.contentUrl},'%')
+    </if>
+    <if test="portalContentAdjPicturesSonDto.hits != null and portalContentAdjPicturesSonDto.hits != ''">
+      AND portalContentAdjPicturesSon.hits = #{portalContentAdjPicturesSonDto.hits}
+    </if>
+    order by portalContentAdjPicturesSon.id desc
+</select>
+</mapper>

@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ .Values.name }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.name }}
+  serviceName: {{ .Values.name }}
+  replicas: {{ .Values.replicaCount }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.name }}
+    spec:
+      containers:
+      - name: {{ .Values.name }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        securityContext:
+          privileged: true
+        ports:
+        - containerPort: {{ .Values.image.port }}
+          name: {{ .Values.name }}
+        volumeMounts:
+        - name: mysql-data
+          mountPath: /var/lib/mysql
+        - name: mysql-initdb
+          mountPath: /docker-entrypoint-initdb.d
+        env:
+          - name: MYSQL_ROOT_PASSWORD
+            value: "{{ .Values.env.root.password }}"
+          - name: TZ
+            value: "Asia/Shanghai"
+        args:
+          - --lower_case_table_names=1
+          - --skip-ssl
+          - --character_set_server=utf8mb4
+      volumes:
+        - name: mysql-data
+          persistentVolumeClaim:
+            claimName: mysql-pvc
+        - name: mysql-initdb
+          configMap:
+            name: mysql-initdb-config

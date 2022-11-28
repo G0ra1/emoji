@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.mdm.mapper.ProjectjcMapper">
+
+<resultMap id="projectjcMap" type="com.netwisd.biz.mdm.vo.ProjectjcVo">
+  <id property="id" column="id"/>
+  <result property="projectId" column="project_id"/>
+  <result property="projectCode" column="project_code"/>
+  <result property="projectName" column="project_name"/>
+  <result property="orgId" column="org_id"/>
+  <result property="orgCode" column="org_code"/>
+  <result property="orgName" column="org_name"/>
+  <result property="suborgIds" column="suborg_ids"/>
+  <result property="suborgNames" column="suborg_names"/>
+  <result property="isLive" column="is_live"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+  <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+  <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+  <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+  <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+  <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.mdm.dto.ProjectjcDto" resultMap="projectjcMap">
+  select * from incloud_biz_mdm_projectjc projectjc where 1=1
+    <if test="projectjcDto.id != null and projectjcDto.id != ''">
+      AND projectjc.id = #{projectjcDto.id}
+    </if>
+    <if test="projectjcDto.projectId != null and projectjcDto.projectId != ''">
+      AND projectjc.project_id like CONCAT('%',#{projectjcDto.projectId},'%')
+    </if>
+    <if test="projectjcDto.projectCode != null and projectjcDto.projectCode != ''">
+      AND projectjc.project_code like CONCAT('%',#{projectjcDto.projectCode},'%')
+    </if>
+    <if test="projectjcDto.projectName != null and projectjcDto.projectName != ''">
+      AND projectjc.project_name like CONCAT('%',#{projectjcDto.projectName},'%')
+    </if>
+    <if test="projectjcDto.orgId != null and projectjcDto.orgId != ''">
+      AND projectjc.org_id like CONCAT('%',#{projectjcDto.orgId},'%')
+    </if>
+    <if test="projectjcDto.orgCode != null and projectjcDto.orgCode != ''">
+      AND projectjc.org_code like CONCAT('%',#{projectjcDto.orgCode},'%')
+    </if>
+    <if test="projectjcDto.orgName != null and projectjcDto.orgName != ''">
+      AND projectjc.org_name like CONCAT('%',#{projectjcDto.orgName},'%')
+    </if>
+    <if test="projectjcDto.suborgIds != null and projectjcDto.suborgIds != ''">
+      AND projectjc.suborg_ids like CONCAT('%',#{projectjcDto.suborgIds},'%')
+    </if>
+    <if test="projectjcDto.suborgNames != null and projectjcDto.suborgNames != ''">
+      AND projectjc.suborg_names like CONCAT('%',#{projectjcDto.suborgNames},'%')
+    </if>
+    <if test="projectjcDto.isLive != null and projectjcDto.isLive != ''">
+      AND projectjc.is_live like CONCAT('%',#{projectjcDto.isLive},'%')
+    </if>
+    <if test="projectjcDto.createUserId != null and projectjcDto.createUserId != ''">
+      AND projectjc.create_user_id = #{projectjcDto.createUserId}
+    </if>
+    <if test="projectjcDto.createUserName != null and projectjcDto.createUserName != ''">
+      AND projectjc.create_user_name like CONCAT('%',#{projectjcDto.createUserName},'%')
+    </if>
+    <if test="projectjcDto.createUserParentOrgId != null and projectjcDto.createUserParentOrgId != ''">
+      AND projectjc.create_user_parent_org_id = #{projectjcDto.createUserParentOrgId}
+    </if>
+    <if test="projectjcDto.createUserParentOrgName != null and projectjcDto.createUserParentOrgName != ''">
+      AND projectjc.create_user_parent_org_name like CONCAT('%',#{projectjcDto.createUserParentOrgName},'%')
+    </if>
+    <if test="projectjcDto.createUserParentDeptId != null and projectjcDto.createUserParentDeptId != ''">
+      AND projectjc.create_user_parent_dept_id = #{projectjcDto.createUserParentDeptId}
+    </if>
+    <if test="projectjcDto.createUserParentDeptName != null and projectjcDto.createUserParentDeptName != ''">
+      AND projectjc.create_user_parent_dept_name like CONCAT('%',#{projectjcDto.createUserParentDeptName},'%')
+    </if>
+    <if test="projectjcDto.createUserOrgFullId != null and projectjcDto.createUserOrgFullId != ''">
+      AND projectjc.create_user_org_full_id like CONCAT('%',#{projectjcDto.createUserOrgFullId},'%')
+    </if>
+    order by projectjc.id desc
+</select>
+</mapper>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.mdm.mapper.MdmPostGradeDictMapper">
+
+<resultMap id="mdmPostGradeDictMap" type="com.netwisd.base.mdm.vo.MdmPostGradeDictVo">
+  <id property="id" column="id"/>
+  <result property="postGradeName" column="post_grade_name"/>
+  <result property="postSequId" column="post_sequ_id"/>
+  <result property="postSequName" column="post_sequ_name"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.mdm.dto.MdmPostGradeDictDto" resultMap="mdmPostGradeDictMap">
+  select * from incloud_base_mdm_post_grade_dict mdmPostGradeDict where 1=1
+    <if test="mdmPostGradeDictDto.id != null and mdmPostGradeDictDto.id != ''">
+      AND mdmPostGradeDict.id = #{mdmPostGradeDictDto.id}
+    </if>
+    <if test="mdmPostGradeDictDto.postGradeName != null and mdmPostGradeDictDto.postGradeName != ''">
+      AND mdmPostGradeDict.post_grade_name like CONCAT('%',#{mdmPostGradeDictDto.postGradeName},'%')
+    </if>
+    <if test="mdmPostGradeDictDto.postSequId != null and mdmPostGradeDictDto.postSequId != ''">
+      AND mdmPostGradeDict.post_sequ_id = #{mdmPostGradeDictDto.postSequId}
+    </if>
+    <if test="mdmPostGradeDictDto.postSequName != null and mdmPostGradeDictDto.postSequName != ''">
+      AND mdmPostGradeDict.post_sequ_name like CONCAT('%',#{mdmPostGradeDictDto.postSequName},'%')
+    </if>
+    order by mdmPostGradeDict.id desc
+</select>
+</mapper>

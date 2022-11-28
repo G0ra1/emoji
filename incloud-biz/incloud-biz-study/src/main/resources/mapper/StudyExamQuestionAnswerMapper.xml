@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.study.mapper.StudyExamQuestionAnswerMapper">
+
+<resultMap id="studyExamQuestionAnswerMap" type="com.netwisd.biz.study.vo.StudyExamQuestionAnswerVo">
+  <id property="id" column="id"/>
+  <result property="questionId" column="question_id"/>
+  <result property="answer" column="answer"/>
+  <result property="isTrue" column="is_true"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+  <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+  <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+  <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+  <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+  <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.study.dto.StudyExamQuestionAnswerDto" resultMap="studyExamQuestionAnswerMap">
+  select * from incloud_biz_study_exam_question_answer studyExamQuestionAnswer where 1=1
+    <if test="studyExamQuestionAnswerDto.id != null and studyExamQuestionAnswerDto.id != ''">
+      AND studyExamQuestionAnswer.id = #{studyExamQuestionAnswerDto.id}
+    </if>
+    <if test="studyExamQuestionAnswerDto.questionId != null and studyExamQuestionAnswerDto.questionId != ''">
+      AND studyExamQuestionAnswer.question_id = #{studyExamQuestionAnswerDto.questionId}
+    </if>
+    <if test="studyExamQuestionAnswerDto.answer != null and studyExamQuestionAnswerDto.answer != ''">
+      AND studyExamQuestionAnswer.answer like CONCAT('%',#{studyExamQuestionAnswerDto.answer},'%')
+    </if>
+    <if test="studyExamQuestionAnswerDto.isTrue != null and studyExamQuestionAnswerDto.isTrue != ''">
+      AND studyExamQuestionAnswer.is_true = #{studyExamQuestionAnswerDto.isTrue}
+    </if>
+    <if test="studyExamQuestionAnswerDto.createUserId != null and studyExamQuestionAnswerDto.createUserId != ''">
+      AND studyExamQuestionAnswer.create_user_id = #{studyExamQuestionAnswerDto.createUserId}
+    </if>
+    <if test="studyExamQuestionAnswerDto.createUserName != null and studyExamQuestionAnswerDto.createUserName != ''">
+      AND studyExamQuestionAnswer.create_user_name like CONCAT('%',#{studyExamQuestionAnswerDto.createUserName},'%')
+    </if>
+    <if test="studyExamQuestionAnswerDto.createUserParentOrgId != null and studyExamQuestionAnswerDto.createUserParentOrgId != ''">
+      AND studyExamQuestionAnswer.create_user_parent_org_id = #{studyExamQuestionAnswerDto.createUserParentOrgId}
+    </if>
+    <if test="studyExamQuestionAnswerDto.createUserParentOrgName != null and studyExamQuestionAnswerDto.createUserParentOrgName != ''">
+      AND studyExamQuestionAnswer.create_user_parent_org_name like CONCAT('%',#{studyExamQuestionAnswerDto.createUserParentOrgName},'%')
+    </if>
+    <if test="studyExamQuestionAnswerDto.createUserParentDeptId != null and studyExamQuestionAnswerDto.createUserParentDeptId != ''">
+      AND studyExamQuestionAnswer.create_user_parent_dept_id = #{studyExamQuestionAnswerDto.createUserParentDeptId}
+    </if>
+    <if test="studyExamQuestionAnswerDto.createUserParentDeptName != null and studyExamQuestionAnswerDto.createUserParentDeptName != ''">
+      AND studyExamQuestionAnswer.create_user_parent_dept_name like CONCAT('%',#{studyExamQuestionAnswerDto.createUserParentDeptName},'%')
+    </if>
+    <if test="studyExamQuestionAnswerDto.createUserOrgFullId != null and studyExamQuestionAnswerDto.createUserOrgFullId != ''">
+      AND studyExamQuestionAnswer.create_user_org_full_id like CONCAT('%',#{studyExamQuestionAnswerDto.createUserOrgFullId},'%')
+    </if>
+    order by studyExamQuestionAnswer.id desc
+</select>
+</mapper>

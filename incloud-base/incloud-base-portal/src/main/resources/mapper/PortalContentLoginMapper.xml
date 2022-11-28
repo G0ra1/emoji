@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.portal.mapper.PortalContentLoginMapper">
+
+    <resultMap id="portalContentLoginMap" type="com.netwisd.base.portal.vo.PortalContentLoginVo">
+        <id property="id" column="id"/>
+        <result property="loginPageLogoId" column="login_page_logo_id"/>
+        <result property="loginPageLogoUrl" column="login_page_logo_url"/>
+        <result property="systemLogoId" column="system_logo_id"/>
+        <result property="systemLogoUrl" column="system_logo_url"/>
+        <result property="copyright" column="copyright"/>
+        <result property="isDefault" column="is_default"/>
+        <result property="isEnable" column="is_enable"/>
+        <result property="subjectName" column="subject_name"/>
+    </resultMap>
+    <select id="getPageList" parameterType="com.netwisd.base.portal.dto.PortalContentLoginDto"
+            resultMap="portalContentLoginMap">
+        select * from incloud_base_portal_content_login portalContentLogin where 1=1
+        <if test="portalContentLoginDto.id != null and portalContentLoginDto.id != ''">
+            AND portalContentLogin.id = #{portalContentLoginDto.id}
+        </if>
+        <if test="portalContentLoginDto.loginPageLogoId != null and portalContentLoginDto.loginPageLogoId != ''">
+            AND portalContentLogin.login_page_logo_id like CONCAT('%',#{portalContentLoginDto.loginPageLogoId},'%')
+        </if>
+        <if test="portalContentLoginDto.loginPageLogoUrl != null and portalContentLoginDto.loginPageLogoUrl != ''">
+            AND portalContentLogin.login_page_logo_url like CONCAT('%',#{portalContentLoginDto.loginPageLogoUrl},'%')
+        </if>
+        <if test="portalContentLoginDto.systemLogoId != null and portalContentLoginDto.systemLogoId != ''">
+            AND portalContentLogin.system_logo_id like CONCAT('%',#{portalContentLoginDto.systemLogoId},'%')
+        </if>
+        <if test="portalContentLoginDto.systemLogoUrl != null and portalContentLoginDto.systemLogoUrl != ''">
+            AND portalContentLogin.system_logo_url like CONCAT('%',#{portalContentLoginDto.systemLogoUrl},'%')
+        </if>
+        <if test="portalContentLoginDto.copyright != null and portalContentLoginDto.copyright != ''">
+            AND portalContentLogin.copyright like CONCAT('%',#{portalContentLoginDto.copyright},'%')
+        </if>
+        <if test="portalContentLoginDto.subjectName != null and portalContentLoginDto.subjectName != ''">
+            AND portalContentLogin.subject_name like CONCAT('%',#{portalContentLoginDto.subjectName},'%')
+        </if>
+        <if test="portalContentLoginDto.isDefault != null and portalContentLoginDto.isDefault != ''">
+            AND portalContentLogin.is_default =#{portalContentLoginDto.isDefault}
+        </if>
+        <if test="portalContentLoginDto.isEnable != null and portalContentLoginDto.isEnable != ''">
+            AND portalContentLogin.is_enable = #{portalContentLoginDto.isEnable}
+        </if>
+        order by portalContentLogin.id desc
+    </select>
+</mapper>

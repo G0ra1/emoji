@@ -1,0 +1,87 @@
+{
+  "settings": {
+    "number_of_shards": 3,
+    "number_of_replicas": 2,
+    "analysis": {
+      "analyzer": {
+        "comma": {
+          "type": "pattern",
+          "pattern":","
+        }
+      }
+    }
+  },
+  "mappings": {
+    "properties": {
+      "id":{
+        "type": "long"
+      },
+      "apply_user_id":{
+        "type": "text","analyzer": "ik_max_word","search_analyzer": "ik_smart"
+      },
+      "apply_user_name":{
+        "type": "text","analyzer": "ik_max_word","search_analyzer": "ik_smart"
+      },
+      "apply_user_dept_id":{
+        "type": "text","analyzer": "ik_max_word","search_analyzer": "ik_smart"
+      },
+      "apply_user_dept_name":{
+        "type": "text","analyzer": "ik_max_word","search_analyzer": "ik_smart"
+      },
+      "apply_user_organ_id":{
+        "type": "text","analyzer": "ik_max_word","search_analyzer": "ik_smart"
+      },
+      "apply_user_organ_name":{
+        "type": "text","analyzer": "ik_max_word","search_analyzer": "ik_smart"
+      },
+      "apply_user_tel":{
+        "type": "text","analyzer": "ik_max_word","search_analyzer": "ik_smart"
+      },
+      "use_user_id":{
+        "type": "text","analyzer": "ik_max_word","search_analyzer": "ik_smart"
+      },
+      "use_user_name":{
+        "type": "text","analyzer": "ik_max_word","search_analyzer": "ik_smart"
+      },
+      "use_user_dept_id":{
+        "type": "text","analyzer": "ik_max_word","search_analyzer": "ik_smart"
+      },
+      "use_user_dept_name":{
+        "type": "text","analyzer": "ik_max_word","search_analyzer": "ik_smart"
+      },
+      "use_user_organ_id":{
+        "type": "text","analyzer": "ik_max_word","search_analyzer": "ik_smart"
+      },
+      "use_user_organ_name":{
+        "type": "text","analyzer": "ik_max_word","search_analyzer": "ik_smart"
+      },
+      "apply_time":{
+        "type": "date","format": "yyyy-MM-dd HH:mm:ss"
+      },
+      "pass_time":{
+        "type": "date","format": "yyyy-MM-dd HH:mm:ss"
+      },
+      "occurrence_time":{
+        "type": "date","format": "yyyy-MM-dd HH:mm:ss"
+      },
+      "audit_state":{
+        "type": "integer"
+      },
+      "loan_type_code":{
+        "type": "text","analyzer": "ik_max_word","search_analyzer": "ik_smart"
+      },
+      "loan_type_name":{
+        "type": "text","analyzer": "ik_max_word","search_analyzer": "ik_smart"
+      },
+      "reason":{
+        "type": "text","analyzer": "ik_max_word","search_analyzer": "ik_smart"
+      },
+      "explain_info":{
+        "type": "text","analyzer": "ik_max_word","search_analyzer": "ik_smart"
+      },
+      "biz_key":{
+        "type": "text","analyzer": "ik_max_word","search_analyzer": "ik_smart"
+      }
+    }
+  }
+}

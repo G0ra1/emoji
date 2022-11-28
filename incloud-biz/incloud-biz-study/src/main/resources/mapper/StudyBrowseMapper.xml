@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.study.mapper.StudyBrowseMapper">
+
+<resultMap id="studyBrowseMap" type="com.netwisd.biz.study.vo.StudyBrowseVo">
+  <id property="id" column="id"/>
+  <result property="userId" column="user_id"/>
+  <result property="browseType" column="browse_type"/>
+  <result property="fkId" column="fk_id"/>
+</resultMap>
+  <resultMap id="studySpecialMap" type="com.netwisd.biz.study.vo.StudySpecialVo">
+    <id property="id" column="id"/>
+    <result property="label" column="label"/>
+    <result property="labelCode" column="label_code"/>
+    <result property="typeCode" column="type_code"/>
+    <result property="typeName" column="type_name"/>
+    <result property="specialName" column="special_name"/>
+    <result property="specialTimeType" column="special_time_type"/>
+    <result property="specialStartTime" column="special_start_time"/>
+    <result property="specialEndTime" column="special_end_time"/>
+    <result property="specialPaperId" column="special_paper_id"/>
+    <result property="specialPaperName" column="special_paper_name"/>
+    <result property="specialPaperTotalScore" column="special_paper_total_score"/>
+    <result property="specialPaperStartTime" column="special_paper_start_time"/>
+    <result property="specialPaperEndTime" column="special_paper_end_time"/>
+    <result property="specialPaperType" column="special_paper_type"/>
+    <result property="specialExamTime" column="special_exam_time"/>
+    <result property="isHaveShortAnswer" column="is_have_short_answer"/>
+    <result property="specialExamPaperTeacherId" column="special_exam_paper_teacher_id"/>
+    <result property="specialExamPaperTeacherName" column="special_exam_paper_teacher_name"/>
+    <result property="fileId" column="file_id"/>
+    <result property="fileUrl" column="file_url"/>
+    <result property="hits" column="hits"/>
+    <result property="isEnable" column="is_enable"/>
+    <result property="isIndex" column="is_index"/>
+    <result property="createUserId" column="create_user_id"/>
+    <result property="createUserName" column="create_user_name"/>
+    <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+    <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+    <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+    <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+    <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+    <result property="description" column="description"/>
+  </resultMap>
+  <resultMap id="studyLessonMap" type="com.netwisd.biz.study.vo.StudyLessonVo">
+    <id property="id" column="id"/>
+    <result property="typeCode" column="type_code"/>
+    <result property="typeName" column="type_name"/>
+    <result property="labelCode" column="label_code"/>
+    <result property="labelName" column="label_name"/>
+    <result property="lessonName" column="lesson_name"/>
+    <result property="hits" column="hits"/>
+    <result property="description" column="description"/>
+    <result property="isIndex" column="is_index"/>
+    <result property="imgId" column="img_id"/>
+    <result property="imgUrl" column="img_url"/>
+    <result property="couSize" column="cou_size"/>
+    <result property="studyTime" column="study_time"/>
+    <result property="createUserId" column="create_user_id"/>
+    <result property="createUserName" column="create_user_name"/>
+    <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+    <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+    <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+    <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+    <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+  </resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.study.dto.StudyBrowseDto" resultMap="studyBrowseMap">
+  select * from incloud_biz_study_browse studyBrowse where 1=1
+    <if test="studyBrowseDto.id != null and studyBrowseDto.id != ''">
+      AND studyBrowse.id = #{studyBrowseDto.id}
+    </if>
+    <if test="studyBrowseDto.userId != null and studyBrowseDto.userId != ''">
+      AND studyBrowse.user_id = #{studyBrowseDto.userId}
+    </if>
+    <if test="studyBrowseDto.browseType != null and studyBrowseDto.browseType != ''">
+      AND studyBrowse.browse_type = #{studyBrowseDto.browseType}
+    </if>
+    <if test="studyBrowseDto.fkId != null and studyBrowseDto.fkId != ''">
+      AND studyBrowse.fk_id = #{studyBrowseDto.fkId}
+    </if>
+    order by studyBrowse.id desc
+</select>
+  <!--
+   个人中心-我的浏览-专题
+   -->
+  <select id="getSpecials" parameterType="com.netwisd.biz.study.dto.StudyBrowseDto"
+          resultMap="studySpecialMap">
+    SELECT special.*
+    FROM incloud_biz_study_special special,
+    incloud_biz_study_browse browse
+    WHERE 1 = 1
+    AND special.id = browse.fk_id
+    <if test="studyBrowseDto.browseType !=null and studyBrowseDto.browseType !=''">
+      AND browse.browse_type  = #{studyBrowseDto.browseType}
+    </if>
+    <if test="studyBrowseDto.createUserId !=null and studyBrowseDto.createUserId !=''">
+      AND browse.create_user_id = #{studyBrowseDto.createUserId}
+    </if>
+    <if test="studyBrowseDto.userId !=null and studyBrowseDto.userId !=''">
+      AND browse.user_id = #{studyBrowseDto.userId}
+    </if>
+    ORDER BY browse.create_time DESC
+  </select>
+  <!--
+     个人中心-我的浏览-课程
+     -->
+  <select id="getLessons" parameterType="com.netwisd.biz.study.dto.StudyBrowseDto"
+          resultMap="studyLessonMap">
+    SELECT lesson.*
+    FROM incloud_biz_study_lesson lesson,
+    incloud_biz_study_browse browse
+    WHERE 1 = 1
+    AND lesson.id = browse.fk_id
+    <if test="studyBrowseDto.browseType !=null and studyBrowseDto.browseType !=''">
+      AND browse.browse_type  = #{studyBrowseDto.browseType}
+    </if>
+    <if test="studyBrowseDto.createUserId !=null and studyBrowseDto.createUserId !=''">
+      AND browse.create_user_id = #{studyBrowseDto.createUserId}
+    </if>
+    ORDER BY browse.create_time DESC
+  </select>
+</mapper>

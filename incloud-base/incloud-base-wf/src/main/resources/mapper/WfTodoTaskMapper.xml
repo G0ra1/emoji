@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.wf.mapper.WfTodoTaskMapper">
+
+<resultMap id="wfTodoTaskMap" type="com.netwisd.base.common.vo.wf.WfTodoTaskVo">
+  <id property="id" column="id"/>
+  <result property="camundaProcdefId" column="camunda_procdef_id"/>
+  <result property="camundaProcdefKey" column="camunda_procdef_key"/>
+  <result property="camundaProcdefVersion" column="camunda_procdef_version"/>
+  <result property="camundaProcinsId" column="camunda_procins_id"/>
+  <result property="camundaTaskId" column="camunda_task_id"/>
+  <result property="camundaExectionId" column="camunda_exection_id"/>
+  <result property="procinsId" column="procins_id"/>
+  <result property="taskName" column="task_name"/>
+  <result property="nodeKey" column="node_key"/>
+  <result property="nodeName" column="node_name"/>
+  <result property="nodeType" column="node_type"/>
+  <result property="decision" column="decision"/>
+  <result property="descrption" column="descrption"/>
+  <result property="ownner" column="ownner"/>
+  <result property="assignee" column="assignee"/>
+  <result property="priority" column="priority"/>
+  <result property="dueDate" column="due_date"/>
+  <result property="procdefId" column="procdef_id"/>
+  <result property="procdefTypeId" column="procdef_type_id"/>
+  <result property="procdefTypeName" column="procdef_type_name"/>
+  <result property="cliamTime" column="cliam_time"/>
+  <result property="state" column="state"/>
+  <result property="formKey" column="form_key"/>
+  <result property="bizPriority" column="biz_priority"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.wf.dto.WfTodoTaskDto" resultMap="wfTodoTaskMap">
+  select * from incloud_base_wf_todo_task wfTodoTask where 1=1
+    <if test="wfTodoTaskDto.id != null and wfTodoTaskDto.id != ''">
+      AND wfTodoTask.id = #{wfTodoTaskDto.id}
+    </if>
+    <if test="wfTodoTaskDto.camundaProcdefId != null and wfTodoTaskDto.camundaProcdefId != ''">
+      AND wfTodoTask.camunda_procdef_id like CONCAT('%',#{wfTodoTaskDto.camundaProcdefId},'%')
+    </if>
+    <if test="wfTodoTaskDto.camundaProcdefKey != null and wfTodoTaskDto.camundaProcdefKey != ''">
+      AND wfTodoTask.camunda_procdef_key like CONCAT('%',#{wfTodoTaskDto.camundaProcdefKey},'%')
+    </if>
+    <if test="wfTodoTaskDto.camundaProcdefVersion != null and wfTodoTaskDto.camundaProcdefVersion != ''">
+      AND wfTodoTask.camunda_procdef_version = #{wfTodoTaskDto.camundaProcdefVersion}
+    </if>
+    <if test="wfTodoTaskDto.camundaProcinsId != null and wfTodoTaskDto.camundaProcinsId != ''">
+      AND wfTodoTask.camunda_procins_id like CONCAT('%',#{wfTodoTaskDto.camundaProcinsId},'%')
+    </if>
+    <if test="wfTodoTaskDto.camundaTaskId != null and wfTodoTaskDto.camundaTaskId != ''">
+      AND wfTodoTask.camunda_task_id like CONCAT('%',#{wfTodoTaskDto.camundaTaskId},'%')
+    </if>
+    <if test="wfTodoTaskDto.camundaExectionId != null and wfTodoTaskDto.camundaExectionId != ''">
+      AND wfTodoTask.camunda_exection_id like CONCAT('%',#{wfTodoTaskDto.camundaExectionId},'%')
+    </if>
+    <if test="wfTodoTaskDto.procinsId != null and wfTodoTaskDto.procinsId != ''">
+      AND wfTodoTask.procins_id = #{wfTodoTaskDto.procinsId}
+    </if>
+    <if test="wfTodoTaskDto.taskName != null and wfTodoTaskDto.taskName != ''">
+      AND wfTodoTask.task_name like CONCAT('%',#{wfTodoTaskDto.taskName},'%')
+    </if>
+    <if test="wfTodoTaskDto.nodeKey != null and wfTodoTaskDto.nodeKey != ''">
+      AND wfTodoTask.node_key like CONCAT('%',#{wfTodoTaskDto.nodeKey},'%')
+    </if>
+    <if test="wfTodoTaskDto.nodeName != null and wfTodoTaskDto.nodeName != ''">
+      AND wfTodoTask.node_name like CONCAT('%',#{wfTodoTaskDto.nodeName},'%')
+    </if>
+    <if test="wfTodoTaskDto.decision != null and wfTodoTaskDto.decision != ''">
+      AND wfTodoTask.decision = #{wfTodoTaskDto.decision}
+    </if>
+    <if test="wfTodoTaskDto.descrption != null and wfTodoTaskDto.descrption != ''">
+      AND wfTodoTask.descrption like CONCAT('%',#{wfTodoTaskDto.descrption},'%')
+    </if>
+    <if test="wfTodoTaskDto.ownner != null and wfTodoTaskDto.ownner != ''">
+      AND wfTodoTask.ownner like CONCAT('%',#{wfTodoTaskDto.ownner},'%')
+    </if>
+    <if test="wfTodoTaskDto.assignee != null and wfTodoTaskDto.assignee != ''">
+      AND wfTodoTask.assignee like CONCAT('%',#{wfTodoTaskDto.assignee},'%')
+    </if>
+    <if test="wfTodoTaskDto.priority != null and wfTodoTaskDto.priority != ''">
+      AND wfTodoTask.priority = #{wfTodoTaskDto.priority}
+    </if>
+    <if test="wfTodoTaskDto.dueDate != null and wfTodoTaskDto.dueDate != ''">
+      AND wfTodoTask.due_date = #{wfTodoTaskDto.dueDate}
+    </if>
+    <if test="wfTodoTaskDto.procdefId != null and wfTodoTaskDto.procdefId != ''">
+      AND wfTodoTask.procdef_id = #{wfTodoTaskDto.procdefId}
+    </if>
+    <if test="wfTodoTaskDto.procdefTypeId != null and wfTodoTaskDto.procdefTypeId != ''">
+      AND wfTodoTask.procdef_type_id = #{wfTodoTaskDto.procdefTypeId}
+    </if>
+    <if test="wfTodoTaskDto.procdefTypeName != null and wfTodoTaskDto.procdefTypeName != ''">
+      AND wfTodoTask.procdef_type_name like CONCAT('%',#{wfTodoTaskDto.procdefTypeName},'%')
+    </if>
+    <if test="wfTodoTaskDto.cliamTime != null and wfTodoTaskDto.cliamTime != ''">
+      AND wfTodoTask.cliam_time = #{wfTodoTaskDto.cliamTime}
+    </if>
+    <if test="wfTodoTaskDto.state != null and wfTodoTaskDto.state != ''">
+      AND wfTodoTask.state = #{wfTodoTaskDto.state}
+    </if>
+    order by wfTodoTask.id desc
+</select>
+
+  <select id="queryTodoTaskNum" parameterType="com.netwisd.base.wf.dto.WfTodoTaskDto" resultType="java.lang.Integer">
+    SELECT
+        count(*)
+    FROM
+	    incloud_base_wf_todo_task t
+    WHERE
+	    find_in_set(#{wfTodoTaskDto.candidates},t.candidates)
+        AND t.is_draft = 0
+    <if test="wfTodoTaskDto.camundaProcdefId != null and wfTodoTaskDto.camundaProcdefId != ''">
+      AND t.camunda_procdef_id = #{wfTodoTaskDto.camundaProcdefId}
+    </if>
+    <if test="wfTodoTaskDto.camundaProcdefKey != null and wfTodoTaskDto.camundaProcdefKey != ''">
+      AND t.camunda_procdef_key = #{wfTodoTaskDto.camundaProcdefKey}
+    </if>
+  </select>
+</mapper>

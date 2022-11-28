@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.study.mapper.StudyCouMapper">
+
+<resultMap id="studyCouMap" type="com.netwisd.biz.study.vo.StudyCouVo">
+  <id property="id" column="id"/>
+  <result property="labelCode" column="label_code"/>
+  <result property="labelName" column="label_name"/>
+  <result property="couType" column="cou_type"/>
+  <result property="couName" column="cou_name"/>
+  <result property="useRange" column="use_range"/>
+  <result property="studyTime" column="study_time"/>
+  <result property="imgId" column="img_id"/>
+  <result property="imgUrl" column="img_url"/>
+  <result property="fileId" column="file_id"/>
+  <result property="fileName" column="file_name"/>
+  <result property="fileUrl" column="file_url"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+  <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+  <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+  <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+  <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+  <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.study.dto.StudyCouDto" resultMap="studyCouMap">
+  select * from incloud_biz_study_cou studyCou where 1=1
+    <if test="studyCouDto.id != null and studyCouDto.id != ''">
+      AND studyCou.id = #{studyCouDto.id}
+    </if>
+    <if test="studyCouDto.labelCode != null and studyCouDto.labelCode != ''">
+      AND studyCou.label_code like CONCAT('%',#{studyCouDto.labelCode},'%')
+    </if>
+    <if test="studyCouDto.labelName != null and studyCouDto.labelName != ''">
+      AND studyCou.label_name like CONCAT('%',#{studyCouDto.labelName},'%')
+    </if>
+    <if test="studyCouDto.couType != null and studyCouDto.couType != ''">
+      AND studyCou.cou_type = #{studyCouDto.couType}
+    </if>
+    <if test="studyCouDto.couName != null and studyCouDto.couName != ''">
+      AND studyCou.cou_name like CONCAT('%',#{studyCouDto.couName},'%')
+    </if>
+    <if test="studyCouDto.useRange != null and studyCouDto.useRange != ''">
+      AND studyCou.use_range = #{studyCouDto.useRange}
+    </if>
+    <if test="studyCouDto.studyTime != null and studyCouDto.studyTime != ''">
+      AND studyCou.study_time = #{studyCouDto.studyTime}
+    </if>
+    <if test="studyCouDto.imgId != null and studyCouDto.imgId != ''">
+      AND studyCou.img_id = #{studyCouDto.imgId}
+    </if>
+    <if test="studyCouDto.imgUrl != null and studyCouDto.imgUrl != ''">
+      AND studyCou.img_url like CONCAT('%',#{studyCouDto.imgUrl},'%')
+    </if>
+    <if test="studyCouDto.fileId != null and studyCouDto.fileId != ''">
+      AND studyCou.file_id = #{studyCouDto.fileId}
+    </if>
+    <if test="studyCouDto.fileName != null and studyCouDto.fileName != ''">
+      AND studyCou.file_name like CONCAT('%',#{studyCouDto.fileName},'%')
+    </if>
+    <if test="studyCouDto.fileUrl != null and studyCouDto.fileUrl != ''">
+      AND studyCou.file_url like CONCAT('%',#{studyCouDto.fileUrl},'%')
+    </if>
+    <if test="studyCouDto.createUserId != null and studyCouDto.createUserId != ''">
+      AND studyCou.create_user_id = #{studyCouDto.createUserId}
+    </if>
+    <if test="studyCouDto.createUserName != null and studyCouDto.createUserName != ''">
+      AND studyCou.create_user_name like CONCAT('%',#{studyCouDto.createUserName},'%')
+    </if>
+    <if test="studyCouDto.createUserParentOrgId != null and studyCouDto.createUserParentOrgId != ''">
+      AND studyCou.create_user_parent_org_id = #{studyCouDto.createUserParentOrgId}
+    </if>
+    <if test="studyCouDto.createUserParentOrgName != null and studyCouDto.createUserParentOrgName != ''">
+      AND studyCou.create_user_parent_org_name like CONCAT('%',#{studyCouDto.createUserParentOrgName},'%')
+    </if>
+    <if test="studyCouDto.createUserParentDeptId != null and studyCouDto.createUserParentDeptId != ''">
+      AND studyCou.create_user_parent_dept_id = #{studyCouDto.createUserParentDeptId}
+    </if>
+    <if test="studyCouDto.createUserParentDeptName != null and studyCouDto.createUserParentDeptName != ''">
+      AND studyCou.create_user_parent_dept_name like CONCAT('%',#{studyCouDto.createUserParentDeptName},'%')
+    </if>
+    <if test="studyCouDto.createUserOrgFullId != null and studyCouDto.createUserOrgFullId != ''">
+      AND studyCou.create_user_org_full_id like CONCAT('%',#{studyCouDto.createUserOrgFullId},'%')
+    </if>
+    order by studyCou.id desc
+</select>
+</mapper>

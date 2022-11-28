@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.mdm.mapper.ItemSkuColumnMapper">
+
+<resultMap id="itemSkuColumnMap" type="com.netwisd.biz.mdm.vo.ItemSkuColumnVo">
+  <id property="lineId" column="line_id"/>
+  <result property="skuId" column="sku_id"/>
+  <result property="skuName" column="sku_name"/>
+  <result property="skuSort" column="sku_sort"/>
+  <result property="skuValue" column="sku_value"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.mdm.dto.ItemSkuColumnDto" resultMap="itemSkuColumnMap">
+  select * from incloud_biz_mdm_item_sku_column itemSkuColumn where 1=1
+    <if test="itemSkuColumnDto.lineId != null and itemSkuColumnDto.lineId != ''">
+      AND itemSkuColumn.line_id = #{itemSkuColumnDto.lineId}
+    </if>
+    <if test="itemSkuColumnDto.skuId != null and itemSkuColumnDto.skuId != ''">
+      AND itemSkuColumn.sku_id = #{itemSkuColumnDto.skuId}
+    </if>
+    <if test="itemSkuColumnDto.skuName != null and itemSkuColumnDto.skuName != ''">
+      AND itemSkuColumn.sku_name like CONCAT('%',#{itemSkuColumnDto.skuName},'%')
+    </if>
+    <if test="itemSkuColumnDto.skuSort != null and itemSkuColumnDto.skuSort != ''">
+      AND itemSkuColumn.sku_sort = #{itemSkuColumnDto.skuSort}
+    </if>
+    <if test="itemSkuColumnDto.skuValue != null and itemSkuColumnDto.skuValue != ''">
+      AND itemSkuColumn.sku_value like CONCAT('%',#{itemSkuColumnDto.skuValue},'%')
+    </if>
+    order by itemSkuColumn.line_id desc
+</select>
+</mapper>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.wf.mapper.WfReceiveNotifyTaskMapper">
+
+<resultMap id="wfReceiveNotifyTaskMap" type="com.netwisd.base.common.vo.wf.WfReceiveNotifyTaskVo">
+  <id property="id" column="id"/>
+  <result property="camundaProcdefId" column="camunda_procdef_id"/>
+  <result property="camundaProcdefKey" column="camunda_procdef_key"/>
+  <result property="camundaProcdefVersion" column="camunda_procdef_version"/>
+  <result property="camundaProcinsId" column="camunda_procins_id"/>
+  <result property="camundaTaskId" column="camunda_task_id"/>
+  <result property="camundaExectionId" column="camunda_exection_id"/>
+  <result property="procinsId" column="procins_id"/>
+  <result property="taskName" column="task_name"/>
+  <result property="ownner" column="ownner"/>
+  <result property="assignee" column="assignee"/>
+  <result property="priority" column="priority"/>
+  <result property="dueDate" column="due_date"/>
+  <result property="procdefId" column="procdef_id"/>
+  <result property="procdefName" column="procdef_name"/>
+  <result property="procdefTypeId" column="procdef_type_id"/>
+  <result property="procdefTypeName" column="procdef_type_name"/>
+  <result property="cliamTime" column="cliam_time"/>
+  <result property="state" column="state"/>
+  <result property="reason" column="reason"/>
+  <result property="applyTime" column="apply_time"/>
+  <result property="starterId" column="starter_id"/>
+  <result property="starterName" column="starter_name"/>
+  <result property="starterDeptId" column="starter_dept_id"/>
+  <result property="starterDeptName" column="starter_dept_name"/>
+  <result property="starterOrgId" column="starter_org_id"/>
+  <result property="starterOrgName" column="starter_org_name"/>
+  <result property="bizKey" column="biz_key"/>
+  <result property="formKey" column="form_key"/>
+  <result property="isCallActivity" column="is_call_activity"/>
+  <result property="formId" column="form_id"/>
+  <result property="formName" column="form_name"/>
+  <result property="moduleCode" column="module_code"/>
+  <result property="moduleName" column="module_name"/>
+  <result property="isClone" column="is_clone"/>
+  <result property="camundaParentProcinsId" column="camunda_parent_procins_id"/>
+  <result property="parentProcinsId" column="parent_procins_id"/>
+  <result property="childLogProcinsId" column="child_log_procins_id"/>
+  <result property="parentLogProcinsId" column="parent_log_procins_id"/>
+  <result property="camundaChildLogProcinsId" column="camunda_child_log_procins_id"/>
+  <result property="camundaParentLogProcinsId" column="camunda_parent_log_procins_id"/>
+  <result property="submitParam" column="submit_param"/>
+  <result property="priority" column="priority"/>
+  <result property="bizPriority" column="biz_priority"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.wf.dto.WfReceiveNotifyTaskDto" resultMap="wfReceiveNotifyTaskMap">
+  select * from incloud_base_wf_receive_notify_task
+</select>
+</mapper>

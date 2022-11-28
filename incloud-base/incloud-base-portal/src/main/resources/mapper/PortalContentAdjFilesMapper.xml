@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.portal.mapper.PortalContentAdjFilesMapper">
+
+<resultMap id="portalContentAdjFilesMap" type="com.netwisd.base.portal.vo.PortalContentAdjFilesVo">
+  <id property="id" column="id"/>
+  <result property="portalId" column="portal_id"/>
+  <result property="portalName" column="portal_name"/>
+  <result property="partId" column="part_id"/>
+  <result property="partName" column="part_name"/>
+  <result property="partTypeId" column="part_type_id"/>
+  <result property="partTypeName" column="part_type_name"/>
+  <result property="auditStatus" column="audit_status"/>
+  <result property="remark" column="remark"/>
+  <result property="camundaProcdefKey" column="camunda_procdef_key"/>
+  <result property="procdefName" column="procdef_name"/>
+  <result property="camundaProcdefId" column="camunda_procdef_id"/>
+  <result property="procdefVersion" column="procdef_version"/>
+  <result property="camundaProcinsId" column="camunda_procins_id"/>
+  <result property="processName" column="process_name"/>
+  <result property="reason" column="reason"/>
+  <result property="bizKey" column="biz_key"/>
+  <result property="procdefTypeId" column="procdef_type_id"/>
+  <result property="procdefTypeName" column="procdef_type_name"/>
+  <result property="passTime" column="pass_time"/>
+  <result property="applyUserId" column="apply_user_id"/>
+  <result property="applyUserName" column="apply_user_name"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.portal.dto.PortalContentAdjFilesDto" resultMap="portalContentAdjFilesMap">
+  select * from incloud_base_portal_content_adj_files portalContentAdjFiles where 1=1
+    <if test="portalContentAdjFilesDto.id != null and portalContentAdjFilesDto.id != ''">
+      AND portalContentAdjFiles.id = #{portalContentAdjFilesDto.id}
+    </if>
+    <if test="portalContentAdjFilesDto.portalId != null and portalContentAdjFilesDto.portalId != ''">
+      AND portalContentAdjFiles.portal_id = #{portalContentAdjFilesDto.portalId}
+    </if>
+    <if test="portalContentAdjFilesDto.portalName != null and portalContentAdjFilesDto.portalName != ''">
+      AND portalContentAdjFiles.portal_name like CONCAT('%',#{portalContentAdjFilesDto.portalName},'%')
+    </if>
+    <if test="portalContentAdjFilesDto.partId != null and portalContentAdjFilesDto.partId != ''">
+      AND portalContentAdjFiles.part_id = #{portalContentAdjFilesDto.partId}
+    </if>
+    <if test="portalContentAdjFilesDto.partName != null and portalContentAdjFilesDto.partName != ''">
+      AND portalContentAdjFiles.part_name like CONCAT('%',#{portalContentAdjFilesDto.partName},'%')
+    </if>
+    <if test="portalContentAdjFilesDto.partTypeId != null and portalContentAdjFilesDto.partTypeId != ''">
+      AND portalContentAdjFiles.part_type_id = #{portalContentAdjFilesDto.partTypeId}
+    </if>
+    <if test="portalContentAdjFilesDto.partTypeName != null and portalContentAdjFilesDto.partTypeName != ''">
+      AND portalContentAdjFiles.part_type_name like CONCAT('%',#{portalContentAdjFilesDto.partTypeName},'%')
+    </if>
+    <if test="portalContentAdjFilesDto.auditStatus != null and portalContentAdjFilesDto.auditStatus != ''">
+      AND portalContentAdjFiles.audit_status = #{portalContentAdjFilesDto.auditStatus}
+    </if>
+    <if test="portalContentAdjFilesDto.remark != null and portalContentAdjFilesDto.remark != ''">
+      AND portalContentAdjFiles.remark like CONCAT('%',#{portalContentAdjFilesDto.remark},'%')
+    </if>
+    <if test="portalContentAdjFilesDto.camundaProcdefKey != null and portalContentAdjFilesDto.camundaProcdefKey != ''">
+      AND portalContentAdjFiles.camunda_procdef_key like CONCAT('%',#{portalContentAdjFilesDto.camundaProcdefKey},'%')
+    </if>
+    <if test="portalContentAdjFilesDto.procdefName != null and portalContentAdjFilesDto.procdefName != ''">
+      AND portalContentAdjFiles.procdef_name like CONCAT('%',#{portalContentAdjFilesDto.procdefName},'%')
+    </if>
+    <if test="portalContentAdjFilesDto.camundaProcdefId != null and portalContentAdjFilesDto.camundaProcdefId != ''">
+      AND portalContentAdjFiles.camunda_procdef_id like CONCAT('%',#{portalContentAdjFilesDto.camundaProcdefId},'%')
+    </if>
+    <if test="portalContentAdjFilesDto.procdefVersion != null and portalContentAdjFilesDto.procdefVersion != ''">
+      AND portalContentAdjFiles.procdef_version = #{portalContentAdjFilesDto.procdefVersion}
+    </if>
+    <if test="portalContentAdjFilesDto.camundaProcinsId != null and portalContentAdjFilesDto.camundaProcinsId != ''">
+      AND portalContentAdjFiles.camunda_procins_id like CONCAT('%',#{portalContentAdjFilesDto.camundaProcinsId},'%')
+    </if>
+    <if test="portalContentAdjFilesDto.processName != null and portalContentAdjFilesDto.processName != ''">
+      AND portalContentAdjFiles.process_name like CONCAT('%',#{portalContentAdjFilesDto.processName},'%')
+    </if>
+    <if test="portalContentAdjFilesDto.reason != null and portalContentAdjFilesDto.reason != ''">
+      AND portalContentAdjFiles.reason like CONCAT('%',#{portalContentAdjFilesDto.reason},'%')
+    </if>
+    <if test="portalContentAdjFilesDto.bizKey != null and portalContentAdjFilesDto.bizKey != ''">
+      AND portalContentAdjFiles.biz_key like CONCAT('%',#{portalContentAdjFilesDto.bizKey},'%')
+    </if>
+    <if test="portalContentAdjFilesDto.procdefTypeId != null and portalContentAdjFilesDto.procdefTypeId != ''">
+      AND portalContentAdjFiles.procdef_type_id = #{portalContentAdjFilesDto.procdefTypeId}
+    </if>
+    <if test="portalContentAdjFilesDto.procdefTypeName != null and portalContentAdjFilesDto.procdefTypeName != ''">
+      AND portalContentAdjFiles.procdef_type_name like CONCAT('%',#{portalContentAdjFilesDto.procdefTypeName},'%')
+    </if>
+    <if test="portalContentAdjFilesDto.passTime != null and portalContentAdjFilesDto.passTime != ''">
+      AND portalContentAdjFiles.pass_time = #{portalContentAdjFilesDto.passTime}
+    </if>
+    <if test="portalContentAdjFilesDto.applyUserId != null and portalContentAdjFilesDto.applyUserId != ''">
+      AND portalContentAdjFiles.apply_user_id = #{portalContentAdjFilesDto.applyUserId}
+    </if>
+    <if test="portalContentAdjFilesDto.applyUserName != null and portalContentAdjFilesDto.applyUserName != ''">
+      AND portalContentAdjFiles.apply_user_name like CONCAT('%',#{portalContentAdjFilesDto.applyUserName},'%')
+    </if>
+    order by portalContentAdjFiles.id desc
+</select>
+</mapper>

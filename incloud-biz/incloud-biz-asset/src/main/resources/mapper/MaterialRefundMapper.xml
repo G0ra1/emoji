@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.asset.mapper.MaterialRefundMapper">
+
+<resultMap id="materialRefundMap" type="com.netwisd.biz.asset.vo.MaterialRefundVo">
+  <id property="id" column="id"/>
+  <result property="code" column="code"/>
+  <result property="sumTotalAmount" column="sum_total_amount"/>
+  <result property="sumTotalUntaxedAmount" column="sum_total_untaxed_amount"/>
+  <result property="sumTotalTaxAmount" column="sum_total_tax_amount"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+  <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+  <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+  <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+  <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+  <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+  <result property="auditSuccessTiem" column="audit_success_tiem"/>
+  <result property="camundaProcdefKey" column="camunda_procdef_key"/>
+  <result property="camundaProcdefId" column="camunda_procdef_id"/>
+  <result property="camundaProcinsId" column="camunda_procins_id"/>
+  <result property="procdefTypeId" column="procdef_type_id"/>
+  <result property="procdefTypeName" column="procdef_type_name"/>
+  <result property="procdefVersion" column="procdef_version"/>
+  <result property="procdefName" column="procdef_name"/>
+  <result property="processName" column="process_name"/>
+  <result property="reason" column="reason"/>
+  <result property="bizKey" column="biz_key"/>
+  <result property="camundaTaskId" column="camunda_task_id"/>
+  <result property="bizPriority" column="biz_priority"/>
+  <result property="auditStatus" column="audit_status"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.asset.dto.MaterialRefundDto" resultMap="materialRefundMap">
+  select * from incloud_biz_asset_material_refund materialRefund where 1=1
+    <if test="materialRefundDto.id != null and materialRefundDto.id != ''">
+      AND materialRefund.id = #{materialRefundDto.id}
+    </if>
+    <if test="materialRefundDto.code != null and materialRefundDto.code != ''">
+      AND materialRefund.code like CONCAT('%',#{materialRefundDto.code},'%')
+    </if>
+    <if test="materialRefundDto.sumTotalAmount != null and materialRefundDto.sumTotalAmount != ''">
+      AND materialRefund.sum_total_amount = #{materialRefundDto.sumTotalAmount}
+    </if>
+    <if test="materialRefundDto.sumTotalUntaxedAmount != null and materialRefundDto.sumTotalUntaxedAmount != ''">
+      AND materialRefund.sum_total_untaxed_amount = #{materialRefundDto.sumTotalUntaxedAmount}
+    </if>
+    <if test="materialRefundDto.sumTotalTaxAmount != null and materialRefundDto.sumTotalTaxAmount != ''">
+      AND materialRefund.sum_total_tax_amount = #{materialRefundDto.sumTotalTaxAmount}
+    </if>
+    <if test="materialRefundDto.createUserId != null and materialRefundDto.createUserId != ''">
+      AND materialRefund.create_user_id = #{materialRefundDto.createUserId}
+    </if>
+    <if test="materialRefundDto.createUserName != null and materialRefundDto.createUserName != ''">
+      AND materialRefund.create_user_name like CONCAT('%',#{materialRefundDto.createUserName},'%')
+    </if>
+    <if test="materialRefundDto.createUserParentOrgId != null and materialRefundDto.createUserParentOrgId != ''">
+      AND materialRefund.create_user_parent_org_id = #{materialRefundDto.createUserParentOrgId}
+    </if>
+    <if test="materialRefundDto.createUserParentOrgName != null and materialRefundDto.createUserParentOrgName != ''">
+      AND materialRefund.create_user_parent_org_name like CONCAT('%',#{materialRefundDto.createUserParentOrgName},'%')
+    </if>
+    <if test="materialRefundDto.createUserParentDeptId != null and materialRefundDto.createUserParentDeptId != ''">
+      AND materialRefund.create_user_parent_dept_id = #{materialRefundDto.createUserParentDeptId}
+    </if>
+    <if test="materialRefundDto.createUserParentDeptName != null and materialRefundDto.createUserParentDeptName != ''">
+      AND materialRefund.create_user_parent_dept_name like CONCAT('%',#{materialRefundDto.createUserParentDeptName},'%')
+    </if>
+    <if test="materialRefundDto.createUserOrgFullId != null and materialRefundDto.createUserOrgFullId != ''">
+      AND materialRefund.create_user_org_full_id like CONCAT('%',#{materialRefundDto.createUserOrgFullId},'%')
+    </if>
+    <if test="materialRefundDto.auditSuccessTiem != null and materialRefundDto.auditSuccessTiem != ''">
+      AND materialRefund.audit_success_tiem = #{materialRefundDto.auditSuccessTiem}
+    </if>
+    <if test="materialRefundDto.camundaProcdefKey != null and materialRefundDto.camundaProcdefKey != ''">
+      AND materialRefund.camunda_procdef_key like CONCAT('%',#{materialRefundDto.camundaProcdefKey},'%')
+    </if>
+    <if test="materialRefundDto.camundaProcdefId != null and materialRefundDto.camundaProcdefId != ''">
+      AND materialRefund.camunda_procdef_id like CONCAT('%',#{materialRefundDto.camundaProcdefId},'%')
+    </if>
+    <if test="materialRefundDto.camundaProcinsId != null and materialRefundDto.camundaProcinsId != ''">
+      AND materialRefund.camunda_procins_id like CONCAT('%',#{materialRefundDto.camundaProcinsId},'%')
+    </if>
+    <if test="materialRefundDto.procdefTypeId != null and materialRefundDto.procdefTypeId != ''">
+      AND materialRefund.procdef_type_id = #{materialRefundDto.procdefTypeId}
+    </if>
+    <if test="materialRefundDto.procdefTypeName != null and materialRefundDto.procdefTypeName != ''">
+      AND materialRefund.procdef_type_name like CONCAT('%',#{materialRefundDto.procdefTypeName},'%')
+    </if>
+    <if test="materialRefundDto.procdefVersion != null and materialRefundDto.procdefVersion != ''">
+      AND materialRefund.procdef_version = #{materialRefundDto.procdefVersion}
+    </if>
+    <if test="materialRefundDto.procdefName != null and materialRefundDto.procdefName != ''">
+      AND materialRefund.procdef_name like CONCAT('%',#{materialRefundDto.procdefName},'%')
+    </if>
+    <if test="materialRefundDto.processName != null and materialRefundDto.processName != ''">
+      AND materialRefund.process_name like CONCAT('%',#{materialRefundDto.processName},'%')
+    </if>
+    <if test="materialRefundDto.reason != null and materialRefundDto.reason != ''">
+      AND materialRefund.reason like CONCAT('%',#{materialRefundDto.reason},'%')
+    </if>
+    <if test="materialRefundDto.bizKey != null and materialRefundDto.bizKey != ''">
+      AND materialRefund.biz_key like CONCAT('%',#{materialRefundDto.bizKey},'%')
+    </if>
+    <if test="materialRefundDto.camundaTaskId != null and materialRefundDto.camundaTaskId != ''">
+      AND materialRefund.camunda_task_id like CONCAT('%',#{materialRefundDto.camundaTaskId},'%')
+    </if>
+    <if test="materialRefundDto.bizPriority != null and materialRefundDto.bizPriority != ''">
+      AND materialRefund.biz_priority like CONCAT('%',#{materialRefundDto.bizPriority},'%')
+    </if>
+    <if test="materialRefundDto.auditStatus != null and materialRefundDto.auditStatus != ''">
+      AND materialRefund.audit_status = #{materialRefundDto.auditStatus}
+    </if>
+    order by materialRefund.id desc
+</select>
+<select id="getMaxCode" resultType="java.lang.String">
+  SELECT MAX(SUBSTRING_INDEX(code,'-',-1)) AS maxCode FROM `incloud_biz_asset_material_refund` WHERE DATE_FORMAT(apply_time,'%Y-%m-%d') =  CURDATE()
+</select>
+</mapper>

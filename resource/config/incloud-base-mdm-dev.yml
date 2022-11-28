@@ -1,0 +1,7 @@
+incloud:
+  table:
+    package: com.netwisd.base.mdm.entity
+qywechat:
+  isSync: false
+  csvdeptfileurl: /opt/batch_party_sample.csv
+  csvuserfileurl: /opt/batch_user_sample.csv

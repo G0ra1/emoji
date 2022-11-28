@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.mdm.mapper.MdmUserMapper">
+
+<resultMap id="mdmUserMap" type="com.netwisd.base.common.mdm.vo.MdmUserVo">
+  <id property="id" column="id"/>
+  <result property="parentOrgId" column="parent_org_id"/>
+  <result property="parentOrgName" column="parent_org_name"/>
+  <result property="parentDeptId" column="parent_dept_id"/>
+  <result property="parentDeptName" column="parent_dept_name"/>
+  <result property="orgFullId" column="org_full_id"/>
+  <result property="orgFullName" column="org_full_name"/>
+  <result property="parentOrgFullName" column="parent_org_full_name"/>
+  <result property="parentDeptFullName" column="parent_dept_full_name"/>
+  <result property="sort" column="sort"/>
+  <result property="userName" column="user_name"/>
+  <result property="passWord" column="pass_word"/>
+  <result property="userNameCh" column="user_name_ch"/>
+  <result property="nationality" column="nationality"/>
+  <result property="cardType" column="card_type"/>
+  <result property="sex" column="sex"/>
+  <result property="idCard" column="id_card"/>
+  <result property="birthday" column="birthday"/>
+  <result property="nativePlace" column="native_place"/>
+  <result property="nation" column="nation"/>
+  <result property="marriageStatus" column="marriage_status"/>
+  <result property="politicsStatus" column="politics_status"/>
+  <result property="isFertility" column="is_fertility"/>
+  <result property="religion" column="religion"/>
+  <result property="healthCondition" column="health_condition"/>
+  <result property="personalExpertise" column="personal_expertise"/>
+  <result property="hobbies" column="hobbies"/>
+  <result property="height" column="height"/>
+  <result property="bodyWeight" column="body_weight"/>
+  <result property="bloodType" column="blood_type"/>
+  <result property="phoneNum" column="phone_num"/>
+  <result property="officePhone" column="office_phone"/>
+  <result property="email" column="email"/>
+  <result property="qq" column="qq"/>
+  <result property="wechat" column="wechat"/>
+  <result property="addr" column="addr"/>
+  <result property="nowAddr" column="now_addr"/>
+  <result property="nowAddrZipcode" column="now_addr_zipcode"/>
+  <result property="employmentForm" column="employment_form"/>
+  <result property="employmentType" column="employment_type"/>
+  <result property="status" column="status"/>
+  <result property="statusReason" column="status_reason"/>
+  <result property="birthAddr" column="birth_addr"/>
+  <result property="birthNature" column="birth_nature"/>
+  <result property="birthPlace" column="birth_place"/>
+  <result property="policeStation" column="police_station"/>
+  <result property="formerName" column="former_name"/>
+  <result property="education" column="education"/>
+  <result property="school" column="school"/>
+  <result property="globalSort" column="global_sort"/>
+  <result property="globalSortSecond" column="global_sort_second"/>
+  <result property="postName" column="post_name"/>
+  <result property="andPostName" column="and_post_name"/>
+  <result property="ncUserName" column="nc_user_name"/>
+  <result property="ncUserCode" column="nc_user_code"/>
+  <result property="photoFileId" column="photo_file_id"/>
+  <result property="userClass" column="user_class"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.common.mdm.dto.MdmUserDto" resultMap="mdmUserMap">
+  select * from incloud_base_mdm_user mdmUser where 1=1
+    <if test="mdmUserDto.id != null and mdmUserDto.id != ''">
+      AND mdmUser.id = #{mdmUserDto.id}
+    </if>
+    <if test="mdmUserDto.orgFullId != null and mdmUserDto.orgFullId != ''">
+      AND mdmUser.org_full_id like CONCAT('%',#{mdmUserDto.orgFullId},'%')
+    </if>
+    <if test="mdmUserDto.orgFullName != null and mdmUserDto.orgFullName != ''">
+      AND mdmUser.org_full_name like CONCAT('%',#{mdmUserDto.orgFullName},'%')
+    </if>
+    <if test="mdmUserDto.sort != null and mdmUserDto.sort != ''">
+      AND mdmUser.sort = #{mdmUserDto.sort}
+    </if>
+    <if test="mdmUserDto.userName != null and mdmUserDto.userName != ''">
+      AND mdmUser.user_name like CONCAT('%',#{mdmUserDto.userName},'%')
+    </if>
+    <if test="mdmUserDto.userNameCh != null and mdmUserDto.userNameCh != ''">
+      AND mdmUser.user_name_ch like CONCAT('%',#{mdmUserDto.userNameCh},'%')
+    </if>
+    <if test="mdmUserDto.nationality != null and mdmUserDto.nationality != ''">
+      AND mdmUser.nationality like CONCAT('%',#{mdmUserDto.nationality},'%')
+    </if>
+    <if test="mdmUserDto.cardType != null and mdmUserDto.cardType != ''">
+      AND mdmUser.card_type = #{mdmUserDto.cardType}
+    </if>
+    <if test="mdmUserDto.sex != null and mdmUserDto.sex != ''">
+      AND mdmUser.sex = #{mdmUserDto.sex}
+    </if>
+    <if test="mdmUserDto.idCard != null and mdmUserDto.idCard != ''">
+      AND mdmUser.id_card like CONCAT('%',#{mdmUserDto.idCard},'%')
+    </if>
+    <if test="mdmUserDto.birthday != null and mdmUserDto.birthday != ''">
+      AND mdmUser.birthday = #{mdmUserDto.birthday}
+    </if>
+    <if test="mdmUserDto.nativePlace != null and mdmUserDto.nativePlace != ''">
+      AND mdmUser.native_place like CONCAT('%',#{mdmUserDto.nativePlace},'%')
+    </if>
+    <if test="mdmUserDto.nation != null and mdmUserDto.nation != ''">
+      AND mdmUser.nation like CONCAT('%',#{mdmUserDto.nation},'%')
+    </if>
+    <if test="mdmUserDto.marriageStatus != null and mdmUserDto.marriageStatus != ''">
+      AND mdmUser.marriage_status = #{mdmUserDto.marriageStatus}
+    </if>
+    <if test="mdmUserDto.politicsStatus != null and mdmUserDto.politicsStatus != ''">
+      AND mdmUser.politics_status = #{mdmUserDto.politicsStatus}
+    </if>
+    <if test="mdmUserDto.isFertility != null and mdmUserDto.isFertility != ''">
+      AND mdmUser.is_fertility = #{mdmUserDto.isFertility}
+    </if>
+    <if test="mdmUserDto.religion != null and mdmUserDto.religion != ''">
+      AND mdmUser.religion = #{mdmUserDto.religion}
+    </if>
+    <if test="mdmUserDto.healthCondition != null and mdmUserDto.healthCondition != ''">
+      AND mdmUser.health_condition = #{mdmUserDto.healthCondition}
+    </if>
+    <if test="mdmUserDto.personalExpertise != null and mdmUserDto.personalExpertise != ''">
+      AND mdmUser.personal_expertise like CONCAT('%',#{mdmUserDto.personalExpertise},'%')
+    </if>
+    <if test="mdmUserDto.hobbies != null and mdmUserDto.hobbies != ''">
+      AND mdmUser.hobbies like CONCAT('%',#{mdmUserDto.hobbies},'%')
+    </if>
+    <if test="mdmUserDto.height != null and mdmUserDto.height != ''">
+      AND mdmUser.height like CONCAT('%',#{mdmUserDto.height},'%')
+    </if>
+    <if test="mdmUserDto.bodyWeight != null and mdmUserDto.bodyWeight != ''">
+      AND mdmUser.body_weight like CONCAT('%',#{mdmUserDto.bodyWeight},'%')
+    </if>
+    <if test="mdmUserDto.bloodType != null and mdmUserDto.bloodType != ''">
+      AND mdmUser.blood_type = #{mdmUserDto.bloodType}
+    </if>
+    <if test="mdmUserDto.phoneNum != null and mdmUserDto.phoneNum != ''">
+      AND mdmUser.phone_num = #{mdmUserDto.phoneNum}
+    </if>
+    <if test="mdmUserDto.officePhone != null and mdmUserDto.officePhone != ''">
+      AND mdmUser.office_phone like CONCAT('%',#{mdmUserDto.officePhone},'%')
+    </if>
+    <if test="mdmUserDto.email != null and mdmUserDto.email != ''">
+      AND mdmUser.email like CONCAT('%',#{mdmUserDto.email},'%')
+    </if>
+    <if test="mdmUserDto.qq != null and mdmUserDto.qq != ''">
+      AND mdmUser.qq like CONCAT('%',#{mdmUserDto.qq},'%')
+    </if>
+    <if test="mdmUserDto.wechat != null and mdmUserDto.wechat != ''">
+      AND mdmUser.wechat like CONCAT('%',#{mdmUserDto.wechat},'%')
+    </if>
+    <if test="mdmUserDto.addr != null and mdmUserDto.addr != ''">
+      AND mdmUser.addr like CONCAT('%',#{mdmUserDto.addr},'%')
+    </if>
+    <if test="mdmUserDto.nowAddr != null and mdmUserDto.nowAddr != ''">
+      AND mdmUser.now_addr like CONCAT('%',#{mdmUserDto.nowAddr},'%')
+    </if>
+    <if test="mdmUserDto.nowAddrZipcode != null and mdmUserDto.nowAddrZipcode != ''">
+      AND mdmUser.now_addr_zipcode like CONCAT('%',#{mdmUserDto.nowAddrZipcode},'%')
+    </if>
+    <if test="mdmUserDto.employmentForm != null and mdmUserDto.employmentForm != ''">
+      AND mdmUser.employment_form = #{mdmUserDto.employmentForm}
+    </if>
+    <if test="mdmUserDto.employmentType != null and mdmUserDto.employmentType != ''">
+      AND mdmUser.employment_type = #{mdmUserDto.employmentType}
+    </if>
+    <if test="mdmUserDto.status != null and mdmUserDto.status != ''">
+      AND mdmUser.status = #{mdmUserDto.status}
+    </if>
+    <if test="mdmUserDto.statusReason != null and mdmUserDto.statusReason != ''">
+      AND mdmUser.status_reason like CONCAT('%',#{mdmUserDto.statusReason},'%')
+    </if>
+    <if test="mdmUserDto.birthAddr != null and mdmUserDto.birthAddr != ''">
+      AND mdmUser.birth_addr like CONCAT('%',#{mdmUserDto.birthAddr},'%')
+    </if>
+    <if test="mdmUserDto.birthNature != null and mdmUserDto.birthNature != ''">
+      AND mdmUser.birth_nature = #{mdmUserDto.birthNature}
+    </if>
+    <if test="mdmUserDto.birthPlace != null and mdmUserDto.birthPlace != ''">
+      AND mdmUser.birth_place like CONCAT('%',#{mdmUserDto.birthPlace},'%')
+    </if>
+    <if test="mdmUserDto.policeStation != null and mdmUserDto.policeStation != ''">
+      AND mdmUser.police_station like CONCAT('%',#{mdmUserDto.policeStation},'%')
+    </if>
+    <if test="mdmUserDto.formerName != null and mdmUserDto.formerName != ''">
+      AND mdmUser.former_name like CONCAT('%',#{mdmUserDto.formerName},'%')
+    </if>
+    <if test="mdmUserDto.education != null and mdmUserDto.education != ''">
+      AND mdmUser.education like CONCAT('%',#{mdmUserDto.education},'%')
+    </if>
+    <if test="mdmUserDto.school != null and mdmUserDto.school != ''">
+      AND mdmUser.school like CONCAT('%',#{mdmUserDto.school},'%')
+    </if>
+    <if test="mdmUserDto.globalSort != null and mdmUserDto.globalSort != ''">
+      AND mdmUser.global_sort = #{mdmUserDto.globalSort}
+    </if>
+    order by mdmUser.id desc
+</select>
+
+  <select id="getConditionList" parameterType="com.netwisd.base.common.mdm.dto.MdmUserDto" resultMap="mdmUserMap">
+    select
+        u.*,(
+            select
+                ps.post_name
+            from
+                incloud_base_mdm_post_user ps
+            WHERE
+                u.id = ps.user_id
+            and
+                ps.is_master = 1
+            )
+            as post_name,
+            (
+              select
+                ds.duty_name
+              from
+                incloud_base_mdm_duty_user ds
+              WHERE
+                u.id = ds.user_id
+              and
+                ds.is_master = 1
+            )
+              as duty_name,
+            (
+            select
+                GROUP_CONCAT(ps.post_name,'_',ps.post_name separator '|')
+            from
+                incloud_base_mdm_post_user ps
+            WHERE
+                u.id = ps.user_id
+            and
+                ps.is_master = 0)
+            as and_post_name
+    from
+        incloud_base_mdm_user u
+    where
+        1=1
+    --     父级机构
+<!--    <if test="mdmUserDto.parentOrgId != null and mdmUserDto.parentOrgId != ''">-->
+<!--      AND u.parent_org_id = #{mdmUserDto.parentOrgId}-->
+<!--    </if>-->
+<!--    &#45;&#45;     父级机构名称-->
+<!--    <if test="mdmUserDto.parentOrgName != null and mdmUserDto.parentOrgName != ''">-->
+<!--      AND u.parent_org_name like CONCAT('%',#{mdmUserDto.parentOrgName},'%')-->
+<!--    </if>-->
+
+<!--    &#45;&#45;     父级部门-->
+<!--    <if test="mdmUserDto.parentDeptId != null and mdmUserDto.parentDeptId != ''">-->
+<!--      AND u.parent_dept_id = #{mdmUserDto.parentDeptId}-->
+<!--    </if>-->
+<!--    &#45;&#45;     父级部门名称-->
+<!--    <if test="mdmUserDto.parentDeptName != null and mdmUserDto.parentDeptName != ''">-->
+<!--      AND u.parent_dept_name like CONCAT('%',#{mdmUserDto.parentDeptName},'%')-->
+<!--    </if>-->
+
+    --     机构id
+    <if test="mdmUserDto.parentOrgId != null and mdmUserDto.parentOrgId != ''">
+      AND u.org_full_id like CONCAT('%',#{mdmUserDto.parentOrgId},'%')
+    </if>
+    --     人员姓名
+    <if test="mdmUserDto.userName != null and mdmUserDto.userName != ''">
+      AND u.user_name like CONCAT('%',#{mdmUserDto.userName},'%')
+    </if>
+    --     人员姓名
+    <if test="mdmUserDto.userNameCh != null and mdmUserDto.userNameCh != ''">
+      AND u.user_name_ch like CONCAT('%',#{mdmUserDto.userNameCh},'%')
+    </if>
+    --     人员状态
+    <if test="mdmUserDto.status != null and mdmUserDto.status != ''">
+      AND u.status = #{mdmUserDto.status}
+    </if>
+    --     用工类别
+    <if test="mdmUserDto.employmentType != null and mdmUserDto.employmentType != ''">
+      AND u.employment_type = #{mdmUserDto.employmentType}
+    </if>
+    --     性别
+    <if test="mdmUserDto.sex != null and mdmUserDto.sex != ''">
+      AND u.sex = #{mdmUserDto.sex}
+    </if>
+    --     户口性质
+    <if test="mdmUserDto.birthNature != null and mdmUserDto.birthNature != ''">
+      AND u.birth_nature = #{mdmUserDto.birthNature}
+    </if>
+    --     民族
+    <if test="mdmUserDto.nationality != null and mdmUserDto.nationality != ''">
+      AND u.nationality = #{mdmUserDto.nationality}
+    </if>
+    --     政治面貌
+    <if test="mdmUserDto.politicsStatus != null and mdmUserDto.politicsStatus != ''">
+      AND u.politics_status = #{mdmUserDto.politicsStatus}
+    </if>
+    --     婚姻状况
+    <if test="mdmUserDto.marriageStatus != null and mdmUserDto.marriageStatus != ''">
+      AND u.marriage_status = #{mdmUserDto.marriageStatus}
+    </if>
+    --     健康状况
+    <if test="mdmUserDto.healthCondition != null and mdmUserDto.healthCondition != ''">
+      AND u.health_condition = #{mdmUserDto.healthCondition}
+    </if>
+    --     用户类别 如果不为空
+    <if test="mdmUserDto.userClass != null and mdmUserDto.userClass != 0">
+      AND u.user_class = #{mdmUserDto.userClass}
+    </if>
+    --     用户类别 如果为空 默认2 查询中原建设的用户
+    <if test="mdmUserDto.userClass == null or mdmUserDto.userClass == 0">
+      AND u.user_class = 2
+    </if>
+    --     是否是末级
+    <if test="mdmUserDto.hasKids == 0">
+      order by u.sort asc
+    </if>
+    <if test="mdmUserDto.hasKids == 1">
+      order by u.global_sort,u.global_sort_second asc
+    </if>
+  </select>
+
+  <select id="getByIdCard" parameterType="java.lang.String" resultMap="mdmUserMap">
+    SELECT * FROM incloud_base_mdm_user WHERE BINARY id_card = #{idCard} and user_class = 2 ORDER BY update_time LIMIT 1
+  </select>
+
+</mapper>

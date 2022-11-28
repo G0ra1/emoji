@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.wf.mapper.WfForwardedTaskMapper">
+
+<resultMap id="forwardedTaskMap" type="com.netwisd.base.wf.vo.WfForwardedTaskVo">
+  <id property="id" column="id"/>
+  <result property="camundaProcdefId" column="camunda_procdef_id"/>
+  <result property="camundaProcdefKey" column="camunda_procdef_key"/>
+  <result property="camundaProcdefVersion" column="camunda_procdef_version"/>
+  <result property="camundaProcinsId" column="camunda_procins_id"/>
+  <result property="camundaTaskId" column="camunda_task_id"/>
+  <result property="camundaNodeKey" column="camunda_node_key"/>
+  <result property="camundaNodeName" column="camunda_node_name"/>
+  <result property="camundaNodeType" column="camunda_node_type"/>
+  <result property="procinsId" column="procins_id"/>
+  <result property="procinsName" column="procins_name"/>
+  <result property="ownner" column="ownner"/>
+  <result property="ownnerName" column="ownner_name"/>
+  <result property="assignee" column="assignee"/>
+  <result property="assigneeName" column="assignee_name"/>
+  <result property="procdefId" column="procdef_id"/>
+  <result property="procdefName" column="procdef_name"/>
+  <result property="procdefTypeId" column="procdef_type_id"/>
+  <result property="procdefTypeName" column="procdef_type_name"/>
+  <result property="cliamTime" column="cliam_time"/>
+  <result property="state" column="state"/>
+  <result property="reason" column="reason"/>
+  <result property="applyTime" column="apply_time"/>
+  <result property="starterId" column="starter_id"/>
+  <result property="starterName" column="starter_name"/>
+  <result property="starterDeptId" column="starter_dept_id"/>
+  <result property="starterDeptName" column="starter_dept_name"/>
+  <result property="starterOrgId" column="starter_org_id"/>
+  <result property="starterOrgName" column="starter_org_name"/>
+  <result property="bizKey" column="biz_key"/>
+  <result property="isDuplicated" column="is_duplicated"/>
+  <result property="isCallActivity" column="is_call_activity"/>
+  <result property="isClone" column="is_clone"/>
+  <result property="camundaParentProcinsId" column="camunda_parent_procins_id"/>
+  <result property="parentProcinsId" column="parent_procins_id"/>
+  <result property="isClonedByCamundaProcdefId" column="is_cloned_by_camunda_procdef_id"/>
+  <result property="currentActivityId" column="current_activity_id"/>
+  <result property="currentActivityName" column="current_activity_name"/>
+  <result property="currentActivityAssignee" column="current_activity_assignee"/>
+  <result property="currentActivityAssigneeName" column="current_activity_assignee_name"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+  <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+  <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+  <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+  <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+  <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+  <result property="priority" column="priority"/>
+  <result property="bizPriority" column="biz_priority"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.wf.dto.WfForwardedTaskDto" resultMap="forwardedTaskMap">
+  select * from incloud_base_wf_forwarded_task wfForwardedTask where 1=1
+    <if test="wfForwardedTaskDto.id != null and wfForwardedTaskDto.id != ''">
+      AND wfForwardedTask.id = #{wfForwardedTaskDto.id}
+    </if>
+    <if test="wfForwardedTaskDto.camundaProcdefId != null and wfForwardedTaskDto.camundaProcdefId != ''">
+      AND wfForwardedTask.camunda_procdef_id like CONCAT('%',#{wfForwardedTaskDto.camundaProcdefId},'%')
+    </if>
+    <if test="wfForwardedTaskDto.camundaProcdefKey != null and wfForwardedTaskDto.camundaProcdefKey != ''">
+      AND wfForwardedTask.camunda_procdef_key like CONCAT('%',#{wfForwardedTaskDto.camundaProcdefKey},'%')
+    </if>
+    <if test="wfForwardedTaskDto.camundaProcdefVersion != null and wfForwardedTaskDto.camundaProcdefVersion != ''">
+      AND wfForwardedTask.camunda_procdef_version = #{wfForwardedTaskDto.camundaProcdefVersion}
+    </if>
+    <if test="wfForwardedTaskDto.camundaProcinsId != null and wfForwardedTaskDto.camundaProcinsId != ''">
+      AND wfForwardedTask.camunda_procins_id like CONCAT('%',#{wfForwardedTaskDto.camundaProcinsId},'%')
+    </if>
+    <if test="wfForwardedTaskDto.camundaTaskId != null and wfForwardedTaskDto.camundaTaskId != ''">
+      AND wfForwardedTask.camunda_task_id like CONCAT('%',#{wfForwardedTaskDto.camundaTaskId},'%')
+    </if>
+    <if test="wfForwardedTaskDto.camundaNodeKey != null and wfForwardedTaskDto.camundaNodeKey != ''">
+      AND wfForwardedTask.camunda_node_key like CONCAT('%',#{wfForwardedTaskDto.camundaNodeKey},'%')
+    </if>
+    <if test="wfForwardedTaskDto.camundaNodeName != null and wfForwardedTaskDto.camundaNodeName != ''">
+      AND wfForwardedTask.camunda_node_name like CONCAT('%',#{wfForwardedTaskDto.camundaNodeName},'%')
+    </if>
+    <if test="wfForwardedTaskDto.camundaNodeType != null and wfForwardedTaskDto.camundaNodeType != ''">
+      AND wfForwardedTask.camunda_node_type = #{wfForwardedTaskDto.camundaNodeType}
+    </if>
+    <if test="wfForwardedTaskDto.procinsId != null and wfForwardedTaskDto.procinsId != ''">
+      AND wfForwardedTask.procins_id = #{wfForwardedTaskDto.procinsId}
+    </if>
+    <if test="wfForwardedTaskDto.procinsName != null and wfForwardedTaskDto.procinsName != ''">
+      AND wfForwardedTask.procins_name like CONCAT('%',#{wfForwardedTaskDto.procinsName},'%')
+    </if>
+    <if test="wfForwardedTaskDto.ownner != null and wfForwardedTaskDto.ownner != ''">
+      AND wfForwardedTask.ownner like CONCAT('%',#{wfForwardedTaskDto.ownner},'%')
+    </if>
+    <if test="wfForwardedTaskDto.ownnerName != null and wfForwardedTaskDto.ownnerName != ''">
+      AND wfForwardedTask.ownner_name like CONCAT('%',#{wfForwardedTaskDto.ownnerName},'%')
+    </if>
+    <if test="wfForwardedTaskDto.assignee != null and wfForwardedTaskDto.assignee != ''">
+      AND wfForwardedTask.assignee like CONCAT('%',#{wfForwardedTaskDto.assignee},'%')
+    </if>
+    <if test="wfForwardedTaskDto.assigneeName != null and wfForwardedTaskDto.assigneeName != ''">
+      AND wfForwardedTask.assignee_name like CONCAT('%',#{wfForwardedTaskDto.assigneeName},'%')
+    </if>
+    <if test="wfForwardedTaskDto.procdefId != null and wfForwardedTaskDto.procdefId != ''">
+      AND wfForwardedTask.procdef_id = #{wfForwardedTaskDto.procdefId}
+    </if>
+    <if test="wfForwardedTaskDto.procdefName != null and wfForwardedTaskDto.procdefName != ''">
+      AND wfForwardedTask.procdef_name like CONCAT('%',#{wfForwardedTaskDto.procdefName},'%')
+    </if>
+    <if test="wfForwardedTaskDto.procdefTypeId != null and wfForwardedTaskDto.procdefTypeId != ''">
+      AND wfForwardedTask.procdef_type_id = #{wfForwardedTaskDto.procdefTypeId}
+    </if>
+    <if test="wfForwardedTaskDto.procdefTypeName != null and wfForwardedTaskDto.procdefTypeName != ''">
+      AND wfForwardedTask.procdef_type_name like CONCAT('%',#{wfForwardedTaskDto.procdefTypeName},'%')
+    </if>
+    <if test="wfForwardedTaskDto.cliamTime != null and wfForwardedTaskDto.cliamTime != ''">
+      AND wfForwardedTask.cliam_time = #{wfForwardedTaskDto.cliamTime}
+    </if>
+    <if test="wfForwardedTaskDto.state != null and wfForwardedTaskDto.state != ''">
+      AND wfForwardedTask.state = #{wfForwardedTaskDto.state}
+    </if>
+    <if test="wfForwardedTaskDto.reason != null and wfForwardedTaskDto.reason != ''">
+      AND wfForwardedTask.reason like CONCAT('%',#{wfForwardedTaskDto.reason},'%')
+    </if>
+    <if test="wfForwardedTaskDto.applyTime != null and wfForwardedTaskDto.applyTime != ''">
+      AND wfForwardedTask.apply_time = #{wfForwardedTaskDto.applyTime}
+    </if>
+    <if test="wfForwardedTaskDto.starterId != null and wfForwardedTaskDto.starterId != ''">
+      AND wfForwardedTask.starter_id = #{wfForwardedTaskDto.starterId}
+    </if>
+    <if test="wfForwardedTaskDto.starterName != null and wfForwardedTaskDto.starterName != ''">
+      AND wfForwardedTask.starter_name like CONCAT('%',#{wfForwardedTaskDto.starterName},'%')
+    </if>
+    <if test="wfForwardedTaskDto.starterDeptId != null and wfForwardedTaskDto.starterDeptId != ''">
+      AND wfForwardedTask.starter_dept_id = #{wfForwardedTaskDto.starterDeptId}
+    </if>
+    <if test="wfForwardedTaskDto.starterDeptName != null and wfForwardedTaskDto.starterDeptName != ''">
+      AND wfForwardedTask.starter_dept_name like CONCAT('%',#{wfForwardedTaskDto.starterDeptName},'%')
+    </if>
+    <if test="wfForwardedTaskDto.starterOrgId != null and wfForwardedTaskDto.starterOrgId != ''">
+      AND wfForwardedTask.starter_org_id = #{wfForwardedTaskDto.starterOrgId}
+    </if>
+    <if test="wfForwardedTaskDto.starterOrgName != null and wfForwardedTaskDto.starterOrgName != ''">
+      AND wfForwardedTask.starter_org_name like CONCAT('%',#{wfForwardedTaskDto.starterOrgName},'%')
+    </if>
+    <if test="wfForwardedTaskDto.bizKey != null and wfForwardedTaskDto.bizKey != ''">
+      AND wfForwardedTask.biz_key like CONCAT('%',#{wfForwardedTaskDto.bizKey},'%')
+    </if>
+    <if test="wfForwardedTaskDto.isDuplicated != null and wfForwardedTaskDto.isDuplicated != ''">
+      AND wfForwardedTask.is_duplicated = #{wfForwardedTaskDto.isDuplicated}
+    </if>
+    <if test="wfForwardedTaskDto.isCallActivity != null and wfForwardedTaskDto.isCallActivity != ''">
+      AND wfForwardedTask.is_call_activity = #{wfForwardedTaskDto.isCallActivity}
+    </if>
+    <if test="wfForwardedTaskDto.isClone != null and wfForwardedTaskDto.isClone != ''">
+      AND wfForwardedTask.is_clone = #{wfForwardedTaskDto.isClone}
+    </if>
+    <if test="wfForwardedTaskDto.camundaParentProcinsId != null and wfForwardedTaskDto.camundaParentProcinsId != ''">
+      AND wfForwardedTask.camunda_parent_procins_id like CONCAT('%',#{wfForwardedTaskDto.camundaParentProcinsId},'%')
+    </if>
+    <if test="wfForwardedTaskDto.parentProcinsId != null and wfForwardedTaskDto.parentProcinsId != ''">
+      AND wfForwardedTask.parent_procins_id = #{wfForwardedTaskDto.parentProcinsId}
+    </if>
+    <if test="wfForwardedTaskDto.isClonedByCamundaProcdefId != null and wfForwardedTaskDto.isClonedByCamundaProcdefId != ''">
+      AND wfForwardedTask.is_cloned_by_camunda_procdef_id like CONCAT('%',#{wfForwardedTaskDto.isClonedByCamundaProcdefId},'%')
+    </if>
+    <if test="wfForwardedTaskDto.currentActivityId != null and wfForwardedTaskDto.currentActivityId != ''">
+      AND wfForwardedTask.current_activity_id like CONCAT('%',#{wfForwardedTaskDto.currentActivityId},'%')
+    </if>
+    <if test="wfForwardedTaskDto.currentActivityName != null and wfForwardedTaskDto.currentActivityName != ''">
+      AND wfForwardedTask.current_activity_name like CONCAT('%',#{wfForwardedTaskDto.currentActivityName},'%')
+    </if>
+    <if test="wfForwardedTaskDto.currentActivityAssignee != null and wfForwardedTaskDto.currentActivityAssignee != ''">
+      AND wfForwardedTask.current_activity_assignee like CONCAT('%',#{wfForwardedTaskDto.currentActivityAssignee},'%')
+    </if>
+    <if test="wfForwardedTaskDto.currentActivityAssigneeName != null and wfForwardedTaskDto.currentActivityAssigneeName != ''">
+      AND wfForwardedTask.current_activity_assignee_name like CONCAT('%',#{wfForwardedTaskDto.currentActivityAssigneeName},'%')
+    </if>
+    <if test="wfForwardedTaskDto.createUserId != null and wfForwardedTaskDto.createUserId != ''">
+      AND wfForwardedTask.create_user_id = #{wfForwardedTaskDto.createUserId}
+    </if>
+    <if test="wfForwardedTaskDto.createUserName != null and wfForwardedTaskDto.createUserName != ''">
+      AND wfForwardedTask.create_user_name like CONCAT('%',#{wfForwardedTaskDto.createUserName},'%')
+    </if>
+    <if test="wfForwardedTaskDto.createUserParentOrgId != null and wfForwardedTaskDto.createUserParentOrgId != ''">
+      AND wfForwardedTask.create_user_parent_org_id = #{wfForwardedTaskDto.createUserParentOrgId}
+    </if>
+    <if test="wfForwardedTaskDto.createUserParentOrgName != null and wfForwardedTaskDto.createUserParentOrgName != ''">
+      AND wfForwardedTask.create_user_parent_org_name like CONCAT('%',#{wfForwardedTaskDto.createUserParentOrgName},'%')
+    </if>
+    <if test="wfForwardedTaskDto.createUserParentDeptId != null and wfForwardedTaskDto.createUserParentDeptId != ''">
+      AND wfForwardedTask.create_user_parent_dept_id = #{wfForwardedTaskDto.createUserParentDeptId}
+    </if>
+    <if test="wfForwardedTaskDto.createUserParentDeptName != null and wfForwardedTaskDto.createUserParentDeptName != ''">
+      AND wfForwardedTask.create_user_parent_dept_name like CONCAT('%',#{wfForwardedTaskDto.createUserParentDeptName},'%')
+    </if>
+    <if test="wfForwardedTaskDto.createUserOrgFullId != null and wfForwardedTaskDto.createUserOrgFullId != ''">
+      AND wfForwardedTask.create_user_org_full_id like CONCAT('%',#{wfForwardedTaskDto.createUserOrgFullId},'%')
+    </if>
+    order by wfForwardedTask.id desc
+</select>
+</mapper>

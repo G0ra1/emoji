@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.study.mapper.StudyLessonCommentsMapper">
+
+<resultMap id="studyLessonCommentsMap" type="com.netwisd.biz.study.vo.StudyLessonCommentsVo">
+  <id property="id" column="id"/>
+  <result property="lessonId" column="lesson_id"/>
+  <result property="lessonName" column="lesson_name"/>
+  <result property="userId" column="user_id"/>
+  <result property="userName" column="user_name"/>
+  <result property="userNameCh" column="user_name_ch"/>
+  <result property="comment" column="comment"/>
+  <result property="level" column="level"/>
+  <result property="parentId" column="parent_id"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+  <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+  <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+  <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+  <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+  <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.study.dto.StudyLessonCommentsDto" resultMap="studyLessonCommentsMap">
+  select * from incloud_biz_study_lesson_comments studyLessonComments where 1=1
+    <if test="studyLessonCommentsDto.id != null and studyLessonCommentsDto.id != ''">
+      AND studyLessonComments.id = #{studyLessonCommentsDto.id}
+    </if>
+    <if test="studyLessonCommentsDto.lessonId != null and studyLessonCommentsDto.lessonId != ''">
+      AND studyLessonComments.lesson_id = #{studyLessonCommentsDto.lessonId}
+    </if>
+    <if test="studyLessonCommentsDto.lessonName != null and studyLessonCommentsDto.lessonName != ''">
+      AND studyLessonComments.lesson_name like CONCAT('%',#{studyLessonCommentsDto.lessonName},'%')
+    </if>
+    <if test="studyLessonCommentsDto.userId != null and studyLessonCommentsDto.userId != ''">
+      AND studyLessonComments.user_id = #{studyLessonCommentsDto.userId}
+    </if>
+    <if test="studyLessonCommentsDto.userName != null and studyLessonCommentsDto.userName != ''">
+      AND studyLessonComments.user_name like CONCAT('%',#{studyLessonCommentsDto.userName},'%')
+    </if>
+    <if test="studyLessonCommentsDto.userNameCh != null and studyLessonCommentsDto.userNameCh != ''">
+      AND studyLessonComments.user_name_ch like CONCAT('%',#{studyLessonCommentsDto.userNameCh},'%')
+    </if>
+    <if test="studyLessonCommentsDto.comment != null and studyLessonCommentsDto.comment != ''">
+      AND studyLessonComments.comment like CONCAT('%',#{studyLessonCommentsDto.comment},'%')
+    </if>
+    <if test="studyLessonCommentsDto.level != null and studyLessonCommentsDto.level != ''">
+      AND studyLessonComments.level = #{studyLessonCommentsDto.level}
+    </if>
+    <if test="studyLessonCommentsDto.parentId != null and studyLessonCommentsDto.parentId != ''">
+      AND studyLessonComments.parent_id = #{studyLessonCommentsDto.parentId}
+    </if>
+    <if test="studyLessonCommentsDto.createUserId != null and studyLessonCommentsDto.createUserId != ''">
+      AND studyLessonComments.create_user_id = #{studyLessonCommentsDto.createUserId}
+    </if>
+    <if test="studyLessonCommentsDto.createUserName != null and studyLessonCommentsDto.createUserName != ''">
+      AND studyLessonComments.create_user_name like CONCAT('%',#{studyLessonCommentsDto.createUserName},'%')
+    </if>
+    <if test="studyLessonCommentsDto.createUserParentOrgId != null and studyLessonCommentsDto.createUserParentOrgId != ''">
+      AND studyLessonComments.create_user_parent_org_id = #{studyLessonCommentsDto.createUserParentOrgId}
+    </if>
+    <if test="studyLessonCommentsDto.createUserParentOrgName != null and studyLessonCommentsDto.createUserParentOrgName != ''">
+      AND studyLessonComments.create_user_parent_org_name like CONCAT('%',#{studyLessonCommentsDto.createUserParentOrgName},'%')
+    </if>
+    <if test="studyLessonCommentsDto.createUserParentDeptId != null and studyLessonCommentsDto.createUserParentDeptId != ''">
+      AND studyLessonComments.create_user_parent_dept_id = #{studyLessonCommentsDto.createUserParentDeptId}
+    </if>
+    <if test="studyLessonCommentsDto.createUserParentDeptName != null and studyLessonCommentsDto.createUserParentDeptName != ''">
+      AND studyLessonComments.create_user_parent_dept_name like CONCAT('%',#{studyLessonCommentsDto.createUserParentDeptName},'%')
+    </if>
+    <if test="studyLessonCommentsDto.createUserOrgFullId != null and studyLessonCommentsDto.createUserOrgFullId != ''">
+      AND studyLessonComments.create_user_org_full_id like CONCAT('%',#{studyLessonCommentsDto.createUserOrgFullId},'%')
+    </if>
+    order by studyLessonComments.id desc
+</select>
+</mapper>

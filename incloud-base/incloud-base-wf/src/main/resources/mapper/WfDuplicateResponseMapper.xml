@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.wf.mapper.WfDuplicateResponseMapper">
+
+<resultMap id="wfDuplicateResponseMap" type="com.netwisd.base.wf.vo.WfDuplicateResponseVo">
+  <id property="id" column="id"/>
+  <result property="inDuplicateTaskId" column="in_duplicate_task_id"/>
+  <result property="ownner" column="ownner"/>
+  <result property="ownnerName" column="ownner_name"/>
+  <result property="outDuplicateTaskId" column="out_duplicate_task_id"/>
+  <result property="assignee" column="assignee"/>
+  <result property="assigneeName" column="assignee_name"/>
+  <result property="content" column="content"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.wf.dto.WfDuplicateResponseDto" resultMap="wfDuplicateResponseMap">
+  select * from incloud_base_wf_duplicate_response wfDuplicateResponse where 1=1
+    <if test="wfDuplicateResponseDto.id != null and wfDuplicateResponseDto.id != ''">
+      AND wfDuplicateResponse.id = #{wfDuplicateResponseDto.id}
+    </if>
+    <if test="wfDuplicateResponseDto.inDuplicateTaskId != null and wfDuplicateResponseDto.inDuplicateTaskId != ''">
+      AND wfDuplicateResponse.in_duplicate_task_id = #{wfDuplicateResponseDto.inDuplicateTaskId}
+    </if>
+    <if test="wfDuplicateResponseDto.ownner != null and wfDuplicateResponseDto.ownner != ''">
+      AND wfDuplicateResponse.ownner like CONCAT('%',#{wfDuplicateResponseDto.ownner},'%')
+    </if>
+    <if test="wfDuplicateResponseDto.ownnerName != null and wfDuplicateResponseDto.ownnerName != ''">
+      AND wfDuplicateResponse.ownner_name like CONCAT('%',#{wfDuplicateResponseDto.ownnerName},'%')
+    </if>
+    <if test="wfDuplicateResponseDto.outDuplicateTaskId != null and wfDuplicateResponseDto.outDuplicateTaskId != ''">
+      AND wfDuplicateResponse.out_duplicate_task_id = #{wfDuplicateResponseDto.outDuplicateTaskId}
+    </if>
+    <if test="wfDuplicateResponseDto.assignee != null and wfDuplicateResponseDto.assignee != ''">
+      AND wfDuplicateResponse.assignee like CONCAT('%',#{wfDuplicateResponseDto.assignee},'%')
+    </if>
+    <if test="wfDuplicateResponseDto.assigneeName != null and wfDuplicateResponseDto.assigneeName != ''">
+      AND wfDuplicateResponse.assignee_name like CONCAT('%',#{wfDuplicateResponseDto.assigneeName},'%')
+    </if>
+    <if test="wfDuplicateResponseDto.content != null and wfDuplicateResponseDto.content != ''">
+      AND wfDuplicateResponse.content like CONCAT('%',#{wfDuplicateResponseDto.content},'%')
+    </if>
+    order by wfDuplicateResponse.id desc
+</select>
+</mapper>

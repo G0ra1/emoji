@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.asset.mapper.SuppliesDetailMapper">
+
+<resultMap id="suppliesDetailMap" type="com.netwisd.biz.asset.vo.SuppliesDetailVo">
+  <id property="id" column="id"/>
+  <result property="assetsId" column="assets_id"/>
+  <result property="classifyId" column="classify_id"/>
+  <result property="classifyCode" column="classify_code"/>
+  <result property="classifyName" column="classify_name"/>
+  <result property="route" column="route"/>
+  <result property="routeName" column="route_name"/>
+  <result property="categoryId" column="category_id"/>
+  <result property="categoryCode" column="category_code"/>
+  <result property="categoryName" column="category_name"/>
+  <result property="taxRate" column="tax_rate"/>
+  <result property="itemId" column="item_id"/>
+  <result property="itemCode" column="item_code"/>
+  <result property="itemName" column="item_name"/>
+  <result property="desclong" column="desclong"/>
+  <result property="descshort" column="descshort"/>
+  <result property="unitCode" column="unit_code"/>
+  <result property="unitName" column="unit_name"/>
+  <result property="materialQuality" column="material_quality"/>
+  <result property="standard" column="standard"/>
+  <result property="specs" column="specs"/>
+  <result property="supplierName" column="supplier_name"/>
+  <result property="contractCode" column="contract_code"/>
+  <result property="assetsClassification" column="assets_classification"/>
+  <result property="billCodes" column="bill_codes"/>
+  <result property="billCodeFilesIds" column="bill_code_files_ids"/>
+  <result property="assetsCode" column="assets_code"/>
+  <result property="assetsLabel" column="assets_label"/>
+  <result property="qualityAssuranceLevel" column="quality_assurance_level"/>
+  <result property="manufacturer" column="manufacturer"/>
+  <result property="productionDate" column="production_date"/>
+  <result property="serviceLife" column="service_life"/>
+  <result property="validPeriod" column="valid_period"/>
+  <result property="batchNumber" column="batch_number"/>
+  <result property="acceptanceDate" column="acceptance_date"/>
+  <result property="factoryDate" column="factory_date"/>
+  <result property="factoryCode" column="factory_code"/>
+  <result property="approachDate" column="approach_date"/>
+  <result property="warehouseId" column="warehouse_id"/>
+  <result property="warehouseName" column="warehouse_name"/>
+  <result property="shelfId" column="shelf_id"/>
+  <result property="shelfName" column="shelf_name"/>
+  <result property="rzDate" column="rz_date"/>
+  <result property="assetsNumber" column="assets_number"/>
+  <result property="acceptanceNumber" column="acceptance_number"/>
+  <result property="storageNumber" column="storage_number"/>
+  <result property="stockNumber" column="stock_number"/>
+  <result property="usableNumber" column="usable_number"/>
+  <result property="entryNumber" column="entry_number"/>
+  <result property="deliveryNumber" column="delivery_number"/>
+  <result property="acceptNumber" column="accept_number"/>
+  <result property="borrowNumber" column="borrow_number"/>
+  <result property="lendNumber" column="lend_number"/>
+  <result property="transferNumber" column="transfer_number"/>
+  <result property="repairNumber" column="repair_number"/>
+  <result property="scrappedNumber" column="scrapped_number"/>
+  <result property="warehouseState" column="warehouse_state"/>
+  <result property="useState" column="use_state"/>
+  <result property="assetsAmount" column="assets_amount"/>
+  <result property="assetsUntaxedAmount" column="assets_untaxed_amount"/>
+  <result property="assetsTaxAmount" column="assets_tax_amount"/>
+  <result property="assetsSumAmount" column="assets_sum_amount"/>
+  <result property="assetsSumUntaxedAmount" column="assets_sum_untaxed_amount"/>
+  <result property="assetsSumTaxAmount" column="assets_sum_tax_amount"/>
+  <result property="netRate" column="net_rate"/>
+  <result property="estlimateNetSalvage" column="estlimate_net_salvage"/>
+  <result property="secretRelated" column="secret_related"/>
+  <result property="assetDeptId" column="asset_dept_id"/>
+  <result property="assetDeptName" column="asset_dept_name"/>
+  <result property="assetOrgId" column="asset_org_id"/>
+  <result property="assetOrgName" column="asset_org_name"/>
+  <result property="assetOrgFullId" column="asset_org_full_id"/>
+  <result property="itemType" column="item_type"/>
+  <result property="assetSource" column="asset_source"/>
+  <result property="seriesNumber" column="series_number"/>
+  <result property="assetsSkuId" column="assets_sku_id"/>
+  <result property="sourceId" column="source_id"/>
+  <result property="skuCode" column="sku_code"/>
+  <result property="skuFullId" column="sku_full_id"/>
+  <result property="skuFullName" column="sku_full_name"/>
+  <result property="applyTime" column="apply_time"/>
+  <result property="applyUserId" column="apply_user_id"/>
+  <result property="applyUserName" column="apply_user_name"/>
+  <result property="applyUserOrgId" column="apply_user_org_id"/>
+  <result property="applyUserOrgName" column="apply_user_org_name"/>
+  <result property="applyUserDeptId" column="apply_user_dept_id"/>
+  <result property="applyUserDeptName" column="apply_user_dept_name"/>
+  <result property="classifyTypeCode" column="classify_type_code"/>
+  <result property="classifyTypeName" column="classify_type_name"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.asset.dto.SuppliesDetailDto" resultMap="suppliesDetailMap">
+  select * from incloud_biz_asset_supplies_detail suppliesDetail where 1=1
+    <if test="suppliesDetailDto.id != null and suppliesDetailDto.id != ''">
+      AND suppliesDetail.id = #{suppliesDetailDto.id}
+    </if>
+    <if test="suppliesDetailDto.assetsId != null and suppliesDetailDto.assetsId != ''">
+      AND suppliesDetail.assets_id = #{suppliesDetailDto.assetsId}
+    </if>
+    <if test="suppliesDetailDto.classifyId != null and suppliesDetailDto.classifyId != ''">
+      AND suppliesDetail.classify_id = #{suppliesDetailDto.classifyId}
+    </if>
+    <if test="suppliesDetailDto.classifyTypeCode != null and suppliesDetailDto.classifyTypeCode != ''">
+      AND suppliesDetail.classify_type_code = #{suppliesDetailDto.classifyTypeCode}
+    </if>
+    <if test="suppliesDetailDto.classifyTypeName != null and suppliesDetailDto.classifyTypeName != ''">
+      AND suppliesDetail.classify_type_name = #{suppliesDetailDto.classifyTypeName}
+    </if>
+    <if test="suppliesDetailDto.classifyCode != null and suppliesDetailDto.classifyCode != ''">
+      AND suppliesDetail.classify_code like CONCAT('%',#{suppliesDetailDto.classifyCode},'%')
+    </if>
+    <if test="suppliesDetailDto.classifyName != null and suppliesDetailDto.classifyName != ''">
+      AND suppliesDetail.classify_name like CONCAT('%',#{suppliesDetailDto.classifyName},'%')
+    </if>
+    <if test="suppliesDetailDto.route != null and suppliesDetailDto.route != ''">
+      AND suppliesDetail.route like CONCAT('%',#{suppliesDetailDto.route},'%')
+    </if>
+    <if test="suppliesDetailDto.routeName != null and suppliesDetailDto.routeName != ''">
+      AND suppliesDetail.route_name like CONCAT('%',#{suppliesDetailDto.routeName},'%')
+    </if>
+    <if test="suppliesDetailDto.categoryId != null and suppliesDetailDto.categoryId != ''">
+      AND suppliesDetail.category_id = #{suppliesDetailDto.categoryId}
+    </if>
+    <if test="suppliesDetailDto.categoryCode != null and suppliesDetailDto.categoryCode != ''">
+      AND suppliesDetail.category_code like CONCAT('%',#{suppliesDetailDto.categoryCode},'%')
+    </if>
+    <if test="suppliesDetailDto.categoryName != null and suppliesDetailDto.categoryName != ''">
+      AND suppliesDetail.category_name like CONCAT('%',#{suppliesDetailDto.categoryName},'%')
+    </if>
+    <if test="suppliesDetailDto.taxRate != null and suppliesDetailDto.taxRate != ''">
+      AND suppliesDetail.tax_rate = #{suppliesDetailDto.taxRate}
+    </if>
+    <if test="suppliesDetailDto.itemId != null and suppliesDetailDto.itemId != ''">
+      AND suppliesDetail.item_id like CONCAT('%',#{suppliesDetailDto.itemId},'%')
+    </if>
+    <if test="suppliesDetailDto.itemCode != null and suppliesDetailDto.itemCode != ''">
+      AND suppliesDetail.item_code like CONCAT('%',#{suppliesDetailDto.itemCode},'%')
+    </if>
+    <if test="suppliesDetailDto.itemName != null and suppliesDetailDto.itemName != ''">
+      AND suppliesDetail.item_name like CONCAT('%',#{suppliesDetailDto.itemName},'%')
+    </if>
+    <if test="suppliesDetailDto.desclong != null and suppliesDetailDto.desclong != ''">
+      AND suppliesDetail.desclong like CONCAT('%',#{suppliesDetailDto.desclong},'%')
+    </if>
+    <if test="suppliesDetailDto.descshort != null and suppliesDetailDto.descshort != ''">
+      AND suppliesDetail.descshort like CONCAT('%',#{suppliesDetailDto.descshort},'%')
+    </if>
+    <if test="suppliesDetailDto.unitCode != null and suppliesDetailDto.unitCode != ''">
+      AND suppliesDetail.unit_code like CONCAT('%',#{suppliesDetailDto.unitCode},'%')
+    </if>
+    <if test="suppliesDetailDto.unitName != null and suppliesDetailDto.unitName != ''">
+      AND suppliesDetail.unit_name like CONCAT('%',#{suppliesDetailDto.unitName},'%')
+    </if>
+    <if test="suppliesDetailDto.materialQuality != null and suppliesDetailDto.materialQuality != ''">
+      AND suppliesDetail.material_quality like CONCAT('%',#{suppliesDetailDto.materialQuality},'%')
+    </if>
+    <if test="suppliesDetailDto.standard != null and suppliesDetailDto.standard != ''">
+      AND suppliesDetail.standard like CONCAT('%',#{suppliesDetailDto.standard},'%')
+    </if>
+    <if test="suppliesDetailDto.specs != null and suppliesDetailDto.specs != ''">
+      AND suppliesDetail.specs like CONCAT('%',#{suppliesDetailDto.specs},'%')
+    </if>
+    <if test="suppliesDetailDto.supplierName != null and suppliesDetailDto.supplierName != ''">
+      AND suppliesDetail.supplier_name like CONCAT('%',#{suppliesDetailDto.supplierName},'%')
+    </if>
+    <if test="suppliesDetailDto.contractCode != null and suppliesDetailDto.contractCode != ''">
+      AND suppliesDetail.contract_code like CONCAT('%',#{suppliesDetailDto.contractCode},'%')
+    </if>
+    <if test="suppliesDetailDto.assetsClassification != null and suppliesDetailDto.assetsClassification != ''">
+      AND suppliesDetail.assets_classification like CONCAT('%',#{suppliesDetailDto.assetsClassification},'%')
+    </if>
+    <if test="suppliesDetailDto.billCodes != null and suppliesDetailDto.billCodes != ''">
+      AND suppliesDetail.bill_codes like CONCAT('%',#{suppliesDetailDto.billCodes},'%')
+    </if>
+    <if test="suppliesDetailDto.billCodeFilesIds != null and suppliesDetailDto.billCodeFilesIds != ''">
+      AND suppliesDetail.bill_code_files_ids like CONCAT('%',#{suppliesDetailDto.billCodeFilesIds},'%')
+    </if>
+    <if test="suppliesDetailDto.assetsCode != null and suppliesDetailDto.assetsCode != ''">
+      AND suppliesDetail.assets_code like CONCAT('%',#{suppliesDetailDto.assetsCode},'%')
+    </if>
+    <if test="suppliesDetailDto.assetsLabel != null and suppliesDetailDto.assetsLabel != ''">
+      AND suppliesDetail.assets_label like CONCAT('%',#{suppliesDetailDto.assetsLabel},'%')
+    </if>
+    <if test="suppliesDetailDto.qualityAssuranceLevel != null and suppliesDetailDto.qualityAssuranceLevel != ''">
+      AND suppliesDetail.quality_assurance_level like CONCAT('%',#{suppliesDetailDto.qualityAssuranceLevel},'%')
+    </if>
+    <if test="suppliesDetailDto.manufacturer != null and suppliesDetailDto.manufacturer != ''">
+      AND suppliesDetail.manufacturer like CONCAT('%',#{suppliesDetailDto.manufacturer},'%')
+    </if>
+    <if test="suppliesDetailDto.productionDate != null and suppliesDetailDto.productionDate != ''">
+      AND suppliesDetail.production_date = #{suppliesDetailDto.productionDate}
+    </if>
+    <if test="suppliesDetailDto.serviceLife != null and suppliesDetailDto.serviceLife != ''">
+      AND suppliesDetail.service_life = #{suppliesDetailDto.serviceLife}
+    </if>
+    <if test="suppliesDetailDto.validPeriod != null and suppliesDetailDto.validPeriod != ''">
+      AND suppliesDetail.valid_period like CONCAT('%',#{suppliesDetailDto.validPeriod},'%')
+    </if>
+    <if test="suppliesDetailDto.batchNumber != null and suppliesDetailDto.batchNumber != ''">
+      AND suppliesDetail.batch_number like CONCAT('%',#{suppliesDetailDto.batchNumber},'%')
+    </if>
+    <if test="suppliesDetailDto.acceptanceDate != null and suppliesDetailDto.acceptanceDate != ''">
+      AND suppliesDetail.acceptance_date = #{suppliesDetailDto.acceptanceDate}
+    </if>
+    <if test="suppliesDetailDto.factoryDate != null and suppliesDetailDto.factoryDate != ''">
+      AND suppliesDetail.factory_date = #{suppliesDetailDto.factoryDate}
+    </if>
+    <if test="suppliesDetailDto.factoryCode != null and suppliesDetailDto.factoryCode != ''">
+      AND suppliesDetail.factory_code like CONCAT('%',#{suppliesDetailDto.factoryCode},'%')
+    </if>
+    <if test="suppliesDetailDto.approachDate != null and suppliesDetailDto.approachDate != ''">
+      AND suppliesDetail.approach_date = #{suppliesDetailDto.approachDate}
+    </if>
+    <if test="suppliesDetailDto.warehouseId != null and suppliesDetailDto.warehouseId != ''">
+      AND suppliesDetail.warehouse_id like CONCAT('%',#{suppliesDetailDto.warehouseId},'%')
+    </if>
+    <if test="suppliesDetailDto.warehouseName != null and suppliesDetailDto.warehouseName != ''">
+      AND suppliesDetail.warehouse_name like CONCAT('%',#{suppliesDetailDto.warehouseName},'%')
+    </if>
+    <if test="suppliesDetailDto.shelfId != null and suppliesDetailDto.shelfId != ''">
+      AND suppliesDetail.shelf_id like CONCAT('%',#{suppliesDetailDto.shelfId},'%')
+    </if>
+    <if test="suppliesDetailDto.shelfName != null and suppliesDetailDto.shelfName != ''">
+      AND suppliesDetail.shelf_name like CONCAT('%',#{suppliesDetailDto.shelfName},'%')
+    </if>
+    <if test="suppliesDetailDto.rzDate != null and suppliesDetailDto.rzDate != ''">
+      AND suppliesDetail.rz_date = #{suppliesDetailDto.rzDate}
+    </if>
+    <if test="suppliesDetailDto.assetsNumber != null and suppliesDetailDto.assetsNumber != ''">
+      AND suppliesDetail.assets_number = #{suppliesDetailDto.assetsNumber}
+    </if>
+    <if test="suppliesDetailDto.acceptanceNumber != null and suppliesDetailDto.acceptanceNumber != ''">
+      AND suppliesDetail.acceptance_number = #{suppliesDetailDto.acceptanceNumber}
+    </if>
+    <if test="suppliesDetailDto.storageNumber != null and suppliesDetailDto.storageNumber != ''">
+      AND suppliesDetail.storage_number = #{suppliesDetailDto.storageNumber}
+    </if>
+    <if test="suppliesDetailDto.stockNumber != null and suppliesDetailDto.stockNumber != ''">
+      AND suppliesDetail.stock_number = #{suppliesDetailDto.stockNumber}
+    </if>
+    <if test="suppliesDetailDto.usableNumber != null and suppliesDetailDto.usableNumber != ''">
+      AND suppliesDetail.usable_number = #{suppliesDetailDto.usableNumber}
+    </if>
+    <if test="suppliesDetailDto.entryNumber != null and suppliesDetailDto.entryNumber != ''">
+      AND suppliesDetail.entry_number = #{suppliesDetailDto.entryNumber}
+    </if>
+    <if test="suppliesDetailDto.deliveryNumber != null and suppliesDetailDto.deliveryNumber != ''">
+      AND suppliesDetail.delivery_number = #{suppliesDetailDto.deliveryNumber}
+    </if>
+    <if test="suppliesDetailDto.acceptNumber != null and suppliesDetailDto.acceptNumber != ''">
+      AND suppliesDetail.accept_number = #{suppliesDetailDto.acceptNumber}
+    </if>
+    <if test="suppliesDetailDto.borrowNumber != null and suppliesDetailDto.borrowNumber != ''">
+      AND suppliesDetail.borrow_number = #{suppliesDetailDto.borrowNumber}
+    </if>
+    <if test="suppliesDetailDto.lendNumber != null and suppliesDetailDto.lendNumber != ''">
+      AND suppliesDetail.lend_number = #{suppliesDetailDto.lendNumber}
+    </if>
+    <if test="suppliesDetailDto.transferNumber != null and suppliesDetailDto.transferNumber != ''">
+      AND suppliesDetail.transfer_number = #{suppliesDetailDto.transferNumber}
+    </if>
+    <if test="suppliesDetailDto.repairNumber != null and suppliesDetailDto.repairNumber != ''">
+      AND suppliesDetail.repair_number = #{suppliesDetailDto.repairNumber}
+    </if>
+    <if test="suppliesDetailDto.scrappedNumber != null and suppliesDetailDto.scrappedNumber != ''">
+      AND suppliesDetail.scrapped_number = #{suppliesDetailDto.scrappedNumber}
+    </if>
+    <if test="suppliesDetailDto.warehouseState != null and suppliesDetailDto.warehouseState != ''">
+      AND suppliesDetail.warehouse_state like CONCAT('%',#{suppliesDetailDto.warehouseState},'%')
+    </if>
+    <if test="suppliesDetailDto.useState != null and suppliesDetailDto.useState != ''">
+      AND suppliesDetail.use_state = #{suppliesDetailDto.useState}
+    </if>
+    <if test="suppliesDetailDto.assetsAmount != null and suppliesDetailDto.assetsAmount != ''">
+      AND suppliesDetail.assets_amount = #{suppliesDetailDto.assetsAmount}
+    </if>
+    <if test="suppliesDetailDto.assetsUntaxedAmount != null and suppliesDetailDto.assetsUntaxedAmount != ''">
+      AND suppliesDetail.assets_untaxed_amount = #{suppliesDetailDto.assetsUntaxedAmount}
+    </if>
+    <if test="suppliesDetailDto.assetsTaxAmount != null and suppliesDetailDto.assetsTaxAmount != ''">
+      AND suppliesDetail.assets_tax_amount = #{suppliesDetailDto.assetsTaxAmount}
+    </if>
+    <if test="suppliesDetailDto.assetsSumAmount != null and suppliesDetailDto.assetsSumAmount != ''">
+      AND suppliesDetail.assets_sum_amount = #{suppliesDetailDto.assetsSumAmount}
+    </if>
+    <if test="suppliesDetailDto.assetsSumUntaxedAmount != null and suppliesDetailDto.assetsSumUntaxedAmount != ''">
+      AND suppliesDetail.assets_sum_untaxed_amount = #{suppliesDetailDto.assetsSumUntaxedAmount}
+    </if>
+    <if test="suppliesDetailDto.assetsSumTaxAmount != null and suppliesDetailDto.assetsSumTaxAmount != ''">
+      AND suppliesDetail.assets_sum_tax_amount = #{suppliesDetailDto.assetsSumTaxAmount}
+    </if>
+    <if test="suppliesDetailDto.netRate != null and suppliesDetailDto.netRate != ''">
+      AND suppliesDetail.net_rate = #{suppliesDetailDto.netRate}
+    </if>
+    <if test="suppliesDetailDto.estlimateNetSalvage != null and suppliesDetailDto.estlimateNetSalvage != ''">
+      AND suppliesDetail.estlimate_net_salvage = #{suppliesDetailDto.estlimateNetSalvage}
+    </if>
+    <if test="suppliesDetailDto.secretRelated != null and suppliesDetailDto.secretRelated != ''">
+      AND suppliesDetail.secret_related = #{suppliesDetailDto.secretRelated}
+    </if>
+    <if test="suppliesDetailDto.assetDeptId != null and suppliesDetailDto.assetDeptId != ''">
+      AND suppliesDetail.asset_dept_id like CONCAT('%',#{suppliesDetailDto.assetDeptId},'%')
+    </if>
+    <if test="suppliesDetailDto.assetDeptName != null and suppliesDetailDto.assetDeptName != ''">
+      AND suppliesDetail.asset_dept_name like CONCAT('%',#{suppliesDetailDto.assetDeptName},'%')
+    </if>
+    <if test="suppliesDetailDto.assetOrgId != null and suppliesDetailDto.assetOrgId != ''">
+      AND suppliesDetail.asset_org_id like CONCAT('%',#{suppliesDetailDto.assetOrgId},'%')
+    </if>
+    <if test="suppliesDetailDto.assetOrgName != null and suppliesDetailDto.assetOrgName != ''">
+      AND suppliesDetail.asset_org_name like CONCAT('%',#{suppliesDetailDto.assetOrgName},'%')
+    </if>
+    <if test="suppliesDetailDto.assetOrgFullId != null and suppliesDetailDto.assetOrgFullId != ''">
+      AND suppliesDetail.asset_org_full_id = #{suppliesDetailDto.assetOrgFullId}
+    </if>
+    <if test="suppliesDetailDto.itemType != null and suppliesDetailDto.itemType != ''">
+      AND suppliesDetail.item_type like CONCAT('%',#{suppliesDetailDto.itemType},'%')
+    </if>
+    <if test="suppliesDetailDto.assetSource != null and suppliesDetailDto.assetSource != ''">
+      AND suppliesDetail.asset_source = #{suppliesDetailDto.assetSource}
+    </if>
+    <if test="suppliesDetailDto.seriesNumber != null and suppliesDetailDto.seriesNumber != ''">
+      AND suppliesDetail.series_number like CONCAT('%',#{suppliesDetailDto.seriesNumber},'%')
+    </if>
+    <if test="suppliesDetailDto.assetsSkuId != null and suppliesDetailDto.assetsSkuId != ''">
+      AND suppliesDetail.assets_sku_id = #{suppliesDetailDto.assetsSkuId}
+    </if>
+    <if test="suppliesDetailDto.sourceId != null and suppliesDetailDto.sourceId != ''">
+      AND suppliesDetail.source_id = #{suppliesDetailDto.sourceId}
+    </if>
+    <if test="suppliesDetailDto.skuCode != null and suppliesDetailDto.skuCode != ''">
+      AND suppliesDetail.sku_code like CONCAT('%',#{suppliesDetailDto.skuCode},'%')
+    </if>
+    <if test="suppliesDetailDto.skuFullId != null and suppliesDetailDto.skuFullId != ''">
+      AND suppliesDetail.sku_full_id like CONCAT('%',#{suppliesDetailDto.skuFullId},'%')
+    </if>
+    <if test="suppliesDetailDto.skuFullName != null and suppliesDetailDto.skuFullName != ''">
+      AND suppliesDetail.sku_full_name like CONCAT('%',#{suppliesDetailDto.skuFullName},'%')
+    </if>
+    <if test="suppliesDetailDto.applyTime != null and suppliesDetailDto.applyTime != ''">
+      AND suppliesDetail.apply_time = #{suppliesDetailDto.applyTime}
+    </if>
+    <if test="suppliesDetailDto.applyUserId != null and suppliesDetailDto.applyUserId != ''">
+      AND suppliesDetail.apply_user_id = #{suppliesDetailDto.applyUserId}
+    </if>
+    <if test="suppliesDetailDto.applyUserName != null and suppliesDetailDto.applyUserName != ''">
+      AND suppliesDetail.apply_user_name like CONCAT('%',#{suppliesDetailDto.applyUserName},'%')
+    </if>
+    <if test="suppliesDetailDto.applyUserOrgId != null and suppliesDetailDto.applyUserOrgId != ''">
+      AND suppliesDetail.apply_user_org_id = #{suppliesDetailDto.applyUserOrgId}
+    </if>
+    <if test="suppliesDetailDto.applyUserOrgName != null and suppliesDetailDto.applyUserOrgName != ''">
+      AND suppliesDetail.apply_user_org_name like CONCAT('%',#{suppliesDetailDto.applyUserOrgName},'%')
+    </if>
+    <if test="suppliesDetailDto.applyUserDeptId != null and suppliesDetailDto.applyUserDeptId != ''">
+      AND suppliesDetail.apply_user_dept_id = #{suppliesDetailDto.applyUserDeptId}
+    </if>
+    <if test="suppliesDetailDto.applyUserDeptName != null and suppliesDetailDto.applyUserDeptName != ''">
+      AND suppliesDetail.apply_user_dept_name like CONCAT('%',#{suppliesDetailDto.applyUserDeptName},'%')
+    </if>
+    order by suppliesDetail.id desc
+</select>
+<select id="getDetailBySupplies" resultMap="suppliesDetailMap">
+    SELECT * FROM `incloud_biz_asset_supplies_detail` WHERE acceptance_number > storage_number
+</select>
+</mapper>

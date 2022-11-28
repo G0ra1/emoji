@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.file.mapper.FileDsMapper">
+
+<resultMap id="fileDsMap" type="com.netwisd.base.file.vo.FileDsVo">
+  <id property="id" column="id"/>
+  <result property="poolName" column="pool_name"/>
+  <result property="type" column="type"/>
+  <result property="isDefault" column="is_default"/>
+  <result property="minioUrl" column="minio_url"/>
+  <result property="minioAccessKey" column="minio_access_key"/>
+  <result property="minioSecretKey" column="minio_secret_key"/>
+  <result property="minioBucketName" column="minio_bucket_name"/>
+  <result property="localFilePath" column="local_file_path"/>
+  <result property="localFilePrefix" column="local_file_prefix"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.file.dto.FileDsDto" resultMap="fileDsMap">
+  select * from incloud_base_file_ds fileDs where 1=1
+    <if test="fileDsDto.id != null and fileDsDto.id != ''">
+      AND fileDs.id = #{fileDsDto.id}
+    </if>
+    <if test="fileDsDto.poolName != null and fileDsDto.poolName != ''">
+      AND fileDs.pool_name like CONCAT('%',#{fileDsDto.poolName},'%')
+    </if>
+    <if test="fileDsDto.type != null and fileDsDto.type != ''">
+      AND fileDs.type like CONCAT('%',#{fileDsDto.type},'%')
+    </if>
+    <if test="fileDsDto.isDefault != null and fileDsDto.isDefault != ''">
+      AND fileDs.is_default = #{fileDsDto.isDefault}
+    </if>
+    <if test="fileDsDto.minioUrl != null and fileDsDto.minioUrl != ''">
+      AND fileDs.minio_url like CONCAT('%',#{fileDsDto.minioUrl},'%')
+    </if>
+    <if test="fileDsDto.minioAccessKey != null and fileDsDto.minioAccessKey != ''">
+      AND fileDs.minio_access_key like CONCAT('%',#{fileDsDto.minioAccessKey},'%')
+    </if>
+    <if test="fileDsDto.minioSecretKey != null and fileDsDto.minioSecretKey != ''">
+      AND fileDs.minio_secret_key like CONCAT('%',#{fileDsDto.minioSecretKey},'%')
+    </if>
+    <if test="fileDsDto.minioBucketName != null and fileDsDto.minioBucketName != ''">
+      AND fileDs.minio_bucket_name like CONCAT('%',#{fileDsDto.minioBucketName},'%')
+    </if>
+    <if test="fileDsDto.localFilePath != null and fileDsDto.localFilePath != ''">
+      AND fileDs.local_file_path like CONCAT('%',#{fileDsDto.localFilePath},'%')
+    </if>
+    <if test="fileDsDto.localFilePrefix != null and fileDsDto.localFilePrefix != ''">
+      AND fileDs.local_file_prefix like CONCAT('%',#{fileDsDto.localFilePrefix},'%')
+    </if>
+    order by fileDs.id desc
+</select>
+</mapper>

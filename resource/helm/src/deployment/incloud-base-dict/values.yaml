@@ -1,0 +1,8 @@
+name: incloud-base-dict
+replicaCount: 1
+image:
+  repository: dockerhub.kubekey.local/zhongyuanjian/incloud-base-dict
+  pullPolicy: Always
+  tag: "latest"
+  port: 8009
+imageEnvConfigMap: incloud-config

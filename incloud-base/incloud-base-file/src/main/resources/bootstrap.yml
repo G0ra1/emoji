@@ -1,0 +1,35 @@
+server:
+  port: 8002
+spring:
+  application:
+    name: @artifactId@
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${INCLOUD_NACOS_SERVICE_HOST:127.0.0.1}:${INCLOUD_NACOS_SERVICE_PORT:8848}
+        namespace: ${INCLOUD_NACOS_NAMESPACE:incloud3}
+        #ip: ${incloud3_instance_ip:192.168.1.195}
+      config:
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+        file-extension: yml
+        namespace: ${spring.cloud.nacos.discovery.namespace}
+        #shared-dataids: application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+        shared-configs:
+          - application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+  profiles:
+    active: @profiles.active@
+  rocketmq:
+    namesrvAddr: ${INCLOUD_ROCKETMQ_SERVICE_HOST:192.168.1.195}:${INCLOUD_ROCKETMQ_SERVICE_PORT:9876}
+    isSend: true
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    default-property-inclusion: always
+mybatis-plus:
+  global-config:
+    db-config:
+      id-type: assign_id

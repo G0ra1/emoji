@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.dict.mapper.EncondRuleMapper">
+
+<resultMap id="encondRuleMap" type="com.netwisd.base.common.dict.vo.EncondRuleVo">
+  <id property="id" column="id"/>
+  <result property="ruleName" column="rule_name"/>
+  <result property="preview" column="preview"/>
+  <result property="remark" column="remark"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+  <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+  <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+  <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+  <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+  <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.common.dict.dto.EncondRuleDto" resultMap="encondRuleMap">
+  select * from incloud_base_dict_encond_rule encondRule where 1=1
+    <if test="encondRuleDto.id != null and encondRuleDto.id != ''">
+      AND encondRule.id = #{encondRuleDto.id}
+    </if>
+    <if test="encondRuleDto.ruleName != null and encondRuleDto.ruleName != ''">
+      AND encondRule.rule_name like CONCAT('%',#{encondRuleDto.ruleName},'%')
+    </if>
+    <if test="encondRuleDto.preview != null and encondRuleDto.preview != ''">
+      AND encondRule.preview like CONCAT('%',#{encondRuleDto.preview},'%')
+    </if>
+    <if test="encondRuleDto.remark != null and encondRuleDto.remark != ''">
+      AND encondRule.remark like CONCAT('%',#{encondRuleDto.remark},'%')
+    </if>
+    <if test="encondRuleDto.createUserId != null and encondRuleDto.createUserId != ''">
+      AND encondRule.create_user_id = #{encondRuleDto.createUserId}
+    </if>
+    <if test="encondRuleDto.createUserName != null and encondRuleDto.createUserName != ''">
+      AND encondRule.create_user_name like CONCAT('%',#{encondRuleDto.createUserName},'%')
+    </if>
+    <if test="encondRuleDto.createUserParentOrgId != null and encondRuleDto.createUserParentOrgId != ''">
+      AND encondRule.create_user_parent_org_id = #{encondRuleDto.createUserParentOrgId}
+    </if>
+    <if test="encondRuleDto.createUserParentOrgName != null and encondRuleDto.createUserParentOrgName != ''">
+      AND encondRule.create_user_parent_org_name like CONCAT('%',#{encondRuleDto.createUserParentOrgName},'%')
+    </if>
+    <if test="encondRuleDto.createUserParentDeptId != null and encondRuleDto.createUserParentDeptId != ''">
+      AND encondRule.create_user_parent_dept_id = #{encondRuleDto.createUserParentDeptId}
+    </if>
+    <if test="encondRuleDto.createUserParentDeptName != null and encondRuleDto.createUserParentDeptName != ''">
+      AND encondRule.create_user_parent_dept_name like CONCAT('%',#{encondRuleDto.createUserParentDeptName},'%')
+    </if>
+    <if test="encondRuleDto.createUserOrgFullId != null and encondRuleDto.createUserOrgFullId != ''">
+      AND encondRule.create_user_org_full_id like CONCAT('%',#{encondRuleDto.createUserOrgFullId},'%')
+    </if>
+    order by encondRule.id desc
+</select>
+</mapper>

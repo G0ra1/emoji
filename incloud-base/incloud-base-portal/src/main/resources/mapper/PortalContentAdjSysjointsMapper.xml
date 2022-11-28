@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.portal.mapper.PortalContentAdjSysjointsMapper">
+
+<resultMap id="portalContentAdjSysjointsMap" type="com.netwisd.base.portal.vo.PortalContentAdjSysjointsVo">
+  <id property="id" column="id"/>
+  <result property="linkMainSysjointsId" column="link_main_sysjoints_id"/>
+  <result property="portalId" column="portal_id"/>
+  <result property="portalName" column="portal_name"/>
+  <result property="partId" column="part_id"/>
+  <result property="partName" column="part_name"/>
+  <result property="partTypeId" column="part_type_id"/>
+  <result property="partTypeName" column="part_type_name"/>
+  <result property="auditStatus" column="audit_status"/>
+  <result property="remark" column="remark"/>
+  <result property="passTime" column="pass_time"/>
+  <result property="applyUserId" column="apply_user_id"/>
+  <result property="applyUserName" column="apply_user_name"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.portal.dto.PortalContentAdjSysjointsDto" resultMap="portalContentAdjSysjointsMap">
+  select * from incloud_base_portal_content_adj_sysjoints portalContentAdjSysjoints where 1=1
+    <if test="portalContentAdjSysjointsDto.id != null and portalContentAdjSysjointsDto.id != ''">
+      AND portalContentAdjSysjoints.id = #{portalContentAdjSysjointsDto.id}
+    </if>
+    <if test="portalContentAdjSysjointsDto.linkMainSysjointsId != null and portalContentAdjSysjointsDto.linkMainSysjointsId != ''">
+      AND portalContentAdjSysjoints.link_main_sysjoints_id = #{portalContentAdjSysjointsDto.linkMainSysjointsId}
+    </if>
+    <if test="portalContentAdjSysjointsDto.portalId != null and portalContentAdjSysjointsDto.portalId != ''">
+      AND portalContentAdjSysjoints.portal_id = #{portalContentAdjSysjointsDto.portalId}
+    </if>
+    <if test="portalContentAdjSysjointsDto.portalName != null and portalContentAdjSysjointsDto.portalName != ''">
+      AND portalContentAdjSysjoints.portal_name like CONCAT('%',#{portalContentAdjSysjointsDto.portalName},'%')
+    </if>
+    <if test="portalContentAdjSysjointsDto.partId != null and portalContentAdjSysjointsDto.partId != ''">
+      AND portalContentAdjSysjoints.part_id = #{portalContentAdjSysjointsDto.partId}
+    </if>
+    <if test="portalContentAdjSysjointsDto.partName != null and portalContentAdjSysjointsDto.partName != ''">
+      AND portalContentAdjSysjoints.part_name like CONCAT('%',#{portalContentAdjSysjointsDto.partName},'%')
+    </if>
+    <if test="portalContentAdjSysjointsDto.partTypeId != null and portalContentAdjSysjointsDto.partTypeId != ''">
+      AND portalContentAdjSysjoints.part_type_id = #{portalContentAdjSysjointsDto.partTypeId}
+    </if>
+    <if test="portalContentAdjSysjointsDto.partTypeName != null and portalContentAdjSysjointsDto.partTypeName != ''">
+      AND portalContentAdjSysjoints.part_type_name like CONCAT('%',#{portalContentAdjSysjointsDto.partTypeName},'%')
+    </if>
+    <if test="portalContentAdjSysjointsDto.auditStatus != null and portalContentAdjSysjointsDto.auditStatus != ''">
+      AND portalContentAdjSysjoints.audit_status = #{portalContentAdjSysjointsDto.auditStatus}
+    </if>
+    <if test="portalContentAdjSysjointsDto.remark != null and portalContentAdjSysjointsDto.remark != ''">
+      AND portalContentAdjSysjoints.remark like CONCAT('%',#{portalContentAdjSysjointsDto.remark},'%')
+    </if>
+    <if test="portalContentAdjSysjointsDto.passTime != null and portalContentAdjSysjointsDto.passTime != ''">
+      AND portalContentAdjSysjoints.pass_time = #{portalContentAdjSysjointsDto.passTime}
+    </if>
+    <if test="portalContentAdjSysjointsDto.applyUserId != null and portalContentAdjSysjointsDto.applyUserId != ''">
+      AND portalContentAdjSysjoints.apply_user_id = #{portalContentAdjSysjointsDto.applyUserId}
+    </if>
+    <if test="portalContentAdjSysjointsDto.applyUserName != null and portalContentAdjSysjointsDto.applyUserName != ''">
+      AND portalContentAdjSysjoints.apply_user_name like CONCAT('%',#{portalContentAdjSysjointsDto.applyUserName},'%')
+    </if>
+    order by portalContentAdjSysjoints.id desc
+</select>
+</mapper>

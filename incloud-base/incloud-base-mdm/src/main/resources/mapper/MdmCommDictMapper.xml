@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.mdm.mapper.MdmCommDictMapper">
+
+<resultMap id="mdmCommDictMap" type="com.netwisd.base.mdm.vo.MdmCommDictVo">
+  <id property="id" column="id"/>
+  <result property="dictTypeId" column="dict_type_id"/>
+  <result property="dictCode" column="dict_code"/>
+  <result property="dictName" column="dict_name"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.mdm.dto.MdmCommDictDto" resultMap="mdmCommDictMap">
+  select * from incloud_base_mdm_comm_dict mdmCommDict where 1=1
+    <if test="mdmCommDictDto.id != null and mdmCommDictDto.id != ''">
+      AND mdmCommDict.id = #{mdmCommDictDto.id}
+    </if>
+    <if test="mdmCommDictDto.dictTypeId != null and mdmCommDictDto.dictTypeId != ''">
+      AND mdmCommDict.dict_type_id like CONCAT('%',#{mdmCommDictDto.dictTypeId},'%')
+    </if>
+    <if test="mdmCommDictDto.dictCode != null and mdmCommDictDto.dictCode != ''">
+      AND mdmCommDict.dict_code like CONCAT('%',#{mdmCommDictDto.dictCode},'%')
+    </if>
+    <if test="mdmCommDictDto.dictNode != null and mdmCommDictDto.dictNode != ''">
+      AND mdmCommDict.dict_node like CONCAT('%',#{mdmCommDictDto.dictNode},'%')
+    </if>
+    <if test="mdmCommDictDto.createUserId != null and mdmCommDictDto.createUserId != ''">
+      AND mdmCommDict.create_user_id = #{mdmCommDictDto.createUserId}
+    </if>
+    <if test="mdmCommDictDto.createUserName != null and mdmCommDictDto.createUserName != ''">
+      AND mdmCommDict.create_user_name like CONCAT('%',#{mdmCommDictDto.createUserName},'%')
+    </if>
+    order by mdmCommDict.id desc
+</select>
+</mapper>

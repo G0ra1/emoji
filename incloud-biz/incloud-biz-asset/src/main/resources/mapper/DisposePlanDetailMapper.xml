@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.asset.mapper.DisposePlanDetailMapper">
+
+<resultMap id="disposePlanDetailMap" type="com.netwisd.biz.asset.vo.DisposePlanDetailVo">
+  <id property="id" column="id"/>
+  <result property="disposePlanId" column="dispose_plan_id"/>
+  <result property="assetsId" column="assets_id"/>
+  <result property="assetsDetailId" column="assets_detail_id"/>
+  <result property="classifyId" column="classify_id"/>
+  <result property="classifyCode" column="classify_code"/>
+  <result property="classifyName" column="classify_name"/>
+  <result property="route" column="route"/>
+  <result property="routeName" column="route_name"/>
+  <result property="categoryId" column="category_id"/>
+  <result property="categoryCode" column="category_code"/>
+  <result property="categoryName" column="category_name"/>
+  <result property="itemCode" column="item_code"/>
+  <result property="itemName" column="item_name"/>
+  <result property="desclong" column="desclong"/>
+  <result property="descshort" column="descshort"/>
+  <result property="unitCode" column="unit_code"/>
+  <result property="unitName" column="unit_name"/>
+  <result property="materialQuality" column="material_quality"/>
+  <result property="standard" column="standard"/>
+  <result property="specs" column="specs"/>
+  <result property="assetsClassification" column="assets_classification"/>
+  <result property="assetsCode" column="assets_code"/>
+  <result property="taxRate" column="tax_rate"/>
+  <result property="stockNumber" column="stock_number"/>
+  <result property="disposePlanNumber" column="dispose_plan_number"/>
+  <result property="assetsAmount" column="assets_amount"/>
+  <result property="assetsUntaxedAmount" column="assets_untaxed_amount"/>
+  <result property="assetsTaxAmount" column="assets_tax_amount"/>
+  <result property="assetsSumAmount" column="assets_sum_amount"/>
+  <result property="assetsSumUntaxedAmount" column="assets_sum_untaxed_amount"/>
+  <result property="assetsSumTaxAmount" column="assets_sum_tax_amount"/>
+  <result property="useData" column="use_data"/>
+  <result property="withdrawalMonth" column="withdrawal_month"/>
+  <result property="depreciation" column="depreciation"/>
+  <result property="validPeriod" column="valid_period"/>
+  <result property="jingZhi" column="jing_zhi"/>
+  <result property="jingCanZhi" column="jing_can_zhi"/>
+  <result property="jinge" column="jinge"/>
+  <result property="disposeReason" column="dispose_reason"/>
+  <result property="disposePlanDate" column="dispose_plan_date"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.asset.dto.DisposePlanDetailDto" resultMap="disposePlanDetailMap">
+  select * from incloud_biz_asset_dispose_plan_detail disposePlanDetail where 1=1
+    <if test="disposePlanDetailDto.id != null and disposePlanDetailDto.id != ''">
+      AND disposePlanDetail.id = #{disposePlanDetailDto.id}
+    </if>
+    <if test="disposePlanDetailDto.disposePlanId != null and disposePlanDetailDto.disposePlanId != ''">
+      AND disposePlanDetail.dispose_plan_id = #{disposePlanDetailDto.disposePlanId}
+    </if>
+    <if test="disposePlanDetailDto.assetsId != null and disposePlanDetailDto.assetsId != ''">
+      AND disposePlanDetail.assets_id = #{disposePlanDetailDto.assetsId}
+    </if>
+    <if test="disposePlanDetailDto.assetsDetailId != null and disposePlanDetailDto.assetsDetailId != ''">
+      AND disposePlanDetail.assets_detail_id = #{disposePlanDetailDto.assetsDetailId}
+    </if>
+    <if test="disposePlanDetailDto.classifyId != null and disposePlanDetailDto.classifyId != ''">
+      AND disposePlanDetail.classify_id = #{disposePlanDetailDto.classifyId}
+    </if>
+    <if test="disposePlanDetailDto.classifyCode != null and disposePlanDetailDto.classifyCode != ''">
+      AND disposePlanDetail.classify_code like CONCAT('%',#{disposePlanDetailDto.classifyCode},'%')
+    </if>
+    <if test="disposePlanDetailDto.classifyName != null and disposePlanDetailDto.classifyName != ''">
+      AND disposePlanDetail.classify_name like CONCAT('%',#{disposePlanDetailDto.classifyName},'%')
+    </if>
+    <if test="disposePlanDetailDto.route != null and disposePlanDetailDto.route != ''">
+      AND disposePlanDetail.route like CONCAT('%',#{disposePlanDetailDto.route},'%')
+    </if>
+    <if test="disposePlanDetailDto.routeName != null and disposePlanDetailDto.routeName != ''">
+      AND disposePlanDetail.route_name like CONCAT('%',#{disposePlanDetailDto.routeName},'%')
+    </if>
+    <if test="disposePlanDetailDto.categoryId != null and disposePlanDetailDto.categoryId != ''">
+      AND disposePlanDetail.category_id = #{disposePlanDetailDto.categoryId}
+    </if>
+    <if test="disposePlanDetailDto.categoryCode != null and disposePlanDetailDto.categoryCode != ''">
+      AND disposePlanDetail.category_code like CONCAT('%',#{disposePlanDetailDto.categoryCode},'%')
+    </if>
+    <if test="disposePlanDetailDto.categoryName != null and disposePlanDetailDto.categoryName != ''">
+      AND disposePlanDetail.category_name like CONCAT('%',#{disposePlanDetailDto.categoryName},'%')
+    </if>
+    <if test="disposePlanDetailDto.itemCode != null and disposePlanDetailDto.itemCode != ''">
+      AND disposePlanDetail.item_code like CONCAT('%',#{disposePlanDetailDto.itemCode},'%')
+    </if>
+    <if test="disposePlanDetailDto.itemName != null and disposePlanDetailDto.itemName != ''">
+      AND disposePlanDetail.item_name like CONCAT('%',#{disposePlanDetailDto.itemName},'%')
+    </if>
+    <if test="disposePlanDetailDto.desclong != null and disposePlanDetailDto.desclong != ''">
+      AND disposePlanDetail.desclong like CONCAT('%',#{disposePlanDetailDto.desclong},'%')
+    </if>
+    <if test="disposePlanDetailDto.descshort != null and disposePlanDetailDto.descshort != ''">
+      AND disposePlanDetail.descshort like CONCAT('%',#{disposePlanDetailDto.descshort},'%')
+    </if>
+    <if test="disposePlanDetailDto.unitCode != null and disposePlanDetailDto.unitCode != ''">
+      AND disposePlanDetail.unit_code like CONCAT('%',#{disposePlanDetailDto.unitCode},'%')
+    </if>
+    <if test="disposePlanDetailDto.unitName != null and disposePlanDetailDto.unitName != ''">
+      AND disposePlanDetail.unit_name like CONCAT('%',#{disposePlanDetailDto.unitName},'%')
+    </if>
+    <if test="disposePlanDetailDto.materialQuality != null and disposePlanDetailDto.materialQuality != ''">
+      AND disposePlanDetail.material_quality like CONCAT('%',#{disposePlanDetailDto.materialQuality},'%')
+    </if>
+    <if test="disposePlanDetailDto.standard != null and disposePlanDetailDto.standard != ''">
+      AND disposePlanDetail.standard like CONCAT('%',#{disposePlanDetailDto.standard},'%')
+    </if>
+    <if test="disposePlanDetailDto.specs != null and disposePlanDetailDto.specs != ''">
+      AND disposePlanDetail.specs like CONCAT('%',#{disposePlanDetailDto.specs},'%')
+    </if>
+    <if test="disposePlanDetailDto.assetsClassification != null and disposePlanDetailDto.assetsClassification != ''">
+      AND disposePlanDetail.assets_classification like CONCAT('%',#{disposePlanDetailDto.assetsClassification},'%')
+    </if>
+    <if test="disposePlanDetailDto.assetsCode != null and disposePlanDetailDto.assetsCode != ''">
+      AND disposePlanDetail.assets_code like CONCAT('%',#{disposePlanDetailDto.assetsCode},'%')
+    </if>
+    <if test="disposePlanDetailDto.taxRate != null and disposePlanDetailDto.taxRate != ''">
+      AND disposePlanDetail.tax_rate = #{disposePlanDetailDto.taxRate}
+    </if>
+    <if test="disposePlanDetailDto.stockNumber != null and disposePlanDetailDto.stockNumber != ''">
+      AND disposePlanDetail.stock_number = #{disposePlanDetailDto.stockNumber}
+    </if>
+    <if test="disposePlanDetailDto.disposePlanNumber != null and disposePlanDetailDto.disposePlanNumber != ''">
+      AND disposePlanDetail.dispose_plan_number = #{disposePlanDetailDto.disposePlanNumber}
+    </if>
+    <if test="disposePlanDetailDto.assetsAmount != null and disposePlanDetailDto.assetsAmount != ''">
+      AND disposePlanDetail.assets_amount = #{disposePlanDetailDto.assetsAmount}
+    </if>
+    <if test="disposePlanDetailDto.assetsUntaxedAmount != null and disposePlanDetailDto.assetsUntaxedAmount != ''">
+      AND disposePlanDetail.assets_untaxed_amount = #{disposePlanDetailDto.assetsUntaxedAmount}
+    </if>
+    <if test="disposePlanDetailDto.assetsTaxAmount != null and disposePlanDetailDto.assetsTaxAmount != ''">
+      AND disposePlanDetail.assets_tax_amount = #{disposePlanDetailDto.assetsTaxAmount}
+    </if>
+    <if test="disposePlanDetailDto.assetsSumAmount != null and disposePlanDetailDto.assetsSumAmount != ''">
+      AND disposePlanDetail.assets_sum_amount = #{disposePlanDetailDto.assetsSumAmount}
+    </if>
+    <if test="disposePlanDetailDto.assetsSumUntaxedAmount != null and disposePlanDetailDto.assetsSumUntaxedAmount != ''">
+      AND disposePlanDetail.assets_sum_untaxed_amount = #{disposePlanDetailDto.assetsSumUntaxedAmount}
+    </if>
+    <if test="disposePlanDetailDto.assetsSumTaxAmount != null and disposePlanDetailDto.assetsSumTaxAmount != ''">
+      AND disposePlanDetail.assets_sum_tax_amount = #{disposePlanDetailDto.assetsSumTaxAmount}
+    </if>
+    <if test="disposePlanDetailDto.useData != null and disposePlanDetailDto.useData != ''">
+      AND disposePlanDetail.use_data = #{disposePlanDetailDto.useData}
+    </if>
+    <if test="disposePlanDetailDto.withdrawalMonth != null and disposePlanDetailDto.withdrawalMonth != ''">
+      AND disposePlanDetail.withdrawal_month like CONCAT('%',#{disposePlanDetailDto.withdrawalMonth},'%')
+    </if>
+    <if test="disposePlanDetailDto.depreciation != null and disposePlanDetailDto.depreciation != ''">
+      AND disposePlanDetail.depreciation = #{disposePlanDetailDto.depreciation}
+    </if>
+    <if test="disposePlanDetailDto.validPeriod != null and disposePlanDetailDto.validPeriod != ''">
+      AND disposePlanDetail.valid_period like CONCAT('%',#{disposePlanDetailDto.validPeriod},'%')
+    </if>
+    <if test="disposePlanDetailDto.jingZhi != null and disposePlanDetailDto.jingZhi != ''">
+      AND disposePlanDetail.jing_zhi = #{disposePlanDetailDto.jingZhi}
+    </if>
+    <if test="disposePlanDetailDto.jingCanZhi != null and disposePlanDetailDto.jingCanZhi != ''">
+      AND disposePlanDetail.jing_can_zhi = #{disposePlanDetailDto.jingCanZhi}
+    </if>
+    <if test="disposePlanDetailDto.jinge != null and disposePlanDetailDto.jinge != ''">
+      AND disposePlanDetail.jinge = #{disposePlanDetailDto.jinge}
+    </if>
+    <if test="disposePlanDetailDto.disposeReason != null and disposePlanDetailDto.disposeReason != ''">
+      AND disposePlanDetail.dispose_reason like CONCAT('%',#{disposePlanDetailDto.disposeReason},'%')
+    </if>
+    <if test="disposePlanDetailDto.disposePlanDate != null and disposePlanDetailDto.disposePlanDate != ''">
+      AND disposePlanDetail.dispose_plan_date = #{disposePlanDetailDto.disposePlanDate}
+    </if>
+    order by disposePlanDetail.id desc
+</select>
+</mapper>

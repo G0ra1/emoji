@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.asset.mapper.MaterialDistributeMapper">
+
+<resultMap id="materialDistributeMap" type="com.netwisd.biz.asset.vo.MaterialDistributeVo">
+  <id property="id" column="id"/>
+  <result property="code" column="code"/>
+  <result property="sumTotalAmount" column="sum_total_amount"/>
+  <result property="sumTotalUntaxedAmount" column="sum_total_untaxed_amount"/>
+  <result property="sumTotalTaxAmount" column="sum_total_tax_amount"/>
+  <result property="type" column="type"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+  <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+  <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+  <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+  <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+  <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+  <result property="auditSuccessTiem" column="audit_success_tiem"/>
+  <result property="camundaProcdefKey" column="camunda_procdef_key"/>
+  <result property="camundaProcdefId" column="camunda_procdef_id"/>
+  <result property="camundaProcinsId" column="camunda_procins_id"/>
+  <result property="procdefTypeId" column="procdef_type_id"/>
+  <result property="procdefTypeName" column="procdef_type_name"/>
+  <result property="procdefVersion" column="procdef_version"/>
+  <result property="procdefName" column="procdef_name"/>
+  <result property="processName" column="process_name"/>
+  <result property="reason" column="reason"/>
+  <result property="bizKey" column="biz_key"/>
+  <result property="camundaTaskId" column="camunda_task_id"/>
+  <result property="bizPriority" column="biz_priority"/>
+  <result property="auditStatus" column="audit_status"/>
+  <result property="distributeType" column="distribute_type"/>
+  <result property="fileIds" column="file_ids"/>
+  <result property="applyTime" column="apply_time"/>
+  <result property="applyUserId" column="apply_user_id"/>
+  <result property="applyUserName" column="apply_user_name"/>
+  <result property="applyUserOrgId" column="apply_user_org_id"/>
+  <result property="applyUserOrgName" column="apply_user_org_name"/>
+  <result property="applyUserDeptId" column="apply_user_dept_id"/>
+  <result property="applyUserDeptName" column="apply_user_dept_name"/>
+  <result property="sourceId" column="source_id"/>
+  <result property="sourceCode" column="source_code"/>
+  <result property="notSignNumber" column="not_sign_number"/>
+  <result property="sumTotalNumber" column="sum_total_number"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.asset.dto.MaterialDistributeDto" resultMap="materialDistributeMap">
+  select * from incloud_biz_asset_material_distribute materialDistribute where 1=1
+    <if test="materialDistributeDto.id != null and materialDistributeDto.id != ''">
+      AND materialDistribute.id = #{materialDistributeDto.id}
+    </if>
+    <if test="materialDistributeDto.code != null and materialDistributeDto.code != ''">
+      AND materialDistribute.code like CONCAT('%',#{materialDistributeDto.code},'%')
+    </if>
+    <if test="materialDistributeDto.sumTotalAmount != null and materialDistributeDto.sumTotalAmount != ''">
+      AND materialDistribute.sum_total_amount = #{materialDistributeDto.sumTotalAmount}
+    </if>
+    <if test="materialDistributeDto.sumTotalUntaxedAmount != null and materialDistributeDto.sumTotalUntaxedAmount != ''">
+      AND materialDistribute.sum_total_untaxed_amount = #{materialDistributeDto.sumTotalUntaxedAmount}
+    </if>
+    <if test="materialDistributeDto.sumTotalTaxAmount != null and materialDistributeDto.sumTotalTaxAmount != ''">
+      AND materialDistribute.sum_total_tax_amount = #{materialDistributeDto.sumTotalTaxAmount}
+    </if>
+    <if test="materialDistributeDto.type != null and materialDistributeDto.type != ''">
+      AND materialDistribute.type = #{materialDistributeDto.type}
+    </if>
+    <if test="materialDistributeDto.createUserId != null and materialDistributeDto.createUserId != ''">
+      AND materialDistribute.create_user_id = #{materialDistributeDto.createUserId}
+    </if>
+    <if test="materialDistributeDto.createUserName != null and materialDistributeDto.createUserName != ''">
+      AND materialDistribute.create_user_name like CONCAT('%',#{materialDistributeDto.createUserName},'%')
+    </if>
+    <if test="materialDistributeDto.createUserParentOrgId != null and materialDistributeDto.createUserParentOrgId != ''">
+      AND materialDistribute.create_user_parent_org_id = #{materialDistributeDto.createUserParentOrgId}
+    </if>
+    <if test="materialDistributeDto.createUserParentOrgName != null and materialDistributeDto.createUserParentOrgName != ''">
+      AND materialDistribute.create_user_parent_org_name like CONCAT('%',#{materialDistributeDto.createUserParentOrgName},'%')
+    </if>
+    <if test="materialDistributeDto.createUserParentDeptId != null and materialDistributeDto.createUserParentDeptId != ''">
+      AND materialDistribute.create_user_parent_dept_id = #{materialDistributeDto.createUserParentDeptId}
+    </if>
+    <if test="materialDistributeDto.createUserParentDeptName != null and materialDistributeDto.createUserParentDeptName != ''">
+      AND materialDistribute.create_user_parent_dept_name like CONCAT('%',#{materialDistributeDto.createUserParentDeptName},'%')
+    </if>
+    <if test="materialDistributeDto.createUserOrgFullId != null and materialDistributeDto.createUserOrgFullId != ''">
+      AND materialDistribute.create_user_org_full_id like CONCAT('%',#{materialDistributeDto.createUserOrgFullId},'%')
+    </if>
+    <if test="materialDistributeDto.auditSuccessTiem != null and materialDistributeDto.auditSuccessTiem != ''">
+      AND materialDistribute.audit_success_tiem = #{materialDistributeDto.auditSuccessTiem}
+    </if>
+    <if test="materialDistributeDto.camundaProcdefKey != null and materialDistributeDto.camundaProcdefKey != ''">
+      AND materialDistribute.camunda_procdef_key like CONCAT('%',#{materialDistributeDto.camundaProcdefKey},'%')
+    </if>
+    <if test="materialDistributeDto.camundaProcdefId != null and materialDistributeDto.camundaProcdefId != ''">
+      AND materialDistribute.camunda_procdef_id like CONCAT('%',#{materialDistributeDto.camundaProcdefId},'%')
+    </if>
+    <if test="materialDistributeDto.camundaProcinsId != null and materialDistributeDto.camundaProcinsId != ''">
+      AND materialDistribute.camunda_procins_id like CONCAT('%',#{materialDistributeDto.camundaProcinsId},'%')
+    </if>
+    <if test="materialDistributeDto.procdefTypeId != null and materialDistributeDto.procdefTypeId != ''">
+      AND materialDistribute.procdef_type_id = #{materialDistributeDto.procdefTypeId}
+    </if>
+    <if test="materialDistributeDto.procdefTypeName != null and materialDistributeDto.procdefTypeName != ''">
+      AND materialDistribute.procdef_type_name like CONCAT('%',#{materialDistributeDto.procdefTypeName},'%')
+    </if>
+    <if test="materialDistributeDto.procdefVersion != null and materialDistributeDto.procdefVersion != ''">
+      AND materialDistribute.procdef_version = #{materialDistributeDto.procdefVersion}
+    </if>
+    <if test="materialDistributeDto.procdefName != null and materialDistributeDto.procdefName != ''">
+      AND materialDistribute.procdef_name like CONCAT('%',#{materialDistributeDto.procdefName},'%')
+    </if>
+    <if test="materialDistributeDto.processName != null and materialDistributeDto.processName != ''">
+      AND materialDistribute.process_name like CONCAT('%',#{materialDistributeDto.processName},'%')
+    </if>
+    <if test="materialDistributeDto.reason != null and materialDistributeDto.reason != ''">
+      AND materialDistribute.reason like CONCAT('%',#{materialDistributeDto.reason},'%')
+    </if>
+    <if test="materialDistributeDto.bizKey != null and materialDistributeDto.bizKey != ''">
+      AND materialDistribute.biz_key like CONCAT('%',#{materialDistributeDto.bizKey},'%')
+    </if>
+    <if test="materialDistributeDto.camundaTaskId != null and materialDistributeDto.camundaTaskId != ''">
+      AND materialDistribute.camunda_task_id like CONCAT('%',#{materialDistributeDto.camundaTaskId},'%')
+    </if>
+    <if test="materialDistributeDto.bizPriority != null and materialDistributeDto.bizPriority != ''">
+      AND materialDistribute.biz_priority like CONCAT('%',#{materialDistributeDto.bizPriority},'%')
+    </if>
+    <if test="materialDistributeDto.auditStatus != null and materialDistributeDto.auditStatus != ''">
+      AND materialDistribute.audit_status = #{materialDistributeDto.auditStatus}
+    </if>
+    <if test="materialDistributeDto.distributeType != null and materialDistributeDto.distributeType != ''">
+      AND materialDistribute.distribute_type = #{materialDistributeDto.distributeType}
+    </if>
+    <if test="materialDistributeDto.fileIds != null and materialDistributeDto.fileIds != ''">
+      AND materialDistribute.file_ids like CONCAT('%',#{materialDistributeDto.fileIds},'%')
+    </if>
+    <if test="materialDistributeDto.applyTime != null and materialDistributeDto.applyTime != ''">
+      AND materialDistribute.apply_time = #{materialDistributeDto.applyTime}
+    </if>
+    <if test="materialDistributeDto.applyUserId != null and materialDistributeDto.applyUserId != ''">
+      AND materialDistribute.apply_user_id = #{materialDistributeDto.applyUserId}
+    </if>
+    <if test="materialDistributeDto.applyUserName != null and materialDistributeDto.applyUserName != ''">
+      AND materialDistribute.apply_user_name like CONCAT('%',#{materialDistributeDto.applyUserName},'%')
+    </if>
+    <if test="materialDistributeDto.applyUserOrgId != null and materialDistributeDto.applyUserOrgId != ''">
+      AND materialDistribute.apply_user_org_id = #{materialDistributeDto.applyUserOrgId}
+    </if>
+    <if test="materialDistributeDto.applyUserOrgName != null and materialDistributeDto.applyUserOrgName != ''">
+      AND materialDistribute.apply_user_org_name like CONCAT('%',#{materialDistributeDto.applyUserOrgName},'%')
+    </if>
+    <if test="materialDistributeDto.applyUserDeptId != null and materialDistributeDto.applyUserDeptId != ''">
+      AND materialDistribute.apply_user_dept_id = #{materialDistributeDto.applyUserDeptId}
+    </if>
+    <if test="materialDistributeDto.applyUserDeptName != null and materialDistributeDto.applyUserDeptName != ''">
+      AND materialDistribute.apply_user_dept_name like CONCAT('%',#{materialDistributeDto.applyUserDeptName},'%')
+    </if>
+    <if test="materialDistributeDto.sourceId != null and materialDistributeDto.sourceId != ''">
+      AND materialDistribute.source_id = #{materialDistributeDto.sourceId}
+    </if>
+    <if test="materialDistributeDto.sourceCode != null and materialDistributeDto.sourceCode != ''">
+      AND materialDistribute.source_code like CONCAT('%',#{materialDistributeDto.sourceCode},'%')
+    </if>
+    <if test="materialDistributeDto.notSignNumber != null and materialDistributeDto.notSignNumber != ''">
+      AND materialDistribute.not_sign_number = #{materialDistributeDto.notSignNumber}
+    </if>
+    <if test="materialDistributeDto.sumTotalNumber != null and materialDistributeDto.sumTotalNumber != ''">
+      AND materialDistribute.sum_total_number = #{materialDistributeDto.sumTotalNumber}
+    </if>
+    order by materialDistribute.id desc
+</select>
+</mapper>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.wf.mapper.WfFormFieldsDefMapper">
+
+<resultMap id="wfFormVarDefMap" type="com.netwisd.base.wf.vo.WfFormFieldsDefVo">
+  <id property="id" column="id"/>
+  <result property="formId" column="form_id"/>
+  <result property="formName" column="form_name"/>
+  <result property="camundaProcdefId" column="camunda_procdef_id"/>
+  <result property="camundaProcdefKey" column="camunda_procdef_key"/>
+  <result property="camundaNodeDefId" column="camunda_node_def_id"/>
+  <result property="nodeDefId" column="node_def_id"/>
+  <result property="java_name" column="javaName"/>
+  <result property="powerCode" column="power_code"/>
+  <result property="javaType" column="java_type"/>
+  <result property="name_ch" column="name_ch"/>
+  <result property="db_type" column="db_type"/>
+  <result property="isMoreRow" column="is_more_row"/>
+  <result property="isOrm" column="is_orm"/>
+  <result property="modelFieldId" column="model_field_id"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.wf.dto.WfFormFieldsDefDto" resultMap="wfFormVarDefMap">
+  select * from incloud_base_wf_form_var_def wfFormFieldsDef where 1=1
+    <if test="wfFormFieldsDefDto.id != null and wfFormFieldsDefDto.id != ''">
+      AND wfFormFieldsDef.id = #{wfFormFieldsDefDto.id}
+    </if>
+    <if test="wfFormFieldsDefDto.formVarId != null and wfFormFieldsDefDto.formVarId != ''">
+      AND wfFormFieldsDef.form_var_id = #{wfFormFieldsDefDto.formVarId}
+    </if>
+    <if test="wfFormFieldsDefDto.isView != null and wfFormFieldsDefDto.isView != ''">
+      AND wfFormFieldsDef.is_view = #{wfFormFieldsDefDto.isView}
+    </if>
+    <if test="wfFormFieldsDefDto.isWrite != null and wfFormFieldsDefDto.isWrite != ''">
+      AND wfFormFieldsDef.is_write = #{wfFormFieldsDefDto.isWrite}
+    </if>
+    <if test="wfFormFieldsDefDto.formId != null and wfFormFieldsDefDto.formId != ''">
+      AND wfFormFieldsDef.form_id = #{wfFormFieldsDefDto.formId}
+    </if>
+    order by wfFormFieldsDef.id desc
+</select>
+</mapper>

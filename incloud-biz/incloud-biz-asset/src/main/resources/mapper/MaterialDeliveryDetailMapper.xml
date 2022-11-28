@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.asset.mapper.MaterialDeliveryDetailMapper">
+
+<resultMap id="materialDeliveryDetailMap" type="com.netwisd.biz.asset.vo.MaterialDeliveryDetailVo">
+  <id property="id" column="id"/>
+  <result property="deliveryId" column="delivery_id"/>
+  <result property="assetsId" column="assets_id"/>
+  <result property="assetsDetailId" column="assets_detail_id"/>
+  <result property="classifyId" column="classify_id"/>
+  <result property="classifyCode" column="classify_code"/>
+  <result property="classifyName" column="classify_name"/>
+  <result property="route" column="route"/>
+  <result property="routeName" column="route_name"/>
+  <result property="itemId" column="item_id"/>
+  <result property="itemCode" column="item_code"/>
+  <result property="itemName" column="item_name"/>
+  <result property="desclong" column="desclong"/>
+  <result property="descshort" column="descshort"/>
+  <result property="unitCode" column="unit_code"/>
+  <result property="unitName" column="unit_name"/>
+  <result property="materialQuality" column="material_quality"/>
+  <result property="standard" column="standard"/>
+  <result property="specs" column="specs"/>
+  <result property="skuCode" column="sku_code"/>
+  <result property="skuFullId" column="sku_full_id"/>
+  <result property="skuFullName" column="sku_full_name"/>
+  <result property="deliveryNumber" column="delivery_number"/>
+  <result property="assetSelfCode" column="asset_self_code"/>
+  <result property="assetsCode" column="assets_code"/>
+  <result property="deliveryAssetsCode" column="delivery_assets_code"/>
+  <result property="assetsNumber" column="assets_number"/>
+  <result property="taxRate" column="tax_rate"/>
+  <result property="assetsAmount" column="assets_amount"/>
+  <result property="assetsUntaxedAmount" column="assets_untaxed_amount"/>
+  <result property="assetsTaxAmount" column="assets_tax_amount"/>
+  <result property="assetsSumAmount" column="assets_sum_amount"/>
+  <result property="assetsSumUntaxedAmount" column="assets_sum_untaxed_amount"/>
+  <result property="assetsSumTaxAmount" column="assets_sum_tax_amount"/>
+  <result property="deliveryAmount" column="delivery_amount"/>
+  <result property="deliveryUntaxedAmount" column="delivery_untaxed_amount"/>
+  <result property="deliveryTaxAmount" column="delivery_tax_amount"/>
+  <result property="deliverySumAmount" column="delivery_sum_amount"/>
+  <result property="deliverySumUntaxedAmount" column="delivery_sum_untaxed_amount"/>
+  <result property="deliverySumTaxAmount" column="delivery_sum_tax_amount"/>
+  <result property="explanation" column="explanation"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.asset.dto.MaterialDeliveryDetailDto" resultMap="materialDeliveryDetailMap">
+  select * from incloud_biz_asset_material_delivery_detail materialDeliveryDetail where 1=1
+    <if test="materialDeliveryDetailDto.id != null and materialDeliveryDetailDto.id != ''">
+      AND materialDeliveryDetail.id = #{materialDeliveryDetailDto.id}
+    </if>
+    <if test="materialDeliveryDetailDto.deliveryId != null and materialDeliveryDetailDto.deliveryId != ''">
+      AND materialDeliveryDetail.delivery_id = #{materialDeliveryDetailDto.deliveryId}
+    </if>
+    <if test="materialDeliveryDetailDto.assetsId != null and materialDeliveryDetailDto.assetsId != ''">
+      AND materialDeliveryDetail.assets_id = #{materialDeliveryDetailDto.assetsId}
+    </if>
+    <if test="materialDeliveryDetailDto.assetsDetailId != null and materialDeliveryDetailDto.assetsDetailId != ''">
+      AND materialDeliveryDetail.assets_detail_id = #{materialDeliveryDetailDto.assetsDetailId}
+    </if>
+    <if test="materialDeliveryDetailDto.classifyId != null and materialDeliveryDetailDto.classifyId != ''">
+      AND materialDeliveryDetail.classify_id = #{materialDeliveryDetailDto.classifyId}
+    </if>
+    <if test="materialDeliveryDetailDto.classifyCode != null and materialDeliveryDetailDto.classifyCode != ''">
+      AND materialDeliveryDetail.classify_code like CONCAT('%',#{materialDeliveryDetailDto.classifyCode},'%')
+    </if>
+    <if test="materialDeliveryDetailDto.classifyName != null and materialDeliveryDetailDto.classifyName != ''">
+      AND materialDeliveryDetail.classify_name like CONCAT('%',#{materialDeliveryDetailDto.classifyName},'%')
+    </if>
+    <if test="materialDeliveryDetailDto.route != null and materialDeliveryDetailDto.route != ''">
+      AND materialDeliveryDetail.route like CONCAT('%',#{materialDeliveryDetailDto.route},'%')
+    </if>
+    <if test="materialDeliveryDetailDto.routeName != null and materialDeliveryDetailDto.routeName != ''">
+      AND materialDeliveryDetail.route_name like CONCAT('%',#{materialDeliveryDetailDto.routeName},'%')
+    </if>
+    <if test="materialDeliveryDetailDto.itemId != null and materialDeliveryDetailDto.itemId != ''">
+      AND materialDeliveryDetail.item_id = #{materialDeliveryDetailDto.itemId}
+    </if>
+    <if test="materialDeliveryDetailDto.itemCode != null and materialDeliveryDetailDto.itemCode != ''">
+      AND materialDeliveryDetail.item_code like CONCAT('%',#{materialDeliveryDetailDto.itemCode},'%')
+    </if>
+    <if test="materialDeliveryDetailDto.itemName != null and materialDeliveryDetailDto.itemName != ''">
+      AND materialDeliveryDetail.item_name like CONCAT('%',#{materialDeliveryDetailDto.itemName},'%')
+    </if>
+    <if test="materialDeliveryDetailDto.desclong != null and materialDeliveryDetailDto.desclong != ''">
+      AND materialDeliveryDetail.desclong like CONCAT('%',#{materialDeliveryDetailDto.desclong},'%')
+    </if>
+    <if test="materialDeliveryDetailDto.descshort != null and materialDeliveryDetailDto.descshort != ''">
+      AND materialDeliveryDetail.descshort like CONCAT('%',#{materialDeliveryDetailDto.descshort},'%')
+    </if>
+    <if test="materialDeliveryDetailDto.unitCode != null and materialDeliveryDetailDto.unitCode != ''">
+      AND materialDeliveryDetail.unit_code like CONCAT('%',#{materialDeliveryDetailDto.unitCode},'%')
+    </if>
+    <if test="materialDeliveryDetailDto.unitName != null and materialDeliveryDetailDto.unitName != ''">
+      AND materialDeliveryDetail.unit_name like CONCAT('%',#{materialDeliveryDetailDto.unitName},'%')
+    </if>
+    <if test="materialDeliveryDetailDto.materialQuality != null and materialDeliveryDetailDto.materialQuality != ''">
+      AND materialDeliveryDetail.material_quality like CONCAT('%',#{materialDeliveryDetailDto.materialQuality},'%')
+    </if>
+    <if test="materialDeliveryDetailDto.standard != null and materialDeliveryDetailDto.standard != ''">
+      AND materialDeliveryDetail.standard like CONCAT('%',#{materialDeliveryDetailDto.standard},'%')
+    </if>
+    <if test="materialDeliveryDetailDto.specs != null and materialDeliveryDetailDto.specs != ''">
+      AND materialDeliveryDetail.specs like CONCAT('%',#{materialDeliveryDetailDto.specs},'%')
+    </if>
+    <if test="materialDeliveryDetailDto.skuCode != null and materialDeliveryDetailDto.skuCode != ''">
+      AND materialDeliveryDetail.sku_code like CONCAT('%',#{materialDeliveryDetailDto.skuCode},'%')
+    </if>
+    <if test="materialDeliveryDetailDto.skuFullId != null and materialDeliveryDetailDto.skuFullId != ''">
+      AND materialDeliveryDetail.sku_full_id like CONCAT('%',#{materialDeliveryDetailDto.skuFullId},'%')
+    </if>
+    <if test="materialDeliveryDetailDto.skuFullName != null and materialDeliveryDetailDto.skuFullName != ''">
+      AND materialDeliveryDetail.sku_full_name like CONCAT('%',#{materialDeliveryDetailDto.skuFullName},'%')
+    </if>
+    <if test="materialDeliveryDetailDto.deliveryNumber != null and materialDeliveryDetailDto.deliveryNumber != ''">
+      AND materialDeliveryDetail.delivery_number = #{materialDeliveryDetailDto.deliveryNumber}
+    </if>
+    <if test="materialDeliveryDetailDto.assetSelfCode != null and materialDeliveryDetailDto.assetSelfCode != ''">
+      AND materialDeliveryDetail.asset_self_code like CONCAT('%',#{materialDeliveryDetailDto.assetSelfCode},'%')
+    </if>
+    <if test="materialDeliveryDetailDto.assetsCode != null and materialDeliveryDetailDto.assetsCode != ''">
+      AND materialDeliveryDetail.assets_code like CONCAT('%',#{materialDeliveryDetailDto.assetsCode},'%')
+    </if>
+    <if test="materialDeliveryDetailDto.deliveryAssetsCode != null and materialDeliveryDetailDto.deliveryAssetsCode != ''">
+      AND materialDeliveryDetail.delivery_assets_code like CONCAT('%',#{materialDeliveryDetailDto.deliveryAssetsCode},'%')
+    </if>
+    <if test="materialDeliveryDetailDto.assetsNumber != null and materialDeliveryDetailDto.assetsNumber != ''">
+      AND materialDeliveryDetail.assets_number = #{materialDeliveryDetailDto.assetsNumber}
+    </if>
+    <if test="materialDeliveryDetailDto.taxRate != null and materialDeliveryDetailDto.taxRate != ''">
+      AND materialDeliveryDetail.tax_rate = #{materialDeliveryDetailDto.taxRate}
+    </if>
+    <if test="materialDeliveryDetailDto.assetsAmount != null and materialDeliveryDetailDto.assetsAmount != ''">
+      AND materialDeliveryDetail.assets_amount = #{materialDeliveryDetailDto.assetsAmount}
+    </if>
+    <if test="materialDeliveryDetailDto.assetsUntaxedAmount != null and materialDeliveryDetailDto.assetsUntaxedAmount != ''">
+      AND materialDeliveryDetail.assets_untaxed_amount = #{materialDeliveryDetailDto.assetsUntaxedAmount}
+    </if>
+    <if test="materialDeliveryDetailDto.assetsTaxAmount != null and materialDeliveryDetailDto.assetsTaxAmount != ''">
+      AND materialDeliveryDetail.assets_tax_amount = #{materialDeliveryDetailDto.assetsTaxAmount}
+    </if>
+    <if test="materialDeliveryDetailDto.assetsSumAmount != null and materialDeliveryDetailDto.assetsSumAmount != ''">
+      AND materialDeliveryDetail.assets_sum_amount = #{materialDeliveryDetailDto.assetsSumAmount}
+    </if>
+    <if test="materialDeliveryDetailDto.assetsSumUntaxedAmount != null and materialDeliveryDetailDto.assetsSumUntaxedAmount != ''">
+      AND materialDeliveryDetail.assets_sum_untaxed_amount = #{materialDeliveryDetailDto.assetsSumUntaxedAmount}
+    </if>
+    <if test="materialDeliveryDetailDto.assetsSumTaxAmount != null and materialDeliveryDetailDto.assetsSumTaxAmount != ''">
+      AND materialDeliveryDetail.assets_sum_tax_amount = #{materialDeliveryDetailDto.assetsSumTaxAmount}
+    </if>
+    <if test="materialDeliveryDetailDto.deliveryAmount != null and materialDeliveryDetailDto.deliveryAmount != ''">
+      AND materialDeliveryDetail.delivery_amount = #{materialDeliveryDetailDto.deliveryAmount}
+    </if>
+    <if test="materialDeliveryDetailDto.deliveryUntaxedAmount != null and materialDeliveryDetailDto.deliveryUntaxedAmount != ''">
+      AND materialDeliveryDetail.delivery_untaxed_amount = #{materialDeliveryDetailDto.deliveryUntaxedAmount}
+    </if>
+    <if test="materialDeliveryDetailDto.deliveryTaxAmount != null and materialDeliveryDetailDto.deliveryTaxAmount != ''">
+      AND materialDeliveryDetail.delivery_tax_amount = #{materialDeliveryDetailDto.deliveryTaxAmount}
+    </if>
+    <if test="materialDeliveryDetailDto.deliverySumAmount != null and materialDeliveryDetailDto.deliverySumAmount != ''">
+      AND materialDeliveryDetail.delivery_sum_amount = #{materialDeliveryDetailDto.deliverySumAmount}
+    </if>
+    <if test="materialDeliveryDetailDto.deliverySumUntaxedAmount != null and materialDeliveryDetailDto.deliverySumUntaxedAmount != ''">
+      AND materialDeliveryDetail.delivery_sum_untaxed_amount = #{materialDeliveryDetailDto.deliverySumUntaxedAmount}
+    </if>
+    <if test="materialDeliveryDetailDto.deliverySumTaxAmount != null and materialDeliveryDetailDto.deliverySumTaxAmount != ''">
+      AND materialDeliveryDetail.delivery_sum_tax_amount = #{materialDeliveryDetailDto.deliverySumTaxAmount}
+    </if>
+    <if test="materialDeliveryDetailDto.explanation != null and materialDeliveryDetailDto.explanation != ''">
+      AND materialDeliveryDetail.explanation like CONCAT('%',#{materialDeliveryDetailDto.explanation},'%')
+    </if>
+    order by materialDeliveryDetail.id desc
+</select>
+</mapper>

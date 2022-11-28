@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.portal.mapper.PortalContentAdjPicnewsMapper">
+
+<resultMap id="portalContentAdjPicnewsMap" type="com.netwisd.base.portal.vo.PortalContentAdjPicnewsVo">
+  <id property="id" column="id"/>
+  <result property="portalId" column="portal_id"/>
+  <result property="portalName" column="portal_name"/>
+  <result property="partId" column="part_id"/>
+  <result property="partName" column="part_name"/>
+  <result property="partTypeId" column="part_type_id"/>
+  <result property="partTypeName" column="part_type_name"/>
+  <result property="title" column="title"/>
+  <result property="description" column="description"/>
+  <result property="imgUrl" column="img_url"/>
+  <result property="contentUrl" column="content_url"/>
+  <result property="auditStatus" column="audit_status"/>
+  <result property="hits" column="hits"/>
+  <result property="remark" column="remark"/>
+  <result property="passTime" column="pass_time"/>
+  <result property="ueditorContent" column="ueditor_content"/>
+  <result property="applyUserId" column="apply_user_id"/>
+  <result property="applyUserName" column="apply_user_name"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.portal.dto.PortalContentAdjPicnewsDto" resultMap="portalContentAdjPicnewsMap">
+  select * from incloud_base_portal_content_adj_picnews portalContentAdjPicnews where 1=1
+    <if test="portalContentAdjPicnewsDto.id != null and portalContentAdjPicnewsDto.id != ''">
+      AND portalContentAdjPicnews.id = #{portalContentAdjPicnewsDto.id}
+    </if>
+    <if test="portalContentAdjPicnewsDto.portalId != null and portalContentAdjPicnewsDto.portalId != ''">
+      AND portalContentAdjPicnews.portal_id = #{portalContentAdjPicnewsDto.portalId}
+    </if>
+    <if test="portalContentAdjPicnewsDto.portalName != null and portalContentAdjPicnewsDto.portalName != ''">
+      AND portalContentAdjPicnews.portal_name like CONCAT('%',#{portalContentAdjPicnewsDto.portalName},'%')
+    </if>
+    <if test="portalContentAdjPicnewsDto.partId != null and portalContentAdjPicnewsDto.partId != ''">
+      AND portalContentAdjPicnews.part_id = #{portalContentAdjPicnewsDto.partId}
+    </if>
+    <if test="portalContentAdjPicnewsDto.partName != null and portalContentAdjPicnewsDto.partName != ''">
+      AND portalContentAdjPicnews.part_name like CONCAT('%',#{portalContentAdjPicnewsDto.partName},'%')
+    </if>
+    <if test="portalContentAdjPicnewsDto.partTypeId != null and portalContentAdjPicnewsDto.partTypeId != ''">
+      AND portalContentAdjPicnews.part_type_id = #{portalContentAdjPicnewsDto.partTypeId}
+    </if>
+    <if test="portalContentAdjPicnewsDto.partTypeName != null and portalContentAdjPicnewsDto.partTypeName != ''">
+      AND portalContentAdjPicnews.part_type_name like CONCAT('%',#{portalContentAdjPicnewsDto.partTypeName},'%')
+    </if>
+    <if test="portalContentAdjPicnewsDto.title != null and portalContentAdjPicnewsDto.title != ''">
+      AND portalContentAdjPicnews.title like CONCAT('%',#{portalContentAdjPicnewsDto.title},'%')
+    </if>
+    <if test="portalContentAdjPicnewsDto.description != null and portalContentAdjPicnewsDto.description != ''">
+      AND portalContentAdjPicnews.description like CONCAT('%',#{portalContentAdjPicnewsDto.description},'%')
+    </if>
+    <if test="portalContentAdjPicnewsDto.imgUrl != null and portalContentAdjPicnewsDto.imgUrl != ''">
+      AND portalContentAdjPicnews.img_url like CONCAT('%',#{portalContentAdjPicnewsDto.imgUrl},'%')
+    </if>
+    <if test="portalContentAdjPicnewsDto.contentUrl != null and portalContentAdjPicnewsDto.contentUrl != ''">
+      AND portalContentAdjPicnews.content_url like CONCAT('%',#{portalContentAdjPicnewsDto.contentUrl},'%')
+    </if>
+    <if test="portalContentAdjPicnewsDto.auditStatus != null and portalContentAdjPicnewsDto.auditStatus != ''">
+      AND portalContentAdjPicnews.audit_status = #{portalContentAdjPicnewsDto.auditStatus}
+    </if>
+    <if test="portalContentAdjPicnewsDto.hits != null and portalContentAdjPicnewsDto.hits != ''">
+      AND portalContentAdjPicnews.hits = #{portalContentAdjPicnewsDto.hits}
+    </if>
+    <if test="portalContentAdjPicnewsDto.remark != null and portalContentAdjPicnewsDto.remark != ''">
+      AND portalContentAdjPicnews.remark like CONCAT('%',#{portalContentAdjPicnewsDto.remark},'%')
+    </if>
+    <if test="portalContentAdjPicnewsDto.passTime != null and portalContentAdjPicnewsDto.passTime != ''">
+      AND portalContentAdjPicnews.pass_time = #{portalContentAdjPicnewsDto.passTime}
+    </if>
+    <if test="portalContentAdjPicnewsDto.ueditorContent != null and portalContentAdjPicnewsDto.ueditorContent != ''">
+      AND portalContentAdjPicnews.ueditor_content like CONCAT('%',#{portalContentAdjPicnewsDto.ueditorContent},'%')
+    </if>
+    <if test="portalContentAdjPicnewsDto.applyUserId != null and portalContentAdjPicnewsDto.applyUserId != ''">
+      AND portalContentAdjPicnews.apply_user_id = #{portalContentAdjPicnewsDto.applyUserId}
+    </if>
+    <if test="portalContentAdjPicnewsDto.applyUserName != null and portalContentAdjPicnewsDto.applyUserName != ''">
+      AND portalContentAdjPicnews.apply_user_name like CONCAT('%',#{portalContentAdjPicnewsDto.applyUserName},'%')
+    </if>
+    order by portalContentAdjPicnews.id desc
+</select>
+</mapper>

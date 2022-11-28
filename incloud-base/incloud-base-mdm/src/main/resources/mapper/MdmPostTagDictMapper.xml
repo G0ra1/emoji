@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.mdm.mapper.MdmPostTagDictMapper">
+
+<resultMap id="mdmPostTagDictMap" type="com.netwisd.base.mdm.vo.MdmPostTagDictVo">
+  <id property="id" column="id"/>
+  <result property="postTagName" column="post_tag_name"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.mdm.dto.MdmPostTagDictDto" resultMap="mdmPostTagDictMap">
+  select * from incloud_base_mdm_post_tag_dict mdmPostTagDict where 1=1
+    <if test="mdmPostTagDictDto.id != null and mdmPostTagDictDto.id != ''">
+      AND mdmPostTagDict.id = #{mdmPostTagDictDto.id}
+    </if>
+    <if test="mdmPostTagDictDto.postTagName != null and mdmPostTagDictDto.postTagName != ''">
+      AND mdmPostTagDict.post_tag_name like CONCAT('%',#{mdmPostTagDictDto.postTagName},'%')
+    </if>
+    order by mdmPostTagDict.id desc
+</select>
+</mapper>

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.asset.mapper.MaterialAcceptResultMapper">
+
+<resultMap id="materialAcceptResultMap" type="com.netwisd.biz.asset.vo.MaterialAcceptResultVo">
+  <id property="id" column="id"/>
+  <result property="assetsId" column="assets_id"/>
+  <result property="assetsDetailId" column="assets_detail_id"/>
+  <result property="acceptId" column="accept_id"/>
+  <result property="acceptCode" column="accept_code"/>
+  <result property="acceptAssetsId" column="accept_assets_id"/>
+  <result property="acceptDetailId" column="accept_detail_id"/>
+  <result property="itemId" column="item_id"/>
+  <result property="itemCode" column="item_code"/>
+  <result property="itemName" column="item_name"/>
+  <result property="taxRate" column="tax_rate"/>
+  <result property="acceptAmount" column="accept_amount"/>
+  <result property="acceptUntaxedAmount" column="accept_untaxed_amount"/>
+  <result property="acceptTaxAmount" column="accept_tax_amount"/>
+  <result property="acceptNumber" column="accept_number"/>
+  <result property="refundNumber" column="refund_number"/>
+  <result property="notRefundNumber" column="not_refund_number"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+  <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+  <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+  <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+  <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+  <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+  <result property="itemType" column="item_type"/>
+  <result property="classifyId" column="classify_id"/>
+  <result property="classifyCode" column="classify_code"/>
+  <result property="classifyName" column="classify_name"/>
+  <result property="route" column="route"/>
+  <result property="routeName" column="route_name"/>
+  <result property="desclong" column="desclong"/>
+  <result property="descshort" column="descshort"/>
+  <result property="unitCode" column="unit_code"/>
+  <result property="unitName" column="unit_name"/>
+  <result property="materialQuality" column="material_quality"/>
+  <result property="standard" column="standard"/>
+  <result property="specs" column="specs"/>
+  <result property="itemTypeName" column="item_type_name"/>
+  <result property="qualityAssuranceLevel" column="quality_assurance_level"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.asset.dto.MaterialAcceptResultDto" resultMap="materialAcceptResultMap">
+  select * from incloud_biz_asset_material_accept_result materialAcceptResult where 1=1
+    <if test="materialAcceptResultDto.id != null and materialAcceptResultDto.id != ''">
+      AND materialAcceptResult.id = #{materialAcceptResultDto.id}
+    </if>
+    <if test="materialAcceptResultDto.assetsId != null and materialAcceptResultDto.assetsId != ''">
+      AND materialAcceptResult.assets_id = #{materialAcceptResultDto.assetsId}
+    </if>
+    <if test="materialAcceptResultDto.assetsDetailId != null and materialAcceptResultDto.assetsDetailId != ''">
+      AND materialAcceptResult.assets_detail_id = #{materialAcceptResultDto.assetsDetailId}
+    </if>
+    <if test="materialAcceptResultDto.acceptId != null and materialAcceptResultDto.acceptId != ''">
+      AND materialAcceptResult.accept_id = #{materialAcceptResultDto.acceptId}
+    </if>
+    <if test="materialAcceptResultDto.acceptCode != null and materialAcceptResultDto.acceptCode != ''">
+      AND materialAcceptResult.accept_code like CONCAT('%',#{materialAcceptResultDto.acceptCode},'%')
+    </if>
+    <if test="materialAcceptResultDto.acceptAssetsId != null and materialAcceptResultDto.acceptAssetsId != ''">
+      AND materialAcceptResult.accept_assets_id = #{materialAcceptResultDto.acceptAssetsId}
+    </if>
+    <if test="materialAcceptResultDto.acceptDetailId != null and materialAcceptResultDto.acceptDetailId != ''">
+      AND materialAcceptResult.accept_detail_id = #{materialAcceptResultDto.acceptDetailId}
+    </if>
+    <if test="materialAcceptResultDto.itemId != null and materialAcceptResultDto.itemId != ''">
+      AND materialAcceptResult.item_id like CONCAT('%',#{materialAcceptResultDto.itemId},'%')
+    </if>
+    <if test="materialAcceptResultDto.itemCode != null and materialAcceptResultDto.itemCode != ''">
+      AND materialAcceptResult.item_code like CONCAT('%',#{materialAcceptResultDto.itemCode},'%')
+    </if>
+    <if test="materialAcceptResultDto.itemName != null and materialAcceptResultDto.itemName != ''">
+      AND materialAcceptResult.item_name like CONCAT('%',#{materialAcceptResultDto.itemName},'%')
+    </if>
+    <if test="materialAcceptResultDto.taxRate != null and materialAcceptResultDto.taxRate != ''">
+      AND materialAcceptResult.tax_rate = #{materialAcceptResultDto.taxRate}
+    </if>
+    <if test="materialAcceptResultDto.acceptAmount != null and materialAcceptResultDto.acceptAmount != ''">
+      AND materialAcceptResult.accept_amount = #{materialAcceptResultDto.acceptAmount}
+    </if>
+    <if test="materialAcceptResultDto.acceptUntaxedAmount != null and materialAcceptResultDto.acceptUntaxedAmount != ''">
+      AND materialAcceptResult.accept_untaxed_amount = #{materialAcceptResultDto.acceptUntaxedAmount}
+    </if>
+    <if test="materialAcceptResultDto.acceptTaxAmount != null and materialAcceptResultDto.acceptTaxAmount != ''">
+      AND materialAcceptResult.accept_tax_amount = #{materialAcceptResultDto.acceptTaxAmount}
+    </if>
+    <if test="materialAcceptResultDto.acceptNumber != null and materialAcceptResultDto.acceptNumber != ''">
+      AND materialAcceptResult.accept_number = #{materialAcceptResultDto.acceptNumber}
+    </if>
+    <if test="materialAcceptResultDto.refundNumber != null and materialAcceptResultDto.refundNumber != ''">
+      AND materialAcceptResult.refund_number = #{materialAcceptResultDto.refundNumber}
+    </if>
+    <if test="materialAcceptResultDto.notRefundNumber != null and materialAcceptResultDto.notRefundNumber != ''">
+      AND materialAcceptResult.not_refund_number = #{materialAcceptResultDto.notRefundNumber}
+    </if>
+    <if test="materialAcceptResultDto.createUserId != null and materialAcceptResultDto.createUserId != ''">
+      AND materialAcceptResult.create_user_id = #{materialAcceptResultDto.createUserId}
+    </if>
+    <if test="materialAcceptResultDto.createUserName != null and materialAcceptResultDto.createUserName != ''">
+      AND materialAcceptResult.create_user_name like CONCAT('%',#{materialAcceptResultDto.createUserName},'%')
+    </if>
+    <if test="materialAcceptResultDto.createUserParentOrgId != null and materialAcceptResultDto.createUserParentOrgId != ''">
+      AND materialAcceptResult.create_user_parent_org_id = #{materialAcceptResultDto.createUserParentOrgId}
+    </if>
+    <if test="materialAcceptResultDto.createUserParentOrgName != null and materialAcceptResultDto.createUserParentOrgName != ''">
+      AND materialAcceptResult.create_user_parent_org_name like CONCAT('%',#{materialAcceptResultDto.createUserParentOrgName},'%')
+    </if>
+    <if test="materialAcceptResultDto.createUserParentDeptId != null and materialAcceptResultDto.createUserParentDeptId != ''">
+      AND materialAcceptResult.create_user_parent_dept_id = #{materialAcceptResultDto.createUserParentDeptId}
+    </if>
+    <if test="materialAcceptResultDto.createUserParentDeptName != null and materialAcceptResultDto.createUserParentDeptName != ''">
+      AND materialAcceptResult.create_user_parent_dept_name like CONCAT('%',#{materialAcceptResultDto.createUserParentDeptName},'%')
+    </if>
+    <if test="materialAcceptResultDto.createUserOrgFullId != null and materialAcceptResultDto.createUserOrgFullId != ''">
+      AND materialAcceptResult.create_user_org_full_id like CONCAT('%',#{materialAcceptResultDto.createUserOrgFullId},'%')
+    </if>
+    <if test="materialAcceptResultDto.itemType != null and materialAcceptResultDto.itemType != ''">
+      AND materialAcceptResult.item_type like CONCAT('%',#{materialAcceptResultDto.itemType},'%')
+    </if>
+    <if test="materialAcceptResultDto.classifyId != null and materialAcceptResultDto.classifyId != ''">
+      AND materialAcceptResult.classify_id like CONCAT('%',#{materialAcceptResultDto.classifyId},'%')
+    </if>
+    <if test="materialAcceptResultDto.classifyCode != null and materialAcceptResultDto.classifyCode != ''">
+      AND materialAcceptResult.classify_code like CONCAT('%',#{materialAcceptResultDto.classifyCode},'%')
+    </if>
+    <if test="materialAcceptResultDto.classifyName != null and materialAcceptResultDto.classifyName != ''">
+      AND materialAcceptResult.classify_name like CONCAT('%',#{materialAcceptResultDto.classifyName},'%')
+    </if>
+    <if test="materialAcceptResultDto.route != null and materialAcceptResultDto.route != ''">
+      AND materialAcceptResult.route like CONCAT('%',#{materialAcceptResultDto.route},'%')
+    </if>
+    <if test="materialAcceptResultDto.routeName != null and materialAcceptResultDto.routeName != ''">
+      AND materialAcceptResult.route_name like CONCAT('%',#{materialAcceptResultDto.routeName},'%')
+    </if>
+    <if test="materialAcceptResultDto.desclong != null and materialAcceptResultDto.desclong != ''">
+      AND materialAcceptResult.desclong like CONCAT('%',#{materialAcceptResultDto.desclong},'%')
+    </if>
+    <if test="materialAcceptResultDto.descshort != null and materialAcceptResultDto.descshort != ''">
+      AND materialAcceptResult.descshort like CONCAT('%',#{materialAcceptResultDto.descshort},'%')
+    </if>
+    <if test="materialAcceptResultDto.unitCode != null and materialAcceptResultDto.unitCode != ''">
+      AND materialAcceptResult.unit_code like CONCAT('%',#{materialAcceptResultDto.unitCode},'%')
+    </if>
+    <if test="materialAcceptResultDto.unitName != null and materialAcceptResultDto.unitName != ''">
+      AND materialAcceptResult.unit_name like CONCAT('%',#{materialAcceptResultDto.unitName},'%')
+    </if>
+    <if test="materialAcceptResultDto.materialQuality != null and materialAcceptResultDto.materialQuality != ''">
+      AND materialAcceptResult.material_quality like CONCAT('%',#{materialAcceptResultDto.materialQuality},'%')
+    </if>
+    <if test="materialAcceptResultDto.standard != null and materialAcceptResultDto.standard != ''">
+      AND materialAcceptResult.standard like CONCAT('%',#{materialAcceptResultDto.standard},'%')
+    </if>
+    <if test="materialAcceptResultDto.specs != null and materialAcceptResultDto.specs != ''">
+      AND materialAcceptResult.specs like CONCAT('%',#{materialAcceptResultDto.specs},'%')
+    </if>
+    <if test="materialAcceptResultDto.itemTypeName != null and materialAcceptResultDto.itemTypeName != ''">
+      AND materialAcceptResult.item_type_name like CONCAT('%',#{materialAcceptResultDto.itemTypeName},'%')
+    </if>
+    <if test="materialAcceptResultDto.qualityAssuranceLevel != null and materialAcceptResultDto.qualityAssuranceLevel != ''">
+    AND materialAcceptResult.quality_assurance_level like CONCAT('%',#{materialAcceptResultDto.qualityAssuranceLevel},'%')
+    </if>
+  order by materialAcceptResult.id desc
+</select>
+</mapper>

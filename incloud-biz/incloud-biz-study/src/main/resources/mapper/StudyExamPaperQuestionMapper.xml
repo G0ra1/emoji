@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.study.mapper.StudyExamPaperQuestionMapper">
+
+<resultMap id="studyExamPaperQuestionMap" type="com.netwisd.biz.study.vo.StudyExamPaperQuestionVo">
+  <id property="id" column="id"/>
+  <result property="paperId" column="paper_id"/>
+  <result property="databaseId" column="database_id"/>
+  <result property="databaseName" column="database_name"/>
+  <result property="questionId" column="question_id"/>
+  <result property="questionStem" column="question_stem"/>
+  <result property="questionCode" column="question_code"/>
+  <result property="questionGrade" column="question_grade"/>
+  <result property="questionScore" column="question_score"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+  <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+  <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+  <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+  <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+  <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.study.dto.StudyExamPaperQuestionDto" resultMap="studyExamPaperQuestionMap">
+  select * from incloud_biz_study_exam_paper_question studyExamPaperQuestion where 1=1
+    <if test="studyExamPaperQuestionDto.id != null and studyExamPaperQuestionDto.id != ''">
+      AND studyExamPaperQuestion.id = #{studyExamPaperQuestionDto.id}
+    </if>
+    <if test="studyExamPaperQuestionDto.paperId != null and studyExamPaperQuestionDto.paperId != ''">
+      AND studyExamPaperQuestion.paper_id = #{studyExamPaperQuestionDto.paperId}
+    </if>
+    <if test="studyExamPaperQuestionDto.databaseId != null and studyExamPaperQuestionDto.databaseId != ''">
+      AND studyExamPaperQuestion.database_id = #{studyExamPaperQuestionDto.databaseId}
+    </if>
+    <if test="studyExamPaperQuestionDto.databaseName != null and studyExamPaperQuestionDto.databaseName != ''">
+      AND studyExamPaperQuestion.database_name like CONCAT('%',#{studyExamPaperQuestionDto.databaseName},'%')
+    </if>
+    <if test="studyExamPaperQuestionDto.questionId != null and studyExamPaperQuestionDto.questionId != ''">
+      AND studyExamPaperQuestion.question_id = #{studyExamPaperQuestionDto.questionId}
+    </if>
+    <if test="studyExamPaperQuestionDto.questionStem != null and studyExamPaperQuestionDto.questionStem != ''">
+      AND studyExamPaperQuestion.question_stem like CONCAT('%',#{studyExamPaperQuestionDto.questionStem},'%')
+    </if>
+    <if test="studyExamPaperQuestionDto.questionCode != null and studyExamPaperQuestionDto.questionCode != ''">
+      AND studyExamPaperQuestion.question_code = #{studyExamPaperQuestionDto.questionCode}
+    </if>
+    <if test="studyExamPaperQuestionDto.questionGrade != null and studyExamPaperQuestionDto.questionGrade != ''">
+      AND studyExamPaperQuestion.question_grade = #{studyExamPaperQuestionDto.questionGrade}
+    </if>
+    <if test="studyExamPaperQuestionDto.questionScore != null and studyExamPaperQuestionDto.questionScore != ''">
+      AND studyExamPaperQuestion.question_score = #{studyExamPaperQuestionDto.questionScore}
+    </if>
+    <if test="studyExamPaperQuestionDto.createUserId != null and studyExamPaperQuestionDto.createUserId != ''">
+      AND studyExamPaperQuestion.create_user_id = #{studyExamPaperQuestionDto.createUserId}
+    </if>
+    <if test="studyExamPaperQuestionDto.createUserName != null and studyExamPaperQuestionDto.createUserName != ''">
+      AND studyExamPaperQuestion.create_user_name like CONCAT('%',#{studyExamPaperQuestionDto.createUserName},'%')
+    </if>
+    <if test="studyExamPaperQuestionDto.createUserParentOrgId != null and studyExamPaperQuestionDto.createUserParentOrgId != ''">
+      AND studyExamPaperQuestion.create_user_parent_org_id = #{studyExamPaperQuestionDto.createUserParentOrgId}
+    </if>
+    <if test="studyExamPaperQuestionDto.createUserParentOrgName != null and studyExamPaperQuestionDto.createUserParentOrgName != ''">
+      AND studyExamPaperQuestion.create_user_parent_org_name like CONCAT('%',#{studyExamPaperQuestionDto.createUserParentOrgName},'%')
+    </if>
+    <if test="studyExamPaperQuestionDto.createUserParentDeptId != null and studyExamPaperQuestionDto.createUserParentDeptId != ''">
+      AND studyExamPaperQuestion.create_user_parent_dept_id = #{studyExamPaperQuestionDto.createUserParentDeptId}
+    </if>
+    <if test="studyExamPaperQuestionDto.createUserParentDeptName != null and studyExamPaperQuestionDto.createUserParentDeptName != ''">
+      AND studyExamPaperQuestion.create_user_parent_dept_name like CONCAT('%',#{studyExamPaperQuestionDto.createUserParentDeptName},'%')
+    </if>
+    <if test="studyExamPaperQuestionDto.createUserOrgFullId != null and studyExamPaperQuestionDto.createUserOrgFullId != ''">
+      AND studyExamPaperQuestion.create_user_org_full_id like CONCAT('%',#{studyExamPaperQuestionDto.createUserOrgFullId},'%')
+    </if>
+    order by studyExamPaperQuestion.id desc
+</select>
+</mapper>

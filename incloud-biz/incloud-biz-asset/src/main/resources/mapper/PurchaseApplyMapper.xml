@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.asset.mapper.PurchaseApplyMapper">
+
+<resultMap id="purchaseApplyMap" type="com.netwisd.biz.asset.vo.PurchaseApplyVo">
+  <id property="id" column="id"/>
+  <result property="code" column="code"/>
+  <result property="sumTotalAmount" column="sum_total_amount"/>
+  <result property="sumTotalUntaxedAmount" column="sum_total_untaxed_amount"/>
+  <result property="sumTotalTaxAmount" column="sum_total_tax_amount"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+  <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+  <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+  <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+  <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+  <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+  <result property="auditSuccessTiem" column="audit_success_tiem"/>
+  <result property="camundaProcdefKey" column="camunda_procdef_key"/>
+  <result property="camundaProcdefId" column="camunda_procdef_id"/>
+  <result property="camundaProcinsId" column="camunda_procins_id"/>
+  <result property="procdefTypeId" column="procdef_type_id"/>
+  <result property="procdefTypeName" column="procdef_type_name"/>
+  <result property="procdefVersion" column="procdef_version"/>
+  <result property="procdefName" column="procdef_name"/>
+  <result property="processName" column="process_name"/>
+  <result property="reason" column="reason"/>
+  <result property="bizKey" column="biz_key"/>
+  <result property="camundaTaskId" column="camunda_task_id"/>
+  <result property="bizPriority" column="biz_priority"/>
+  <result property="auditStatus" column="audit_status"/>
+  <result property="applyTime" column="apply_time"/>
+  <result property="applyUserId" column="apply_user_id"/>
+  <result property="applyUserName" column="apply_user_name"/>
+  <result property="applyUserOrgId" column="apply_user_org_id"/>
+  <result property="applyUserOrgName" column="apply_user_org_name"/>
+  <result property="applyUserDeptId" column="apply_user_dept_id"/>
+  <result property="applyUserDeptName" column="apply_user_dept_name"/>
+  <result property="itemType" column="item_type"/>
+  <result property="status" column="status"/>
+  <result property="explanation" column="explanation"/>
+  <result property="planYear" column="plan_year"/>
+  <result property="notRegisterAmount" column="not_register_amount"/>
+  <result property="registerNumber" column="register_number"/>
+  <result property="notRegisterNumber" column="not_register_number"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.asset.dto.PurchaseApplyDto" resultMap="purchaseApplyMap">
+  select * from incloud_biz_asset_purchase_apply purchaseApply where 1=1
+    <if test="purchaseApplyDto.id != null and purchaseApplyDto.id != ''">
+      AND purchaseApply.id = #{purchaseApplyDto.id}
+    </if>
+    <if test="purchaseApplyDto.code != null and purchaseApplyDto.code != ''">
+      AND purchaseApply.code like CONCAT('%',#{purchaseApplyDto.code},'%')
+    </if>
+    <if test="purchaseApplyDto.sumTotalAmount != null and purchaseApplyDto.sumTotalAmount != ''">
+      AND purchaseApply.sum_total_amount = #{purchaseApplyDto.sumTotalAmount}
+    </if>
+    <if test="purchaseApplyDto.sumTotalUntaxedAmount != null and purchaseApplyDto.sumTotalUntaxedAmount != ''">
+      AND purchaseApply.sum_total_untaxed_amount = #{purchaseApplyDto.sumTotalUntaxedAmount}
+    </if>
+    <if test="purchaseApplyDto.sumTotalTaxAmount != null and purchaseApplyDto.sumTotalTaxAmount != ''">
+      AND purchaseApply.sum_total_tax_amount = #{purchaseApplyDto.sumTotalTaxAmount}
+    </if>
+    <if test="purchaseApplyDto.createUserId != null and purchaseApplyDto.createUserId != ''">
+      AND purchaseApply.create_user_id = #{purchaseApplyDto.createUserId}
+    </if>
+    <if test="purchaseApplyDto.createUserName != null and purchaseApplyDto.createUserName != ''">
+      AND purchaseApply.create_user_name like CONCAT('%',#{purchaseApplyDto.createUserName},'%')
+    </if>
+    <if test="purchaseApplyDto.createUserParentOrgId != null and purchaseApplyDto.createUserParentOrgId != ''">
+      AND purchaseApply.create_user_parent_org_id = #{purchaseApplyDto.createUserParentOrgId}
+    </if>
+    <if test="purchaseApplyDto.createUserParentOrgName != null and purchaseApplyDto.createUserParentOrgName != ''">
+      AND purchaseApply.create_user_parent_org_name like CONCAT('%',#{purchaseApplyDto.createUserParentOrgName},'%')
+    </if>
+    <if test="purchaseApplyDto.createUserParentDeptId != null and purchaseApplyDto.createUserParentDeptId != ''">
+      AND purchaseApply.create_user_parent_dept_id = #{purchaseApplyDto.createUserParentDeptId}
+    </if>
+    <if test="purchaseApplyDto.createUserParentDeptName != null and purchaseApplyDto.createUserParentDeptName != ''">
+      AND purchaseApply.create_user_parent_dept_name like CONCAT('%',#{purchaseApplyDto.createUserParentDeptName},'%')
+    </if>
+    <if test="purchaseApplyDto.createUserOrgFullId != null and purchaseApplyDto.createUserOrgFullId != ''">
+      AND purchaseApply.create_user_org_full_id like CONCAT('%',#{purchaseApplyDto.createUserOrgFullId},'%')
+    </if>
+    <if test="purchaseApplyDto.auditSuccessTiem != null and purchaseApplyDto.auditSuccessTiem != ''">
+      AND purchaseApply.audit_success_tiem = #{purchaseApplyDto.auditSuccessTiem}
+    </if>
+    <if test="purchaseApplyDto.camundaProcdefKey != null and purchaseApplyDto.camundaProcdefKey != ''">
+      AND purchaseApply.camunda_procdef_key like CONCAT('%',#{purchaseApplyDto.camundaProcdefKey},'%')
+    </if>
+    <if test="purchaseApplyDto.camundaProcdefId != null and purchaseApplyDto.camundaProcdefId != ''">
+      AND purchaseApply.camunda_procdef_id like CONCAT('%',#{purchaseApplyDto.camundaProcdefId},'%')
+    </if>
+    <if test="purchaseApplyDto.camundaProcinsId != null and purchaseApplyDto.camundaProcinsId != ''">
+      AND purchaseApply.camunda_procins_id like CONCAT('%',#{purchaseApplyDto.camundaProcinsId},'%')
+    </if>
+    <if test="purchaseApplyDto.procdefTypeId != null and purchaseApplyDto.procdefTypeId != ''">
+      AND purchaseApply.procdef_type_id = #{purchaseApplyDto.procdefTypeId}
+    </if>
+    <if test="purchaseApplyDto.procdefTypeName != null and purchaseApplyDto.procdefTypeName != ''">
+      AND purchaseApply.procdef_type_name like CONCAT('%',#{purchaseApplyDto.procdefTypeName},'%')
+    </if>
+    <if test="purchaseApplyDto.procdefVersion != null and purchaseApplyDto.procdefVersion != ''">
+      AND purchaseApply.procdef_version = #{purchaseApplyDto.procdefVersion}
+    </if>
+    <if test="purchaseApplyDto.procdefName != null and purchaseApplyDto.procdefName != ''">
+      AND purchaseApply.procdef_name like CONCAT('%',#{purchaseApplyDto.procdefName},'%')
+    </if>
+    <if test="purchaseApplyDto.processName != null and purchaseApplyDto.processName != ''">
+      AND purchaseApply.process_name like CONCAT('%',#{purchaseApplyDto.processName},'%')
+    </if>
+    <if test="purchaseApplyDto.reason != null and purchaseApplyDto.reason != ''">
+      AND purchaseApply.reason like CONCAT('%',#{purchaseApplyDto.reason},'%')
+    </if>
+    <if test="purchaseApplyDto.bizKey != null and purchaseApplyDto.bizKey != ''">
+      AND purchaseApply.biz_key like CONCAT('%',#{purchaseApplyDto.bizKey},'%')
+    </if>
+    <if test="purchaseApplyDto.camundaTaskId != null and purchaseApplyDto.camundaTaskId != ''">
+      AND purchaseApply.camunda_task_id like CONCAT('%',#{purchaseApplyDto.camundaTaskId},'%')
+    </if>
+    <if test="purchaseApplyDto.bizPriority != null and purchaseApplyDto.bizPriority != ''">
+      AND purchaseApply.biz_priority like CONCAT('%',#{purchaseApplyDto.bizPriority},'%')
+    </if>
+    <if test="purchaseApplyDto.auditStatus != null and purchaseApplyDto.auditStatus != ''">
+      AND purchaseApply.audit_status = #{purchaseApplyDto.auditStatus}
+    </if>
+    <if test="purchaseApplyDto.applyTime != null and purchaseApplyDto.applyTime != ''">
+      AND purchaseApply.apply_time = #{purchaseApplyDto.applyTime}
+    </if>
+    <if test="purchaseApplyDto.applyUserId != null and purchaseApplyDto.applyUserId != ''">
+      AND purchaseApply.apply_user_id = #{purchaseApplyDto.applyUserId}
+    </if>
+    <if test="purchaseApplyDto.applyUserName != null and purchaseApplyDto.applyUserName != ''">
+      AND purchaseApply.apply_user_name like CONCAT('%',#{purchaseApplyDto.applyUserName},'%')
+    </if>
+    <if test="purchaseApplyDto.applyUserOrgId != null and purchaseApplyDto.applyUserOrgId != ''">
+      AND purchaseApply.apply_user_org_id = #{purchaseApplyDto.applyUserOrgId}
+    </if>
+    <if test="purchaseApplyDto.applyUserOrgName != null and purchaseApplyDto.applyUserOrgName != ''">
+      AND purchaseApply.apply_user_org_name like CONCAT('%',#{purchaseApplyDto.applyUserOrgName},'%')
+    </if>
+    <if test="purchaseApplyDto.applyUserDeptId != null and purchaseApplyDto.applyUserDeptId != ''">
+      AND purchaseApply.apply_user_dept_id = #{purchaseApplyDto.applyUserDeptId}
+    </if>
+    <if test="purchaseApplyDto.applyUserDeptName != null and purchaseApplyDto.applyUserDeptName != ''">
+      AND purchaseApply.apply_user_dept_name like CONCAT('%',#{purchaseApplyDto.applyUserDeptName},'%')
+    </if>
+    <if test="purchaseApplyDto.itemType != null and purchaseApplyDto.itemType != ''">
+      AND purchaseApply.item_type like CONCAT('%',#{purchaseApplyDto.itemType},'%')
+    </if>
+    <if test="purchaseApplyDto.status != null and purchaseApplyDto.status != ''">
+      AND purchaseApply.status like CONCAT('%',#{purchaseApplyDto.status},'%')
+    </if>
+    <if test="purchaseApplyDto.explanation != null and purchaseApplyDto.explanation != ''">
+      AND purchaseApply.explanation like CONCAT('%',#{purchaseApplyDto.explanation},'%')
+    </if>
+    <if test="purchaseApplyDto.planYear != null and purchaseApplyDto.planYear != ''">
+      AND purchaseApply.plan_year like CONCAT('%',#{purchaseApplyDto.planYear},'%')
+    </if>
+    <if test="purchaseApplyDto.notRegisterAmount != null and purchaseApplyDto.notRegisterAmount != ''">
+      AND purchaseApply.not_register_amount like CONCAT('%',#{purchaseApplyDto.notRegisterAmount},'%')
+    </if>
+    <if test="purchaseApplyDto.registerNumber != null and purchaseApplyDto.registerNumber != ''">
+      AND purchaseApply.register_number like CONCAT('%',#{purchaseApplyDto.registerNumber},'%')
+    </if>
+    <if test="purchaseApplyDto.notRegisterNumber != null and purchaseApplyDto.notRegisterNumber != ''">
+      AND purchaseApply.not_register_number like CONCAT('%',#{purchaseApplyDto.notRegisterNumber},'%')
+    </if>
+    <if test="purchaseApplyDto.searchCondition != null and purchaseApplyDto.searchCondition != ''">
+      AND (
+        purchaseApply.code like CONCAT('%',#{purchaseApplyDto.searchCondition},'%')
+      OR
+        purchaseApply.explanation like CONCAT('%',#{purchaseApplyDto.searchCondition},'%')
+      OR
+        purchaseApply.plan_year like CONCAT('%',#{purchaseApplyDto.searchCondition},'%')
+      OR
+        purchaseApply.item_type_name like CONCAT('%',#{purchaseApplyDto.searchCondition},'%')
+      OR
+        purchaseApply.sum_total_amount like CONCAT('%',#{purchaseApplyDto.searchCondition},'%')
+      OR
+        purchaseApply.sum_total_number like CONCAT('%',#{purchaseApplyDto.searchCondition},'%')
+      OR
+        purchaseApply.apply_time like CONCAT('%',#{purchaseApplyDto.searchCondition},'%')
+      )
+    </if>
+    order by purchaseApply.id desc
+</select>
+</mapper>

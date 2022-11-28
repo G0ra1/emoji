@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.portal.mapper.PortalContentFilesSonMapper">
+
+<resultMap id="portalContentFilesSonMap" type="com.netwisd.base.portal.vo.PortalContentFilesSonVo">
+  <id property="id" column="id"/>
+  <result property="linkFilesId" column="link_files_id"/>
+  <result property="isOutLink" column="is_out_link"/>
+  <result property="fileName" column="file_name"/>
+  <result property="fileUrl" column="file_url"/>
+  <result property="fileId" column="file_id"/>
+  <result property="hits" column="hits"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.portal.dto.PortalContentFilesSonDto" resultMap="portalContentFilesSonMap">
+  select * from incloud_base_portal_content_files_son portalContentFilesSon where 1=1
+    <if test="portalContentFilesSonDto.id != null and portalContentFilesSonDto.id != ''">
+      AND portalContentFilesSon.id = #{portalContentFilesSonDto.id}
+    </if>
+    <if test="portalContentFilesSonDto.linkFilesId != null and portalContentFilesSonDto.linkFilesId != ''">
+      AND portalContentFilesSon.link_files_id = #{portalContentFilesSonDto.linkFilesId}
+    </if>
+    <if test="portalContentFilesSonDto.isOutLink != null and portalContentFilesSonDto.isOutLink != ''">
+      AND portalContentFilesSon.is_out_link = #{portalContentFilesSonDto.isOutLink}
+    </if>
+    <if test="portalContentFilesSonDto.fileName != null and portalContentFilesSonDto.fileName != ''">
+      AND portalContentFilesSon.file_name like CONCAT('%',#{portalContentFilesSonDto.fileName},'%')
+    </if>
+    <if test="portalContentFilesSonDto.fileUrl != null and portalContentFilesSonDto.fileUrl != ''">
+      AND portalContentFilesSon.file_url like CONCAT('%',#{portalContentFilesSonDto.fileUrl},'%')
+    </if>
+    <if test="portalContentFilesSonDto.fileId != null and portalContentFilesSonDto.fileId != ''">
+      AND portalContentFilesSon.file_id = #{portalContentFilesSonDto.fileId}
+    </if>
+    <if test="portalContentFilesSonDto.hits != null and portalContentFilesSonDto.hits != ''">
+      AND portalContentFilesSon.hits = #{portalContentFilesSonDto.hits}
+    </if>
+    order by portalContentFilesSon.id desc
+</select>
+</mapper>

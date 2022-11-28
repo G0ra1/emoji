@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.mdm.mapper.MdmRoleUserMapper">
+
+<resultMap id="mdmRoleUserMap" type="com.netwisd.base.common.mdm.vo.MdmRoleUserVo">
+  <id property="id" column="id"/>
+  <result property="roleId" column="role_id"/>
+  <result property="roleCode" column="role_code"/>
+  <result property="roleName" column="role_name"/>
+  <result property="userId" column="user_id"/>
+  <result property="userName" column="user_name"/>
+  <result property="userNameCh" column="user_name_ch"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.common.mdm.dto.MdmRoleUserDto" resultMap="mdmRoleUserMap">
+  select * from incloud_base_mdm_role_user mdmRoleUser where 1=1
+    <if test="mdmRoleUserDto.id != null and mdmRoleUserDto.id != ''">
+      AND mdmRoleUser.id = #{mdmRoleUserDto.id}
+    </if>
+    <if test="mdmRoleUserDto.roleId != null and mdmRoleUserDto.roleId != ''">
+      AND mdmRoleUser.role_id = #{mdmRoleUserDto.roleId}
+    </if>
+    <if test="mdmRoleUserDto.roleCode != null and mdmRoleUserDto.roleCode != ''">
+      AND mdmRoleUser.role_code like CONCAT('%',#{mdmRoleUserDto.roleCode},'%')
+    </if>
+    <if test="mdmRoleUserDto.roleName != null and mdmRoleUserDto.roleName != ''">
+      AND mdmRoleUser.role_name like CONCAT('%',#{mdmRoleUserDto.roleName},'%')
+    </if>
+    <if test="mdmRoleUserDto.userId != null and mdmRoleUserDto.userId != ''">
+      AND mdmRoleUser.user_id = #{mdmRoleUserDto.userId}
+    </if>
+    <if test="mdmRoleUserDto.userName != null and mdmRoleUserDto.userName != ''">
+      AND mdmRoleUser.user_name like CONCAT('%',#{mdmRoleUserDto.userName},'%')
+    </if>
+    <if test="mdmRoleUserDto.userNameCh != null and mdmRoleUserDto.userNameCh != ''">
+      AND mdmRoleUser.user_name_ch like CONCAT('%',#{mdmRoleUserDto.userNameCh},'%')
+    </if>
+    order by mdmRoleUser.id desc
+</select>
+</mapper>

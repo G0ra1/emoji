@@ -1,0 +1,108 @@
+package ${package}.${moduleName}.service.impl;
+
+import cn.hutool.core.util.ObjectUtil;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import ${package}.${moduleName}.entity.${className};
+import ${package}.${moduleName}.mapper.${className}Mapper;
+import ${package}.${moduleName}.service.${className}Service;
+import org.springframework.stereotype.Service;
+import com.github.dozermapper.core.Mapper;
+import com.netwisd.common.core.util.DozerUtils;
+import ${package}.${moduleName}.dto.${className}Dto;
+import ${package}.${moduleName}.vo.${className}Vo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
+import lombok.extern.slf4j.Slf4j;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
+
+/**
+ * @Description ${comments} 功能描述...
+ * @author 云数网讯 ${author}@netwisd.com
+ * @date ${datetime}
+ */
+@Service
+@Slf4j
+public class ${className}ServiceImpl extends ServiceImpl<${className}Mapper, ${className}> implements ${className}Service {
+    @Autowired
+    private Mapper dozerMapper;
+
+    //@Autowired
+    //private ${className}Mapper ${classname}Mapper;
+
+    /**
+    * 单表简单查询操作
+    * @param ${classname}Dto
+    * @return
+    */
+    @Override
+    public Page<${className}Vo> page(${className}Dto ${classname}Dto) {
+        LambdaQueryWrapper<${className}> queryWrapper = new LambdaQueryWrapper<>();
+        //根据实际业务构建具体的参数做查询
+        Page<${className}Vo> pageVo = DozerUtils.mapPage(dozerMapper, super.page(${classname}Dto.getPage(),queryWrapper), ${className}Vo.class);
+        log.debug("查询条数:"+pageVo.getTotal());
+        return pageVo;
+    }
+
+    /**
+    * 自定义查询操作
+    * @param ${classname}Dto
+    * @return
+    */
+    @Override
+    public List<${className}Vo> list(${className}Dto ${classname}Dto) {
+        LambdaQueryWrapper<${className}> queryWrapper = new LambdaQueryWrapper<>();
+        //根据实际业务构建具体的参数做查询
+        List<${className}Vo> ${classname}Vos = DozerUtils.mapList(dozerMapper, super.list(queryWrapper), ${className}Vo.class);
+        log.debug("查询条数:"+${classname}Vos.size());
+        return ${classname}Vos;
+    }
+
+    /**
+    * 通过ID查询实体
+    * @param id
+    * @return
+    */
+    @Override
+    public ${className}Vo get(${id.attrType} id) {
+        ${className} ${classname} = Optional.ofNullable(super.getById(id)).orElse(null);
+        return ObjectUtil.isNotEmpty(${classname}) ? dozerMapper.map(${classname},${className}Vo.class) : null;
+    }
+
+    /**
+    * 保存实体
+    * @param ${classname}Dto
+    * @return
+    */
+    @Transactional
+    @Override
+    public Boolean save(${className}Dto ${classname}Dto) {
+        return super.save(dozerMapper.map(${classname}Dto,${className}.class));
+    }
+
+    /**
+    * 修改实体
+    * @param ${classname}Dto
+    * @return
+    */
+    @Transactional
+    @Override
+    public Boolean update(${className}Dto ${classname}Dto) {
+        ${classname}Dto.setUpdateTime(LocalDateTime.now());
+        return super.updateById(dozerMapper.map(${classname}Dto,${className}.class));
+    }
+
+    /**
+    * 通过ID删除
+    * @param id
+    * @return
+    */
+    @Transactional
+    @Override
+    public Boolean delete(Long id) {
+        return super.removeById(id);
+    }
+}

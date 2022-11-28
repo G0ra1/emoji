@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.wf.mapper.WfMyOutDuplicateTaskMapper">
+
+<resultMap id="wfMyOutDuplicateTaskMap" type="com.netwisd.base.common.vo.wf.WfMyOutDuplicateTaskVo">
+  <id property="id" column="id"/>
+  <result property="camundaProcdefId" column="camunda_procdef_id"/>
+  <result property="camundaProcdefKey" column="camunda_procdef_key"/>
+  <result property="camundaProcdefVersion" column="camunda_procdef_version"/>
+  <result property="camundaProcinsId" column="camunda_procins_id"/>
+  <result property="camundaTaskId" column="camunda_task_id"/>
+  <result property="camundaNodeKey" column="camunda_node_key"/>
+  <result property="camundaNodeName" column="camunda_node_name"/>
+  <result property="camundaNodeType" column="camunda_node_type"/>
+  <result property="procinsId" column="procins_id"/>
+  <result property="procinsName" column="procins_name"/>
+  <result property="assignee" column="assignee"/>
+  <result property="procdefId" column="procdef_id"/>
+  <result property="procdefName" column="procdef_name"/>
+  <result property="procdefTypeId" column="procdef_type_id"/>
+  <result property="procdefTypeName" column="procdef_type_name"/>
+  <result property="state" column="state"/>
+  <result property="reason" column="reason"/>
+  <result property="applyTime" column="apply_time"/>
+  <result property="starterId" column="starter_id"/>
+  <result property="starterName" column="starter_name"/>
+  <result property="starterDeptId" column="starter_dept_id"/>
+  <result property="starterDeptName" column="starter_dept_name"/>
+  <result property="starterOrgId" column="starter_org_id"/>
+  <result property="starterOrgName" column="starter_org_name"/>
+  <result property="bizKey" column="biz_key"/>
+  <result property="assigneeName" column="assignee_name"/>
+  <result property="formKey" column="form_key"/>
+  <result property="isCallActivity" column="is_call_activity"/>
+  <result property="formId" column="form_id"/>
+  <result property="formName" column="form_name"/>
+  <result property="moduleCode" column="module_code"/>
+  <result property="moduleName" column="module_name"/>
+  <result property="isClone" column="is_clone"/>
+  <result property="camundaParentProcinsId" column="camunda_parent_procins_id"/>
+  <result property="parentProcinsId" column="parent_procins_id"/>
+  <result property="childLogProcinsId" column="child_log_procins_id"/>
+  <result property="parentLogProcinsId" column="parent_log_procins_id"/>
+  <result property="camundaChildLogProcinsId" column="camunda_child_log_procins_id"/>
+  <result property="camundaParentLogProcinsId" column="camunda_parent_log_procins_id"/>
+  <result property="priority" column="priority"/>
+  <result property="bizPriority" column="biz_priority"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.wf.dto.WfMyOutDuplicateTaskDto" resultMap="wfMyOutDuplicateTaskMap">
+  select * from incloud_base_wf_my_out_duplicate_task wfMyOutDuplicateTask where 1=1
+    <if test="wfMyOutDuplicateTaskDto.id != null and wfMyOutDuplicateTaskDto.id != ''">
+      AND wfMyOutDuplicateTask.id = #{wfMyOutDuplicateTaskDto.id}
+    </if>
+    <if test="wfMyOutDuplicateTaskDto.camundaProcdefId != null and wfMyOutDuplicateTaskDto.camundaProcdefId != ''">
+      AND wfMyOutDuplicateTask.camunda_procdef_id like CONCAT('%',#{wfMyOutDuplicateTaskDto.camundaProcdefId},'%')
+    </if>
+    <if test="wfMyOutDuplicateTaskDto.camundaProcdefKey != null and wfMyOutDuplicateTaskDto.camundaProcdefKey != ''">
+      AND wfMyOutDuplicateTask.camunda_procdef_key like CONCAT('%',#{wfMyOutDuplicateTaskDto.camundaProcdefKey},'%')
+    </if>
+    <if test="wfMyOutDuplicateTaskDto.camundaProcdefVersion != null and wfMyOutDuplicateTaskDto.camundaProcdefVersion != ''">
+      AND wfMyOutDuplicateTask.camunda_procdef_version = #{wfMyOutDuplicateTaskDto.camundaProcdefVersion}
+    </if>
+    <if test="wfMyOutDuplicateTaskDto.camundaProcinsId != null and wfMyOutDuplicateTaskDto.camundaProcinsId != ''">
+      AND wfMyOutDuplicateTask.camunda_procins_id like CONCAT('%',#{wfMyOutDuplicateTaskDto.camundaProcinsId},'%')
+    </if>
+    <if test="wfMyOutDuplicateTaskDto.camundaTaskId != null and wfMyOutDuplicateTaskDto.camundaTaskId != ''">
+      AND wfMyOutDuplicateTask.camunda_task_id like CONCAT('%',#{wfMyOutDuplicateTaskDto.camundaTaskId},'%')
+    </if>
+    <if test="wfMyOutDuplicateTaskDto.camundaNodeKey != null and wfMyOutDuplicateTaskDto.camundaNodeKey != ''">
+      AND wfMyOutDuplicateTask.camunda_node_key like CONCAT('%',#{wfMyOutDuplicateTaskDto.camundaNodeKey},'%')
+    </if>
+    <if test="wfMyOutDuplicateTaskDto.camundaNodeName != null and wfMyOutDuplicateTaskDto.camundaNodeName != ''">
+      AND wfMyOutDuplicateTask.camunda_node_name like CONCAT('%',#{wfMyOutDuplicateTaskDto.camundaNodeName},'%')
+    </if>
+    <if test="wfMyOutDuplicateTaskDto.camundaNodeType != null and wfMyOutDuplicateTaskDto.camundaNodeType != ''">
+      AND wfMyOutDuplicateTask.camunda_node_type = #{wfMyOutDuplicateTaskDto.camundaNodeType}
+    </if>
+    <if test="wfMyOutDuplicateTaskDto.procinsId != null and wfMyOutDuplicateTaskDto.procinsId != ''">
+      AND wfMyOutDuplicateTask.procins_id = #{wfMyOutDuplicateTaskDto.procinsId}
+    </if>
+    <if test="wfMyOutDuplicateTaskDto.procinsName != null and wfMyOutDuplicateTaskDto.procinsName != ''">
+      AND wfMyOutDuplicateTask.procins_name like CONCAT('%',#{wfMyOutDuplicateTaskDto.procinsName},'%')
+    </if>
+    <if test="wfMyOutDuplicateTaskDto.assignee != null and wfMyOutDuplicateTaskDto.assignee != ''">
+      AND wfMyOutDuplicateTask.assignee like CONCAT('%',#{wfMyOutDuplicateTaskDto.assignee},'%')
+    </if>
+    <if test="wfMyOutDuplicateTaskDto.procdefId != null and wfMyOutDuplicateTaskDto.procdefId != ''">
+      AND wfMyOutDuplicateTask.procdef_id = #{wfMyOutDuplicateTaskDto.procdefId}
+    </if>
+    <if test="wfMyOutDuplicateTaskDto.procdefName != null and wfMyOutDuplicateTaskDto.procdefName != ''">
+      AND wfMyOutDuplicateTask.procdef_name like CONCAT('%',#{wfMyOutDuplicateTaskDto.procdefName},'%')
+    </if>
+    <if test="wfMyOutDuplicateTaskDto.procdefTypeId != null and wfMyOutDuplicateTaskDto.procdefTypeId != ''">
+      AND wfMyOutDuplicateTask.procdef_type_id = #{wfMyOutDuplicateTaskDto.procdefTypeId}
+    </if>
+    <if test="wfMyOutDuplicateTaskDto.procdefTypeName != null and wfMyOutDuplicateTaskDto.procdefTypeName != ''">
+      AND wfMyOutDuplicateTask.procdef_type_name like CONCAT('%',#{wfMyOutDuplicateTaskDto.procdefTypeName},'%')
+    </if>
+    <if test="wfMyOutDuplicateTaskDto.state != null and wfMyOutDuplicateTaskDto.state != ''">
+      AND wfMyOutDuplicateTask.state = #{wfMyOutDuplicateTaskDto.state}
+    </if>
+    <if test="wfMyOutDuplicateTaskDto.reason != null and wfMyOutDuplicateTaskDto.reason != ''">
+      AND wfMyOutDuplicateTask.reason like CONCAT('%',#{wfMyOutDuplicateTaskDto.reason},'%')
+    </if>
+    <if test="wfMyOutDuplicateTaskDto.applyTime != null and wfMyOutDuplicateTaskDto.applyTime != ''">
+      AND wfMyOutDuplicateTask.apply_time = #{wfMyOutDuplicateTaskDto.applyTime}
+    </if>
+    <if test="wfMyOutDuplicateTaskDto.starterId != null and wfMyOutDuplicateTaskDto.starterId != ''">
+      AND wfMyOutDuplicateTask.starter_id like CONCAT('%',#{wfMyOutDuplicateTaskDto.starterId},'%')
+    </if>
+    <if test="wfMyOutDuplicateTaskDto.starterName != null and wfMyOutDuplicateTaskDto.starterName != ''">
+      AND wfMyOutDuplicateTask.starter_name like CONCAT('%',#{wfMyOutDuplicateTaskDto.starterName},'%')
+    </if>
+    <if test="wfMyOutDuplicateTaskDto.starterDeptId != null and wfMyOutDuplicateTaskDto.starterDeptId != ''">
+      AND wfMyOutDuplicateTask.starter_dept_id like CONCAT('%',#{wfMyOutDuplicateTaskDto.starterDeptId},'%')
+    </if>
+    <if test="wfMyOutDuplicateTaskDto.starterDeptName != null and wfMyOutDuplicateTaskDto.starterDeptName != ''">
+      AND wfMyOutDuplicateTask.starter_dept_name like CONCAT('%',#{wfMyOutDuplicateTaskDto.starterDeptName},'%')
+    </if>
+    <if test="wfMyOutDuplicateTaskDto.starterOrgId != null and wfMyOutDuplicateTaskDto.starterOrgId != ''">
+      AND wfMyOutDuplicateTask.starter_org_id like CONCAT('%',#{wfMyOutDuplicateTaskDto.starterOrgId},'%')
+    </if>
+    <if test="wfMyOutDuplicateTaskDto.starterOrgName != null and wfMyOutDuplicateTaskDto.starterOrgName != ''">
+      AND wfMyOutDuplicateTask.starter_org_name like CONCAT('%',#{wfMyOutDuplicateTaskDto.starterOrgName},'%')
+    </if>
+    <if test="wfMyOutDuplicateTaskDto.bizKey != null and wfMyOutDuplicateTaskDto.bizKey != ''">
+      AND wfMyOutDuplicateTask.biz_key like CONCAT('%',#{wfMyOutDuplicateTaskDto.bizKey},'%')
+    </if>
+    <if test="wfMyOutDuplicateTaskDto.assigneeName != null and wfMyOutDuplicateTaskDto.assigneeName != ''">
+      AND wfMyOutDuplicateTask.assignee_name like CONCAT('%',#{wfMyOutDuplicateTaskDto.assigneeName},'%')
+    </if>
+    order by wfMyOutDuplicateTask.id desc
+</select>
+</mapper>

@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.asset.mapper.SuppliesMapper">
+
+<resultMap id="suppliesMap" type="com.netwisd.biz.asset.vo.SuppliesVo">
+  <id property="id" column="id"/>
+  <result property="assetOrgId" column="asset_org_id"/>
+  <result property="assetOrgName" column="asset_org_name"/>
+  <result property="assetDeptId" column="asset_dept_id"/>
+  <result property="assetDeptName" column="asset_dept_name"/>
+  <result property="assetOrgFullId" column="asset_org_full_id"/>
+  <result property="reason" column="reason"/>
+  <result property="classifyId" column="classify_id"/>
+  <result property="classifyCode" column="classify_code"/>
+  <result property="classifyName" column="classify_name"/>
+  <result property="route" column="route"/>
+  <result property="routeName" column="route_name"/>
+  <result property="categoryId" column="category_id"/>
+  <result property="categoryCode" column="category_code"/>
+  <result property="categoryName" column="category_name"/>
+  <result property="itemId" column="item_id"/>
+  <result property="itemCode" column="item_code"/>
+  <result property="itemName" column="item_name"/>
+  <result property="desclong" column="desclong"/>
+  <result property="descshort" column="descshort"/>
+  <result property="unitCode" column="unit_code"/>
+  <result property="unitName" column="unit_name"/>
+  <result property="materialQuality" column="material_quality"/>
+  <result property="standard" column="standard"/>
+  <result property="specs" column="specs"/>
+  <result property="assetsNumber" column="assets_number"/>
+  <result property="acceptanceNumber" column="acceptance_number"/>
+  <result property="storageNumber" column="storage_number"/>
+  <result property="stockNumber" column="stock_number"/>
+  <result property="usableNumber" column="usable_number"/>
+  <result property="entryNumber" column="entry_number"/>
+  <result property="deliveryNumber" column="delivery_number"/>
+  <result property="acceptNumber" column="accept_number"/>
+  <result property="borrowNumber" column="borrow_number"/>
+  <result property="lendNumber" column="lend_number"/>
+  <result property="transferNumber" column="transfer_number"/>
+  <result property="repairNumber" column="repair_number"/>
+  <result property="scrappedNumber" column="scrapped_number"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+  <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+  <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+  <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+  <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+  <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+  <result property="itemType" column="item_type"/>
+  <result property="applyTime" column="apply_time"/>
+  <result property="applyUserId" column="apply_user_id"/>
+  <result property="applyUserName" column="apply_user_name"/>
+  <result property="applyUserOrgId" column="apply_user_org_id"/>
+  <result property="applyUserOrgName" column="apply_user_org_name"/>
+  <result property="applyUserDeptId" column="apply_user_dept_id"/>
+  <result property="applyUserDeptName" column="apply_user_dept_name"/>
+  <result property="sourceId" column="source_id"/>
+  <result property="assetSource" column="asset_source"/>
+  <result property="classifyTypeCode" column="classify_type_code"/>
+  <result property="classifyTypeName" column="classify_type_name"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.asset.dto.SuppliesDto" resultMap="suppliesMap">
+  select * from incloud_biz_asset_supplies supplies where 1=1
+    <if test="suppliesDto.id != null and suppliesDto.id != ''">
+      AND supplies.id = #{suppliesDto.id}
+    </if>
+    <if test="suppliesDto.assetOrgId != null and suppliesDto.assetOrgId != ''">
+      AND supplies.asset_org_id = #{suppliesDto.assetOrgId}
+    </if>
+    <if test="suppliesDto.assetOrgName != null and suppliesDto.assetOrgName != ''">
+      AND supplies.asset_org_name like CONCAT('%',#{suppliesDto.assetOrgName},'%')
+    </if>
+    <if test="suppliesDto.classifyTypeCode != null and suppliesDto.classifyTypeCode != ''">
+      AND supplies.classify_type_code like CONCAT('%',#{suppliesDto.classifyTypeCode},'%')
+    </if>
+    <if test="suppliesDto.classifyTypeName != null and suppliesDto.classifyTypeName != ''">
+      AND supplies.classify_type_name like CONCAT('%',#{suppliesDto.classifyTypeName},'%')
+    </if>
+    <if test="suppliesDto.assetDeptId != null and suppliesDto.assetDeptId != ''">
+      AND supplies.asset_dept_id = #{suppliesDto.assetDeptId}
+    </if>
+    <if test="suppliesDto.assetDeptName != null and suppliesDto.assetDeptName != ''">
+      AND supplies.asset_dept_name like CONCAT('%',#{suppliesDto.assetDeptName},'%')
+    </if>
+    <if test="suppliesDto.assetOrgFullId != null and suppliesDto.assetOrgFullId != ''">
+      AND supplies.asset_org_full_id like CONCAT('%',#{suppliesDto.assetOrgFullId},'%')
+    </if>
+    <if test="suppliesDto.reason != null and suppliesDto.reason != ''">
+      AND supplies.reason like CONCAT('%',#{suppliesDto.reason},'%')
+    </if>
+    <if test="suppliesDto.classifyId != null and suppliesDto.classifyId != ''">
+      AND supplies.classify_id = #{suppliesDto.classifyId}
+    </if>
+    <if test="suppliesDto.classifyCode != null and suppliesDto.classifyCode != ''">
+      AND supplies.classify_code like CONCAT('%',#{suppliesDto.classifyCode},'%')
+    </if>
+    <if test="suppliesDto.classifyName != null and suppliesDto.classifyName != ''">
+      AND supplies.classify_name like CONCAT('%',#{suppliesDto.classifyName},'%')
+    </if>
+    <if test="suppliesDto.route != null and suppliesDto.route != ''">
+      AND supplies.route like CONCAT('%',#{suppliesDto.route},'%')
+    </if>
+    <if test="suppliesDto.routeName != null and suppliesDto.routeName != ''">
+      AND supplies.route_name like CONCAT('%',#{suppliesDto.routeName},'%')
+    </if>
+    <if test="suppliesDto.categoryId != null and suppliesDto.categoryId != ''">
+      AND supplies.category_id = #{suppliesDto.categoryId}
+    </if>
+    <if test="suppliesDto.categoryCode != null and suppliesDto.categoryCode != ''">
+      AND supplies.category_code like CONCAT('%',#{suppliesDto.categoryCode},'%')
+    </if>
+    <if test="suppliesDto.categoryName != null and suppliesDto.categoryName != ''">
+      AND supplies.category_name like CONCAT('%',#{suppliesDto.categoryName},'%')
+    </if>
+    <if test="suppliesDto.itemId != null and suppliesDto.itemId != ''">
+      AND supplies.item_id like CONCAT('%',#{suppliesDto.itemId},'%')
+    </if>
+    <if test="suppliesDto.itemCode != null and suppliesDto.itemCode != ''">
+      AND supplies.item_code like CONCAT('%',#{suppliesDto.itemCode},'%')
+    </if>
+    <if test="suppliesDto.itemName != null and suppliesDto.itemName != ''">
+      AND supplies.item_name like CONCAT('%',#{suppliesDto.itemName},'%')
+    </if>
+    <if test="suppliesDto.desclong != null and suppliesDto.desclong != ''">
+      AND supplies.desclong like CONCAT('%',#{suppliesDto.desclong},'%')
+    </if>
+    <if test="suppliesDto.descshort != null and suppliesDto.descshort != ''">
+      AND supplies.descshort like CONCAT('%',#{suppliesDto.descshort},'%')
+    </if>
+    <if test="suppliesDto.unitCode != null and suppliesDto.unitCode != ''">
+      AND supplies.unit_code like CONCAT('%',#{suppliesDto.unitCode},'%')
+    </if>
+    <if test="suppliesDto.unitName != null and suppliesDto.unitName != ''">
+      AND supplies.unit_name like CONCAT('%',#{suppliesDto.unitName},'%')
+    </if>
+    <if test="suppliesDto.materialQuality != null and suppliesDto.materialQuality != ''">
+      AND supplies.material_quality like CONCAT('%',#{suppliesDto.materialQuality},'%')
+    </if>
+    <if test="suppliesDto.standard != null and suppliesDto.standard != ''">
+      AND supplies.standard like CONCAT('%',#{suppliesDto.standard},'%')
+    </if>
+    <if test="suppliesDto.specs != null and suppliesDto.specs != ''">
+      AND supplies.specs like CONCAT('%',#{suppliesDto.specs},'%')
+    </if>
+    <if test="suppliesDto.assetsNumber != null and suppliesDto.assetsNumber != ''">
+      AND supplies.assets_number = #{suppliesDto.assetsNumber}
+    </if>
+    <if test="suppliesDto.acceptanceNumber != null and suppliesDto.acceptanceNumber != ''">
+      AND supplies.acceptance_number = #{suppliesDto.acceptanceNumber}
+    </if>
+    <if test="suppliesDto.storageNumber != null and suppliesDto.storageNumber != ''">
+      AND supplies.storage_number = #{suppliesDto.storageNumber}
+    </if>
+    <if test="suppliesDto.stockNumber != null and suppliesDto.stockNumber != ''">
+      AND supplies.stock_number = #{suppliesDto.stockNumber}
+    </if>
+    <if test="suppliesDto.usableNumber != null and suppliesDto.usableNumber != ''">
+      AND supplies.usable_number = #{suppliesDto.usableNumber}
+    </if>
+    <if test="suppliesDto.entryNumber != null and suppliesDto.entryNumber != ''">
+      AND supplies.entry_number = #{suppliesDto.entryNumber}
+    </if>
+    <if test="suppliesDto.deliveryNumber != null and suppliesDto.deliveryNumber != ''">
+      AND supplies.delivery_number = #{suppliesDto.deliveryNumber}
+    </if>
+    <if test="suppliesDto.acceptNumber != null and suppliesDto.acceptNumber != ''">
+      AND supplies.accept_number = #{suppliesDto.acceptNumber}
+    </if>
+    <if test="suppliesDto.borrowNumber != null and suppliesDto.borrowNumber != ''">
+      AND supplies.borrow_number = #{suppliesDto.borrowNumber}
+    </if>
+    <if test="suppliesDto.lendNumber != null and suppliesDto.lendNumber != ''">
+      AND supplies.lend_number = #{suppliesDto.lendNumber}
+    </if>
+    <if test="suppliesDto.transferNumber != null and suppliesDto.transferNumber != ''">
+      AND supplies.transfer_number = #{suppliesDto.transferNumber}
+    </if>
+    <if test="suppliesDto.repairNumber != null and suppliesDto.repairNumber != ''">
+      AND supplies.repair_number = #{suppliesDto.repairNumber}
+    </if>
+    <if test="suppliesDto.scrappedNumber != null and suppliesDto.scrappedNumber != ''">
+      AND supplies.scrapped_number = #{suppliesDto.scrappedNumber}
+    </if>
+    <if test="suppliesDto.createUserId != null and suppliesDto.createUserId != ''">
+      AND supplies.create_user_id = #{suppliesDto.createUserId}
+    </if>
+    <if test="suppliesDto.createUserName != null and suppliesDto.createUserName != ''">
+      AND supplies.create_user_name like CONCAT('%',#{suppliesDto.createUserName},'%')
+    </if>
+    <if test="suppliesDto.createUserParentOrgId != null and suppliesDto.createUserParentOrgId != ''">
+      AND supplies.create_user_parent_org_id = #{suppliesDto.createUserParentOrgId}
+    </if>
+    <if test="suppliesDto.createUserParentOrgName != null and suppliesDto.createUserParentOrgName != ''">
+      AND supplies.create_user_parent_org_name like CONCAT('%',#{suppliesDto.createUserParentOrgName},'%')
+    </if>
+    <if test="suppliesDto.createUserParentDeptId != null and suppliesDto.createUserParentDeptId != ''">
+      AND supplies.create_user_parent_dept_id = #{suppliesDto.createUserParentDeptId}
+    </if>
+    <if test="suppliesDto.createUserParentDeptName != null and suppliesDto.createUserParentDeptName != ''">
+      AND supplies.create_user_parent_dept_name like CONCAT('%',#{suppliesDto.createUserParentDeptName},'%')
+    </if>
+    <if test="suppliesDto.createUserOrgFullId != null and suppliesDto.createUserOrgFullId != ''">
+      AND supplies.create_user_org_full_id like CONCAT('%',#{suppliesDto.createUserOrgFullId},'%')
+    </if>
+    <if test="suppliesDto.itemType != null and suppliesDto.itemType != ''">
+      AND supplies.item_type like CONCAT('%',#{suppliesDto.itemType},'%')
+    </if>
+    <if test="suppliesDto.applyTime != null and suppliesDto.applyTime != ''">
+      AND supplies.apply_time = #{suppliesDto.applyTime}
+    </if>
+    <if test="suppliesDto.applyUserId != null and suppliesDto.applyUserId != ''">
+      AND supplies.apply_user_id = #{suppliesDto.applyUserId}
+    </if>
+    <if test="suppliesDto.applyUserName != null and suppliesDto.applyUserName != ''">
+      AND supplies.apply_user_name like CONCAT('%',#{suppliesDto.applyUserName},'%')
+    </if>
+    <if test="suppliesDto.applyUserOrgId != null and suppliesDto.applyUserOrgId != ''">
+      AND supplies.apply_user_org_id = #{suppliesDto.applyUserOrgId}
+    </if>
+    <if test="suppliesDto.applyUserOrgName != null and suppliesDto.applyUserOrgName != ''">
+      AND supplies.apply_user_org_name like CONCAT('%',#{suppliesDto.applyUserOrgName},'%')
+    </if>
+    <if test="suppliesDto.applyUserDeptId != null and suppliesDto.applyUserDeptId != ''">
+      AND supplies.apply_user_dept_id = #{suppliesDto.applyUserDeptId}
+    </if>
+    <if test="suppliesDto.applyUserDeptName != null and suppliesDto.applyUserDeptName != ''">
+      AND supplies.apply_user_dept_name like CONCAT('%',#{suppliesDto.applyUserDeptName},'%')
+    </if>
+    <if test="suppliesDto.sourceId != null and suppliesDto.sourceId != ''">
+      AND supplies.source_id = #{suppliesDto.sourceId}
+    </if>
+    <if test="suppliesDto.assetSource != null and suppliesDto.assetSource != ''">
+      AND supplies.asset_source = #{suppliesDto.assetSource}
+    </if>
+    order by supplies.id desc
+</select>
+</mapper>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.study.mapper.StudyCouPermMapper">
+
+<resultMap id="studyCouPermMap" type="com.netwisd.biz.study.vo.StudyCouPermVo">
+  <id property="id" column="id"/>
+  <result property="couId" column="cou_id"/>
+  <result property="couName" column="cou_name"/>
+  <result property="orgId" column="org_id"/>
+  <result property="orgType" column="org_type"/>
+  <result property="orgName" column="org_name"/>
+  <result property="userId" column="user_id"/>
+  <result property="userName" column="user_name"/>
+  <result property="userNameCh" column="user_name_ch"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+  <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+  <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+  <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+  <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+  <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.study.dto.StudyCouPermDto" resultMap="studyCouPermMap">
+  select * from incloud_biz_study_cou_perm studyCouPerm where 1=1
+    <if test="studyCouPermDto.id != null and studyCouPermDto.id != ''">
+      AND studyCouPerm.id = #{studyCouPermDto.id}
+    </if>
+    <if test="studyCouPermDto.couId != null and studyCouPermDto.couId != ''">
+      AND studyCouPerm.cou_id = #{studyCouPermDto.couId}
+    </if>
+    <if test="studyCouPermDto.couName != null and studyCouPermDto.couName != ''">
+      AND studyCouPerm.cou_name like CONCAT('%',#{studyCouPermDto.couName},'%')
+    </if>
+    <if test="studyCouPermDto.orgId != null and studyCouPermDto.orgId != ''">
+      AND studyCouPerm.org_id = #{studyCouPermDto.orgId}
+    </if>
+    <if test="studyCouPermDto.orgType != null and studyCouPermDto.orgType != ''">
+      AND studyCouPerm.org_type = #{studyCouPermDto.orgType}
+    </if>
+    <if test="studyCouPermDto.orgName != null and studyCouPermDto.orgName != ''">
+      AND studyCouPerm.org_name like CONCAT('%',#{studyCouPermDto.orgName},'%')
+    </if>
+    <if test="studyCouPermDto.userId != null and studyCouPermDto.userId != ''">
+      AND studyCouPerm.user_id = #{studyCouPermDto.userId}
+    </if>
+    <if test="studyCouPermDto.userName != null and studyCouPermDto.userName != ''">
+      AND studyCouPerm.user_name like CONCAT('%',#{studyCouPermDto.userName},'%')
+    </if>
+    <if test="studyCouPermDto.userNameCh != null and studyCouPermDto.userNameCh != ''">
+      AND studyCouPerm.user_name_ch like CONCAT('%',#{studyCouPermDto.userNameCh},'%')
+    </if>
+    <if test="studyCouPermDto.createUserId != null and studyCouPermDto.createUserId != ''">
+      AND studyCouPerm.create_user_id = #{studyCouPermDto.createUserId}
+    </if>
+    <if test="studyCouPermDto.createUserName != null and studyCouPermDto.createUserName != ''">
+      AND studyCouPerm.create_user_name like CONCAT('%',#{studyCouPermDto.createUserName},'%')
+    </if>
+    <if test="studyCouPermDto.createUserParentOrgId != null and studyCouPermDto.createUserParentOrgId != ''">
+      AND studyCouPerm.create_user_parent_org_id = #{studyCouPermDto.createUserParentOrgId}
+    </if>
+    <if test="studyCouPermDto.createUserParentOrgName != null and studyCouPermDto.createUserParentOrgName != ''">
+      AND studyCouPerm.create_user_parent_org_name like CONCAT('%',#{studyCouPermDto.createUserParentOrgName},'%')
+    </if>
+    <if test="studyCouPermDto.createUserParentDeptId != null and studyCouPermDto.createUserParentDeptId != ''">
+      AND studyCouPerm.create_user_parent_dept_id = #{studyCouPermDto.createUserParentDeptId}
+    </if>
+    <if test="studyCouPermDto.createUserParentDeptName != null and studyCouPermDto.createUserParentDeptName != ''">
+      AND studyCouPerm.create_user_parent_dept_name like CONCAT('%',#{studyCouPermDto.createUserParentDeptName},'%')
+    </if>
+    <if test="studyCouPermDto.createUserOrgFullId != null and studyCouPermDto.createUserOrgFullId != ''">
+      AND studyCouPerm.create_user_org_full_id like CONCAT('%',#{studyCouPermDto.createUserOrgFullId},'%')
+    </if>
+    order by studyCouPerm.id desc
+</select>
+</mapper>

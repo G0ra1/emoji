@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.mdm.mapper.MdmDutyMapper">
+
+  <resultMap id="mdmDutyMap" type="com.netwisd.base.common.mdm.vo.MdmDutyVo">
+    <id property="id" column="id"/>
+    <result property="parentDeptId" column="parent_dept_id"/>
+    <result property="parentDeptName" column="parent_dept_name"/>
+    <result property="parentOrgId" column="parent_org_id"/>
+    <result property="parentOrgName" column="parent_org_name"/>
+    <result property="parentOrgFullName" column="parent_org_full_name"/>
+    <result property="parentDeptFullName" column="parent_dept_full_name"/>
+    <result property="orgFullId" column="org_full_id"/>
+    <result property="orgFullName" column="org_full_name"/>
+    <result property="dutyName" column="duty_name"/>
+    <result property="dutyCode" column="duty_code"/>
+    <result property="dutyUpParentId" column="duty_up_parent_id"/>
+    <result property="dutyUpParentName" column="duty_up_parent_name"/>
+    <result property="dutyUpId" column="duty_up_id"/>
+    <result property="dutyUpName" column="duty_up_name"/>
+    <result property="dutyLowParentId" column="duty_low_parent_id"/>
+    <result property="dutyLowParentName" column="duty_low_parent_name"/>
+    <result property="dutyLowId" column="duty_low_id"/>
+    <result property="dutyLowName" column="duty_low_name"/>
+    <result property="dutySequId" column="duty_sequ_id"/>
+    <result property="dutySequName" column="duty_sequ_name"/>
+    <result property="dutyGradeId" column="duty_grade_id"/>
+    <result property="dutyGradeName" column="duty_grade_name"/>
+    <result property="dutyTagId" column="duty_tag_id"/>
+    <result property="dutyTagName" column="duty_tag_name"/>
+    <result property="masterNumber" column="master_number"/>
+    <result property="partNumber" column="part_number"/>
+    <result property="dutyDuty" column="duty_duty"/>
+    <result property="dutyAbility" column="duty_ability"/>
+    <result property="dutyContent" column="duty_content"/>
+    <result property="dutyCheck" column="duty_check"/>
+    <result property="sort" column="sort"/>
+    <result property="isRef" column="is_ref"/>
+    <result property="status" column="status"/>
+  </resultMap>
+  <select id="getPageList" parameterType="com.netwisd.base.common.mdm.dto.MdmDutyDto" resultMap="mdmDutyMap">
+    select * from incloud_base_mdm_duty mdmDuty where 1=1
+    <if test="mdmDutyDto.id != null and mdmDutyDto.id != ''">
+      AND mdmDuty.id = #{mdmDutyDto.id}
+    </if>
+    <if test="mdmDutyDto.parentDeptId != null and mdmDutyDto.parentDeptId != ''">
+      AND mdmDuty.parent_dept_id = #{mdmDutyDto.parentDeptId}
+    </if>
+    <if test="mdmDutyDto.parentDeptName != null and mdmDutyDto.parentDeptName != ''">
+      AND mdmDuty.parent_dept_name like CONCAT('%',#{mdmDutyDto.parentDeptName},'%')
+    </if>
+    <if test="mdmDutyDto.parentOrgId != null and mdmDutyDto.parentOrgId != ''">
+      AND mdmDuty.parent_org_id = #{mdmDutyDto.parentOrgId}
+    </if>
+    <if test="mdmDutyDto.parentOrgName != null and mdmDutyDto.parentOrgName != ''">
+      AND mdmDuty.parent_org_name like CONCAT('%',#{mdmDutyDto.parentOrgName},'%')
+    </if>
+    <if test="mdmDutyDto.parentOrgFullName != null and mdmDutyDto.parentOrgFullName != ''">
+      AND mdmDuty.parent_org_full_name like CONCAT('%',#{mdmDutyDto.parentOrgFullName},'%')
+    </if>
+    <if test="mdmDutyDto.parentDeptFullName != null and mdmDutyDto.parentDeptFullName != ''">
+      AND mdmDuty.parent_dept_full_name like CONCAT('%',#{mdmDutyDto.parentDeptFullName},'%')
+    </if>
+    <if test="mdmDutyDto.orgFullId != null and mdmDutyDto.orgFullId != ''">
+      AND mdmDuty.org_full_id like CONCAT('%',#{mdmDutyDto.orgFullId},'%')
+    </if>
+    <if test="mdmDutyDto.orgFullName != null and mdmDutyDto.orgFullName != ''">
+      AND mdmDuty.org_full_name like CONCAT('%',#{mdmDutyDto.orgFullName},'%')
+    </if>
+    <if test="mdmDutyDto.dutyName != null and mdmDutyDto.dutyName != ''">
+      AND mdmDuty.duty_name like CONCAT('%',#{mdmDutyDto.dutyName},'%')
+    </if>
+    <if test="mdmDutyDto.dutyCode != null and mdmDutyDto.dutyCode != ''">
+      AND mdmDuty.duty_code like CONCAT('%',#{mdmDutyDto.dutyCode},'%')
+    </if>
+    <if test="mdmDutyDto.dutyUpParentId != null and mdmDutyDto.dutyUpParentId != ''">
+      AND mdmDuty.duty_up_parent_id = #{mdmDutyDto.dutyUpParentId}
+    </if>
+    <if test="mdmDutyDto.dutyUpParentName != null and mdmDutyDto.dutyUpParentName != ''">
+      AND mdmDuty.duty_up_parent_name like CONCAT('%',#{mdmDutyDto.dutyUpParentName},'%')
+    </if>
+    <if test="mdmDutyDto.dutyUpId != null and mdmDutyDto.dutyUpId != ''">
+      AND mdmDuty.duty_up_id = #{mdmDutyDto.dutyUpId}
+    </if>
+    <if test="mdmDutyDto.dutyUpName != null and mdmDutyDto.dutyUpName != ''">
+      AND mdmDuty.duty_up_name like CONCAT('%',#{mdmDutyDto.dutyUpName},'%')
+    </if>
+    <if test="mdmDutyDto.dutyLowParentId != null and mdmDutyDto.dutyLowParentId != ''">
+      AND mdmDuty.duty_low_parent_id = #{mdmDutyDto.dutyLowParentId}
+    </if>
+    <if test="mdmDutyDto.dutyLowParentName != null and mdmDutyDto.dutyLowParentName != ''">
+      AND mdmDuty.duty_low_parent_name like CONCAT('%',#{mdmDutyDto.dutyLowParentName},'%')
+    </if>
+    <if test="mdmDutyDto.dutyLowId != null and mdmDutyDto.dutyLowId != ''">
+      AND mdmDuty.duty_low_id = #{mdmDutyDto.dutyLowId}
+    </if>
+    <if test="mdmDutyDto.dutyLowName != null and mdmDutyDto.dutyLowName != ''">
+      AND mdmDuty.duty_low_name like CONCAT('%',#{mdmDutyDto.dutyLowName},'%')
+    </if>
+    <if test="mdmDutyDto.dutySequId != null and mdmDutyDto.dutySequId != ''">
+      AND mdmDuty.duty_sequ_id = #{mdmDutyDto.dutySequId}
+    </if>
+    <if test="mdmDutyDto.dutySequName != null and mdmDutyDto.dutySequName != ''">
+      AND mdmDuty.duty_sequ_name like CONCAT('%',#{mdmDutyDto.dutySequName},'%')
+    </if>
+    <if test="mdmDutyDto.dutyGradeId != null and mdmDutyDto.dutyGradeId != ''">
+      AND mdmDuty.duty_grade_id = #{mdmDutyDto.dutyGradeId}
+    </if>
+    <if test="mdmDutyDto.dutyGradeName != null and mdmDutyDto.dutyGradeName != ''">
+      AND mdmDuty.duty_grade_name like CONCAT('%',#{mdmDutyDto.dutyGradeName},'%')
+    </if>
+    <if test="mdmDutyDto.dutyTagId != null and mdmDutyDto.dutyTagId != ''">
+      AND mdmDuty.duty_tag_id = #{mdmDutyDto.dutyTagId}
+    </if>
+    <if test="mdmDutyDto.dutyTagName != null and mdmDutyDto.dutyTagName != ''">
+      AND mdmDuty.duty_tag_name like CONCAT('%',#{mdmDutyDto.dutyTagName},'%')
+    </if>
+    <if test="mdmDutyDto.masterNumber != null and mdmDutyDto.masterNumber != ''">
+      AND mdmDuty.master_number = #{mdmDutyDto.masterNumber}
+    </if>
+    <if test="mdmDutyDto.partNumber != null and mdmDutyDto.partNumber != ''">
+      AND mdmDuty.part_number = #{mdmDutyDto.partNumber}
+    </if>
+    <if test="mdmDutyDto.dutyDuty != null and mdmDutyDto.dutyDuty != ''">
+      AND mdmDuty.duty_duty like CONCAT('%',#{mdmDutyDto.dutyDuty},'%')
+    </if>
+    <if test="mdmDutyDto.dutyAbility != null and mdmDutyDto.dutyAbility != ''">
+      AND mdmDuty.duty_ability like CONCAT('%',#{mdmDutyDto.dutyAbility},'%')
+    </if>
+    <if test="mdmDutyDto.dutyContent != null and mdmDutyDto.dutyContent != ''">
+      AND mdmDuty.duty_content like CONCAT('%',#{mdmDutyDto.dutyContent},'%')
+    </if>
+    <if test="mdmDutyDto.dutyCheck != null and mdmDutyDto.dutyCheck != ''">
+      AND mdmDuty.duty_check like CONCAT('%',#{mdmDutyDto.dutyCheck},'%')
+    </if>
+    <if test="mdmDutyDto.sort != null and mdmDutyDto.sort != ''">
+      AND mdmDuty.sort = #{mdmDutyDto.sort}
+    </if>
+    <if test="mdmDutyDto.isRef != null and mdmDutyDto.isRef != ''">
+      AND mdmDuty.is_ref = #{mdmDutyDto.isRef}
+    </if>
+    <if test="mdmDutyDto.status != null and mdmDutyDto.status != ''">
+      AND mdmDuty.status = #{mdmDutyDto.status}
+    </if>
+    order by mdmDuty.id desc
+  </select>
+
+  <select id="getList" parameterType="com.netwisd.base.common.mdm.dto.MdmDutyDto" resultMap="mdmDutyMap">
+    select
+    p.*,
+    (select count(*) from incloud_base_mdm_duty_user pu where pu.duty_id = p.id  and pu.is_master = 1)
+    as master_number,
+    (select count(*) from incloud_base_mdm_duty_user pu where pu.duty_id = p.id  and pu.is_master = 0)
+    as part_number
+    from
+    incloud_base_mdm_duty p
+    where 1=1
+    <if test="mdmDutyDto.dutyName != null and mdmDutyDto.dutyName != ''">
+      AND p.duty_name like CONCAT('%',#{mdmDutyDto.dutyName},'%')
+    </if>
+    <if test="mdmDutyDto.dutySequId != null and mdmDutyDto.dutySequId != ''">
+      AND p.duty_sequ_id = #{mdmDutyDto.dutySequId}
+    </if>
+    <if test="mdmDutyDto.dutySequName != null and mdmDutyDto.dutySequName != ''">
+      AND p.duty_sequ_name like CONCAT('%',#{mdmDutyDto.dutySequName},'%')
+    </if>
+    <if test="mdmDutyDto.parentOrgId != null and mdmDutyDto.parentOrgId != ''">
+      AND p.org_full_id like CONCAT('%',#{mdmDutyDto.parentOrgId},'%')
+    </if>
+    order by p.sort asc
+  </select>
+</mapper>

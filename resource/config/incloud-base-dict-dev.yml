@@ -1,0 +1,15 @@
+incloud:
+  table:
+    package: com.netwisd.base.dict.entity
+spring:
+  cloud:
+    sentinel:
+      datasource:
+        ds1:
+          nacos:
+            serverAddr: ${incloud3_nacos_host:127.0.0.1}:${incloud3_nacos_port:8848}
+            namespace: ${incloud3_nacos_namespace:incloud3}
+            ruleType: flow
+            dataType: json
+            groupId: DEFAULT_GROUP
+            dataId: ${spring.application.name}-sentinel-flow

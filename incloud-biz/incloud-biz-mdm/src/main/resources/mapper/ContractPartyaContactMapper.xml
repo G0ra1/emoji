@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.mdm.mapper.ContractPartyaContactMapper">
+
+<resultMap id="contractPartyaContactMap" type="com.netwisd.biz.mdm.vo.ContractPartyaContactVo">
+  <id property="id" column="id"/>
+  <result property="partyaId" column="partya_id"/>
+  <result property="partyaCode" column="partya_code"/>
+  <result property="contactsId" column="contacts_id"/>
+  <result property="contactsName" column="contacts_name"/>
+  <result property="contactsPhone" column="contacts_phone"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.mdm.dto.ContractPartyaContactDto" resultMap="contractPartyaContactMap">
+  select * from incloud_biz_mdm_contract_partya_contact contractPartyaContact where 1=1
+    <if test="contractPartyaContactDto.id != null and contractPartyaContactDto.id != ''">
+      AND contractPartyaContact.id = #{contractPartyaContactDto.id}
+    </if>
+    <if test="contractPartyaContactDto.partyaId != null and contractPartyaContactDto.partyaId != ''">
+      AND contractPartyaContact.partya_id = #{contractPartyaContactDto.partyaId}
+    </if>
+    <if test="contractPartyaContactDto.partyaCode != null and contractPartyaContactDto.partyaCode != ''">
+      AND contractPartyaContact.partya_code like CONCAT('%',#{contractPartyaContactDto.partyaCode},'%')
+    </if>
+    <if test="contractPartyaContactDto.contactsId != null and contractPartyaContactDto.contactsId != ''">
+      AND contractPartyaContact.contacts_id = #{contractPartyaContactDto.contactsId}
+    </if>
+    <if test="contractPartyaContactDto.contactsName != null and contractPartyaContactDto.contactsName != ''">
+      AND contractPartyaContact.contacts_name like CONCAT('%',#{contractPartyaContactDto.contactsName},'%')
+    </if>
+    <if test="contractPartyaContactDto.contactsPhone != null and contractPartyaContactDto.contactsPhone != ''">
+      AND contractPartyaContact.contacts_phone like CONCAT('%',#{contractPartyaContactDto.contactsPhone},'%')
+    </if>
+    order by contractPartyaContact.id desc
+</select>
+</mapper>

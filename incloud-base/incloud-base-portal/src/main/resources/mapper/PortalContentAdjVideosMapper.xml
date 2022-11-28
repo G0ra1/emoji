@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.portal.mapper.PortalContentAdjVideosMapper">
+
+<resultMap id="portalContentAdjVideosMap" type="com.netwisd.base.portal.vo.PortalContentAdjVideosVo">
+  <id property="id" column="id"/>
+  <result property="linkVideosId" column="link_videos_id"/>
+  <result property="portalId" column="portal_id"/>
+  <result property="portalName" column="portal_name"/>
+  <result property="partId" column="part_id"/>
+  <result property="partName" column="part_name"/>
+  <result property="partTypeId" column="part_type_id"/>
+  <result property="partTypeName" column="part_type_name"/>
+
+  <result property="auditStatus" column="audit_status"/>
+
+  <result property="remark" column="remark"/>
+  <result property="passTime" column="pass_time"/>
+  <result property="upPassTime" column="up_pass_time"/>
+
+
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.portal.dto.PortalContentAdjVideosDto" resultMap="portalContentAdjVideosMap">
+  select * from incloud_base_portal_content_adj_videos portalContentAdjVideos where 1=1
+    <if test="portalContentAdjVideosDto.id != null and portalContentAdjVideosDto.id != ''">
+      AND portalContentAdjVideos.id = #{portalContentAdjVideosDto.id}
+    </if>
+    <if test="portalContentAdjVideosDto.linkVideosId != null and portalContentAdjVideosDto.linkVideosId != ''">
+      AND portalContentAdjVideos.link_videos_id = #{portalContentAdjVideosDto.linkVideosId}
+    </if>
+    <if test="portalContentAdjVideosDto.portalId != null and portalContentAdjVideosDto.portalId != ''">
+      AND portalContentAdjVideos.portal_id = #{portalContentAdjVideosDto.portalId}
+    </if>
+    <if test="portalContentAdjVideosDto.portalName != null and portalContentAdjVideosDto.portalName != ''">
+      AND portalContentAdjVideos.portal_name like CONCAT('%',#{portalContentAdjVideosDto.portalName},'%')
+    </if>
+    <if test="portalContentAdjVideosDto.partId != null and portalContentAdjVideosDto.partId != ''">
+      AND portalContentAdjVideos.part_id = #{portalContentAdjVideosDto.partId}
+    </if>
+    <if test="portalContentAdjVideosDto.partName != null and portalContentAdjVideosDto.partName != ''">
+      AND portalContentAdjVideos.part_name like CONCAT('%',#{portalContentAdjVideosDto.partName},'%')
+    </if>
+    <if test="portalContentAdjVideosDto.partTypeId != null and portalContentAdjVideosDto.partTypeId != ''">
+      AND portalContentAdjVideos.part_type_id = #{portalContentAdjVideosDto.partTypeId}
+    </if>
+    <if test="portalContentAdjVideosDto.partTypeName != null and portalContentAdjVideosDto.partTypeName != ''">
+      AND portalContentAdjVideos.part_type_name like CONCAT('%',#{portalContentAdjVideosDto.partTypeName},'%')
+    </if>
+    <if test="portalContentAdjVideosDto.auditStatus != null and portalContentAdjVideosDto.auditStatus != ''">
+      AND portalContentAdjVideos.audit_status = #{portalContentAdjVideosDto.auditStatus}
+    </if>
+
+    <if test="portalContentAdjVideosDto.remark != null and portalContentAdjVideosDto.remark != ''">
+      AND portalContentAdjVideos.remark like CONCAT('%',#{portalContentAdjVideosDto.remark},'%')
+    </if>
+    <if test="portalContentAdjVideosDto.passTime != null and portalContentAdjVideosDto.passTime != ''">
+      AND portalContentAdjVideos.pass_time = #{portalContentAdjVideosDto.passTime}
+    </if>
+    <if test="portalContentAdjVideosDto.upPassTime != null and portalContentAdjVideosDto.upPassTime != ''">
+      AND portalContentAdjVideos.up_pass_time = #{portalContentAdjVideosDto.upPassTime}
+    </if>
+
+
+    order by portalContentAdjVideos.id desc
+</select>
+</mapper>

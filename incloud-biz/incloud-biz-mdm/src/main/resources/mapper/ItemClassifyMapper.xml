@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.mdm.mapper.ItemClassifyMapper">
+
+<resultMap id="itemClassifyMap" type="com.netwisd.biz.mdm.vo.ItemClassifyVo">
+  <id property="id" column="id"/>
+  <result property="classifyLevel" column="classify_level"/>
+  <result property="classifyCode" column="classify_code"/>
+  <result property="classifyName" column="classify_name"/>
+  <result property="description" column="description"/>
+  <result property="parentCode" column="parent_code"/>
+  <result property="parentName" column="parent_name"/>
+  <result property="state" column="state"/>
+  <result property="route" column="route"/>
+  <result property="routeName" column="route_name"/>
+  <result property="isCheck" column="is_check"/>
+  <result property="isAssetNumber" column="is_asset_number"/>
+  <result property="checkExplanation" column="check_explanation"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.mdm.dto.ItemClassifyDto" resultMap="itemClassifyMap">
+  select * from incloud_biz_mdm_item_classify itemClassify where 1=1
+    <if test="itemClassifyDto.id != null and itemClassifyDto.id != ''">
+      AND itemClassify.id = #{itemClassifyDto.id}
+    </if>
+    <if test="itemClassifyDto.classifyLevel != null and itemClassifyDto.classifyLevel != ''">
+      AND itemClassify.classify_level = #{itemClassifyDto.classifyLevel}
+    </if>
+    <if test="itemClassifyDto.classifyCode != null and itemClassifyDto.classifyCode != ''">
+      AND itemClassify.classify_code like CONCAT('%',#{itemClassifyDto.classifyCode},'%')
+    </if>
+    <if test="itemClassifyDto.classifyName != null and itemClassifyDto.classifyName != ''">
+      AND itemClassify.classify_name like CONCAT('%',#{itemClassifyDto.classifyName},'%')
+    </if>
+    <if test="itemClassifyDto.description != null and itemClassifyDto.description != ''">
+      AND itemClassify.description like CONCAT('%',#{itemClassifyDto.description},'%')
+    </if>
+  <if test="itemClassifyDto.parentCode != null and itemClassifyDto.parentCode != ''">
+    AND itemClassify.parent_code like CONCAT('%',#{itemClassifyDto.parentCode},'%')
+  </if>
+  <if test="itemClassifyDto.parentName != null and itemClassifyDto.parentName != ''">
+    AND itemClassify.parent_Name like CONCAT('%',#{itemClassifyDto.parentName},'%')
+  </if>
+    <if test="itemClassifyDto.state != null and itemClassifyDto.state != ''">
+      AND itemClassify.state like CONCAT('%',#{itemClassifyDto.state},'%')
+    </if>
+    order by itemClassify.id desc
+</select>
+</mapper>

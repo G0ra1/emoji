@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.mdm.mapper.ContractPurchaseExecutionMapper">
+
+<resultMap id="contractPurchaseExecutionMap" type="com.netwisd.biz.mdm.vo.ContractPurchaseExecutionVo">
+  <id property="id" column="id"/>
+  <result property="contractId" column="contract_id"/>
+  <result property="contractCode" column="contract_code"/>
+  <result property="executionScopeId" column="execution_scope_id"/>
+  <result property="executionScopeCode" column="execution_scope_code"/>
+  <result property="executionScopeName" column="execution_scope_name"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.mdm.dto.ContractPurchaseExecutionDto" resultMap="contractPurchaseExecutionMap">
+  select * from incloud_biz_mdm_contract_purchase_execution contractPurchaseExecution where 1=1
+    <if test="contractPurchaseExecutionDto.id != null and contractPurchaseExecutionDto.id != ''">
+      AND contractPurchaseExecution.id = #{contractPurchaseExecutionDto.id}
+    </if>
+    <if test="contractPurchaseExecutionDto.contractId != null and contractPurchaseExecutionDto.contractId != ''">
+      AND contractPurchaseExecution.contract_id like CONCAT('%',#{contractPurchaseExecutionDto.contractId},'%')
+    </if>
+    <if test="contractPurchaseExecutionDto.contractCode != null and contractPurchaseExecutionDto.contractCode != ''">
+      AND contractPurchaseExecution.contract_code like CONCAT('%',#{contractPurchaseExecutionDto.contractCode},'%')
+    </if>
+    <if test="contractPurchaseExecutionDto.executionScopeId != null and contractPurchaseExecutionDto.executionScopeId != ''">
+      AND contractPurchaseExecution.execution_scope_id like CONCAT('%',#{contractPurchaseExecutionDto.executionScopeId},'%')
+    </if>
+    <if test="contractPurchaseExecutionDto.executionScopeCode != null and contractPurchaseExecutionDto.executionScopeCode != ''">
+      AND contractPurchaseExecution.execution_scope_code like CONCAT('%',#{contractPurchaseExecutionDto.executionScopeCode},'%')
+    </if>
+    <if test="contractPurchaseExecutionDto.executionScopeName != null and contractPurchaseExecutionDto.executionScopeName != ''">
+      AND contractPurchaseExecution.execution_scope_name like CONCAT('%',#{contractPurchaseExecutionDto.executionScopeName},'%')
+    </if>
+    order by contractPurchaseExecution.id desc
+</select>
+</mapper>

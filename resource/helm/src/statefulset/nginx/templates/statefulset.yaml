@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ .Values.name }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.name }}
+  serviceName: {{ .Values.name }}
+  replicas: {{ .Values.replicaCount }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.name }}
+    spec:
+      containers:
+      - name: {{ .Values.name }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        securityContext:
+          privileged: true
+        ports:
+        - containerPort: {{ .Values.image.port }}
+          name: {{ .Values.name }}
+        volumeMounts:
+        - name: html
+          mountPath: /usr/share/nginx/html
+        - name: conf
+          mountPath: /etc/nginx/conf.d
+        env:
+          - name: TZ
+            value: Asia/Shanghai
+      volumes:
+        - name: html
+          nfs:
+            path: {{ .Values.data.path.html }}
+            server: {{ .Values.data.server.html }}
+        - name: conf
+          nfs:
+            path: {{ .Values.data.path.conf }}
+            server: {{ .Values.data.server.conf }}

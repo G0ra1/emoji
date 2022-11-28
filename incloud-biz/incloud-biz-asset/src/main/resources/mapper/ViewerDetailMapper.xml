@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.asset.mapper.ViewerDetailMapper">
+
+<resultMap id="viewerDetailMap" type="com.netwisd.biz.asset.vo.ViewerDetailVo">
+  <id property="id" column="id"/>
+  <result property="viewerId" column="viewer_id"/>
+  <result property="visibleType" column="visible_type"/>
+  <result property="rangeId" column="range_id"/>
+  <result property="rangeName" column="range_name"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+  <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+  <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+  <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+  <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+  <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.asset.dto.ViewerDetailDto" resultMap="viewerDetailMap">
+  select * from incloud_biz_asset_viewer_detail viewerDetail where 1=1
+    <if test="viewerDetailDto.id != null and viewerDetailDto.id != ''">
+      AND viewerDetail.id = #{viewerDetailDto.id}
+    </if>
+    <if test="viewerDetailDto.viewerId != null and viewerDetailDto.viewerId != ''">
+      AND viewerDetail.viewer_id = #{viewerDetailDto.viewerId}
+    </if>
+    <if test="viewerDetailDto.visibleType != null and viewerDetailDto.visibleType != ''">
+      AND viewerDetail.visible_type = #{viewerDetailDto.visibleType}
+    </if>
+    <if test="viewerDetailDto.rangeId != null and viewerDetailDto.rangeId != ''">
+      AND viewerDetail.range_id = #{viewerDetailDto.rangeId}
+    </if>
+    <if test="viewerDetailDto.rangeName != null and viewerDetailDto.rangeName != ''">
+      AND viewerDetail.range_name like CONCAT('%',#{viewerDetailDto.rangeName},'%')
+    </if>
+    <if test="viewerDetailDto.createUserId != null and viewerDetailDto.createUserId != ''">
+      AND viewerDetail.create_user_id = #{viewerDetailDto.createUserId}
+    </if>
+    <if test="viewerDetailDto.createUserName != null and viewerDetailDto.createUserName != ''">
+      AND viewerDetail.create_user_name like CONCAT('%',#{viewerDetailDto.createUserName},'%')
+    </if>
+    <if test="viewerDetailDto.createUserParentOrgId != null and viewerDetailDto.createUserParentOrgId != ''">
+      AND viewerDetail.create_user_parent_org_id = #{viewerDetailDto.createUserParentOrgId}
+    </if>
+    <if test="viewerDetailDto.createUserParentOrgName != null and viewerDetailDto.createUserParentOrgName != ''">
+      AND viewerDetail.create_user_parent_org_name like CONCAT('%',#{viewerDetailDto.createUserParentOrgName},'%')
+    </if>
+    <if test="viewerDetailDto.createUserParentDeptId != null and viewerDetailDto.createUserParentDeptId != ''">
+      AND viewerDetail.create_user_parent_dept_id = #{viewerDetailDto.createUserParentDeptId}
+    </if>
+    <if test="viewerDetailDto.createUserParentDeptName != null and viewerDetailDto.createUserParentDeptName != ''">
+      AND viewerDetail.create_user_parent_dept_name like CONCAT('%',#{viewerDetailDto.createUserParentDeptName},'%')
+    </if>
+    <if test="viewerDetailDto.createUserOrgFullId != null and viewerDetailDto.createUserOrgFullId != ''">
+      AND viewerDetail.create_user_org_full_id like CONCAT('%',#{viewerDetailDto.createUserOrgFullId},'%')
+    </if>
+    order by viewerDetail.id desc
+</select>
+</mapper>

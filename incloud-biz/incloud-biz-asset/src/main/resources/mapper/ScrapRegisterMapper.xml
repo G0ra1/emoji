@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.asset.mapper.ScrapRegisterMapper">
+
+<resultMap id="scrapRegisterMap" type="com.netwisd.biz.asset.vo.ScrapRegisterVo">
+  <id property="id" column="id"/>
+  <result property="code" column="code"/>
+  <result property="sumTotalAmount" column="sum_total_amount"/>
+  <result property="sumTotalUntaxedAmount" column="sum_total_untaxed_amount"/>
+  <result property="sumTotalTaxAmount" column="sum_total_tax_amount"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+  <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+  <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+  <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+  <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+  <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+  <result property="auditSuccessTiem" column="audit_success_tiem"/>
+  <result property="camundaProcdefKey" column="camunda_procdef_key"/>
+  <result property="camundaProcdefId" column="camunda_procdef_id"/>
+  <result property="camundaProcinsId" column="camunda_procins_id"/>
+  <result property="procdefTypeId" column="procdef_type_id"/>
+  <result property="procdefTypeName" column="procdef_type_name"/>
+  <result property="procdefVersion" column="procdef_version"/>
+  <result property="procdefName" column="procdef_name"/>
+  <result property="processName" column="process_name"/>
+  <result property="reason" column="reason"/>
+  <result property="bizKey" column="biz_key"/>
+  <result property="camundaTaskId" column="camunda_task_id"/>
+  <result property="bizPriority" column="biz_priority"/>
+  <result property="auditStatus" column="audit_status"/>
+  <result property="applyTime" column="apply_time"/>
+  <result property="applyUserId" column="apply_user_id"/>
+  <result property="applyUserName" column="apply_user_name"/>
+  <result property="applyUserOrgId" column="apply_user_org_id"/>
+  <result property="applyUserOrgName" column="apply_user_org_name"/>
+  <result property="applyUserDeptId" column="apply_user_dept_id"/>
+  <result property="applyUserDeptName" column="apply_user_dept_name"/>
+  <result property="applyUserOrgFullId" column="apply_user_org_full_id"/>
+  <result property="applyCode" column="apply_code"/>
+  <result property="applyId" column="apply_id"/>
+  <result property="explanation" column="explanation"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.asset.dto.ScrapRegisterDto" resultMap="scrapRegisterMap">
+  select * from incloud_biz_asset_scrap_register scrapRegister where 1=1
+    <if test="scrapRegisterDto.id != null and scrapRegisterDto.id != ''">
+      AND scrapRegister.id = #{scrapRegisterDto.id}
+    </if>
+    <if test="scrapRegisterDto.code != null and scrapRegisterDto.code != ''">
+      AND scrapRegister.code like CONCAT('%',#{scrapRegisterDto.code},'%')
+    </if>
+    <if test="scrapRegisterDto.sumTotalAmount != null and scrapRegisterDto.sumTotalAmount != ''">
+      AND scrapRegister.sum_total_amount = #{scrapRegisterDto.sumTotalAmount}
+    </if>
+    <if test="scrapRegisterDto.sumTotalUntaxedAmount != null and scrapRegisterDto.sumTotalUntaxedAmount != ''">
+      AND scrapRegister.sum_total_untaxed_amount = #{scrapRegisterDto.sumTotalUntaxedAmount}
+    </if>
+    <if test="scrapRegisterDto.sumTotalTaxAmount != null and scrapRegisterDto.sumTotalTaxAmount != ''">
+      AND scrapRegister.sum_total_tax_amount = #{scrapRegisterDto.sumTotalTaxAmount}
+    </if>
+    <if test="scrapRegisterDto.createUserId != null and scrapRegisterDto.createUserId != ''">
+      AND scrapRegister.create_user_id = #{scrapRegisterDto.createUserId}
+    </if>
+    <if test="scrapRegisterDto.createUserName != null and scrapRegisterDto.createUserName != ''">
+      AND scrapRegister.create_user_name like CONCAT('%',#{scrapRegisterDto.createUserName},'%')
+    </if>
+    <if test="scrapRegisterDto.createUserParentOrgId != null and scrapRegisterDto.createUserParentOrgId != ''">
+      AND scrapRegister.create_user_parent_org_id = #{scrapRegisterDto.createUserParentOrgId}
+    </if>
+    <if test="scrapRegisterDto.createUserParentOrgName != null and scrapRegisterDto.createUserParentOrgName != ''">
+      AND scrapRegister.create_user_parent_org_name like CONCAT('%',#{scrapRegisterDto.createUserParentOrgName},'%')
+    </if>
+    <if test="scrapRegisterDto.createUserParentDeptId != null and scrapRegisterDto.createUserParentDeptId != ''">
+      AND scrapRegister.create_user_parent_dept_id = #{scrapRegisterDto.createUserParentDeptId}
+    </if>
+    <if test="scrapRegisterDto.createUserParentDeptName != null and scrapRegisterDto.createUserParentDeptName != ''">
+      AND scrapRegister.create_user_parent_dept_name like CONCAT('%',#{scrapRegisterDto.createUserParentDeptName},'%')
+    </if>
+    <if test="scrapRegisterDto.createUserOrgFullId != null and scrapRegisterDto.createUserOrgFullId != ''">
+      AND scrapRegister.create_user_org_full_id like CONCAT('%',#{scrapRegisterDto.createUserOrgFullId},'%')
+    </if>
+    <if test="scrapRegisterDto.auditSuccessTiem != null and scrapRegisterDto.auditSuccessTiem != ''">
+      AND scrapRegister.audit_success_tiem = #{scrapRegisterDto.auditSuccessTiem}
+    </if>
+    <if test="scrapRegisterDto.camundaProcdefKey != null and scrapRegisterDto.camundaProcdefKey != ''">
+      AND scrapRegister.camunda_procdef_key like CONCAT('%',#{scrapRegisterDto.camundaProcdefKey},'%')
+    </if>
+    <if test="scrapRegisterDto.camundaProcdefId != null and scrapRegisterDto.camundaProcdefId != ''">
+      AND scrapRegister.camunda_procdef_id like CONCAT('%',#{scrapRegisterDto.camundaProcdefId},'%')
+    </if>
+    <if test="scrapRegisterDto.camundaProcinsId != null and scrapRegisterDto.camundaProcinsId != ''">
+      AND scrapRegister.camunda_procins_id like CONCAT('%',#{scrapRegisterDto.camundaProcinsId},'%')
+    </if>
+    <if test="scrapRegisterDto.procdefTypeId != null and scrapRegisterDto.procdefTypeId != ''">
+      AND scrapRegister.procdef_type_id = #{scrapRegisterDto.procdefTypeId}
+    </if>
+    <if test="scrapRegisterDto.procdefTypeName != null and scrapRegisterDto.procdefTypeName != ''">
+      AND scrapRegister.procdef_type_name like CONCAT('%',#{scrapRegisterDto.procdefTypeName},'%')
+    </if>
+    <if test="scrapRegisterDto.procdefVersion != null and scrapRegisterDto.procdefVersion != ''">
+      AND scrapRegister.procdef_version = #{scrapRegisterDto.procdefVersion}
+    </if>
+    <if test="scrapRegisterDto.procdefName != null and scrapRegisterDto.procdefName != ''">
+      AND scrapRegister.procdef_name like CONCAT('%',#{scrapRegisterDto.procdefName},'%')
+    </if>
+    <if test="scrapRegisterDto.processName != null and scrapRegisterDto.processName != ''">
+      AND scrapRegister.process_name like CONCAT('%',#{scrapRegisterDto.processName},'%')
+    </if>
+    <if test="scrapRegisterDto.reason != null and scrapRegisterDto.reason != ''">
+      AND scrapRegister.reason like CONCAT('%',#{scrapRegisterDto.reason},'%')
+    </if>
+    <if test="scrapRegisterDto.bizKey != null and scrapRegisterDto.bizKey != ''">
+      AND scrapRegister.biz_key like CONCAT('%',#{scrapRegisterDto.bizKey},'%')
+    </if>
+    <if test="scrapRegisterDto.camundaTaskId != null and scrapRegisterDto.camundaTaskId != ''">
+      AND scrapRegister.camunda_task_id like CONCAT('%',#{scrapRegisterDto.camundaTaskId},'%')
+    </if>
+    <if test="scrapRegisterDto.bizPriority != null and scrapRegisterDto.bizPriority != ''">
+      AND scrapRegister.biz_priority like CONCAT('%',#{scrapRegisterDto.bizPriority},'%')
+    </if>
+    <if test="scrapRegisterDto.auditStatus != null and scrapRegisterDto.auditStatus != ''">
+      AND scrapRegister.audit_status = #{scrapRegisterDto.auditStatus}
+    </if>
+    <if test="scrapRegisterDto.applyTime != null and scrapRegisterDto.applyTime != ''">
+      AND scrapRegister.apply_time = #{scrapRegisterDto.applyTime}
+    </if>
+    <if test="scrapRegisterDto.applyUserId != null and scrapRegisterDto.applyUserId != ''">
+      AND scrapRegister.apply_user_id = #{scrapRegisterDto.applyUserId}
+    </if>
+    <if test="scrapRegisterDto.applyUserName != null and scrapRegisterDto.applyUserName != ''">
+      AND scrapRegister.apply_user_name like CONCAT('%',#{scrapRegisterDto.applyUserName},'%')
+    </if>
+    <if test="scrapRegisterDto.applyUserOrgId != null and scrapRegisterDto.applyUserOrgId != ''">
+      AND scrapRegister.apply_user_org_id = #{scrapRegisterDto.applyUserOrgId}
+    </if>
+    <if test="scrapRegisterDto.applyUserOrgName != null and scrapRegisterDto.applyUserOrgName != ''">
+      AND scrapRegister.apply_user_org_name like CONCAT('%',#{scrapRegisterDto.applyUserOrgName},'%')
+    </if>
+    <if test="scrapRegisterDto.applyUserDeptId != null and scrapRegisterDto.applyUserDeptId != ''">
+      AND scrapRegister.apply_user_dept_id = #{scrapRegisterDto.applyUserDeptId}
+    </if>
+    <if test="scrapRegisterDto.applyUserDeptName != null and scrapRegisterDto.applyUserDeptName != ''">
+      AND scrapRegister.apply_user_dept_name like CONCAT('%',#{scrapRegisterDto.applyUserDeptName},'%')
+    </if>
+    <if test="scrapRegisterDto.applyUserOrgFullId != null and scrapRegisterDto.applyUserOrgFullId != ''">
+      AND scrapRegister.apply_user_org_full_id like CONCAT('%',#{scrapRegisterDto.applyUserOrgFullId},'%')
+    </if>
+    <if test="scrapRegisterDto.applyCode != null and scrapRegisterDto.applyCode != ''">
+      AND scrapRegister.apply_code like CONCAT('%',#{scrapRegisterDto.applyCode},'%')
+    </if>
+    <if test="scrapRegisterDto.applyId != null and scrapRegisterDto.applyId != ''">
+      AND scrapRegister.apply_id = #{scrapRegisterDto.applyId}
+    </if>
+    <if test="scrapRegisterDto.explanation != null and scrapRegisterDto.explanation != ''">
+      AND scrapRegister.explanation like CONCAT('%',#{scrapRegisterDto.explanation},'%')
+    </if>
+    order by scrapRegister.id desc
+</select>
+</mapper>

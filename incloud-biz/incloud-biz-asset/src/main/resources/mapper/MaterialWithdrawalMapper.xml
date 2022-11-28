@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.asset.mapper.MaterialWithdrawalMapper">
+
+<resultMap id="materialWithdrawalMap" type="com.netwisd.biz.asset.vo.MaterialWithdrawalVo">
+  <id property="id" column="id"/>
+  <result property="code" column="code"/>
+  <result property="sumTotalAmount" column="sum_total_amount"/>
+  <result property="sumTotalUntaxedAmount" column="sum_total_untaxed_amount"/>
+  <result property="sumTotalTaxAmount" column="sum_total_tax_amount"/>
+  <result property="fileIds" column="file_ids"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+  <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+  <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+  <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+  <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+  <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+  <result property="auditSuccessTiem" column="audit_success_tiem"/>
+  <result property="camundaProcdefKey" column="camunda_procdef_key"/>
+  <result property="camundaProcdefId" column="camunda_procdef_id"/>
+  <result property="camundaProcinsId" column="camunda_procins_id"/>
+  <result property="procdefTypeId" column="procdef_type_id"/>
+  <result property="procdefTypeName" column="procdef_type_name"/>
+  <result property="procdefVersion" column="procdef_version"/>
+  <result property="procdefName" column="procdef_name"/>
+  <result property="processName" column="process_name"/>
+  <result property="reason" column="reason"/>
+  <result property="bizKey" column="biz_key"/>
+  <result property="camundaTaskId" column="camunda_task_id"/>
+  <result property="bizPriority" column="biz_priority"/>
+  <result property="auditStatus" column="audit_status"/>
+  <result property="applyTime" column="apply_time"/>
+  <result property="applyUserId" column="apply_user_id"/>
+  <result property="applyUserName" column="apply_user_name"/>
+  <result property="applyUserOrgId" column="apply_user_org_id"/>
+  <result property="applyUserOrgName" column="apply_user_org_name"/>
+  <result property="applyUserDeptId" column="apply_user_dept_id"/>
+  <result property="applyUserDeptName" column="apply_user_dept_name"/>
+  <result property="applyUserOrgFullId" column="apply_user_org_full_id"/>
+  <result property="explanation" column="explanation"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.asset.dto.MaterialWithdrawalDto" resultMap="materialWithdrawalMap">
+  select * from incloud_biz_asset_material_withdrawal materialWithdrawal where 1=1
+    <if test="materialWithdrawalDto.id != null and materialWithdrawalDto.id != ''">
+      AND materialWithdrawal.id = #{materialWithdrawalDto.id}
+    </if>
+    <if test="materialWithdrawalDto.code != null and materialWithdrawalDto.code != ''">
+      AND materialWithdrawal.code like CONCAT('%',#{materialWithdrawalDto.code},'%')
+    </if>
+    <if test="materialWithdrawalDto.sumTotalAmount != null and materialWithdrawalDto.sumTotalAmount != ''">
+      AND materialWithdrawal.sum_total_amount = #{materialWithdrawalDto.sumTotalAmount}
+    </if>
+    <if test="materialWithdrawalDto.sumTotalUntaxedAmount != null and materialWithdrawalDto.sumTotalUntaxedAmount != ''">
+      AND materialWithdrawal.sum_total_untaxed_amount = #{materialWithdrawalDto.sumTotalUntaxedAmount}
+    </if>
+    <if test="materialWithdrawalDto.sumTotalTaxAmount != null and materialWithdrawalDto.sumTotalTaxAmount != ''">
+      AND materialWithdrawal.sum_total_tax_amount = #{materialWithdrawalDto.sumTotalTaxAmount}
+    </if>
+    <if test="materialWithdrawalDto.fileIds != null and materialWithdrawalDto.fileIds != ''">
+      AND materialWithdrawal.file_ids like CONCAT('%',#{materialWithdrawalDto.fileIds},'%')
+    </if>
+    <if test="materialWithdrawalDto.createUserId != null and materialWithdrawalDto.createUserId != ''">
+      AND materialWithdrawal.create_user_id = #{materialWithdrawalDto.createUserId}
+    </if>
+    <if test="materialWithdrawalDto.createUserName != null and materialWithdrawalDto.createUserName != ''">
+      AND materialWithdrawal.create_user_name like CONCAT('%',#{materialWithdrawalDto.createUserName},'%')
+    </if>
+    <if test="materialWithdrawalDto.createUserParentOrgId != null and materialWithdrawalDto.createUserParentOrgId != ''">
+      AND materialWithdrawal.create_user_parent_org_id = #{materialWithdrawalDto.createUserParentOrgId}
+    </if>
+    <if test="materialWithdrawalDto.createUserParentOrgName != null and materialWithdrawalDto.createUserParentOrgName != ''">
+      AND materialWithdrawal.create_user_parent_org_name like CONCAT('%',#{materialWithdrawalDto.createUserParentOrgName},'%')
+    </if>
+    <if test="materialWithdrawalDto.createUserParentDeptId != null and materialWithdrawalDto.createUserParentDeptId != ''">
+      AND materialWithdrawal.create_user_parent_dept_id = #{materialWithdrawalDto.createUserParentDeptId}
+    </if>
+    <if test="materialWithdrawalDto.createUserParentDeptName != null and materialWithdrawalDto.createUserParentDeptName != ''">
+      AND materialWithdrawal.create_user_parent_dept_name like CONCAT('%',#{materialWithdrawalDto.createUserParentDeptName},'%')
+    </if>
+    <if test="materialWithdrawalDto.createUserOrgFullId != null and materialWithdrawalDto.createUserOrgFullId != ''">
+      AND materialWithdrawal.create_user_org_full_id like CONCAT('%',#{materialWithdrawalDto.createUserOrgFullId},'%')
+    </if>
+    <if test="materialWithdrawalDto.auditSuccessTiem != null and materialWithdrawalDto.auditSuccessTiem != ''">
+      AND materialWithdrawal.audit_success_tiem = #{materialWithdrawalDto.auditSuccessTiem}
+    </if>
+    <if test="materialWithdrawalDto.camundaProcdefKey != null and materialWithdrawalDto.camundaProcdefKey != ''">
+      AND materialWithdrawal.camunda_procdef_key like CONCAT('%',#{materialWithdrawalDto.camundaProcdefKey},'%')
+    </if>
+    <if test="materialWithdrawalDto.camundaProcdefId != null and materialWithdrawalDto.camundaProcdefId != ''">
+      AND materialWithdrawal.camunda_procdef_id like CONCAT('%',#{materialWithdrawalDto.camundaProcdefId},'%')
+    </if>
+    <if test="materialWithdrawalDto.camundaProcinsId != null and materialWithdrawalDto.camundaProcinsId != ''">
+      AND materialWithdrawal.camunda_procins_id like CONCAT('%',#{materialWithdrawalDto.camundaProcinsId},'%')
+    </if>
+    <if test="materialWithdrawalDto.procdefTypeId != null and materialWithdrawalDto.procdefTypeId != ''">
+      AND materialWithdrawal.procdef_type_id = #{materialWithdrawalDto.procdefTypeId}
+    </if>
+    <if test="materialWithdrawalDto.procdefTypeName != null and materialWithdrawalDto.procdefTypeName != ''">
+      AND materialWithdrawal.procdef_type_name like CONCAT('%',#{materialWithdrawalDto.procdefTypeName},'%')
+    </if>
+    <if test="materialWithdrawalDto.procdefVersion != null and materialWithdrawalDto.procdefVersion != ''">
+      AND materialWithdrawal.procdef_version = #{materialWithdrawalDto.procdefVersion}
+    </if>
+    <if test="materialWithdrawalDto.procdefName != null and materialWithdrawalDto.procdefName != ''">
+      AND materialWithdrawal.procdef_name like CONCAT('%',#{materialWithdrawalDto.procdefName},'%')
+    </if>
+    <if test="materialWithdrawalDto.processName != null and materialWithdrawalDto.processName != ''">
+      AND materialWithdrawal.process_name like CONCAT('%',#{materialWithdrawalDto.processName},'%')
+    </if>
+    <if test="materialWithdrawalDto.reason != null and materialWithdrawalDto.reason != ''">
+      AND materialWithdrawal.reason like CONCAT('%',#{materialWithdrawalDto.reason},'%')
+    </if>
+    <if test="materialWithdrawalDto.bizKey != null and materialWithdrawalDto.bizKey != ''">
+      AND materialWithdrawal.biz_key like CONCAT('%',#{materialWithdrawalDto.bizKey},'%')
+    </if>
+    <if test="materialWithdrawalDto.camundaTaskId != null and materialWithdrawalDto.camundaTaskId != ''">
+      AND materialWithdrawal.camunda_task_id like CONCAT('%',#{materialWithdrawalDto.camundaTaskId},'%')
+    </if>
+    <if test="materialWithdrawalDto.bizPriority != null and materialWithdrawalDto.bizPriority != ''">
+      AND materialWithdrawal.biz_priority like CONCAT('%',#{materialWithdrawalDto.bizPriority},'%')
+    </if>
+    <if test="materialWithdrawalDto.auditStatus != null and materialWithdrawalDto.auditStatus != ''">
+      AND materialWithdrawal.audit_status = #{materialWithdrawalDto.auditStatus}
+    </if>
+    <if test="materialWithdrawalDto.applyTime != null and materialWithdrawalDto.applyTime != ''">
+      AND materialWithdrawal.apply_time = #{materialWithdrawalDto.applyTime}
+    </if>
+    <if test="materialWithdrawalDto.applyUserId != null and materialWithdrawalDto.applyUserId != ''">
+      AND materialWithdrawal.apply_user_id = #{materialWithdrawalDto.applyUserId}
+    </if>
+    <if test="materialWithdrawalDto.applyUserName != null and materialWithdrawalDto.applyUserName != ''">
+      AND materialWithdrawal.apply_user_name like CONCAT('%',#{materialWithdrawalDto.applyUserName},'%')
+    </if>
+    <if test="materialWithdrawalDto.applyUserOrgId != null and materialWithdrawalDto.applyUserOrgId != ''">
+      AND materialWithdrawal.apply_user_org_id = #{materialWithdrawalDto.applyUserOrgId}
+    </if>
+    <if test="materialWithdrawalDto.applyUserOrgName != null and materialWithdrawalDto.applyUserOrgName != ''">
+      AND materialWithdrawal.apply_user_org_name like CONCAT('%',#{materialWithdrawalDto.applyUserOrgName},'%')
+    </if>
+    <if test="materialWithdrawalDto.applyUserDeptId != null and materialWithdrawalDto.applyUserDeptId != ''">
+      AND materialWithdrawal.apply_user_dept_id = #{materialWithdrawalDto.applyUserDeptId}
+    </if>
+    <if test="materialWithdrawalDto.applyUserDeptName != null and materialWithdrawalDto.applyUserDeptName != ''">
+      AND materialWithdrawal.apply_user_dept_name like CONCAT('%',#{materialWithdrawalDto.applyUserDeptName},'%')
+    </if>
+    <if test="materialWithdrawalDto.applyUserOrgFullId != null and materialWithdrawalDto.applyUserOrgFullId != ''">
+      AND materialWithdrawal.apply_user_org_full_id = #{materialWithdrawalDto.applyUserOrgFullId}
+    </if>
+    <if test="materialWithdrawalDto.explanation != null and materialWithdrawalDto.explanation != ''">
+      AND materialWithdrawal.explanation like CONCAT('%',#{materialWithdrawalDto.explanation},'%')
+    </if>
+    order by materialWithdrawal.id desc
+</select>
+</mapper>

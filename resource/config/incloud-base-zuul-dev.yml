@@ -1,0 +1,111 @@
+spring:
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+  cloud:
+    sentinel:
+      datasource:
+        ds1:
+          nacos:
+            serverAddr: ${incloud3_nacos_host:127.0.0.1}:${incloud3_nacos_port:8848}
+            namespace: ${incloud3_nacos_namespace:incloud3}
+            ruleType: gw-api-group
+            dataType: json
+            groupId: DEFAULT_GROUP
+            dataId: ${spring.application.name}-sentinel-gatewayApi
+        ds2:
+          nacos:
+            serverAddr: ${incloud3_nacos_host:127.0.0.1}:${incloud3_nacos_port:8848}
+            namespace: ${incloud3_nacos_namespace:incloud3}
+            ruleType: gw-flow
+            dataType: json
+            groupId: DEFAULT_GROUP
+            dataId: ${spring.application.name}-sentinel-gatewayFlow
+incloud:
+  tokenfilter:
+    report: http://192.168.1.195:9090
+    password: 123456
+    enable: false
+    ipconfig:
+      -192.168.1.1
+zuul:
+  ignored-services: Authorization,Access-Control-Allow-Credentials, Access-Control-Allow-Origin
+  sensitive-headers: Cookie,Set-Cookie
+  routes:
+    oauth: #oauth
+      path: /oauth/**
+      serviceId: incloud-base-oauth
+    file: #file
+      path: /file/**
+      serviceId: incloud-base-file
+    log: #log
+      path: /log/**
+      serviceId: incloud-base-log
+    msg: #msg
+      path: /msg/**
+      serviceId: incloud-base-msg
+    dict: #dict
+      path: /dict/**
+      serviceId: incloud-base-dict
+    model: #model
+      path: /model/**
+      serviceId: incloud-base-model
+    code: #code
+      path: /code/**
+      serviceId: incloud-common-code
+    demop: #demo-provider
+      path: /demop/**
+      serviceId: incloud-demo-provider
+    democ: #demo-consumer
+      path: /democ/**
+      serviceId: incloud-demo-consumer
+    user: #分级
+      path: /irm/**
+      serviceId: incloud-base-user
+    wf: #工作流
+      path: /wf/**
+      serviceId: incloud-base-wf
+    urm: #测试业务
+      path: /urm/**
+      serviceId: incloud-biz-urm
+    search: #search
+      path: /search/**
+      serviceId: incloud-biz-search
+    epm: #epm
+      path: /epm/**
+      serviceId: incloud-biz-epm
+    pctt: #pctt
+      path: /pctt/**
+      serviceId: incloud-biz-pctt
+    sctt: #sctt
+      path: /sctt/**
+      serviceId: incloud-biz-sctt
+    expense: #expense
+      path: /expense/**
+      serviceId: incloud-biz-expense
+    portal: #portal
+      path: /portal/**
+      serviceId: incloud-base-portal
+    mdm:
+      path: /mdm/**
+      serviceId: incloud-base-mdm
+    web:
+      path: /web/**
+      serviceId: http://192.168.1.195:8081
+    bizmdm:
+      path: /bizmdm/**
+      serviceId: incloud-biz-mdm
+    bizstudy:
+      path: /study/**
+      serviceId: incloud-biz-study
+    task:
+      path: /task/**
+      serviceId: incloud-base-task
+  host:
+    connect-timeout-millis: 30000
+    socket-timeout-millis: 30000
+  add-proxy-headers: true
+  ribbon:
+    eager-load:
+      enabled: true

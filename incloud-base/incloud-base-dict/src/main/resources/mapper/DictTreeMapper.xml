@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.netwisd.base.dict.mapper.DictTreeMapper">
+
+	<select id="getDictTreeVo" resultType="com.netwisd.base.common.dict.vo.DictTreeVo">
+		select
+			*
+		from
+			incloud_base_dict_tree t
+		<where>
+			<if test="parentId != null">
+				and t.parent_id = #{parentId}
+			</if>
+		</where>
+		order by level
+	</select>
+
+</mapper>

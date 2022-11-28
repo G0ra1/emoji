@@ -1,0 +1,10 @@
+#注意此处并不生效，只是为了看这些参数
+#incloud:
+#  database: mysql
+#  table:
+#    auto: update
+#    enable: true
+#    package: com.netwisd
+spring:
+  main:
+    allow-bean-definition-overriding: true

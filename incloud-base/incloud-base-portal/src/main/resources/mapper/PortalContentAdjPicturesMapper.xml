@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.portal.mapper.PortalContentAdjPicturesMapper">
+
+<resultMap id="portalContentAdjPicturesMap" type="com.netwisd.base.portal.vo.PortalContentAdjPicturesVo">
+  <id property="id" column="id"/>
+  <result property="portalId" column="portal_id"/>
+  <result property="portalName" column="portal_name"/>
+  <result property="partId" column="part_id"/>
+  <result property="partName" column="part_name"/>
+  <result property="partTypeId" column="part_type_id"/>
+  <result property="partTypeName" column="part_type_name"/>
+  <result property="auditStatus" column="audit_status"/>
+  <result property="remark" column="remark"/>
+  <result property="passTime" column="pass_time"/>
+  <result property="applyUserId" column="apply_user_id"/>
+  <result property="applyUserName" column="apply_user_name"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.portal.dto.PortalContentAdjPicturesDto" resultMap="portalContentAdjPicturesMap">
+  select * from incloud_base_portal_content_adj_pictures portalContentAdjPictures where 1=1
+    <if test="portalContentAdjPicturesDto.id != null and portalContentAdjPicturesDto.id != ''">
+      AND portalContentAdjPictures.id = #{portalContentAdjPicturesDto.id}
+    </if>
+    <if test="portalContentAdjPicturesDto.portalId != null and portalContentAdjPicturesDto.portalId != ''">
+      AND portalContentAdjPictures.portal_id = #{portalContentAdjPicturesDto.portalId}
+    </if>
+    <if test="portalContentAdjPicturesDto.portalName != null and portalContentAdjPicturesDto.portalName != ''">
+      AND portalContentAdjPictures.portal_name like CONCAT('%',#{portalContentAdjPicturesDto.portalName},'%')
+    </if>
+    <if test="portalContentAdjPicturesDto.partId != null and portalContentAdjPicturesDto.partId != ''">
+      AND portalContentAdjPictures.part_id = #{portalContentAdjPicturesDto.partId}
+    </if>
+    <if test="portalContentAdjPicturesDto.partName != null and portalContentAdjPicturesDto.partName != ''">
+      AND portalContentAdjPictures.part_name like CONCAT('%',#{portalContentAdjPicturesDto.partName},'%')
+    </if>
+    <if test="portalContentAdjPicturesDto.partTypeId != null and portalContentAdjPicturesDto.partTypeId != ''">
+      AND portalContentAdjPictures.part_type_id = #{portalContentAdjPicturesDto.partTypeId}
+    </if>
+    <if test="portalContentAdjPicturesDto.partTypeName != null and portalContentAdjPicturesDto.partTypeName != ''">
+      AND portalContentAdjPictures.part_type_name like CONCAT('%',#{portalContentAdjPicturesDto.partTypeName},'%')
+    </if>
+    <if test="portalContentAdjPicturesDto.auditStatus != null and portalContentAdjPicturesDto.auditStatus != ''">
+      AND portalContentAdjPictures.audit_status = #{portalContentAdjPicturesDto.auditStatus}
+    </if>
+    <if test="portalContentAdjPicturesDto.remark != null and portalContentAdjPicturesDto.remark != ''">
+      AND portalContentAdjPictures.remark like CONCAT('%',#{portalContentAdjPicturesDto.remark},'%')
+    </if>
+    <if test="portalContentAdjPicturesDto.passTime != null and portalContentAdjPicturesDto.passTime != ''">
+      AND portalContentAdjPictures.pass_time = #{portalContentAdjPicturesDto.passTime}
+    </if>
+    <if test="portalContentAdjPicturesDto.applyUserId != null and portalContentAdjPicturesDto.applyUserId != ''">
+      AND portalContentAdjPictures.apply_user_id = #{portalContentAdjPicturesDto.applyUserId}
+    </if>
+    <if test="portalContentAdjPicturesDto.applyUserName != null and portalContentAdjPicturesDto.applyUserName != ''">
+      AND portalContentAdjPictures.apply_user_name like CONCAT('%',#{portalContentAdjPicturesDto.applyUserName},'%')
+    </if>
+    order by portalContentAdjPictures.id desc
+</select>
+</mapper>

@@ -1,0 +1,52 @@
+package ${package}.${moduleName}.dto;
+
+import com.netwisd.common.core.anntation.Valid;
+import com.netwisd.common.core.constants.Args;
+import com.netwisd.base.common.data.IDto;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.EqualsAndHashCode;
+#if(${hasBigDecimal})
+import java.math.BigDecimal;
+#end
+import java.time.LocalDateTime;
+import java.util.Date;
+import com.netwisd.common.core.util.IdTypeDeserializer;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
+/**
+ * @Description ${comments} 功能描述...
+ * @author 云数网讯 ${author}@netwisd.com
+ * @date ${datetime}
+ */
+@Data
+@ApiModel(value = "${comments} Dto")
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode
+public class ${className}Dto extends IDto{
+
+    public ${className}Dto(Args args){
+        super(args);
+    }
+#foreach ($column in $columns)
+#if($column.columnName != $id.columnName)
+    /**
+     * $column.columnName
+     * $column.comments
+     */
+#if($column.attrType == 'Long')
+    @JsonDeserialize(using = IdTypeDeserializer.class)
+#end
+#if($column.nullable == 'false')
+    @Valid(length = $column.length)
+#end
+    @ApiModelProperty(#if($column.comments != '')value="$column.comments"#end#if($column.comments == '')value="$column.columnName"#end#if($column.hidden),hidden=$column.hidden#end)
+    private $column.attrType $column.lowerAttrName;
+
+#end
+#end
+}

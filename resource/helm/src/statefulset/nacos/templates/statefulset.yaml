@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: incloud-nacos
+  annotations:
+    "helm.sh/hook": pre-install
+    "helm.sh/hook-weight": "-97"
+spec:
+  selector:
+    app: nacos
+  type: NodePort
+  ports:
+  - port: 8848
+    targetPort: 8848
+    nodePort: {{ .Values.nacos.service.port }}

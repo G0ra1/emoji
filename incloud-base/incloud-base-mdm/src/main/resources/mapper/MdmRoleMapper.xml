@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.mdm.mapper.MdmRoleMapper">
+
+<resultMap id="mdmRoleMap" type="com.netwisd.base.common.mdm.vo.MdmRoleVo">
+  <id property="id" column="id"/>
+<!--  <result property="sysId" column="sys_id"/>-->
+  <result property="roleCode" column="role_code"/>
+  <result property="roleName" column="role_name"/>
+  <result property="roleType" column="role_type"/>
+  <result property="sort" column="sort"/>
+  <result property="status" column="status"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.common.mdm.dto.MdmRoleDto" resultMap="mdmRoleMap">
+  select * from incloud_base_mdm_role mdmRole where 1=1
+    <if test="mdmRoleDto.id != null and mdmRoleDto.id != ''">
+      AND mdmRole.id = #{mdmRoleDto.id}
+    </if>
+    <if test="mdmRoleDto.sysId != null and mdmRoleDto.sysId != ''">
+      AND mdmRole.sys_id = #{mdmRoleDto.sysId}
+    </if>
+    <if test="mdmRoleDto.roleCode != null and mdmRoleDto.roleCode != ''">
+      AND mdmRole.role_code like CONCAT('%',#{mdmRoleDto.roleCode},'%')
+    </if>
+    <if test="mdmRoleDto.roleName != null and mdmRoleDto.roleName != ''">
+      AND mdmRole.role_name like CONCAT('%',#{mdmRoleDto.roleName},'%')
+    </if>
+    <if test="mdmRoleDto.roleType != null and mdmRoleDto.roleType != ''">
+      AND mdmRole.role_type = #{mdmRoleDto.roleType}
+    </if>
+    <if test="mdmRoleDto.sort != null and mdmRoleDto.sort != ''">
+      AND mdmRole.sort = #{mdmRoleDto.sort}
+    </if>
+    <if test="mdmRoleDto.status != null and mdmRoleDto.status != ''">
+      AND mdmRole.status = #{mdmRoleDto.status}
+    </if>
+    order by mdmRole.id desc
+</select>
+</mapper>

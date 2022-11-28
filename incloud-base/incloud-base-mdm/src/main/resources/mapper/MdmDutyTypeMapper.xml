@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.mdm.mapper.MdmDutyTypeMapper">
+
+<resultMap id="mdmDutyTypeMap" type="com.netwisd.base.mdm.vo.MdmDutyTypeVo">
+  <id property="id" column="id"/>
+  <result property="dutyTypeName" column="duty_type_name"/>
+  <result property="dutyTypeCode" column="duty_type_code"/>
+  <result property="sort" column="sort"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.mdm.dto.MdmDutyTypeDto" resultMap="mdmDutyTypeMap">
+  select * from incloud_base_mdm_duty_type mdmDutyType where 1=1
+    <if test="mdmDutyTypeDto.id != null and mdmDutyTypeDto.id != ''">
+      AND mdmDutyType.id = #{mdmDutyTypeDto.id}
+    </if>
+    <if test="mdmDutyTypeDto.dutyTypeName != null and mdmDutyTypeDto.dutyTypeName != ''">
+      AND mdmDutyType.duty_type_name like CONCAT('%',#{mdmDutyTypeDto.dutyTypeName},'%')
+    </if>
+    <if test="mdmDutyTypeDto.dutyTypeCode != null and mdmDutyTypeDto.dutyTypeCode != ''">
+      AND mdmDutyType.duty_type_code like CONCAT('%',#{mdmDutyTypeDto.dutyTypeCode},'%')
+    </if>
+    <if test="mdmDutyTypeDto.sort != null and mdmDutyTypeDto.sort != ''">
+      AND mdmDutyType.sort = #{mdmDutyTypeDto.sort}
+    </if>
+    order by mdmDutyType.id desc
+</select>
+</mapper>

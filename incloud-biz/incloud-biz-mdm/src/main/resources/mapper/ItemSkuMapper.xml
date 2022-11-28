@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.mdm.mapper.ItemSkuMapper">
+
+<resultMap id="itemSkuMap" type="com.netwisd.biz.mdm.vo.ItemSkuVo">
+  <id property="id" column="ID"/>
+  <result property="skuName" column="SKU_NAME"/>
+  <result property="classifyId" column="CLASSIFY_ID"/>
+  <result property="classifyCode" column="CLASSIFY_CODE"/>
+  <result property="classifyName" column="CLASSIFY_NAME"/>
+  <result property="delFlag" column="DEL_FLAG"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.mdm.dto.ItemSkuDto" resultMap="itemSkuMap">
+  select * from incloud_biz_mdm_item_sku itemSku where 1=1
+    <if test="itemSkuDto.id != null and itemSkuDto.id != ''">
+      AND itemSku.ID = #{itemSkuDto.id}
+    </if>
+    <if test="itemSkuDto.skuName != null and itemSkuDto.skuName != ''">
+      AND itemSku.SKU_NAME like CONCAT('%',#{skuName},'%')
+    </if>
+    <if test="itemSkuDto.classifyId != null and itemSkuDto.classifyId != ''">
+      AND itemSku.CLASSIFY_ID = #{itemSkuDto.classifyId}
+    </if>
+    <if test="itemSkuDto.classifyCode != null and itemSkuDto.classifyCode != ''">
+      AND itemSku.CLASSIFY_CODE like CONCAT('%',#{itemSkuDto.classifyCode},'%')
+    </if>
+    <if test="itemSkuDto.classifyName != null and itemSkuDto.classifyName != ''">
+      AND itemSku.CLASSIFY_NAME like CONCAT('%',#{itemSkuDto.classifyName},'%')
+    </if>
+    <if test="itemSkuDto.delFlag != null and itemSkuDto.delFlag != ''">
+      AND itemSku.DEL_FLAG like CONCAT('%',#{itemSkuDto.delFlag},'%')
+    </if>
+    order by itemSku.ID desc
+</select>
+</mapper>

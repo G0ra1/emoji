@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.wf.mapper.WfProcessLogMapper">
+
+<resultMap id="wfProcessLogMap" type="com.netwisd.base.wf.vo.WfProcessLogVo">
+  <id property="id" column="id"/>
+  <result property="nodeId" column="node_id"/>
+  <result property="nodeName" column="node_name"/>
+  <result property="userId" column="user_id"/>
+  <result property="userName" column="user_name"/>
+  <result property="deptId" column="dept_id"/>
+  <result property="deptName" column="dept_name"/>
+  <result property="orgId" column="org_id"/>
+  <result property="orgName" column="org_name"/>
+  <result property="startTime" column="start_time"/>
+  <result property="endTime" column="end_time"/>
+  <result property="state" column="state"/>
+  <result property="decision" column="decision"/>
+  <result property="description" column="description"/>
+  <result property="processId" column="process_id"/>
+  <result property="camundaProcinsId" column="camunda_procins_id"/>
+  <result property="formKey" column="form_key"/>
+  <result property="applyTime" column="apply_time"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.wf.dto.WfProcessLogDto" resultMap="wfProcessLogMap">
+  select * from incloud_base_wf_process_log wfProcessLog where 1=1
+    <if test="wfProcessLogDto.id != null and wfProcessLogDto.id != ''">
+      AND wfProcessLog.id = #{wfProcessLogDto.id}
+    </if>
+    <if test="wfProcessLogDto.nodeId != null and wfProcessLogDto.nodeId != ''">
+      AND wfProcessLog.node_id like CONCAT('%',#{wfProcessLogDto.nodeId},'%')
+    </if>
+    <if test="wfProcessLogDto.nodeName != null and wfProcessLogDto.nodeName != ''">
+      AND wfProcessLog.node_name like CONCAT('%',#{wfProcessLogDto.nodeName},'%')
+    </if>
+    <if test="wfProcessLogDto.userId != null and wfProcessLogDto.userId != ''">
+      AND wfProcessLog.user_id like CONCAT('%',#{wfProcessLogDto.userId},'%')
+    </if>
+    <if test="wfProcessLogDto.userName != null and wfProcessLogDto.userName != ''">
+      AND wfProcessLog.user_name like CONCAT('%',#{wfProcessLogDto.userName},'%')
+    </if>
+    <if test="wfProcessLogDto.deptId != null and wfProcessLogDto.deptId != ''">
+      AND wfProcessLog.dept_id = #{wfProcessLogDto.deptId}
+    </if>
+    <if test="wfProcessLogDto.deptName != null and wfProcessLogDto.deptName != ''">
+      AND wfProcessLog.dept_name like CONCAT('%',#{wfProcessLogDto.deptName},'%')
+    </if>
+    <if test="wfProcessLogDto.orgId != null and wfProcessLogDto.orgId != ''">
+      AND wfProcessLog.org_id like CONCAT('%',#{wfProcessLogDto.orgId},'%')
+    </if>
+    <if test="wfProcessLogDto.orgName != null and wfProcessLogDto.orgName != ''">
+      AND wfProcessLog.org_name like CONCAT('%',#{wfProcessLogDto.orgName},'%')
+    </if>
+    <if test="wfProcessLogDto.startTime != null and wfProcessLogDto.startTime != ''">
+      AND wfProcessLog.start_time = #{wfProcessLogDto.startTime}
+    </if>
+    <if test="wfProcessLogDto.endTime != null and wfProcessLogDto.endTime != ''">
+      AND wfProcessLog.end_time = #{wfProcessLogDto.endTime}
+    </if>
+    <if test="wfProcessLogDto.state != null and wfProcessLogDto.state != ''">
+      AND wfProcessLog.state = #{wfProcessLogDto.state}
+    </if>
+    <if test="wfProcessLogDto.decision != null and wfProcessLogDto.decision != ''">
+      AND wfProcessLog.decision = #{wfProcessLogDto.decision}
+    </if>
+    <if test="wfProcessLogDto.description != null and wfProcessLogDto.description != ''">
+      AND wfProcessLog.description like CONCAT('%',#{wfProcessLogDto.description},'%')
+    </if>
+    <if test="wfProcessLogDto.processId != null and wfProcessLogDto.processId != ''">
+      AND wfProcessLog.process_id = #{wfProcessLogDto.processId}
+    </if>
+    <if test="wfProcessLogDto.camundaProcinsId != null and wfProcessLogDto.camundaProcinsId != ''">
+      AND wfProcessLog.camunda_procins_id like CONCAT('%',#{wfProcessLogDto.camundaProcinsId},'%')
+    </if>
+    order by wfProcessLog.id desc
+</select>
+</mapper>

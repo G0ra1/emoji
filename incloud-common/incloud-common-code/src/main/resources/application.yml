@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    name: druidDBSource
+    url: jdbc:mysql://${incloud3_db_host:127.0.0.1}:${incloud3_db_port:3306}/${incloud3_db_schema:incloud}?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false
+    username: ${incloud3_db_user:root}
+    password: ${incloud3_db_pwd:root}
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    filters: stat
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    maxOpenPreparedStatements: 20
+incloud:
+  coder: ${incloud_coder:incloud_coder}

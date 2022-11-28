@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.base.wf.mapper.WfExpreUserDefMapper">
+
+<resultMap id="wfExpreUserDefMap" type="com.netwisd.base.wf.vo.WfExpreUserDefVo">
+  <id property="id" column="id"/>
+  <result property="nodeDefId" column="node_def_id"/>
+  <result property="nodeType" column="node_type"/>
+<!--  <result property="expreId" column="expre_id"/>-->
+  <result property="expression" column="expression"/>
+  <result property="expressionName" column="expression_name"/>
+  <result property="procdefId" column="procdef_id"/>
+  <result property="eventTypeSign" column="event_type_sign"/>
+  <result property="camundaProcdefId" column="camunda_procdef_id"/>
+  <result property="camundaProcdefKey" column="camunda_procdef_key"/>
+  <result property="camundaNodeDefId" column="camunda_node_def_id"/>
+  <result property="bizType" column="biz_type"/>
+  <result property="bizId" column="biz_id"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.base.wf.dto.WfExpreUserDefDto" resultMap="wfExpreUserDefMap">
+  select * from incloud_base_wf_expre_user_def wfExpreUserDef where 1=1
+    <if test="wfExpreUserDefDto.id != null and wfExpreUserDefDto.id != ''">
+      AND wfExpreUserDef.id = #{wfExpreUserDefDto.id}
+    </if>
+    <if test="wfExpreUserDefDto.nodeId != null and wfExpreUserDefDto.nodeId != ''">
+      AND wfExpreUserDef.node_id = #{wfExpreUserDefDto.nodeId}
+    </if>
+    <if test="wfExpreUserDefDto.nodeType != null and wfExpreUserDefDto.nodeType != ''">
+      AND wfExpreUserDef.node_type = #{wfExpreUserDefDto.nodeType}
+    </if>
+    <if test="wfExpreUserDefDto.expreId != null and wfExpreUserDefDto.expreId != ''">
+      AND wfExpreUserDef.expre_id = #{wfExpreUserDefDto.expreId}
+    </if>
+    <if test="wfExpreUserDefDto.expression != null and wfExpreUserDefDto.expression != ''">
+      AND wfExpreUserDef.expression like CONCAT('%',#{wfExpreUserDefDto.expression},'%')
+    </if>
+    order by wfExpreUserDef.id desc
+</select>
+</mapper>

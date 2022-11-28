@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.asset.mapper.AssetsSkuMapper">
+
+<resultMap id="assetsSkuMap" type="com.netwisd.biz.asset.vo.AssetsSkuVo">
+  <id property="id" column="id"/>
+  <result property="assetsId" column="assets_id"/>
+  <result property="assetOrgId" column="asset_org_id"/>
+  <result property="assetOrgName" column="asset_org_name"/>
+  <result property="assetDeptId" column="asset_dept_id"/>
+  <result property="assetDeptName" column="asset_dept_name"/>
+  <result property="assetOrgFullId" column="asset_org_full_id"/>
+  <result property="reason" column="reason"/>
+  <result property="classifyId" column="classify_id"/>
+  <result property="classifyCode" column="classify_code"/>
+  <result property="classifyName" column="classify_name"/>
+  <result property="route" column="route"/>
+  <result property="routeName" column="route_name"/>
+  <result property="categoryId" column="category_id"/>
+  <result property="categoryCode" column="category_code"/>
+  <result property="categoryName" column="category_name"/>
+  <result property="itemId" column="item_id"/>
+  <result property="itemCode" column="item_code"/>
+  <result property="itemName" column="item_name"/>
+  <result property="desclong" column="desclong"/>
+  <result property="descshort" column="descshort"/>
+  <result property="unitCode" column="unit_code"/>
+  <result property="unitName" column="unit_name"/>
+  <result property="materialQuality" column="material_quality"/>
+  <result property="standard" column="standard"/>
+  <result property="specs" column="specs"/>
+  <result property="assetsNumber" column="assets_number"/>
+  <result property="acceptanceNumber" column="acceptance_number"/>
+  <result property="storageNumber" column="storage_number"/>
+  <result property="stockNumber" column="stock_number"/>
+  <result property="usableNumber" column="usable_number"/>
+  <result property="entryNumber" column="entry_number"/>
+  <result property="deliveryNumber" column="delivery_number"/>
+  <result property="acceptNumber" column="accept_number"/>
+  <result property="borrowNumber" column="borrow_number"/>
+  <result property="lendNumber" column="lend_number"/>
+  <result property="transferNumber" column="transfer_number"/>
+  <result property="repairNumber" column="repair_number"/>
+  <result property="scrappedNumber" column="scrapped_number"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+  <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+  <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+  <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+  <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+  <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+  <result property="itemType" column="item_type"/>
+  <result property="applyTime" column="apply_time"/>
+  <result property="applyUserId" column="apply_user_id"/>
+  <result property="applyUserName" column="apply_user_name"/>
+  <result property="applyUserOrgId" column="apply_user_org_id"/>
+  <result property="applyUserOrgName" column="apply_user_org_name"/>
+  <result property="applyUserDeptId" column="apply_user_dept_id"/>
+  <result property="applyUserDeptName" column="apply_user_dept_name"/>
+  <result property="sourceId" column="source_id"/>
+  <result property="assetSource" column="asset_source"/>
+  <result property="skuCodes" column="sku_codes"/>
+  <result property="classifyTypeCode" column="classify_type_code"/>
+  <result property="classifyTypeName" column="classify_type_name"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.asset.dto.AssetsSkuDto" resultMap="assetsSkuMap">
+  select * from incloud_biz_asset_assets_sku assetsSku where 1=1
+    <if test="assetsSkuDto.id != null and assetsSkuDto.id != ''">
+      AND assetsSku.id = #{assetsSkuDto.id}
+    </if>
+    <if test="assetsSkuDto.assetsId != null and assetsSkuDto.assetsId != ''">
+      AND assetsSku.assets_id = #{assetsSkuDto.assetsId}
+    </if>
+    <if test="assetsSkuDto.classifyTypeCode != null and assetsSkuDto.classifyTypeCode != ''">
+      AND assetsSku.classify_type_code = #{assetsSkuDto.classifyTypeCode}
+    </if>
+    <if test="assetsSkuDto.classifyTypeName != null and assetsSkuDto.classifyTypeName != ''">
+      AND assetsSku.classify_type_name = #{assetsSkuDto.classifyTypeName}
+    </if>
+    <if test="assetsSkuDto.assetOrgId != null and assetsSkuDto.assetOrgId != ''">
+      AND assetsSku.asset_org_id = #{assetsSkuDto.assetOrgId}
+    </if>
+    <if test="assetsSkuDto.assetOrgName != null and assetsSkuDto.assetOrgName != ''">
+      AND assetsSku.asset_org_name like CONCAT('%',#{assetsSkuDto.assetOrgName},'%')
+    </if>
+    <if test="assetsSkuDto.assetDeptId != null and assetsSkuDto.assetDeptId != ''">
+      AND assetsSku.asset_dept_id = #{assetsSkuDto.assetDeptId}
+    </if>
+    <if test="assetsSkuDto.assetDeptName != null and assetsSkuDto.assetDeptName != ''">
+      AND assetsSku.asset_dept_name like CONCAT('%',#{assetsSkuDto.assetDeptName},'%')
+    </if>
+    <if test="assetsSkuDto.assetOrgFullId != null and assetsSkuDto.assetOrgFullId != ''">
+      AND assetsSku.asset_org_full_id like CONCAT('%',#{assetsSkuDto.assetOrgFullId},'%')
+    </if>
+    <if test="assetsSkuDto.reason != null and assetsSkuDto.reason != ''">
+      AND assetsSku.reason like CONCAT('%',#{assetsSkuDto.reason},'%')
+    </if>
+    <if test="assetsSkuDto.classifyId != null and assetsSkuDto.classifyId != ''">
+      AND assetsSku.classify_id = #{assetsSkuDto.classifyId}
+    </if>
+    <if test="assetsSkuDto.classifyCode != null and assetsSkuDto.classifyCode != ''">
+      AND assetsSku.classify_code like CONCAT('%',#{assetsSkuDto.classifyCode},'%')
+    </if>
+    <if test="assetsSkuDto.classifyName != null and assetsSkuDto.classifyName != ''">
+      AND assetsSku.classify_name like CONCAT('%',#{assetsSkuDto.classifyName},'%')
+    </if>
+    <if test="assetsSkuDto.route != null and assetsSkuDto.route != ''">
+      AND assetsSku.route like CONCAT('%',#{assetsSkuDto.route},'%')
+    </if>
+    <if test="assetsSkuDto.routeName != null and assetsSkuDto.routeName != ''">
+      AND assetsSku.route_name like CONCAT('%',#{assetsSkuDto.routeName},'%')
+    </if>
+    <if test="assetsSkuDto.categoryId != null and assetsSkuDto.categoryId != ''">
+      AND assetsSku.category_id = #{assetsSkuDto.categoryId}
+    </if>
+    <if test="assetsSkuDto.categoryCode != null and assetsSkuDto.categoryCode != ''">
+      AND assetsSku.category_code like CONCAT('%',#{assetsSkuDto.categoryCode},'%')
+    </if>
+    <if test="assetsSkuDto.categoryName != null and assetsSkuDto.categoryName != ''">
+      AND assetsSku.category_name like CONCAT('%',#{assetsSkuDto.categoryName},'%')
+    </if>
+    <if test="assetsSkuDto.itemId != null and assetsSkuDto.itemId != ''">
+      AND assetsSku.item_id like CONCAT('%',#{assetsSkuDto.itemId},'%')
+    </if>
+    <if test="assetsSkuDto.itemCode != null and assetsSkuDto.itemCode != ''">
+      AND assetsSku.item_code like CONCAT('%',#{assetsSkuDto.itemCode},'%')
+    </if>
+    <if test="assetsSkuDto.itemName != null and assetsSkuDto.itemName != ''">
+      AND assetsSku.item_name like CONCAT('%',#{assetsSkuDto.itemName},'%')
+    </if>
+    <if test="assetsSkuDto.desclong != null and assetsSkuDto.desclong != ''">
+      AND assetsSku.desclong like CONCAT('%',#{assetsSkuDto.desclong},'%')
+    </if>
+    <if test="assetsSkuDto.descshort != null and assetsSkuDto.descshort != ''">
+      AND assetsSku.descshort like CONCAT('%',#{assetsSkuDto.descshort},'%')
+    </if>
+    <if test="assetsSkuDto.unitCode != null and assetsSkuDto.unitCode != ''">
+      AND assetsSku.unit_code like CONCAT('%',#{assetsSkuDto.unitCode},'%')
+    </if>
+    <if test="assetsSkuDto.unitName != null and assetsSkuDto.unitName != ''">
+      AND assetsSku.unit_name like CONCAT('%',#{assetsSkuDto.unitName},'%')
+    </if>
+    <if test="assetsSkuDto.materialQuality != null and assetsSkuDto.materialQuality != ''">
+      AND assetsSku.material_quality like CONCAT('%',#{assetsSkuDto.materialQuality},'%')
+    </if>
+    <if test="assetsSkuDto.standard != null and assetsSkuDto.standard != ''">
+      AND assetsSku.standard like CONCAT('%',#{assetsSkuDto.standard},'%')
+    </if>
+    <if test="assetsSkuDto.specs != null and assetsSkuDto.specs != ''">
+      AND assetsSku.specs like CONCAT('%',#{assetsSkuDto.specs},'%')
+    </if>
+    <if test="assetsSkuDto.assetsNumber != null and assetsSkuDto.assetsNumber != ''">
+      AND assetsSku.assets_number = #{assetsSkuDto.assetsNumber}
+    </if>
+    <if test="assetsSkuDto.acceptanceNumber != null and assetsSkuDto.acceptanceNumber != ''">
+      AND assetsSku.acceptance_number = #{assetsSkuDto.acceptanceNumber}
+    </if>
+    <if test="assetsSkuDto.storageNumber != null and assetsSkuDto.storageNumber != ''">
+      AND assetsSku.storage_number = #{assetsSkuDto.storageNumber}
+    </if>
+    <if test="assetsSkuDto.stockNumber != null and assetsSkuDto.stockNumber != ''">
+      AND assetsSku.stock_number = #{assetsSkuDto.stockNumber}
+    </if>
+    <if test="assetsSkuDto.usableNumber != null and assetsSkuDto.usableNumber != ''">
+      AND assetsSku.usable_number = #{assetsSkuDto.usableNumber}
+    </if>
+    <if test="assetsSkuDto.entryNumber != null and assetsSkuDto.entryNumber != ''">
+      AND assetsSku.entry_number = #{assetsSkuDto.entryNumber}
+    </if>
+    <if test="assetsSkuDto.deliveryNumber != null and assetsSkuDto.deliveryNumber != ''">
+      AND assetsSku.delivery_number = #{assetsSkuDto.deliveryNumber}
+    </if>
+    <if test="assetsSkuDto.acceptNumber != null and assetsSkuDto.acceptNumber != ''">
+      AND assetsSku.accept_number = #{assetsSkuDto.acceptNumber}
+    </if>
+    <if test="assetsSkuDto.borrowNumber != null and assetsSkuDto.borrowNumber != ''">
+      AND assetsSku.borrow_number = #{assetsSkuDto.borrowNumber}
+    </if>
+    <if test="assetsSkuDto.lendNumber != null and assetsSkuDto.lendNumber != ''">
+      AND assetsSku.lend_number = #{assetsSkuDto.lendNumber}
+    </if>
+    <if test="assetsSkuDto.transferNumber != null and assetsSkuDto.transferNumber != ''">
+      AND assetsSku.transfer_number = #{assetsSkuDto.transferNumber}
+    </if>
+    <if test="assetsSkuDto.repairNumber != null and assetsSkuDto.repairNumber != ''">
+      AND assetsSku.repair_number = #{assetsSkuDto.repairNumber}
+    </if>
+    <if test="assetsSkuDto.scrappedNumber != null and assetsSkuDto.scrappedNumber != ''">
+      AND assetsSku.scrapped_number = #{assetsSkuDto.scrappedNumber}
+    </if>
+    <if test="assetsSkuDto.createUserId != null and assetsSkuDto.createUserId != ''">
+      AND assetsSku.create_user_id = #{assetsSkuDto.createUserId}
+    </if>
+    <if test="assetsSkuDto.createUserName != null and assetsSkuDto.createUserName != ''">
+      AND assetsSku.create_user_name like CONCAT('%',#{assetsSkuDto.createUserName},'%')
+    </if>
+    <if test="assetsSkuDto.createUserParentOrgId != null and assetsSkuDto.createUserParentOrgId != ''">
+      AND assetsSku.create_user_parent_org_id = #{assetsSkuDto.createUserParentOrgId}
+    </if>
+    <if test="assetsSkuDto.createUserParentOrgName != null and assetsSkuDto.createUserParentOrgName != ''">
+      AND assetsSku.create_user_parent_org_name like CONCAT('%',#{assetsSkuDto.createUserParentOrgName},'%')
+    </if>
+    <if test="assetsSkuDto.createUserParentDeptId != null and assetsSkuDto.createUserParentDeptId != ''">
+      AND assetsSku.create_user_parent_dept_id = #{assetsSkuDto.createUserParentDeptId}
+    </if>
+    <if test="assetsSkuDto.createUserParentDeptName != null and assetsSkuDto.createUserParentDeptName != ''">
+      AND assetsSku.create_user_parent_dept_name like CONCAT('%',#{assetsSkuDto.createUserParentDeptName},'%')
+    </if>
+    <if test="assetsSkuDto.createUserOrgFullId != null and assetsSkuDto.createUserOrgFullId != ''">
+      AND assetsSku.create_user_org_full_id like CONCAT('%',#{assetsSkuDto.createUserOrgFullId},'%')
+    </if>
+    <if test="assetsSkuDto.itemType != null and assetsSkuDto.itemType != ''">
+      AND assetsSku.item_type like CONCAT('%',#{assetsSkuDto.itemType},'%')
+    </if>
+    <if test="assetsSkuDto.applyTime != null and assetsSkuDto.applyTime != ''">
+      AND assetsSku.apply_time = #{assetsSkuDto.applyTime}
+    </if>
+    <if test="assetsSkuDto.applyUserId != null and assetsSkuDto.applyUserId != ''">
+      AND assetsSku.apply_user_id = #{assetsSkuDto.applyUserId}
+    </if>
+    <if test="assetsSkuDto.applyUserName != null and assetsSkuDto.applyUserName != ''">
+      AND assetsSku.apply_user_name like CONCAT('%',#{assetsSkuDto.applyUserName},'%')
+    </if>
+    <if test="assetsSkuDto.applyUserOrgId != null and assetsSkuDto.applyUserOrgId != ''">
+      AND assetsSku.apply_user_org_id = #{assetsSkuDto.applyUserOrgId}
+    </if>
+    <if test="assetsSkuDto.applyUserOrgName != null and assetsSkuDto.applyUserOrgName != ''">
+      AND assetsSku.apply_user_org_name like CONCAT('%',#{assetsSkuDto.applyUserOrgName},'%')
+    </if>
+    <if test="assetsSkuDto.applyUserDeptId != null and assetsSkuDto.applyUserDeptId != ''">
+      AND assetsSku.apply_user_dept_id = #{assetsSkuDto.applyUserDeptId}
+    </if>
+    <if test="assetsSkuDto.applyUserDeptName != null and assetsSkuDto.applyUserDeptName != ''">
+      AND assetsSku.apply_user_dept_name like CONCAT('%',#{assetsSkuDto.applyUserDeptName},'%')
+    </if>
+    <if test="assetsSkuDto.sourceId != null and assetsSkuDto.sourceId != ''">
+      AND assetsSku.source_id = #{assetsSkuDto.sourceId}
+    </if>
+    <if test="assetsSkuDto.assetSource != null and assetsSkuDto.assetSource != ''">
+      AND assetsSku.asset_source = #{assetsSkuDto.assetSource}
+    </if>
+    <if test="assetsSkuDto.skuCodes != null and assetsSkuDto.skuCodes != ''">
+      AND assetsSku.sku_codes like CONCAT('%',#{assetsSkuDto.skuCodes},'%')
+    </if>
+    order by assetsSku.id desc
+</select>
+</mapper>

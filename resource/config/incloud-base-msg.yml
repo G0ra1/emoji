@@ -1,0 +1,5 @@
+incloud:
+  table:
+    package: com.netwisd.base.msg.entity
+jiguang:
+  templateId: 203952

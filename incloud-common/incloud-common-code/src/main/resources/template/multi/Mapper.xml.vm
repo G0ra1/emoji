@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="${package}.${moduleName}.mapper.${className}Mapper">
+
+<resultMap id="${classname}Map" type="${package}.${moduleName}.vo.${className}Vo">
+#foreach($column in $columns)
+#if($column.lowerAttrName==$id.lowerAttrName)
+  <id property="${id.lowerAttrName}" column="${id.columnName}"/>
+#else
+  <result property="${column.lowerAttrName}" column="${column.columnName}"/>
+#end
+#end
+</resultMap>
+<select id="getPageList" parameterType="${package}.${moduleName}.dto.${className}Dto" resultMap="${classname}Map">
+  select * from ${tableName} ${classname} where 1=1
+#foreach($column in $columns)
+    <if test="${classname}Dto.${column.lowerAttrName} != null and ${classname}Dto.${column.lowerAttrName} != ''">
+#if($column.attrType=="String")
+      AND ${classname}.${column.columnName} like CONCAT('%',#{${classname}Dto.${column.lowerAttrName}},'%')
+#else
+      AND ${classname}.${column.columnName} = #{${classname}Dto.${column.lowerAttrName}}
+#end
+    </if>
+#end
+    order by ${classname}.${id.columnName} desc
+</select>
+</mapper>

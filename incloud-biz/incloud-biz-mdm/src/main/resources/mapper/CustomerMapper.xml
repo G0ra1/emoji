@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.mdm.mapper.CustomerMapper">
+
+<resultMap id="customerMap" type="com.netwisd.biz.mdm.vo.CustomerVo">
+  <id property="id" column="id"/>
+  <result property="customerName" column="customer_name"/>
+  <result property="customerCode" column="customer_code"/>
+  <result property="registerCapital" column="register_capital"/>
+  <result property="property" column="property"/>
+  <result property="credential" column="credential"/>
+  <result property="zipcode" column="zipcode"/>
+  <result property="businessScope" column="business_scope"/>
+  <result property="establishDate" column="establish_date"/>
+  <result property="belongCustomer" column="belong_customer"/>
+  <result property="businessLicense" column="business_license"/>
+  <result property="orgCode" column="org_code"/>
+  <result property="unifyCode" column="unify_code"/>
+  <result property="taxpayerType" column="taxpayer_type"/>
+  <result property="registrationNumber" column="registration_number"/>
+  <result property="representative" column="representative"/>
+  <result property="representativePhone" column="representative_phone"/>
+  <result property="agent" column="agent"/>
+  <result property="agentPhone" column="agent_phone"/>
+  <result property="phone" column="phone"/>
+  <result property="fax" column="fax"/>
+  <result property="address" column="address"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.mdm.dto.CustomerDto" resultMap="customerMap">
+  select * from incloud_biz_mdm_customer customer where 1=1
+    <if test="customerDto.id != null and customerDto.id != ''">
+      AND customer.id = #{customerDto.id}
+    </if>
+    <if test="customerDto.customerName != null and customerDto.customerName != ''">
+      AND customer.customer_name like CONCAT('%',#{customerDto.customerName},'%')
+    </if>
+    <if test="customerDto.customerCode != null and customerDto.customerCode != ''">
+      AND customer.customer_code like CONCAT('%',#{customerDto.customerCode},'%')
+    </if>
+    <if test="customerDto.registerCapital != null and customerDto.registerCapital != ''">
+      AND customer.register_capital like CONCAT('%',#{customerDto.registerCapital},'%')
+    </if>
+    <if test="customerDto.property != null and customerDto.property != ''">
+      AND customer.property like CONCAT('%',#{customerDto.property},'%')
+    </if>
+    <if test="customerDto.credential != null and customerDto.credential != ''">
+      AND customer.credential like CONCAT('%',#{customerDto.credential},'%')
+    </if>
+    <if test="customerDto.zipcode != null and customerDto.zipcode != ''">
+      AND customer.zipcode like CONCAT('%',#{customerDto.zipcode},'%')
+    </if>
+    <if test="customerDto.businessScope != null and customerDto.businessScope != ''">
+      AND customer.business_scope like CONCAT('%',#{customerDto.businessScope},'%')
+    </if>
+    <if test="customerDto.establishDate != null and customerDto.establishDate != ''">
+      AND customer.establish_date = #{customerDto.establishDate}
+    </if>
+    <if test="customerDto.belongCustomer != null and customerDto.belongCustomer != ''">
+      AND customer.belong_customer like CONCAT('%',#{customerDto.belongCustomer},'%')
+    </if>
+    <if test="customerDto.businessLicense != null and customerDto.businessLicense != ''">
+      AND customer.business_license like CONCAT('%',#{customerDto.businessLicense},'%')
+    </if>
+    <if test="customerDto.orgCode != null and customerDto.orgCode != ''">
+      AND customer.org_code like CONCAT('%',#{customerDto.orgCode},'%')
+    </if>
+    <if test="customerDto.unifyCode != null and customerDto.unifyCode != ''">
+      AND customer.unify_code like CONCAT('%',#{customerDto.unifyCode},'%')
+    </if>
+    <if test="customerDto.taxpayerType != null and customerDto.taxpayerType != ''">
+      AND customer.taxpayer_type like CONCAT('%',#{customerDto.taxpayerType},'%')
+    </if>
+    <if test="customerDto.registrationNumber != null and customerDto.registrationNumber != ''">
+      AND customer.registration_number like CONCAT('%',#{customerDto.registrationNumber},'%')
+    </if>
+    <if test="customerDto.representative != null and customerDto.representative != ''">
+      AND customer.representative like CONCAT('%',#{customerDto.representative},'%')
+    </if>
+    <if test="customerDto.representativePhone != null and customerDto.representativePhone != ''">
+      AND customer.representative_phone like CONCAT('%',#{customerDto.representativePhone},'%')
+    </if>
+    <if test="customerDto.agent != null and customerDto.agent != ''">
+      AND customer.agent like CONCAT('%',#{customerDto.agent},'%')
+    </if>
+    <if test="customerDto.agentPhone != null and customerDto.agentPhone != ''">
+      AND customer.agent_phone like CONCAT('%',#{customerDto.agentPhone},'%')
+    </if>
+    <if test="customerDto.phone != null and customerDto.phone != ''">
+      AND customer.phone like CONCAT('%',#{customerDto.phone},'%')
+    </if>
+    <if test="customerDto.fax != null and customerDto.fax != ''">
+      AND customer.fax like CONCAT('%',#{customerDto.fax},'%')
+    </if>
+    <if test="customerDto.address != null and customerDto.address != ''">
+      AND customer.address like CONCAT('%',#{customerDto.address},'%')
+    </if>
+    order by customer.id desc
+</select>
+  <select id="outList" resultMap="outListMap">
+
+    SELECT
+      customer.id,
+      customer.customer_name ,
+      customer.customer_code ,
+      customer.register_capital ,
+      customer.property ,
+      customer.credential ,
+      customer.zipcode ,
+      customer.business_scope ,
+      customer.establish_date ,
+      customer.belong_customer ,
+      customer.business_license ,
+      customer.org_code ,
+      customer.unify_code ,
+      customer.taxpayer_type ,
+      customer.registration_number ,
+      customer.representative ,
+      customer.representative_phone ,
+      customer.agent ,
+      customer.agent_phone ,
+      customer.phone ,
+      customer.fax ,
+      customer.address ,
+      bank.id AS b_id,
+      bank.bank_name,
+      bank.bank_account,
+      con.id AS c_id,
+      con.contacts_name,
+      con.contacts_phone
+    FROM
+      incloud_biz_mdm_customer customer
+        LEFT JOIN incloud_biz_mdm_customer_bank bank ON bank.customer_code = customer.customer_code
+        LEFT JOIN incloud_biz_mdm_customer_contacts con ON con.customer_code = customer.customer_code
+  </select>
+  <resultMap id="outListMap" type="com.netwisd.biz.mdm.vo.CustomerVo">
+    <id property="id" column="id"/>
+    <result property="customerName" column="customer_name"/>
+    <result property="customerCode" column="customer_code"/>
+    <result property="registerCapital" column="register_capital"/>
+    <result property="property" column="property"/>
+    <result property="credential" column="credential"/>
+    <result property="zipcode" column="zipcode"/>
+    <result property="businessScope" column="business_scope"/>
+    <result property="establishDate" column="establish_date"/>
+    <result property="belongCustomer" column="belong_customer"/>
+    <result property="businessLicense" column="business_license"/>
+    <result property="orgCode" column="org_code"/>
+    <result property="unifyCode" column="unify_code"/>
+    <result property="taxpayerType" column="taxpayer_type"/>
+    <result property="registrationNumber" column="registration_number"/>
+    <result property="representative" column="representative"/>
+    <result property="representativePhone" column="representative_phone"/>
+    <result property="agent" column="agent"/>
+    <result property="agentPhone" column="agent_phone"/>
+    <result property="phone" column="phone"/>
+    <result property="fax" column="fax"/>
+    <result property="address" column="address"/>
+    <collection property="bankList" column="bankList" ofType="com.netwisd.biz.mdm.vo.CustomerBankVo">
+    <id property="id" column="b_id"></id>
+    <result property="bankName" column="bank_name"></result>
+    <result property="bankAccount" column="bank_account"></result>
+  </collection>
+    <collection property="contactsList" column="contactsList" ofType="com.netwisd.biz.mdm.vo.CustomerContactsVo">
+      <id property="id" column="c_id"></id>
+      <result property="contactsName" column="contacts_name"></result>
+      <result property="contactsPhone" column="contacts_phone"></result>
+    </collection>
+  </resultMap>
+</mapper>

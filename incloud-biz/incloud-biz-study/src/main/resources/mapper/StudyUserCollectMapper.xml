@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.study.mapper.StudyUserCollectMapper">
+
+<resultMap id="studyUserCollectMap" type="com.netwisd.biz.study.vo.StudyUserCollectVo">
+  <id property="id" column="id"/>
+  <result property="userId" column="user_id"/>
+  <result property="userName" column="user_name"/>
+  <result property="userNameCh" column="user_name_ch"/>
+  <result property="lessonId" column="lesson_id"/>
+  <result property="lessonName" column="lesson_name"/>
+  <result property="specialId" column="special_id"/>
+  <result property="specialName" column="special_name"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+  <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+  <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+  <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+  <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+  <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.study.dto.StudyUserCollectDto" resultMap="studyUserCollectMap">
+  select * from incloud_biz_study_user_collect studyUserCollect where 1=1
+    <if test="studyUserCollectDto.id != null and studyUserCollectDto.id != ''">
+      AND studyUserCollect.id = #{studyUserCollectDto.id}
+    </if>
+    <if test="studyUserCollectDto.userId != null and studyUserCollectDto.userId != ''">
+      AND studyUserCollect.user_id = #{studyUserCollectDto.userId}
+    </if>
+    <if test="studyUserCollectDto.userName != null and studyUserCollectDto.userName != ''">
+      AND studyUserCollect.user_name like CONCAT('%',#{studyUserCollectDto.userName},'%')
+    </if>
+    <if test="studyUserCollectDto.userNameCh != null and studyUserCollectDto.userNameCh != ''">
+      AND studyUserCollect.user_name_ch like CONCAT('%',#{studyUserCollectDto.userNameCh},'%')
+    </if>
+    <if test="studyUserCollectDto.lessonId != null and studyUserCollectDto.lessonId != ''">
+      AND studyUserCollect.lesson_id = #{studyUserCollectDto.lessonId}
+    </if>
+    <if test="studyUserCollectDto.lessonName != null and studyUserCollectDto.lessonName != ''">
+      AND studyUserCollect.lesson_name like CONCAT('%',#{studyUserCollectDto.lessonName},'%')
+    </if>
+    <if test="studyUserCollectDto.specialId != null and studyUserCollectDto.specialId != ''">
+      AND studyUserCollect.special_id = #{studyUserCollectDto.specialId}
+    </if>
+    <if test="studyUserCollectDto.specialName != null and studyUserCollectDto.specialName != ''">
+      AND studyUserCollect.special_name like CONCAT('%',#{studyUserCollectDto.specialName},'%')
+    </if>
+    <if test="studyUserCollectDto.createUserId != null and studyUserCollectDto.createUserId != ''">
+      AND studyUserCollect.create_user_id = #{studyUserCollectDto.createUserId}
+    </if>
+    <if test="studyUserCollectDto.createUserName != null and studyUserCollectDto.createUserName != ''">
+      AND studyUserCollect.create_user_name like CONCAT('%',#{studyUserCollectDto.createUserName},'%')
+    </if>
+    <if test="studyUserCollectDto.createUserParentOrgId != null and studyUserCollectDto.createUserParentOrgId != ''">
+      AND studyUserCollect.create_user_parent_org_id = #{studyUserCollectDto.createUserParentOrgId}
+    </if>
+    <if test="studyUserCollectDto.createUserParentOrgName != null and studyUserCollectDto.createUserParentOrgName != ''">
+      AND studyUserCollect.create_user_parent_org_name like CONCAT('%',#{studyUserCollectDto.createUserParentOrgName},'%')
+    </if>
+    <if test="studyUserCollectDto.createUserParentDeptId != null and studyUserCollectDto.createUserParentDeptId != ''">
+      AND studyUserCollect.create_user_parent_dept_id = #{studyUserCollectDto.createUserParentDeptId}
+    </if>
+    <if test="studyUserCollectDto.createUserParentDeptName != null and studyUserCollectDto.createUserParentDeptName != ''">
+      AND studyUserCollect.create_user_parent_dept_name like CONCAT('%',#{studyUserCollectDto.createUserParentDeptName},'%')
+    </if>
+    <if test="studyUserCollectDto.createUserOrgFullId != null and studyUserCollectDto.createUserOrgFullId != ''">
+      AND studyUserCollect.create_user_org_full_id like CONCAT('%',#{studyUserCollectDto.createUserOrgFullId},'%')
+    </if>
+    order by studyUserCollect.id desc
+</select>
+</mapper>

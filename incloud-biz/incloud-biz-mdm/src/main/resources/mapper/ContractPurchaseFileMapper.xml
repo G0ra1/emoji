@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netwisd.biz.mdm.mapper.ContractPurchaseFileMapper">
+
+<resultMap id="contractPurchaseFileMap" type="com.netwisd.biz.mdm.vo.ContractPurchaseFileVo">
+  <id property="id" column="id"/>
+  <result property="contractId" column="contract_id"/>
+  <result property="contractCode" column="contract_code"/>
+  <result property="contractName" column="contract_name"/>
+  <result property="fileName" column="file_name"/>
+  <result property="fileUrl" column="file_url"/>
+  <result property="createUserId" column="create_user_id"/>
+  <result property="createUserName" column="create_user_name"/>
+  <result property="createUserParentOrgId" column="create_user_parent_org_id"/>
+  <result property="createUserParentOrgName" column="create_user_parent_org_name"/>
+  <result property="createUserParentDeptId" column="create_user_parent_dept_id"/>
+  <result property="createUserParentDeptName" column="create_user_parent_dept_name"/>
+  <result property="createUserOrgFullId" column="create_user_org_full_id"/>
+</resultMap>
+<select id="getPageList" parameterType="com.netwisd.biz.mdm.dto.ContractPurchaseFileDto" resultMap="contractPurchaseFileMap">
+  select * from incloud_biz_mdm_contract_purchase_file contractPurchaseFile where 1=1
+    <if test="contractPurchaseFileDto.id != null and contractPurchaseFileDto.id != ''">
+      AND contractPurchaseFile.id = #{contractPurchaseFileDto.id}
+    </if>
+    <if test="contractPurchaseFileDto.contractId != null and contractPurchaseFileDto.contractId != ''">
+      AND contractPurchaseFile.contract_id = #{contractPurchaseFileDto.contractId}
+    </if>
+    <if test="contractPurchaseFileDto.contractCode != null and contractPurchaseFileDto.contractCode != ''">
+      AND contractPurchaseFile.contract_code like CONCAT('%',#{contractPurchaseFileDto.contractCode},'%')
+    </if>
+    <if test="contractPurchaseFileDto.contractName != null and contractPurchaseFileDto.contractName != ''">
+      AND contractPurchaseFile.contract_name like CONCAT('%',#{contractPurchaseFileDto.contractName},'%')
+    </if>
+    <if test="contractPurchaseFileDto.fileName != null and contractPurchaseFileDto.fileName != ''">
+      AND contractPurchaseFile.file_name like CONCAT('%',#{contractPurchaseFileDto.fileName},'%')
+    </if>
+    <if test="contractPurchaseFileDto.fileUrl != null and contractPurchaseFileDto.fileUrl != ''">
+      AND contractPurchaseFile.file_url like CONCAT('%',#{contractPurchaseFileDto.fileUrl},'%')
+    </if>
+    <if test="contractPurchaseFileDto.createUserId != null and contractPurchaseFileDto.createUserId != ''">
+      AND contractPurchaseFile.create_user_id = #{contractPurchaseFileDto.createUserId}
+    </if>
+    <if test="contractPurchaseFileDto.createUserName != null and contractPurchaseFileDto.createUserName != ''">
+      AND contractPurchaseFile.create_user_name like CONCAT('%',#{contractPurchaseFileDto.createUserName},'%')
+    </if>
+    <if test="contractPurchaseFileDto.createUserParentOrgId != null and contractPurchaseFileDto.createUserParentOrgId != ''">
+      AND contractPurchaseFile.create_user_parent_org_id = #{contractPurchaseFileDto.createUserParentOrgId}
+    </if>
+    <if test="contractPurchaseFileDto.createUserParentOrgName != null and contractPurchaseFileDto.createUserParentOrgName != ''">
+      AND contractPurchaseFile.create_user_parent_org_name like CONCAT('%',#{contractPurchaseFileDto.createUserParentOrgName},'%')
+    </if>
+    <if test="contractPurchaseFileDto.createUserParentDeptId != null and contractPurchaseFileDto.createUserParentDeptId != ''">
+      AND contractPurchaseFile.create_user_parent_dept_id = #{contractPurchaseFileDto.createUserParentDeptId}
+    </if>
+    <if test="contractPurchaseFileDto.createUserParentDeptName != null and contractPurchaseFileDto.createUserParentDeptName != ''">
+      AND contractPurchaseFile.create_user_parent_dept_name like CONCAT('%',#{contractPurchaseFileDto.createUserParentDeptName},'%')
+    </if>
+    <if test="contractPurchaseFileDto.createUserOrgFullId != null and contractPurchaseFileDto.createUserOrgFullId != ''">
+      AND contractPurchaseFile.create_user_org_full_id like CONCAT('%',#{contractPurchaseFileDto.createUserOrgFullId},'%')
+    </if>
+    order by contractPurchaseFile.id desc
+</select>
+</mapper>
